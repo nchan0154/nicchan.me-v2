@@ -1,0 +1,45 @@
+---
+import FooterWindows from "./FooterWindows.svelte";
+
+const ariaCurrent = Astro.url.pathname === "/" ? "page" : undefined;
+---
+
+<footer class="layout__footer footer" id="footer">
+	<nav class="footer__nav" aria-label="Footer">
+		<a class="footer__home" href="/" aria-current={ariaCurrent}>
+			<!--icon -->
+			Home
+		</a>
+		<span class="footer__divider" />
+
+		<FooterWindows client:load />
+	</nav>
+</footer>
+
+<style lang="scss">
+	.footer {
+		grid-column: span 2;
+		width: 100%;
+		padding: var(--border-thickness);
+		background-color: var(--color-footer-bg);
+	}
+
+	.footer__nav {
+		display: flex;
+		align-items: center;
+	}
+
+	.footer__divider {
+		display: block;
+		margin: 0 0.25rem;
+		width: 0.0625rem;
+		align-self: stretch;
+		height: 100%;
+	}
+
+	.footer__current {
+		padding: 0 0.25rem;
+		border: var(--border-thickness) inset;
+		background-color: var(--color-footer-bg-active);
+	}
+</style>

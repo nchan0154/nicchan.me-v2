@@ -1,0 +1,88 @@
+:root {
+	--color-magenta-darkest: #581e5e;
+	--color-magenta-darker: #853680;
+	--color-magenta: #a75293;
+	--color-magenta-lighter: #cb96cc;
+	--color-magenta-lightest: #e9dcee;
+	--color-teal-darkest: #18656e;
+	--color-teal-darker: #52a2a7;
+	--color-teal: #9ddacb;
+	--color-teal-lighter: #c1edc7;
+	--color-teal-lightest: #f1fae9;
+	--color-mauve-darkest: #26202c;
+	--color-mauve-darker: #5f4c65;
+	--color-mauve: #9c7a9d;
+	--color-mauve-lighter: #c6b0c6;
+	--color-mauve-lightest: #eee7ee;
+	--color-violet-darker: #17162b;
+	--color-violet: #2c2b4b;
+	--color-violet-lighter: #4f4d7e;
+	--color-black: #000;
+	--color-gray-darkest: #5a6064;
+	--color-gray-darker: #878894;
+	--color-gray: #bdb6c4;
+	--color-gray-lighter: #d7dde1;
+	--color-white: #fff;
+
+	--color-bg: var(--color-violet-darker);
+
+	--color-nav-link-bg: var(--color-white);
+	--color-nav-link-text: var(--color-violet-darker);
+	--color-footer-bg: var(--color-gray);
+
+	--color-button-ui-bg: var(--color-gray-lighter);
+	--color-button-ui-shadow: var(--color-gray-darker);
+	--color-button-ui-highlight: var(--color-white);
+	--color-button-ui-text: var(--color-violet);
+
+	--color-page-title: var(--color-violet-darker);
+	--color-page-title-accent: var(--color-teal-darker);
+	--color-window-bg: var(--color-white);
+	--color-window-text: var(--violet);
+	--color-window-header-bg: linear-gradient(
+		to right,
+		var(--color-magenta-darker),
+		var(--color-teal-darkest)
+	);
+	--color-window-header-text: var(--color-white);
+
+	--font-accent: "Sysfont", monospace;
+	--font-pixel: "W95fa", sans-serif;
+	--font-fallback: Seravek, "Gill Sans Nova", Ubuntu, Calibri, "DejaVu Sans",
+		source-sans-pro, sans-serif;
+
+	--font-base: var(--font-pixel);
+	--border-thickness: 0.1875rem;
+	--border-color: var(--color-violet-darker);
+	--text-padding: var(--border-thickness) calc(var(--border-thickness) * 2);
+
+	--window-max-width: 80ch;
+	--window-margin-block-start: 0.5rem;
+	--title-font-size: clamp(2.5rem, 7vw + 1rem, 4.5rem);
+	--page-block-padding: 1rem;
+	--page-inline-padding: 5%;
+}
+
+@mixin dark-colors {
+	::selection {
+		background-color: var(--color-tertiary-light);
+		color: var(--color-dark-dark);
+	}
+
+	--color-bg: var(--color-violet-darker);
+	--color-nav-link-bg: var(--color-violet);
+	--color-nav-link-text: var(--color-white);
+
+	--color-window-bg: var(--color-violet);
+	--color-window-text: var(--color-white);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-user-color-scheme]) {
+		@include dark-colors;
+	}
+}
+
+[data-user-color-scheme="dark"] {
+	@include dark-colors;
+}

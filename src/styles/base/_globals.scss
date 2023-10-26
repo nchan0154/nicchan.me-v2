@@ -1,0 +1,80 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	min-height: 100%;
+	font-family: var(--font-base);
+	line-height: 1.5;
+	background-color: var(--color-bg);
+	background-image: url("/pixels/bg-5.png");
+	background-size: cover;
+	background-position: center;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	image-rendering: crisp-edges;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: pixelated;
+	// background-color: var(--color-image-fallback);
+}
+
+p {
+	margin: 0;
+
+	& + & {
+		margin-block-start: 1rem;
+	}
+}
+
+button,
+input {
+	font-family: inherit;
+}
+
+button * {
+	pointer-events: none;
+}
+
+.stack > * + * {
+	margin-block-start: 1rem;
+}
+
+@keyframes animate {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+// ::view-transition-old(window),
+// ::view-transition-new(window) {
+// 	animation: 0.3s animate;
+// }
+@keyframes animate2 {
+	from {
+		width: 10px;
+	}
+	to {
+		width: 30px;
+	}
+}
+// ::view-transition-old(*) {
+// 	display: none;
+// 	animation: 0s animate2;
+// }
+
+// ::view-transition-new(*) {
+// 	display: none;
+// 	animation: 0s animate 0.3s;
+// }
+
+.hidden {
+	opacity: 0;
+}

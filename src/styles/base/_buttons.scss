@@ -1,0 +1,40 @@
+.button--ui {
+	position: relative;
+	background-color: var(--color-button-ui-bg);
+	padding: calc(var(--border-thickness) * 2);
+	padding-inline-end: calc(var(--border-thickness) * 2 + 2px);
+	color: var(--color-button-ui-text);
+	font-size: 1rem;
+
+	@include pixel-borders(#4f4d7e);
+
+	&[aria-pressed="true"],
+	&:hover,
+	&:active {
+		&::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			box-shadow: inset calc(var(--border-thickness) * -1)
+					calc(var(--border-thickness) * -1) var(--color-button-ui-highlight),
+				inset var(--border-thickness) var(--border-thickness)
+					var(--color-button-ui-shadow);
+		}
+	}
+
+	&:focus {
+		outline: none;
+	}
+
+	@include focus(var(--border-thickness));
+}
+
+.button--ui::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	box-shadow: inset calc(var(--border-thickness) * -1)
+			calc(var(--border-thickness) * -1) var(--color-button-ui-shadow),
+		inset var(--border-thickness) var(--border-thickness)
+			var(--color-button-ui-highlight);
+}

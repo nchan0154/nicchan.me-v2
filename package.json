@@ -1,0 +1,24 @@
+{
+  "name": "nicchan-me-v2",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^1.0.3",
+    "@astrojs/rss": "^3.0.0",
+    "@astrojs/sitemap": "^3.0.0",
+    "@astrojs/svelte": "^4.0.2",
+    "astro": "^3.0.13",
+    "svelte": "^4.2.0"
+  },
+  "devDependencies": {
+    "pixel-borders": "^1.1.4",
+    "sass": "^1.67.0"
+  }
+}

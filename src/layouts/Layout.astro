@@ -1,0 +1,21 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.svelte';
+import Footer from '../components/Footer.astro';
+
+const { title, description } = Astro.props;
+const url = Astro.url;
+---
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+	<body class="layout">
+		<Header></Header>
+		<main class="layout__main">
+			<slot />
+		</main>
+		<Footer></Footer>
+	</body>
+</html>
