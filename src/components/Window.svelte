@@ -3,7 +3,7 @@
 	import { windowStore, isMaximizing } from "../scripts/windows.js";
 
 	export let title, style, order, back, backText, ref;
-	export let id = title.replace(" ", "-").toLowerCase();
+	export let id = title.replace(" ", "-").toLowerCase() || "window";
 	export let titleTag = "h2";
 	export let isStacked = false;
 	let activeWindow;
@@ -68,9 +68,9 @@
 	class:window__wrapper--minimized={activeWindow
 		? activeWindow.isMinimized
 		: false}
-	style={transitionName +
-		(style && style) +
-		`--bottom-padding: ${bottomPadding}px`}
+	style={`${transitionName} ${
+		style && `${style};`
+	} --bottom-padding: ${bottomPadding}px`}
 	bind:this={ref}
 	{id}
 >
@@ -114,8 +114,8 @@
 
 	.window__wrapper {
 		display: flex;
+		max-width: var(--max-width);
 		max-height: 100%;
-		max-width: var(--window-max-width);
 		font-size: 1.25rem;
 		width: fit-content;
 
@@ -126,6 +126,7 @@
 	}
 
 	.window__wrapper--stacked {
+		max-height: none;
 		margin-block-start: var(--window-margin-block-start);
 	}
 
@@ -178,8 +179,13 @@
 	}
 
 	@media (min-width: 62em) {
+		.window__wrapper {
+			max-width: var(--large-max-width, var(--max-width));
+		}
+
 		.window__wrapper--stacked {
 			position: absolute;
+			max-height: var(--max-height, 100%);
 			margin: 0;
 			inset-inline-start: var(--inline-start, auto);
 			inset-inline-end: var(--inline-end, auto);
@@ -194,6 +200,7 @@
 
 	.window__wrapper--maximized {
 		position: absolute;
+		max-height: 100%;
 		margin: 0;
 		inset: 0;
 		width: 100%;

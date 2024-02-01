@@ -5,6 +5,7 @@ h4 {
 	margin: 0;
 	font-family: var(--font-accent);
 	font-weight: 400;
+	letter-spacing: 0;
 }
 
 .page-title {
@@ -13,4 +14,12 @@ h4 {
 	color: var(--color-page-title);
 	filter: drop-shadow(0.0625em 0.0625em 0 var(--color-page-title-accent));
 	font-size: var(--title-font-size);
+	letter-spacing: 0;
+}
+
+.text--base {
+	font-family: var(--font-base);
+	font-size: 1.25rem;
+	line-height: 1.5;
+	letter-spacing: 0.02em;
 }

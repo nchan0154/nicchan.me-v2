@@ -6,8 +6,10 @@ const ariaCurrent = Astro.url.pathname === "/" ? "page" : undefined;
 
 <footer class="layout__footer footer" id="footer">
 	<nav class="footer__nav" aria-label="Footer">
-		<a class="footer__home" href="/" aria-current={ariaCurrent}>
-			<!--icon -->
+		<a class="footer__home button--ui" href="/" aria-current={ariaCurrent}>
+			<svg class="button__icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16">
+				<path fill-rule="evenodd" d="M0 0h16v16H0z" fill="#A75293"/>
+			</svg>
 			Home
 		</a>
 		<span class="footer__divider" />
@@ -22,6 +24,7 @@ const ariaCurrent = Astro.url.pathname === "/" ? "page" : undefined;
 		width: 100%;
 		padding: var(--border-thickness);
 		background-color: var(--color-footer-bg);
+		view-transition-name: footer;
 	}
 
 	.footer__nav {

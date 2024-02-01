@@ -32,6 +32,11 @@
 
 @mixin focus($offset: 0) {
 	position: relative;
+	box-decoration-break: clone;
+
+	&:focus {
+		outline: 0.25rem solid transparent;
+	}
 
 	&:focus::before {
 		content: "";

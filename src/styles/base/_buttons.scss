@@ -5,10 +5,12 @@
 	padding-inline-end: calc(var(--border-thickness) * 2 + 2px);
 	color: var(--color-button-ui-text);
 	font-size: 1rem;
-
+	line-height: 1;
+	text-decoration: none;
 	@include pixel-borders(#4f4d7e);
 
 	&[aria-pressed="true"],
+	&[aria-expanded="true"],
 	&:hover,
 	&:active {
 		&::after {
@@ -37,4 +39,8 @@
 			calc(var(--border-thickness) * -1) var(--color-button-ui-shadow),
 		inset var(--border-thickness) var(--border-thickness)
 			var(--color-button-ui-highlight);
+}
+
+.button__icon {
+	vertical-align: text-bottom;
 }

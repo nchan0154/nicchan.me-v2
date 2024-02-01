@@ -6,7 +6,7 @@ import ClientsList from "../components/ClientsList.svelte";
 ---
 <Layout>
 	<h1 class="page-title">Home</h1>
-	<Window title="Introduction" style="--window-max-width: 25rem; --block-start: 2rem; --inline-start: 2rem;" isStacked={true} order={0}client:load>
+	<Window title="Introduction" style="--max-width: 25rem; --block-start: 2rem; --inline-start: 2rem;" isStacked={true} order={0} client:load>
 		<div class="portrait__wrapper">
 			<img class="portrait" src="/pixels/portrait.png" alt="Nic Chan" width="150" height="150"/>
 		</div>
@@ -15,13 +15,13 @@ import ClientsList from "../components/ClientsList.svelte";
 			<p>I help companies around the world build fast, accessible and user-friendly web experiences.</p>
 		</div>
 	</Window>
-	<Window title="Clients" style="--window-max-width: 27rem; --block-start: 17rem;  --inline-start: 22rem; --padding-block-end: 1rem;" isStacked={true} order={1} client:load>
+	<Window title="Clients" style="--max-width: 27rem; --block-start: 17rem;  --inline-start: 22rem; --padding-block-end: 1rem;" isStacked={true} order={1} client:load>
 		<div class="stack">
 			<p>I am proud to be trusted by companies big and small, including these organizations:</p>
 			<ClientsList />
 		</div>
 	</Window>
-	<Window title="Featured Posts" style="--window-max-width: 80ch; --block-end: 1rem; --inline-end: 1rem;" isStacked={true} order={2} client:load>
+	<Window title="Featured Posts" style="--max-width: 80ch; --block-end: 1rem; --inline-end: 1rem;" isStacked={true} order={2} client:load>
 
 	</Window>
 </Layout>

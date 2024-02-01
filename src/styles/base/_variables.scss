@@ -45,6 +45,11 @@
 		var(--color-teal-darkest)
 	);
 	--color-window-header-text: var(--color-white);
+	--color-link-underline: var(--color-mauve-lighter);
+	--color-testimonial-name: var(--color-magenta-lighter);
+	--color-testimonial-background: var(--color-violet-lighter);
+	--color-response-background: var(--color-teal-darkest);
+	--color-response-name: var(--color-teal-lighter);
 
 	--font-accent: "Sysfont", monospace;
 	--font-pixel: "W95fa", sans-serif;
@@ -56,7 +61,7 @@
 	--border-color: var(--color-violet-darker);
 	--text-padding: var(--border-thickness) calc(var(--border-thickness) * 2);
 
-	--window-max-width: 80ch;
+	--max-width: 80ch;
 	--window-margin-block-start: 0.5rem;
 	--title-font-size: clamp(2.5rem, 7vw + 1rem, 4.5rem);
 	--page-block-padding: 1rem;

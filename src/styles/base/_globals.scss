@@ -4,6 +4,11 @@
 	box-sizing: border-box;
 }
 
+*::selection {
+	background-color: var(--color-violet-darker) !important;
+	color: var(--color-white) !important;
+}
+
 html,
 body {
 	min-height: 100%;
@@ -13,6 +18,7 @@ body {
 	background-image: url("/pixels/bg-5.png");
 	background-size: cover;
 	background-position: center;
+	letter-spacing: 0.02em;
 }
 
 img {

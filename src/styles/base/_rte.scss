@@ -1,0 +1,18 @@
+.rte {
+	ul,
+	ol {
+		margin: 0;
+	}
+
+	a {
+		display: inline-block;
+		color: currentColor;
+		text-decoration-color: var(--color-link-underline);
+
+		&:hover {
+			color: var(--color-link-underline);
+		}
+
+		@include focus(0);
+	}
+}
