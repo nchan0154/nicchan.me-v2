@@ -59,7 +59,7 @@
 	}
 
 	.testimonial__quote {
-		--color: var(--color-testimonial-background);
+		--color: var(--color-testimonial-bg);
 		position: relative;
 		padding: 0.5rem 0.75rem;
 		background-color: var(--color);
@@ -84,7 +84,7 @@
 		}
 
 		.testimonial__quote {
-			--color: var(--color-response-background);
+			--color: var(--color-response-bg);
 			border-start-start-radius: 0.5rem;
 			border-start-end-radius: 0rem;
 			margin-inline-start: auto;

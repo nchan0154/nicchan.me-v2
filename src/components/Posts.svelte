@@ -31,7 +31,7 @@
 			0.0625rem;
 		display: inline-block;
 		margin-block-end: var(--border-thickness);
-		background-color: var(--color-post-tag-background);
+		background-color: var(--color-post-tag-bg);
 		color: var(--color-post-tag-text);
 		font-size: 1.25rem;
 		z-index: 1;

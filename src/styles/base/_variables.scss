@@ -34,6 +34,7 @@
 	--color-button-ui-shadow: var(--color-gray-darker);
 	--color-button-ui-highlight: var(--color-white);
 	--color-button-ui-text: var(--color-violet);
+	--color-button-ui-hover-bg: var(--color-mauve-lighter);
 
 	--color-page-title: var(--color-violet-darker);
 	--color-page-title-accent: var(--color-teal-darker);
@@ -47,14 +48,14 @@
 	--color-window-header-text: var(--color-white);
 	--color-link-underline: var(--color-mauve-lighter);
 	--color-testimonial-name: var(--color-magenta-lighter);
-	--color-testimonial-background: var(--color-violet-lighter);
-	--color-response-background: var(--color-teal-darkest);
+	--color-testimonial-bg: var(--color-violet-lighter);
+	--color-response-bg: var(--color-teal-darkest);
 	--color-response-name: var(--color-teal-lighter);
 	--color-text-accent: var(--color-mauve);
 	--color-text-heading: var(--color-mauve-lightest);
 	--color-text-subheading: var(--color-magenta-lighter);
 	--color-text-highlight: var(--color-teal-darkest);
-	--color-post-tag-background: var(--color-violet);
+	--color-post-tag-bg: var(--color-violet);
 	--color-post-tag-text: var(--color-white);
 
 	--font-accent: "Sysfont", monospace;

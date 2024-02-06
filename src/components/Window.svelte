@@ -143,7 +143,7 @@
 		display: flex;
 		align-items: center;
 		gap: 1rem;
-		padding: var(--border-thickness);
+		padding: var(--border-thickness) calc(var(--border-thickness) * 2);
 		justify-content: space-between;
 		background: var(--color-window-header-bg);
 		color: var(--color-window-header-text);
@@ -207,8 +207,9 @@
 		margin: 0;
 		inset: 0;
 		width: 100%;
-		inset-block-end: var(--bottom-padding);
 		max-width: none;
+		height: 100%;
+		inset-block-end: var(--bottom-padding);
 		padding-block-end: 0;
 		z-index: 1;
 
