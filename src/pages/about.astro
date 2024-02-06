@@ -3,15 +3,15 @@ import Layout from '../layouts/Layout.astro';
 import Window from "../components/Window.svelte";
 import Testimonials from "../components/Testimonials.svelte";
 
-import testimonials from "../content/testimonials/testimonials.json";
+import testimonials from "../content/data/testimonials.json";
 ---
 
 <Layout
 	title="About"
 >
 	<h1 class="page-title">About</h1>
-	<Window title="Bio" order={1} isStacked={true} style="--block-start: 1rem;" client:load>
-		<div class="stack rte">
+	<Window title="Bio" order={0} isStacked={true} style="--block-start: 1rem; --block-end: 1rem; --max-height: calc(100% - var(--page-block-padding) * 2 - 5.5rem)" client:load>
+		<div class="rte">
 			<p>Hi! I'm Nic. I build websites, draw pictures and eat lots of sushi, and would love to do any of those things for you. I'm based in Hong Kong, but I've had 8+ years of experience working with people all across the globe!</p>
 			<h3>Career Highlights</h3>
 			<ul>
@@ -24,7 +24,7 @@ import testimonials from "../content/testimonials/testimonials.json";
 			<p>
 		</div>
 	</Window>
-	<Window title="Testimonials" order={2} isStacked={true} style="--max-height: calc(100% - 4rem); --large-max-width: 50ch; --block-end: 2rem; --inline-end: 2rem;  }" client:load>
+	<Window title="Testimonials" order={1} isStacked={true} style="--max-height: calc(100% - 4rem); --large-max-width: 50ch; --block-end: 2rem; --inline-end: 2rem;  }" client:load>
 		<Testimonials {testimonials} client:load/>
 	</Window>
 </Layout>

@@ -2,7 +2,6 @@
 title: "My white whale: A use case for will-change"
 date: "2022-02-03"
 description: "what the heck does will-change even do anyway"
-pubDate: "Jul 08 2022"
 tags:
   - animation
   - css

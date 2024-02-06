@@ -1,6 +1,7 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
-import BlogPost from '../../layouts/BlogPost.astro';
+import Layout from '../../layouts/Layout.astro';
+import Window from "../../components/Window.svelte";
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
@@ -15,6 +16,10 @@ const post = Astro.props;
 const { Content } = await post.render();
 ---
 
-<!-- <BlogPost {...post.data}>
-	<Content />
-</BlogPost> -->
+<Layout>
+	<Window title="Services" order={0} titleTag='h1' client:load>
+		<div class="rte">
+			<Content/>
+		</div>
+	</Window>
+</Layout>

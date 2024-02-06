@@ -13,7 +13,7 @@ html,
 body {
 	min-height: 100%;
 	font-family: var(--font-base);
-	line-height: 1.5;
+	line-height: 1.6;
 	background-color: var(--color-bg);
 	background-image: url("/pixels/bg-5.png");
 	background-size: cover;
@@ -22,12 +22,17 @@ body {
 }
 
 img {
-	max-width: 100%;
-	height: auto;
+	max-inline-size: 100%;
+	block-size: auto;
 	image-rendering: crisp-edges;
 	image-rendering: -moz-crisp-edges;
 	image-rendering: pixelated;
 	// background-color: var(--color-image-fallback);
+}
+
+video {
+	max-inline-size: 100%;
+	block-size: auto;
 }
 
 p {

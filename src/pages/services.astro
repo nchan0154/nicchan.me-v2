@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Window from "../components/Window.svelte";
+import Content from '../content/pages/services.md';
+---
+<Layout
+	title="Services"
+>
+	<Window title="Services" order={0} style="max-inline-size: var(--max-width);" titleTag='span' client:load>
+		<div class="rte">
+			<Content/>
+		</div>
+	</Window>
+</Layout>

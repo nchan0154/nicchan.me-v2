@@ -50,6 +50,12 @@
 	--color-testimonial-background: var(--color-violet-lighter);
 	--color-response-background: var(--color-teal-darkest);
 	--color-response-name: var(--color-teal-lighter);
+	--color-text-accent: var(--color-mauve);
+	--color-text-heading: var(--color-mauve-lightest);
+	--color-text-subheading: var(--color-magenta-lighter);
+	--color-text-highlight: var(--color-teal-darkest);
+	--color-post-tag-background: var(--color-violet);
+	--color-post-tag-text: var(--color-white);
 
 	--font-accent: "Sysfont", monospace;
 	--font-pixel: "W95fa", sans-serif;
@@ -61,11 +67,15 @@
 	--border-color: var(--color-violet-darker);
 	--text-padding: var(--border-thickness) calc(var(--border-thickness) * 2);
 
-	--max-width: 80ch;
+	--max-width: 66ch;
 	--window-margin-block-start: 0.5rem;
 	--title-font-size: clamp(2.5rem, 7vw + 1rem, 4.5rem);
 	--page-block-padding: 1rem;
 	--page-inline-padding: 5%;
+
+	@media (min-width: 48em) {
+		--text-padding: 1rem;
+	}
 }
 
 @mixin dark-colors {

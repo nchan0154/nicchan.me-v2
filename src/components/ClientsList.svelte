@@ -28,17 +28,17 @@
 <style lang="scss">
 	.clients {
 		display: grid;
-		max-width: fit-content;
+		max-inline-size: fit-content;
 		grid-template-columns: 1fr 1fr 1fr;
 		gap: var(--border-thickness);
-		margin-bottom: 0;
+		margin-block-end: 0;
 		padding: 0;
 		list-style: none;
 	}
 
 	.clients__logo {
 		display: block;
-		width: 8.3125rem;
+		inline-size: 8.3125rem;
 		image-rendering: auto;
 		@include pixel-borders(#000);
 		border-radius: 0;

@@ -1,7 +1,44 @@
 .rte {
+	h2 {
+		margin-block-start: 2.5rem;
+		margin-block-end: 0.5rem;
+		border-bottom: var(--border-thickness) dashed var(--color-text-accent);
+		color: var(--color-text-heading);
+	}
+
+	h3 {
+		margin-block-start: 1.5rem;
+		margin-block-end: 0.5rem;
+		color: var(--color-text-subheading);
+	}
+
 	ul,
 	ol {
-		margin: 0;
+		margin: 1rem 0;
+		padding-inline-start: 1.5rem;
+	}
+
+	li + li {
+		margin-block-start: 1rem;
+	}
+
+	strong {
+		font-weight: 400;
+		outline: var(--border-thickness) solid var(--color-text-highlight);
+		background-image: linear-gradient(
+			to top,
+			var(--color-text-highlight) 100%,
+			transparent 0
+		);
+	}
+
+	ul {
+		list-style: none;
+	}
+
+	ul li::marker {
+		content: ">  ";
+		color: var(--color-text-accent);
 	}
 
 	a {

@@ -115,7 +115,6 @@
 	.window__wrapper {
 		display: flex;
 		max-width: var(--max-width);
-		max-height: 100%;
 		font-size: 1.25rem;
 		width: fit-content;
 
@@ -144,7 +143,7 @@
 		display: flex;
 		align-items: center;
 		gap: 1rem;
-		padding: var(--text-padding);
+		padding: var(--border-thickness);
 		justify-content: space-between;
 		background: var(--color-window-header-bg);
 		color: var(--color-window-header-text);
@@ -180,12 +179,16 @@
 
 	@media (min-width: 62em) {
 		.window__wrapper {
+			max-height: 100%;
 			max-width: var(--large-max-width, var(--max-width));
+			height: fit-content;
+			margin-left: auto;
+			margin-right: auto;
 		}
 
 		.window__wrapper--stacked {
 			position: absolute;
-			max-height: var(--max-height, 100%);
+			max-height: var(--max-height, calc(100% - var(--page-block-padding) * 2));
 			margin: 0;
 			inset-inline-start: var(--inline-start, auto);
 			inset-inline-end: var(--inline-end, auto);

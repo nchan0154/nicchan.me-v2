@@ -13,6 +13,8 @@
 	&[aria-expanded="true"],
 	&:hover,
 	&:active {
+		transform: translate3d(1px, 1px, 0);
+
 		&::after {
 			content: "";
 			position: absolute;

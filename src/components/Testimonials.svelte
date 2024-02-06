@@ -48,10 +48,6 @@
 </div>
 
 <style lang="scss">
-	.testimonials {
-		padding: 1rem;
-	}
-
 	.testimonial {
 		padding: 0 0.75rem;
 	}
@@ -68,17 +64,17 @@
 		padding: 0.5rem 0.75rem;
 		background-color: var(--color);
 		border-radius: 0.5rem;
-		border-top-left-radius: 0;
-		max-width: 80ch;
+		border-start-start-radius: 0;
+		max-inline-size: 66ch;
 	}
 
 	.testimonial__arrow {
 		position: absolute;
-		top: 0;
-		left: 0;
+		inset-block-start: 0;
+		inset-inline-start: 0;
 		transform: translateX(-100%);
 		color: var(--color);
-		width: 0.75rem;
+		inline-size: 0.75rem;
 	}
 
 	.testimonial--response {
@@ -89,15 +85,15 @@
 
 		.testimonial__quote {
 			--color: var(--color-response-background);
-			border-top-left-radius: 0.5rem;
-			border-top-right-radius: 0rem;
-			margin-left: auto;
-			margin-right: 0.75rem;
+			border-start-start-radius: 0.5rem;
+			border-start-end-radius: 0rem;
+			margin-inline-start: auto;
+			margin-inline-end: 0.75rem;
 		}
 
 		.testimonial__arrow {
-			left: auto;
-			right: 0;
+			inset-inline-start: auto;
+			inset-inline-end: 0;
 			transform: translateX(100%) scaleX(-1);
 		}
 	}

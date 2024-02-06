@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.svelte';
 import Footer from '../components/Footer.astro';
@@ -10,10 +11,11 @@ const url = Astro.url;
 <html lang="en-US">
 	<head>
 		<BaseHead title={title? `${title} - Nic Chan` : 'Nic Chan'} description={description} />
+		<ViewTransitions />
 	</head>
 	<body class="layout">
 		<Header></Header>
-		<main class="layout__main">
+		<main class="layout__main" id="main" tabindex="-1">
 			<slot />
 		</main>
 		<Footer></Footer>

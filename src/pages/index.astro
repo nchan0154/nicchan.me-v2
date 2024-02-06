@@ -1,8 +1,17 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import Window from "../components/Window.svelte"
 import ClientsList from "../components/ClientsList.svelte";
+import Posts from "../components/Posts.svelte";
 
+const posts = await getCollection('blog', ({ data }) => {
+	return data.tags.includes('featured');
+})
+
+const limitedPosts = posts.sort((a, b) => {
+	return new Date(b.data.date) - new Date(a.data.date);
+}).slice(0, 8);
 ---
 <Layout>
 	<h1 class="page-title">Home</h1>
@@ -15,20 +24,20 @@ import ClientsList from "../components/ClientsList.svelte";
 			<p>I help companies around the world build fast, accessible and user-friendly web experiences.</p>
 		</div>
 	</Window>
-	<Window title="Clients" style="--max-width: 27rem; --block-start: 17rem;  --inline-start: 22rem; --padding-block-end: 1rem;" isStacked={true} order={1} client:load>
+	<Window title="Clients" style="--max-width: 27rem; --block-start: 15rem;  --inline-start: 21rem; --padding-block-end: 1rem;" isStacked={true} order={1} client:load>
 		<div class="stack">
 			<p>I am proud to be trusted by companies big and small, including these organizations:</p>
 			<ClientsList />
 		</div>
 	</Window>
-	<Window title="Featured Posts" style="--max-width: 80ch; --block-end: 1rem; --inline-end: 1rem;" isStacked={true} order={2} client:load>
-
+	<Window title="Featured Posts" style="--max-width: 50ch; --block-end: 1rem; --inline-end: 1rem;" isStacked={true} order={2} client:load>
+		<Posts posts={limitedPosts}/>
 	</Window>
 </Layout>
 
 <style lang="scss">
 	.portrait__wrapper {
-		padding-bottom: 0.5rem;
+		padding-block-end: 0.5rem;
 	}
 
 	.portrait {
