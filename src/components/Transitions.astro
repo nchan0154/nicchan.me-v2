@@ -1,0 +1,7 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+---
+{
+	window && window.matchMedia('(prefers-color-scheme: dark)').matches ?
+		<ViewTransitions />	: ''
+}

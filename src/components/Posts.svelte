@@ -21,7 +21,7 @@
 <style lang="scss">
 	.posts {
 		margin: 0;
-		padding: 0;
+		padding: var(--border-thickness) 0;
 		list-style: none;
 	}
 

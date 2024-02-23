@@ -14,41 +14,45 @@ Readers Of The Blog™ may know that I have been experimenting with the View Tra
 
 I know this can be hard to see at full speed, so I've quickly thrown together a little interface below so you can adjust the playback speed in browsers/feed readers that don't show a playback speed toggle by default. It's probably a little janky. My apologies.
 
-<form data-play-video="site-video">
-  <label class="contact-form__label">Video playback Speed</label>
-  <div style="display: flex; gap: 1rem;">
-    <input class="contact-form__input" type="number" value="0.5" step="0.1" name="playbackSpeed" max="2" min="0">
-    <button class="button" style="flex: 1 0 8rem;">Play Video</button>
-  </div>
-</form>
+<div class="demo">
+  <form data-play-video="site-video">
+    <label class="contact-form__label">Video playback Speed</label>
+    <div style="display: flex; gap: 1rem;">
+      <input class="contact-form__input" type="number" value="0.5" step="0.1" name="playbackSpeed" max="2" min="0">
+      <button class="button" style="flex: 1 0 8rem;">Play Video</button>
+    </div>
+  </form>
 
-<figure>
-  <div class="video" style="aspect-ratio: 372 / 664; max-width: 23.25rem">
-    <video controls id="site-video" class="video__embed">
-      <source type="video/mp4" src="https://res.cloudinary.com/nicchan/video/upload/v1698457267/view-transitions.mp4">
-    </video>
-  </div>
-  <figcaption>Video description: A website design with stacking windows, meant to emulate an operating system. When a window is minimized or maximized, an animation plays where the window shrinks and fades downwards/expands and fades in upwards, respectively. When this animation occurs, it covers the sticky footer, instead of appearing in behind it.</figcaption>
-</figure>
+  <figure>
+    <div class="video" style="aspect-ratio: 372 / 664; max-width: 23.25rem">
+      <video controls id="site-video" class="video__embed">
+        <source type="video/mp4" src="https://res.cloudinary.com/nicchan/video/upload/v1698457267/view-transitions.mp4">
+      </video>
+    </div>
+    <figcaption>Video description: A website design with stacking windows, meant to emulate an operating system. When a window is minimized or maximized, an animation plays where the window shrinks and fades downwards/expands and fades in upwards, respectively. When this animation occurs, it covers the sticky footer, instead of appearing in behind it.</figcaption>
+  </figure>
+</div>
 
 Unsure of whether or not this was just my implementation, I tried to track down other examples in which this issue occurs. I was able to reproduce this in [Astro's demo for View Transitions](https://astro-records.pages.dev/) as well. Given that Astro got a nice little shoutout on the [Chrome Developer blog](https://developer.chrome.com/blog/astro-view-transitions/), I presume it meant someone from Chrome did take a look at the implementation at one point, so seemed to point something to do with the browser rather than developer error.
 
-<form data-play-video="astro-video">
-  <label class="contact-form__label">Video playback Speed</label>
-  <div style="display: flex; gap: 1rem;">
-    <input class="contact-form__input" type="number" value="0.5" step="0.1" name="playbackSpeed" max="2" min="0">
-    <button class="button" style="flex: 1 0 8rem;">Play Video</button>
-  </div>
-</form>
+<div class="demo">
+  <form data-play-video="astro-video">
+    <label class="contact-form__label">Video playback Speed</label>
+    <div style="display: flex; gap: 1rem;">
+      <input class="contact-form__input" type="number" value="0.5" step="0.1" name="playbackSpeed" max="2" min="0">
+      <button class="button" style="flex: 1 0 8rem;">Play Video</button>
+    </div>
+  </form>
 
-<figure>
-  <div class="video" style="aspect-ratio: 1090 / 830;">
-    <video controls id="astro-video" class="video__embed">
-      <source type="video/mp4" src="https://res.cloudinary.com/nicchan/video/upload/v1698457267/view-transitions-3.mp4">
-    </video>
-  </div>
-  <figcaption>Video description: An album playing interface with an audio player stuck to the bottom of the viewport. When navigating between pages, you can see the animating items appearing over the audio player for the duration of the animation.</figcaption>
-</figure>
+  <figure>
+    <div class="video" style="aspect-ratio: 1090 / 830;">
+      <video controls id="astro-video" class="video__embed">
+        <source type="video/mp4" src="https://res.cloudinary.com/nicchan/video/upload/v1698457267/view-transitions-3.mp4">
+      </video>
+    </div>
+    <figcaption>Video description: An album playing interface with an audio player stuck to the bottom of the viewport. When navigating between pages, you can see the animating items appearing over the audio player for the duration of the animation.</figcaption>
+  </figure>
+</div>
 
 If you couldn't spot the problem, here's a static screenshot of the demo at the exact point of failure as well:
 
@@ -59,7 +63,7 @@ If you couldn't spot the problem, here's a static screenshot of the demo at the 
 
 I sent out a few feelers in the ever-helpful [Shoptalk Show Discord](https://shoptalkshow.com/) and tried various things with no success, such as adjusting the z-index, transform and will-change properties on the animating elements, but without any success whatsoever. I ended up filing a [bug report for Chromium](https://bugs.chromium.org/p/chromium/issues/detail?id=1496143), where the I was directed to this [Github issue](https://github.com/w3c/csswg-drafts/issues/8941) with a detailed explanation from Khushal Sagar, a Chromium engineer, which is worth checking out.
 
-## The Workarond
+## The Workaround
 
 Basically, here's my understanding of the issue, from a non-browser developer perspective. View transitions aren't actually moving your elements around in the DOM, the browser is doing secret work to take a snapshot of what the elements would look like as a flat raster image, and doing Animorphs Magic (Thanks Dave!) to morph between these images.
 

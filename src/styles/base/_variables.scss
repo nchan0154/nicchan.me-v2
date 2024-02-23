@@ -52,16 +52,22 @@
 	--color-response-bg: var(--color-teal-darkest);
 	--color-response-name: var(--color-teal-lighter);
 	--color-text-accent: var(--color-mauve);
+	--color-text-accent-bg: var(--color-mauve-darker);
 	--color-text-heading: var(--color-mauve-lightest);
 	--color-text-subheading: var(--color-magenta-lighter);
 	--color-text-highlight: var(--color-teal-darkest);
 	--color-post-tag-bg: var(--color-violet);
 	--color-post-tag-text: var(--color-white);
+	--color-accent-text-1: var(--color-teal-darkest);
+	--color-accent-text-2: var(--color-magenta-darker);
 
 	--font-accent: "Sysfont", monospace;
 	--font-pixel: "W95fa", sans-serif;
+	--base-letter-spacing: 0.02em;
 	--font-fallback: Seravek, "Gill Sans Nova", Ubuntu, Calibri, "DejaVu Sans",
 		source-sans-pro, sans-serif;
+	--fallback-letter-spacing: 0;
+	--font-pre: var(--font-pixel);
 
 	--font-base: var(--font-pixel);
 	--border-thickness: 0.1875rem;
@@ -73,6 +79,16 @@
 	--title-font-size: clamp(2.5rem, 7vw + 1rem, 4.5rem);
 	--page-block-padding: 1rem;
 	--page-inline-padding: 5%;
+
+	--space-xs: clamp(0.75rem, 0.4891rem + 1.3043vi, 1.5rem);
+	--space-s: clamp(1rem, 0.6522rem + 1.7391vi, 2rem);
+	--space-m: clamp(1.5rem, 0.9783rem + 2.6087vi, 3rem);
+	--space-l: clamp(2rem, 1.3043rem + 3.4783vi, 4rem);
+
+	/* One-up pairs */
+	--space-xs-s: clamp(0.75rem, 0.3152rem + 2.1739vi, 2rem);
+	--space-s-m: clamp(1rem, 0.3043rem + 3.4783vi, 3rem);
+	--space-m-l: clamp(1.5rem, 0.6304rem + 4.3478vi, 4rem);
 
 	@media (min-width: 48em) {
 		--text-padding: 1rem;

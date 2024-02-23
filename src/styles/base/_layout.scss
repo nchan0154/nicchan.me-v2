@@ -1,9 +1,7 @@
 .layout {
 	display: grid;
-	grid-template-columns: 6.5rem 1fr;
+	grid-template-columns: 5.5rem 1fr;
 	grid-template-rows: 1fr auto;
-	height: 100vh;
-	height: 100dvh;
 	margin: 0;
 }
 
@@ -11,24 +9,39 @@
 	padding: 0.5rem;
 	padding-inline-end: 1rem;
 	padding-block-end: 1rem;
-	align-self: self-end;
 }
 
 .layout__main {
 	padding-block: 0.5rem;
 	padding-inline-end: 0.5rem;
-	height: 100%;
-	min-height: 0;
-	overflow-y: auto;
 }
 
-@media (min-height: 30em) {
+@media (min-height: 34em) {
 	html {
 		height: 100%;
+	}
+
+	.layout {
+		height: 100vh;
+		height: 100dvh;
+	}
+
+	.layout__header {
+		align-self: self-end;
+	}
+
+	.layout__main {
+		height: 100%;
+		min-height: 0;
+		overflow-y: auto;
 	}
 }
 
 @media (min-width: 40em) {
+	.layout {
+		grid-template-columns: 6.5rem 1fr;
+	}
+
 	.layout__main {
 		position: relative;
 		min-height: 0;

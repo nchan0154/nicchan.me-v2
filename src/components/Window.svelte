@@ -9,6 +9,11 @@
 	let activeWindow;
 	let bottomPadding = 0;
 
+	$: activeWindow = $windowStore.find((window) => window.name === title);
+	$: transitionName = $isMaximizing
+		? ""
+		: `view-transition-name: window-${order}; `;
+
 	onMount(() => {
 		$windowStore = [
 			...$windowStore,
@@ -25,11 +30,6 @@
 			$windowStore = $windowStore.filter((window) => window.name !== title);
 		};
 	});
-
-	$: activeWindow = $windowStore.find((window) => window.name === title);
-	$: transitionName = $isMaximizing
-		? ""
-		: `view-transition-name: window-${order}; `;
 
 	function startMaximizeWindow() {
 		// We're doing this because I think the way the maximizing transition looks is kind of janky when using the morphing animation, so we're resetting to the default crossfade
@@ -60,6 +60,7 @@
 </script>
 
 <section
+	transition:animate={{ duration: 0 }}
 	class="window__wrapper"
 	class:window__wrapper--stacked={isStacked}
 	class:window__wrapper--maximized={activeWindow
@@ -68,17 +69,17 @@
 	class:window__wrapper--minimized={activeWindow
 		? activeWindow.isMinimized
 		: false}
-	style={`${transitionName} ${
-		style && `${style};`
-	} --bottom-padding: ${bottomPadding}px`}
+	style={`${transitionName}; ${style}; --bottom-padding: ${bottomPadding}px`}
 	bind:this={ref}
 	{id}
 >
 	<div class="window" tabindex="-1">
 		<div class="window__header">
-			<svelte:element this={titleTag} class="window__title">
-				{title ? title : ""}
-			</svelte:element>
+			<div class="window__title-wrapper">
+				<svelte:element this={titleTag} class="window__title">
+					{title ? title : ""}
+				</svelte:element>
+			</div>
 			<div class="window__controls">
 				<button
 					class="button--ui window__control window__control--minimize"
@@ -124,9 +125,12 @@
 		}
 	}
 
+	:global(astro-island) + :global(astro-island) .window__wrapper {
+		margin-block-start: var(--window-margin-block-start);
+	}
+
 	.window__wrapper--stacked {
 		max-height: none;
-		margin-block-start: var(--window-margin-block-start);
 	}
 
 	.window {
@@ -151,6 +155,7 @@
 
 	.window__controls {
 		display: flex;
+		flex-shrink: 0;
 	}
 
 	.window__control {
@@ -158,12 +163,20 @@
 	}
 
 	.window__icon {
-		width: 0.875rem;
+		width: 1rem;
+	}
+
+	.window__title-wrapper {
+		flex-shrink: 1;
+		min-width: 0;
 	}
 
 	.window__title {
 		font-family: var(--font-base);
 		font-size: 1.375rem;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
 	}
 
 	.window__body {
@@ -208,7 +221,7 @@
 		inset: 0;
 		width: 100%;
 		max-width: none;
-		height: 100%;
+		height: calc(100% - var(--bottom-padding));
 		inset-block-end: var(--bottom-padding);
 		padding-block-end: 0;
 		z-index: 1;
@@ -219,6 +232,7 @@
 
 		@media (min-width: 40em) {
 			inset-block-end: 0;
+			height: 100%;
 		}
 	}
 

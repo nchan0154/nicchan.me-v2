@@ -18,7 +18,7 @@ body {
 	background-image: url("/pixels/bg-5.png");
 	background-size: cover;
 	background-position: center;
-	letter-spacing: 0.02em;
+	letter-spacing: var(--base-letter-spacing);
 }
 
 img {
@@ -56,6 +56,30 @@ button * {
 	margin-block-start: 1rem;
 }
 
+pre,
+code {
+	background-color: var(--color-code-bg);
+	color: var(--color-code-text);
+	font-family: monospace;
+}
+
+pre {
+	width: 100%;
+	overflow: auto;
+	white-space: pre-wrap;
+	font-family: var(--font-pre);
+	letter-spacing: var(--base-letter-spacing);
+}
+
+code {
+	padding: 0.25rem;
+}
+
+pre code {
+	display: block;
+	padding: 0.5rem 1rem;
+}
+
 @keyframes animate {
 	from {
 		opacity: 0;
@@ -64,10 +88,7 @@ button * {
 		opacity: 1;
 	}
 }
-// ::view-transition-old(window),
-// ::view-transition-new(window) {
-// 	animation: 0.3s animate;
-// }
+
 @keyframes animate2 {
 	from {
 		width: 10px;
@@ -76,16 +97,11 @@ button * {
 		width: 30px;
 	}
 }
-// ::view-transition-old(*) {
-// 	display: none;
-// 	animation: 0s animate2;
-// }
-
-// ::view-transition-new(*) {
-// 	display: none;
-// 	animation: 0s animate 0.3s;
-// }
 
 .hidden {
 	opacity: 0;
+}
+
+::view-transition-group(footer) {
+	z-index: 1000;
 }
