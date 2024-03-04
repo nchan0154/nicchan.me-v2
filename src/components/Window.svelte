@@ -2,7 +2,7 @@
 	import { onMount } from "svelte";
 	import { windowStore, isMaximizing } from "../scripts/windows.js";
 
-	export let title, style, order, back, backText, ref;
+	export let title, style, order, onTop, centeredOnLarge, back, backText, ref;
 	export let id = title.replace(" ", "-").toLowerCase() || "window";
 	export let titleTag = "h2";
 	export let isStacked = false;
@@ -63,12 +63,14 @@
 	transition:animate={{ duration: 0 }}
 	class="window__wrapper"
 	class:window__wrapper--stacked={isStacked}
+	class:window__wrapper--centered-on-large={centeredOnLarge}
 	class:window__wrapper--maximized={activeWindow
 		? activeWindow.isMaximized
 		: false}
 	class:window__wrapper--minimized={activeWindow
 		? activeWindow.isMinimized
 		: false}
+	class:window__wrapper--on-top={onTop}
 	style={`${transitionName}; ${style}; --bottom-padding: ${bottomPadding}px`}
 	bind:this={ref}
 	{id}
@@ -125,12 +127,17 @@
 		}
 	}
 
-	:global(astro-island) + :global(astro-island) .window__wrapper {
-		margin-block-start: var(--window-margin-block-start);
+	.window__wrapper--on-top {
+		z-index: 1;
 	}
 
-	.window__wrapper--stacked {
+	.window__wrapper--stacked,
+	.window__wrapper--conditional-stacked {
 		max-height: none;
+	}
+
+	:global(astro-island) + :global(astro-island) .window__wrapper {
+		margin-block-start: var(--window-margin-block-start);
 	}
 
 	.window {
@@ -190,7 +197,7 @@
 		}
 	}
 
-	@media (min-width: 62em) {
+	@media (min-width: 72em) {
 		.window__wrapper {
 			max-height: 100%;
 			max-width: var(--large-max-width, var(--max-width));
@@ -200,6 +207,22 @@
 		}
 
 		.window__wrapper--stacked {
+			position: absolute;
+			max-height: var(--max-height, calc(100% - var(--page-block-padding) * 2));
+			margin: 0;
+			inset-inline-start: var(--inline-start, auto);
+			inset-inline-end: var(--inline-end, auto);
+			inset-block-start: calc(
+				var(--block-start, auto) + var(--page-block-padding) +
+					var(--title-font-size)
+			);
+			inset-block-end: var(--block-end, auto);
+			padding-block-end: var(--padding-block-end);
+		}
+	}
+
+	@media (min-width: 72em) and (max-width: 90em) {
+		.window__wrapper--conditional-stacked {
 			position: absolute;
 			max-height: var(--max-height, calc(100% - var(--page-block-padding) * 2));
 			margin: 0;
