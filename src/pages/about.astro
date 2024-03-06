@@ -12,7 +12,7 @@ import testimonials from "../content/data/testimonials.json";
 	<div class="about">
 		<h1 class="page-title">About</h1>
 		<div class="cell">
-		<Window title="Bio" order={0}  isStacked={true} style="inset: 0;" client:load>
+		<Window title="Bio" order={0}  isGrid={true} style="inset: 0;" client:load>
 			<div class="container rte">
 				<p>Hi! I'm Nic. I build websites, draw pictures and eat lots of sushi, and would love to do any of those things for you. I'm based in Hong Kong, but I've had 8+ years of experience working with people all across the globe!</p>
 				<h3>Career Highlights</h3>
@@ -27,7 +27,7 @@ import testimonials from "../content/data/testimonials.json";
 			</div>
 		</Window></div>
 		<div class="cell-2">
-		<Window title="Testimonials" order={1}  isStacked={true} client:load>
+		<Window title="Testimonials" order={1}  isGrid={true} client:load>
 			<Testimonials {testimonials} client:load/>
 		</Window></div>
 	</div>
@@ -45,14 +45,16 @@ import testimonials from "../content/data/testimonials.json";
 	}
 
 	.cell {
-		position: relative;
 		grid-column: 1;
+		grid-row: 2 / 3;
 		align-self: stretch;
+		overflow: hidden;
 	}
 
 	.cell-2 {
-		position: relative;
 		grid-column: 2;
+		grid-row: 1 / 3;
 		align-self: stretch;
+		overflow: hidden;
 	}
 </style>
