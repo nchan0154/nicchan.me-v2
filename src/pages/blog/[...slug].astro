@@ -18,13 +18,13 @@ const splitTitle = post.data.title.split(':');
 ---
 
 <Layout>
-	<Window title="Table of Contents" order={0} titleTag='h2' style="--max-width: 25rem; --block-start: 10rem; --inline-start: 0" isStacked={true} onTop={true} client:load>
+	<div class="post">
+	<Window title="Table of Contents" order={0} titleTag='h2' style="--max-width: 25rem; --block-start: 10rem; --inline-start: 0"  client:load>
 		<div class="window__body">
 			Contents
-
 		</div>
 	</Window>
-	<Window title="Post" centeredOnLarge={true} style="--inline-end: 5%"  order={1} titleTag='span' client:load>
+	<Window title="Post" order={1} titleTag='span' client:load>
 		<div class="window__body">
 			<div class="post rte container">
 				<h1 class="text--base post__title">
@@ -39,6 +39,7 @@ const splitTitle = post.data.title.split(':');
 			</div>
 		</div>
 	</Window>
+</div>
 </Layout>
 
 <style lang="scss">
