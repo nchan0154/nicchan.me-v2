@@ -65,6 +65,7 @@
 	}
 
 	.skip-link {
+		--border-color: var(--color-violet-lighter);
 		inline-size: fit-content;
 		background-color: var(--color-button-ui-bg);
 		padding: calc(var(--border-thickness) * 2);
@@ -73,8 +74,8 @@
 		font-size: 1rem;
 		line-height: 1;
 		text-decoration: none;
-		@include pixel-borders(#4f4d7e);
-		@include focus(0);
+		@include pixel-borders();
+		@include focus();
 		opacity: 0;
 
 		&:focus {
@@ -94,7 +95,7 @@
 		padding: 0;
 		text-decoration: none;
 		text-align: center;
-		@include focus(0);
+		@include focus();
 	}
 
 	.nav__icon {

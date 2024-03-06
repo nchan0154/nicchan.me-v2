@@ -19,8 +19,7 @@
 				src={`/pixels/${client.replace(" ", "-").toLowerCase()}.png`}
 				width="130"
 				height="50"
-				alt={client}
-			/>
+				alt={client} />
 		</li>
 	{/each}
 </ul>
@@ -37,10 +36,11 @@
 	}
 
 	.clients__logo {
+		--border-color: var(--color-black);
 		display: block;
 		inline-size: 8.3125rem;
 		image-rendering: auto;
-		@include pixel-borders(#000);
+		@include pixel-borders();
 		border-radius: 0;
 	}
 </style>

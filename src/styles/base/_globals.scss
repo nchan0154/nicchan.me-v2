@@ -38,7 +38,8 @@ video {
 p {
 	margin: 0;
 
-	& + & {
+	// Have to qualify as not empty as Svelte injects an extra p tag? fun
+	&:not(:empty) + &:not(:empty) {
 		margin-block-start: 1rem;
 	}
 }

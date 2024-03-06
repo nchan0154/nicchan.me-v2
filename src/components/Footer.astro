@@ -7,12 +7,18 @@ const ariaCurrent = Astro.url.pathname === "/" ? "page" : undefined;
 <footer class="layout__footer footer" id="footer">
 	<nav class="footer__nav" aria-label="Footer">
 		<a class="footer__home button--ui" href="/" aria-current={ariaCurrent}>
-			<svg class="button__icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16">
-				<path fill-rule="evenodd" d="M0 0h16v16H0z" fill="#A75293"/>
-			</svg>
-			Home
+			<span class="button--ui__content">
+				<svg
+					class="button__icon"
+					xmlns="http://www.w3.org/2000/svg"
+					width="16"
+					height="16">
+					<path fill-rule="evenodd" d="M0 0h16v16H0z" fill="#A75293"></path>
+				</svg>
+				Home
+			</span>
 		</a>
-		<span class="footer__divider" />
+		<span class="footer__divider"></span>
 
 		<FooterWindows client:load />
 	</nav>

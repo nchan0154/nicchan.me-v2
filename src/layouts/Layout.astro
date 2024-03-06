@@ -1,23 +1,27 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.svelte';
-import Footer from '../components/Footer.astro';
+import { ViewTransitions } from "astro:transitions";
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.svelte";
+import Footer from "../components/Footer.astro";
 
 const { title, description } = Astro.props;
 const url = Astro.url;
 ---
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en-US">
 	<head>
-		<BaseHead title={title? `${title} - Nic Chan` : 'Nic Chan'} description={description} />
+		<BaseHead
+			title={title ? `${title} - Nic Chan` : "Nic Chan"}
+			description={description}
+		/>
 		<ViewTransitions />
 	</head>
 	<body class="layout">
-		<Header></Header>
+		<Header />
 		<main class="layout__main" id="main" tabindex="-1">
 			<slot />
 		</main>
-		<Footer></Footer>
+		<Footer />
 	</body>
 </html>

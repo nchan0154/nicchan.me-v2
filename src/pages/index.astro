@@ -1,55 +1,86 @@
 ---
-import { getCollection } from 'astro:content';
-import Layout from '../layouts/Layout.astro';
-import Window from "../components/Window.svelte"
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import Window from "../components/Window.svelte";
 import ClientsList from "../components/ClientsList.svelte";
 import Posts from "../components/Posts.svelte";
 
-const posts = await getCollection('blog', ({ data }) => {
-	return data.tags.includes('featured');
-})
+const posts = await getCollection("blog", ({ data }) => {
+  return data.tags.includes("featured");
+});
 
-const limitedPosts = posts.sort((a, b) => {
-	return new Date(b.data.date) - new Date(a.data.date);
-}).slice(0, 8);
+const limitedPosts = posts
+  .sort((a, b) => {
+    return new Date(b.data.date) - new Date(a.data.date);
+  })
+  .slice(0, 8);
 ---
+
 <Layout>
-	<h1 class="page-title">Home</h1>
-	<Window title="Introduction" style="--max-width: 25rem; --block-start: 2rem; --inline-start: 2rem;" isStacked={true} order={0} client:load>
-		<div class="portrait__wrapper">
-			<img class="portrait" src="/pixels/portrait.png" alt="Nic Chan" width="150" height="150"/>
-		</div>
-		<div class="stack">
-			<p>Hi, I'm Nic Chan and I am an independent front-end web developer.</p>
-			<p>I help companies around the world build fast, accessible and user-friendly web experiences.</p>
-		</div>
-	</Window>
-	<Window title="Clients" style="--max-width: 27rem; --block-start: 15rem;  --inline-start: 21rem; --padding-block-end: 1rem;" isStacked={true} order={1} client:load>
-		<div class="stack">
-			<p>I am proud to be trusted by companies big and small, including these organizations:</p>
-			<ClientsList />
-		</div>
-	</Window>
-	<Window title="Featured Posts" style="--max-width: 50ch; --block-end: 1rem; --inline-end: 1rem;" isStacked={true} order={2} client:load>
-		<Posts posts={limitedPosts}/>
-	</Window>
+  <h1 class="page-title">Home</h1>
+  <Window
+    title="Introduction"
+    style="--max-width: 25rem; --block-start: 2rem; --inline-start: 2rem;"
+    isAbsolute={true}
+    order={0}
+    client:load>
+    <div class="portrait__wrapper">
+      <img
+        class="portrait"
+        src="/pixels/portrait.png"
+        alt="Nic Chan"
+        width="150"
+        height="150"
+      />
+    </div>
+    <div class="stack">
+      <p>Hi, I'm Nic Chan and I am an independent front-end web developer.</p>
+      <p>
+        I help companies around the world build fast, accessible and
+        user-friendly web experiences.
+      </p>
+    </div>
+  </Window>
+  <Window
+    title="Clients"
+    style="--max-width: 27rem; --block-start: 14rem;  --inline-start: 21rem; --padding-block-end: 1rem;"
+    isAbsolute={true}
+    order={1}
+    client:load>
+    <div class="stack">
+      <p>
+        I am proud to be trusted by companies big and small, including these
+        organizations:
+      </p>
+      <ClientsList />
+    </div>
+  </Window>
+  <Window
+    title="Featured Posts"
+    style="--max-width: 50ch; --block-end: 1rem; --inline-end: 1rem;"
+    isAbsolute={true}
+    order={2}
+    client:load>
+    <Posts posts={limitedPosts} />
+  </Window>
 </Layout>
 
 <style lang="scss">
-	.portrait__wrapper {
-		padding-block-end: 0.5rem;
-	}
+  .portrait__wrapper {
+    padding-block-end: 0.5rem;
+  }
 
-	.portrait {
-		display: block;
-		@include pixel-borders(#000, var(--border-thickness));
-	}
+  .portrait {
+    --border-color: var(--color-black);
+    display: block;
+    @include pixel-borders();
+  }
 
-	@media (min-width: 40em) {
-		.portrait__wrapper {
-			padding-inline-start: 0.5rem;
-			padding-block-start: 0.25rem;
-			float: right;
-		}
-	}
+  @media (min-width: 40em) {
+    .portrait__wrapper {
+      padding-inline-start: 0.5rem;
+      padding-block-start: 0.25rem;
+      float: right;
+    }
+  }
 </style>

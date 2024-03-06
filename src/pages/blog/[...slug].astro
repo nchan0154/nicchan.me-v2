@@ -1,55 +1,82 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
+import { type CollectionEntry, getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
 import Window from "../../components/Window.svelte";
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
-	return posts.map((post) => ({
-		params: { slug: post.slug },
-		props: post,
-	}));
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
 }
-type Props = CollectionEntry<'blog'>;
+type Props = CollectionEntry<"blog">;
 
 const post = Astro.props;
 const { Content } = await post.render();
-const splitTitle = post.data.title.split(':');
+const splitTitle = post.data.title.split(":");
 ---
 
 <Layout>
-	<div class="post">
-	<Window title="Table of Contents" order={0} titleTag='h2' style="--max-width: 25rem; --block-start: 10rem; --inline-start: 0"  client:load>
-		<div class="window__body">
-			Contents
-		</div>
-	</Window>
-	<Window title="Post" order={1} titleTag='span' client:load>
-		<div class="window__body">
-			<div class="post rte container">
-				<h1 class="text--base post__title">
-					{splitTitle.length > 1 ?
-						<span class="post__title-pretitle h3">{splitTitle[0]}:</span>
-						<span class="post__title-main h1">{splitTitle[1]}</span>
-					:
-						<span class="post__title-main h1">{post.data.title}</span>
-					}
-				</h1>
-				<Content/>
-			</div>
-		</div>
-	</Window>
-</div>
+  <div class="layout__grid post">
+    <div class="layout__cell post__toc">
+      <Window
+        title="Table of Contents"
+        order={0}
+        titleTag="h2"
+        style="--max-width: 25rem; --block-start: 10rem; --inline-start: 0"
+        client:load>
+        <div class="window__body">Contents</div>
+      </Window>
+    </div>
+    <div class="layout__cell post__content">
+      <Window title="Post" order={1} titleTag="span" client:load>
+        <div class="window__body">
+          <div class="rte container">
+            <h1 class="text--base post__title">
+              {
+                splitTitle.length > 1 ? (
+                  <>
+                    <span class="post__title-pretitle h3">
+                      {splitTitle[0]}:
+                    </span>
+                    <span class="post__title-main h1">{splitTitle[1]}</span>
+                  </>
+                ) : (
+                  <span class="post__title-main h1">{post.data.title}</span>
+                )
+              }
+            </h1>
+            <Content />
+          </div>
+        </div>
+      </Window>
+    </div>
+  </div>
 </Layout>
 
 <style lang="scss">
-.post__title {
-	margin: 1.25rem 0 var(--space-xs);
-	line-height: 1;
-}
+  .post__title {
+    margin: 1.25rem 0 var(--space-xs);
+    line-height: 1;
+  }
 
-.post__title-main {
-	display: block;
-	text-shadow: 0 -0.125rem var(--color-accent-text-1), 0.125rem 0.125rem var(--color-accent-text-2);
-}
+  .post__title-main {
+    display: block;
+    text-shadow:
+      0 -0.125rem var(--color-accent-text-1),
+      0.125rem 0.125rem var(--color-accent-text-2);
+  }
+
+  @media (min-width: 62em) {
+    .post {
+      grid-template-columns: 20rem minmax(auto, 80ch) 1fr;
+    }
+  }
+
+  @media (min-width: 100em) {
+    .post {
+      grid-template-columns: 20rem 1fr 20rem;
+    }
+  }
 </style>

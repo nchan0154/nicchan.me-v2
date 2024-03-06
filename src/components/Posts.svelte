@@ -11,8 +11,10 @@
 	{#each posts as post}
 		<li class="post">
 			<a class="post__link button button--ui" href={`/blog/${post.slug}/`}>
-				<span class="post__date">{formatDate(post.data.date)}</span>
-				<span class="post__title text--heading">{post.data.title}</span>
+				<span class="button--ui__content">
+					<span class="post__date">{formatDate(post.data.date)}</span>
+					<span class="post__title text--heading">{post.data.title}</span>
+				</span>
 			</a>
 		</li>
 	{/each}
@@ -37,12 +39,12 @@
 		z-index: 1;
 	}
 
-	.post + .post {
-		margin-block-start: calc(var(--border-thickness) * 2);
-	}
-
 	.post__link {
 		display: block;
+	}
+
+	.post + .post {
+		margin-block-start: calc(var(--border-thickness) * 2);
 	}
 
 	.post__title {

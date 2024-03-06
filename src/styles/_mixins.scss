@@ -1,41 +1,21 @@
-@function str-replace($string, $search, $replace: "") {
-	$index: str-index($string, $search);
-
-	@if $index {
-		@return str-slice($string, 1, $index - 1) + $replace +
-			str-replace(
-				str-slice($string, $index + str-length($search)),
-				$search,
-				$replace
-			);
-	}
-
-	@return $string;
+@mixin pixel-borders() {
+	border: var(--border-thickness) solid var(--border-color);
+	mask: conic-gradient(
+			at var(--border-thickness) var(--border-thickness),
+			#000 270deg,
+			#0000 0
+		)
+		0 0 / calc(100% - var(--border-thickness))
+		calc(100% - var(--border-thickness));
 }
 
-@mixin pixel-borders(
-	$color,
-	$border-radius: calc(var(--border-thickness) * 3 + 1px)
-) {
-	$escapedColor: str-replace($color + "", "#", "%23");
-
-	border-style: solid;
-	border-width: var(--border-thickness);
-	border-color: var(--border-color);
-	border-radius: $border-radius;
-
-	border-image-slice: 2;
-	border-image-width: 1;
-	border-image-outset: 0;
-	border-image-source: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='6' height='6'><path d='M0 2h2v2H0zM2 0h2v2H2zM4 2h2v2H4zM2 4h2v2H2z' fill='#{$escapedColor}' /></svg>");
-}
-
-@mixin focus($offset: 0) {
+@mixin focus() {
 	position: relative;
 	box-decoration-break: clone;
 
 	&:focus {
 		outline: 0.25rem solid transparent;
+		z-index: 1;
 	}
 
 	&:focus::before {
@@ -43,7 +23,7 @@
 		position: absolute;
 		inset: 0;
 		outline: 3px solid var(--color-violet-darker);
-		outline-offset: $offset;
+		outline-offset: var(--offset);
 		z-index: 1;
 	}
 
@@ -52,7 +32,7 @@
 		position: absolute;
 		inset: 0;
 		outline: 3px dotted var(--color-white);
-		outline-offset: $offset;
+		outline-offset: var(--offset);
 		z-index: 1;
 	}
 }

@@ -1,16 +1,16 @@
 .button--ui {
+	--border-color: var(--color-violet-lighter);
+	--offset: var(--border-thickness);
+	--background-color: var(--color-button-ui-bg);
 	position: relative;
-	background-color: var(--color-button-ui-bg);
-	padding: calc(var(--border-thickness) * 2);
-	padding-inline-end: calc(var(--border-thickness) * 2 + 2px);
-	color: var(--color-button-ui-text);
-	font-size: 1rem;
-	line-height: 1;
+	display: inline-block;
+	padding: 0;
+	border: none;
+	background-color: transparent;
 	text-decoration: none;
-	@include pixel-borders(#4f4d7e);
 
 	&:hover {
-		background-color: var(--color-button-ui-hover-bg);
+		--background-color: var(--color-button-ui-hover-bg);
 	}
 
 	&[aria-pressed="true"],
@@ -19,32 +19,31 @@
 	&:active {
 		transform: translate3d(1px, 1px, 0);
 
-		&::after {
-			content: "";
-			position: absolute;
-			inset: 0;
+		.button--ui__content {
 			box-shadow: inset calc(var(--border-thickness) * -1)
-					calc(var(--border-thickness) * -1) var(--color-button-ui-highlight),
+					calc(var(--border-thickness) * -1) var(--color-button-ui-bg),
 				inset var(--border-thickness) var(--border-thickness)
 					var(--color-button-ui-shadow);
 		}
 	}
 
-	&:focus {
-		outline: none;
-	}
-
-	@include focus(var(--border-thickness));
+	@include focus();
 }
 
-.button--ui::after {
-	content: "";
-	position: absolute;
-	inset: 0;
+.button--ui__content {
+	display: block;
+	background-color: var(--color-button-ui-bg);
+	padding: calc(var(--border-thickness) * 2);
+	padding-inline-end: calc(var(--border-thickness) * 2 + 2px);
+	color: var(--color-button-ui-text);
+	font-size: 1rem;
+	line-height: 1;
 	box-shadow: inset calc(var(--border-thickness) * -1)
 			calc(var(--border-thickness) * -1) var(--color-button-ui-shadow),
 		inset var(--border-thickness) var(--border-thickness)
 			var(--color-button-ui-highlight);
+	background-color: var(--background-color);
+	@include pixel-borders();
 }
 
 .button__icon {

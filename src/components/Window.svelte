@@ -5,7 +5,7 @@
 	export let title, style, order, onTop, centeredOnLarge, back, backText, ref;
 	export let id = title.replace(" ", "-").toLowerCase() || "window";
 	export let titleTag = "h2";
-	export let isStacked = false;
+	export let isAbsolute = false;
 	let activeWindow;
 	let bottomPadding = 0;
 
@@ -62,8 +62,7 @@
 <section
 	transition:animate={{ duration: 0 }}
 	class="window__wrapper"
-	class:window__wrapper--stacked={isStacked}
-	class:window__wrapper--centered-on-large={centeredOnLarge}
+	class:window__wrapper--absolute={isAbsolute}
 	class:window__wrapper--maximized={activeWindow
 		? activeWindow.isMaximized
 		: false}
@@ -73,30 +72,34 @@
 	class:window__wrapper--on-top={onTop}
 	style={`${transitionName}; ${style}; --bottom-padding: ${bottomPadding}px`}
 	bind:this={ref}
-	{id}
->
-	<div class="window" tabindex="-1">
+	tabindex="-1"
+	{id}>
+	<div class="window">
 		<div class="window__header">
 			<div class="window__title-wrapper">
-				<svelte:element this={titleTag} class="window__title">
+				<svelte:element
+					this={titleTag}
+					class="window__title"
+					id={`window-title-${id}`}>
 					{title ? title : ""}
 				</svelte:element>
 			</div>
 			<div class="window__controls">
 				<button
 					class="button--ui window__control window__control--minimize"
-					on:click={startMinimizeWindow}
-				>
-					<img class="window__icon" src="/pixels/minimize.svg" alt="" />
-					<span class="visually-hidden">Minimize</span>
-				</button>
+					on:click={startMinimizeWindow}>
+					<span class="button--ui__content">
+						<img class="window__icon" src="/pixels/minimize.svg" alt="" />
+						<span class="visually-hidden">Minimize</span>
+					</span></button>
 				<button
 					class="button--ui window__control window__control--maximize"
 					on:click={startMaximizeWindow}
-					aria-pressed={activeWindow ? activeWindow.isMaximized : false}
-				>
-					<img class="window__icon" src="/pixels/maximize.svg" alt="" />
-					<span class="visually-hidden">Maximize</span>
+					aria-pressed={activeWindow ? activeWindow.isMaximized : false}>
+					<span class="button--ui__content">
+						<img class="window__icon" src="/pixels/maximize.svg" alt="" />
+						<span class="visually-hidden">Maximize</span>
+					</span>
 				</button>
 				{#if back}
 					<button class="button--ui window__control window__control--close">
@@ -106,7 +109,11 @@
 				{/if}
 			</div>
 		</div>
-		<div class="window__body">
+		<div
+			class="window__body"
+			tabindex="0"
+			role="region"
+			aria-labelledby={`window-title-${id}`}>
 			<slot />
 		</div>
 	</div>
@@ -131,23 +138,25 @@
 		z-index: 1;
 	}
 
-	.window__wrapper--stacked,
+	.window__wrapper--absolute,
 	.window__wrapper--conditional-stacked {
 		max-height: none;
 	}
 
-	:global(astro-island) + :global(astro-island) .window__wrapper {
+	:global(astro-island)
+		+ :global(astro-island)
+		.window__wrapper:not(.window__wrapper--maximized) {
 		margin-block-start: var(--window-margin-block-start);
 	}
 
 	.window {
+		--border-color: var(--color-black);
 		display: flex;
 		flex-direction: column;
 		padding: var(--border-thickness);
 		background-color: var(--color-window-bg);
 		color: var(--color-window-text);
-
-		@include pixel-borders(#000);
+		@include pixel-borders();
 	}
 
 	.window__header {
@@ -197,7 +206,7 @@
 		}
 	}
 
-	@media (min-width: 72em) {
+	@media (min-width: 62em) {
 		.window__wrapper {
 			max-height: 100%;
 			max-width: var(--large-max-width, var(--max-width));
@@ -206,23 +215,7 @@
 			margin-right: auto;
 		}
 
-		.window__wrapper--stacked {
-			position: absolute;
-			max-height: var(--max-height, calc(100% - var(--page-block-padding) * 2));
-			margin: 0;
-			inset-inline-start: var(--inline-start, auto);
-			inset-inline-end: var(--inline-end, auto);
-			inset-block-start: calc(
-				var(--block-start, auto) + var(--page-block-padding) +
-					var(--title-font-size)
-			);
-			inset-block-end: var(--block-end, auto);
-			padding-block-end: var(--padding-block-end);
-		}
-	}
-
-	@media (min-width: 72em) and (max-width: 90em) {
-		.window__wrapper--conditional-stacked {
+		.window__wrapper--absolute {
 			position: absolute;
 			max-height: var(--max-height, calc(100% - var(--page-block-padding) * 2));
 			margin: 0;

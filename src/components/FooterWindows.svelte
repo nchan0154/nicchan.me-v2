@@ -3,7 +3,7 @@
 
 	function onWindowClick(window) {
 		const transition = document.startViewTransition(() =>
-			toggleWindow(window, window.isMinimized)
+			toggleWindow(window, window.isMinimized),
 		);
 	}
 
@@ -23,12 +23,11 @@
 	{#each $orderedWindows as window}
 		<li class="windows__item">
 			<button
-				class="button--ui"
+				class="windows__button button--ui"
 				aria-expanded={window.isMinimized ? false : true}
 				aria-controls={window.id}
-				on:click={() => onWindowClick(window)}
-			>
-				{window.name}
+				on:click={() => onWindowClick(window)}>
+				<span class="button--ui__content"> {window.name}</span>
 			</button>
 		</li>
 	{/each}
@@ -46,5 +45,9 @@
 		& + & {
 			margin-inline-start: calc(var(--border-thickness) * -1);
 		}
+	}
+
+	.windows__button {
+		--offset: 0;
 	}
 </style>

@@ -73,7 +73,7 @@
 			color: var(--color-link-underline);
 		}
 
-		@include focus(0);
+		@include focus();
 	}
 
 	figure {
