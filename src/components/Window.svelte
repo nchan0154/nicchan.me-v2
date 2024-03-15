@@ -2,7 +2,7 @@
 	import { onMount } from "svelte";
 	import { windowStore, isMaximizing } from "../scripts/windows.js";
 
-	export let title, style, order, onTop, centeredOnLarge, back, backText, ref;
+	export let title, style, order, back, backText, ref;
 	export let id = title.replace(" ", "-").toLowerCase() || "window";
 	export let titleTag = "h2";
 	export let isAbsolute = false;
@@ -13,8 +13,14 @@
 	$: transitionName = $isMaximizing
 		? ""
 		: `view-transition-name: window-${order}; `;
+	$: disabled = activeWindow?.isMaximized;
 
 	onMount(() => {
+		// emit global event;
+		const loadEvent = new CustomEvent("window-loaded", { detail: { id } });
+		const unloadEvent = new CustomEvent("window-unloaded", { detail: { id } });
+		document.dispatchEvent(loadEvent);
+
 		$windowStore = [
 			...$windowStore,
 			{
@@ -28,20 +34,26 @@
 
 		return () => {
 			$windowStore = $windowStore.filter((window) => window.name !== title);
+			document.dispatchEvent(unloadEvent);
 		};
 	});
 
 	function startMaximizeWindow() {
 		// We're doing this because I think the way the maximizing transition looks is kind of janky when using the morphing animation, so we're resetting to the default crossfade
+		let transition;
 
 		$isMaximizing = true;
 		bottomPadding = document.getElementById("footer").clientHeight;
 
-		const transition = document.startViewTransition(() => maximizeWindow());
-
-		transition.finished.then(() => {
+		if (document.startViewTransition) {
+			transition = document.startViewTransition(() => maximizeWindow());
+			transition.finished.then(() => {
+				$isMaximizing = false;
+			});
+		} else {
+			maximizeWindow();
 			$isMaximizing = false;
-		});
+		}
 	}
 
 	function maximizeWindow() {
@@ -50,17 +62,34 @@
 	}
 
 	function startMinimizeWindow() {
-		const transition = document.startViewTransition(() => minimizeWindow());
+		if (document.startViewTransition) {
+			document.startViewTransition(() => minimizeWindow());
+		} else {
+			minimizeWindow();
+		}
 	}
 
 	function minimizeWindow() {
 		activeWindow.isMinimized = true;
 		$windowStore = $windowStore;
+
+		const nextActiveWindow = $windowStore.find(
+			(window) => window.order > activeWindow.order && !window.isMinimized,
+		);
+		console.log(nextActiveWindow);
+		if (nextActiveWindow && nextActiveWindow.id) {
+			document
+				.getElementById(nextActiveWindow.id)
+				.focus({ preventScroll: true });
+		} else {
+			console.log("no next window");
+			const toFocus = document.querySelector(`[aria-controls="${id}"]`);
+			toFocus.focus({ preventScroll: true });
+		}
 	}
 </script>
 
 <section
-	transition:animate={{ duration: 0 }}
 	class="window__wrapper"
 	class:window__wrapper--absolute={isAbsolute}
 	class:window__wrapper--maximized={activeWindow
@@ -69,8 +98,7 @@
 	class:window__wrapper--minimized={activeWindow
 		? activeWindow.isMinimized
 		: false}
-	class:window__wrapper--on-top={onTop}
-	style={`${transitionName}; ${style}; --bottom-padding: ${bottomPadding}px`}
+	style={`${transitionName || ""}; ${style || ""}; --bottom-padding: ${bottomPadding}px`}
 	bind:this={ref}
 	tabindex="-1"
 	{id}>
@@ -111,9 +139,10 @@
 		</div>
 		<div
 			class="window__body"
-			tabindex="0"
+			tabindex={0}
 			role="region"
-			aria-labelledby={`window-title-${id}`}>
+			aria-labelledby={`window-title-${id}`}
+			id={`window-body-${id}`}>
 			<slot />
 		</div>
 	</div>
@@ -123,6 +152,8 @@
 	@import "../styles/_mixins.scss";
 
 	.window__wrapper {
+		--offset: calc(var(--border-thickness) * -1);
+		--window-spacing: var(--window-margin-block-start);
 		display: flex;
 		max-width: var(--max-width);
 		font-size: 1.25rem;
@@ -132,21 +163,25 @@
 		&:focus-within {
 			z-index: 2;
 		}
+
+		@include focus();
 	}
 
-	.window__wrapper--on-top {
-		z-index: 1;
-	}
-
-	.window__wrapper--absolute,
-	.window__wrapper--conditional-stacked {
+	.window__wrapper--absolute {
 		max-height: none;
 	}
 
 	:global(astro-island)
 		+ :global(astro-island)
-		.window__wrapper:not(.window__wrapper--maximized) {
-		margin-block-start: var(--window-margin-block-start);
+		.window__wrapper:not(.window__wrapper--maximized):not(
+			.window__wrapper--maximized
+		),
+	:global(.layout__cell)
+		+ :global(.layout__cell)
+		.window__wrapper:not(.window__wrapper--maximized):not(
+			.window__wrapper--maximized
+		) {
+		margin-block-start: var(--window-spacing);
 	}
 
 	.window {
@@ -156,13 +191,14 @@
 		padding: var(--border-thickness);
 		background-color: var(--color-window-bg);
 		color: var(--color-window-text);
+		min-width: 0;
 		@include pixel-borders();
 	}
 
 	.window__header {
 		display: flex;
 		align-items: center;
-		gap: 1rem;
+		gap: 0.25rem;
 		padding: var(--border-thickness) calc(var(--border-thickness) * 2);
 		justify-content: space-between;
 		background: var(--color-window-header-bg);
@@ -196,18 +232,20 @@
 	}
 
 	.window__body {
+		height: 100%;
 		max-height: 100%;
 		padding: var(--text-padding);
 		overflow-y: auto;
 		animation: none;
 
 		& > * + :where(astro-island, astro-slot) > *:first-child {
-			margin-top: 0.5rem;
+			margin-block-start: 0.5rem;
 		}
 	}
 
-	@media (min-width: 62em) {
+	@media (min-width: 62em) and (min-height: 34em) {
 		.window__wrapper {
+			--window-spacing: 0;
 			max-height: 100%;
 			max-width: var(--large-max-width, var(--max-width));
 			height: fit-content;
@@ -226,7 +264,6 @@
 					var(--title-font-size)
 			);
 			inset-block-end: var(--block-end, auto);
-			padding-block-end: var(--padding-block-end);
 		}
 	}
 
@@ -240,7 +277,7 @@
 		height: calc(100% - var(--bottom-padding));
 		inset-block-end: var(--bottom-padding);
 		padding-block-end: 0;
-		z-index: 1;
+		z-index: 10;
 
 		.window {
 			width: 100%;

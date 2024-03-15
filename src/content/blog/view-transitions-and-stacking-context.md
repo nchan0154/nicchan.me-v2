@@ -81,16 +81,16 @@ If your use-case is slightly different and you are transitioning between element
 
 This results in code that looks like this:
 
-```
+```css
 .myFixedFooter {
-  position: fixed;
-  view-transition-name: footer;
+	position: fixed;
+	view-transition-name: footer;
 }
 ```
 
-```
+```css
 ::view-transition-group(footer) {
-  z-index: 100;
+	z-index: 100;
 }
 ```
 
@@ -98,13 +98,16 @@ Initially, I was confused as to why things weren't working in the way that I exp
 
 However, after reading through the explanation and finding the workaround, I'm personally okay with this limitation for my use case. Z-index + transitions has always been slightly iffy, and in this case, I'm just really glad there's a workaround.
 
-<script>
+<script is:inline>
+  console.log('yay')
   const forms = document.querySelectorAll('[data-play-video]');
 
   forms.forEach(form => {
+    console.log('form')
     const id = form.dataset.playVideo;
     const video = document.getElementById(id);
     form.addEventListener('submit', (event) => {
+    console.log('form submit')
       event.preventDefault()
       const formData = new FormData(form);
       const speed = Number.parseFloat(formData.get('playbackSpeed'));

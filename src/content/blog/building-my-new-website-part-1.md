@@ -21,9 +21,7 @@ I am not a designer, and I have limited ability to use any design software to pr
 
 Because I liked my current site colors, I grabbed all my primary brand colors and shoved them into [this color scale generator](https://hihayk.github.io/scale/#2/2/50/80/94/67/20/14/a75293/167/82/147/white). I tinkered with it to make 2 lighter and darker tints/shades for each primary color I had, then I plugged everything into my all-time favorite, [Are My Colors Accessible](https://www.aremycolorsaccessible.com/palette) to make this monster color chart that I could reference to find accessible color combinations.
 
-<figure>
-  {% cloudinaryImage 'color-wheel.png', "A chart where every single possible combination is overlaid on top of each other, with the word 'Yup' or 'Nope' if the combination is accessible.", 980, 703, "(min-width: 62em) 38.25rem, 90vw", "lazy", "" %}
-</figure>
+{% cloudinaryImage 'color-wheel.png', "A chart where every single possible combination is overlaid on top of each other, with the word 'Yup' or 'Nope' if the combination is accessible.", 980, 703, "(min-width: 62em) 38.25rem, 90vw", "lazy", "" %}
 
 I did a few font tryouts but settled on [W95FA](https://fontsarena.com/w95fa-by-alina-sava/) as my main font. I liked how legible it is compared to other pixel fonts, but I also knew that I probably needed to make a toggle to allow for a high-res font in case anyone struggles with reading it. After perusing [Modern Font Stacks](https://modernfontstacks.com/), I settled on the 'Humanist' font stack as a nice fallback font stack.
 
@@ -33,27 +31,25 @@ Finally, onto the actual development!
 
 ## Day 1: Panic, in my office
 
-<figure>
-  {% cloudinaryImage 'personal-1.png', "Very barebones layout, there are some placeholder navigation icons, an unstyled start bar and a window with some homepage text.", 704, 540, "(min-width: 62em) 38.25rem, 90vw", "lazy", "" %}
-</figure>
+{% cloudinaryImage 'personal-1.png', "Very barebones layout, there are some placeholder navigation icons, an unstyled start bar and a window with some homepage text.", 704, 540, "(min-width: 62em) 38.25rem, 90vw", "lazy", "" %}
 
 - Decided to stream for my mentees
 - I had been struggling to choose between using 11ty (what my site uses currently) and Astro (a tool I’d like to play around more with. I decide on Astro as I think this iteration of the portfolio will be a little more JS heavy and I wanted to use Svelte for the component-y bits.
 - Grace showed up to watch me stream! I panicked as I soon realized that I cannot talk and problem solve at the same time. I tried to get around this by only coding the most absolute basic markup elements while discussing CSS with Grace.
 - I contemplated using SCSS or not, but ultimately decided on including it, because the Dark mode toggle pattern I use 1. relies heavily on CSS Variables 2. respects the OS preference for the color scheme but allows for overriding it via a control on the website. I do NOT want to have to copy and paste the variables in two places, as I know this will only bring me pain. For this alone, I decide it’s worth it to include SCSS.
 
-```
-  @mixin dark-colors {
-    // all my variables here
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-user-color-scheme]) {
-      @include dark-colors;
-    }
-  }
-  [data-user-color-scheme="dark"] {
-    @include dark-colors;
-  }
+```scss
+@mixin dark-colors {
+	// all my variables here
+}
+@media (prefers-color-scheme: dark) {
+	:root:not([data-user-color-scheme]) {
+		@include dark-colors;
+	}
+}
+[data-user-color-scheme="dark"] {
+	@include dark-colors;
+}
 ```
 
 - My dear friend [EJ Mason](https://www.ejmason.com/) came to my rescue and helped me answer some tough questions about CSS architecture. We vent about comboboxes. Grace listens to us very patiently.

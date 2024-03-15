@@ -6,6 +6,8 @@ tags:
   - accessibility
 ---
 
+import { Image } from "@unpic/astro";
+
 I launched the first version of this site well over 3 years ago, and it was one of my first fully completed code projects. Like many new self taught developers, I had built it as a demonstration of my skills to land clients and jobs, and to that end it has served me well. While I would occasionally add fixes to improve the user experience on older browsers, the basic design hasn't changed much over the years, and it essentially remains the same site that I launched back in 2015.
 
 Over the years, as I learned more about web accessibility, and heard directly from disabled users giving feedback on my accessible Tumblr Theme, I began having the sneaking suspicion that my own site was probably not up to par. In 2018, I spent a lot of time focused on not only learning about accessible web practices, but also actually implementing accessibility improvements on client work, and now I finally feel ready to confront the skeletons in my own closet by tackling my own site.
@@ -16,7 +18,12 @@ Admittedly, I feared this day not because I felt I lacked the knowledge to imple
 
 Right off the bat, I knew the color scheme was probably going to fail. While the body text, a deep navy, would definitely pass, I had some places where I knew the color contrast was too low, and my project pages had small transparent white text against a brand color that may or may not have been chosen with contrast in mind. Using [this fabulous tool, aremycolorsaccessible.com](http://www.aremycoloursaccessible.com/), I was able to input colors from my color scheme, and play with the toggles to find accessible alternatives and combinations. This tool is great because it not only tells you if your chosen colors are accessible, it also lets you go and tweak the color scheme directly on the same page, so you don't have to go back and forth between your graphics software and the browser.
 
-{% cloudinaryImage 'a11y-2.PNG', 'aremycolorsaccessible.com screenshot showing a failed color scheme', 448, 558, "(min-width: 32em) 28em, 90vw", "lazy", ""%}
+<Image
+	src="https://res.cloudinary.com/nicchan/image/upload/v1709966445/a11y-2.PNG"
+	width="448"
+	height="558"
+	alt="aremycolorsaccessible.com screenshot showing a failed color scheme"
+/>
 
 **Take Home Message**: Color schemes and contrast play a significant role in determining whether or not a site is accessible. Tooling can be extremely helpful for determining appropriate color schemes.
 
@@ -28,7 +35,13 @@ I ended up giving a solid background to my navigation on all pages (as opposed t
 In addition, the existing hover and focus state of my navigation items needed improvement, as the current focus state relied solely on a color change. It is best not to rely exclusively on changing color in order to convey important information to the user, as certain types of color blindness can prevent people from easily detecting the change. I added an underline to the ensure that the currently highlighted nav item would not be missed.
 
 <figure>
-  {% cloudinaryImage 'a11y-3.PNG', 'Before and After screenshots of the old and new navigation', 526, 136, "(min-width: 38em) 32.875rem, 90vw", "lazy", ""%}
+<Image
+	src="https://res.cloudinary.com/nicchan/image/upload/v1709966445/a11y-3.PNG"
+	width="526"
+	height="136"
+	alt="Before and After screenshots of the old and new navigatio"
+/>
+
   <figcaption>
     Before: Low opacity white on light background? What was I thinking! <br />
     After: Increased contrast, consistent appearance on all pages.
@@ -43,12 +56,12 @@ I had taken the time to ensure that the homepage, with it's fancy scroll effect 
 
 While I had progressively enhanced the whole layout, I had missed some basic semantics in the markup that would make a big difference to the experience of screen reader users. For example, look at the code snippet below:
 
-```
+```html
 <div class="tags__wrapper">
-  <span class="tags__tag">Jekyll</span>
-  <span class="tags__tag">Forestry</span>
-  <span class="tags__tag">SCSS</span>
-  <span class="tags__tag">Javascript</span>
+	<span class="tags__tag">Jekyll</span>
+	<span class="tags__tag">Forestry</span>
+	<span class="tags__tag">SCSS</span>
+	<span class="tags__tag">Javascript</span>
 </div>
 ```
 
@@ -56,17 +69,17 @@ Spot the issue? We should probably list these items out as an unordered list ins
 
 One more thing to note about the homepage - consider the markup below:
 
-```
+```html
 <a class="button button--small" href="/projects/studio-ryte">
-  Read Case Study →
+	Read Case Study →
 </a>
 ```
 
 Links that say things like 'Read More' or 'Learn More' are quite commonly seen across the web, but they can hurt scanability. Some screen readers offer the functionality of listing all links on a page. Vague link text or repeated link text can be confusing for users trying to scan for the link they want to navigate to when out of regular document context. Complicating things further, the title attribute is handled inconsistently between screen readers - some will ignore it completely and some read both the link text and the title attribute. We can provide context for screen reader users by adding screen reader text to the link, a trick I picked up from [Lindsey Kopacz's excellent blog!](https://www.a11ywithlindsey.com/blog) The corrected markup is as follows.
 
-```
+```html
 <a class="button button--small" href="/projects/studio-ryte">
-  Read <span class="screenreader">Studio Ryte</span> Case Study →
+	Read <span class="screenreader">Studio Ryte</span> Case Study →
 </a>
 ```
 
@@ -76,9 +89,7 @@ Links that say things like 'Read More' or 'Learn More' are quite commonly seen a
 
 The about page features a resume section in addition to a contact form. Below is a sample of some of the resume markup in Liquid.
 
-{% raw %}
-
-```
+```liquid
 <h2 class="resume__heading">Resume</h2>
 <h2 class="subheading">Related Experience</h2>
 {% for exp in page.experience %}
@@ -94,15 +105,11 @@ The about page features a resume section in addition to a contact form. Below is
 {% endfor %}
 ```
 
-{% endraw %}
-
 Right off the bat, we can see that I used two H2 tags in a row. 'Related Experience' is most definitely supposed to be a heading under 'Resume', and the two have separate classes with different styling to distinguish them visually, so the only cause I can think of is that I must have been copy and pasting from other parts of the project without really thinking about what heading level was appropriate in the context of the destination. 🤦
 
 Screen readers allow users to navigate by heading levels, so having a clear document structure is necessary. With the markup above, it would appear that 'Resume' is a completely empty section to a screen reader user! We can fix this up by making 'Related Experience' an h3, and further improve readability by putting the position title, instution and date in a h4 to mark it as a heading before the list element below it.
 
-{% raw %}
-
-```
+```liquid
 <h2 class="resume__heading">Resume</h2>
 <h3 class="subheading">Related Experience</h3>
 {% for exp in page.experience %}
@@ -120,8 +127,6 @@ Screen readers allow users to navigate by heading levels, so having a clear docu
 {% endfor %}
 ```
 
-{% endraw %}
-
 **Take Home Message**: Proper use of headings is essential for screen readers. Always evaluate what heading level is appropriate in the context of the resulting page. Be especially careful when using frameworks/component libraries that may abstract over the generated markup, it's easy to reach for the element that matches the design and not realize that you are using an incorrect heading level.
 
 ## Illustrations
@@ -137,12 +142,23 @@ In this situation, I ended up using the [a11y-dialog library](https://github.com
 I won't go into too much detail about my implementation, but there are a few things that are worth noting. I kept the modal trigger element as links to the larger versions of the images instead of a button, I like this as a form of progressive enhancement - if for some reason the JS fails, you can still see a larger version of the image by clicking on the link. I used flexbox on the contents of the dialog window, so that the title could be **before** the image in the source order, allowing the image to fall under the heading (a trick I picked up from [Heydon's article about cards!](https://inclusive-components.design/cards/)). I then used the order property to visually move the title below the image, as is more conventional when displaying art, so both sighted and screen reader users will experience a structure they are more familiar with. Using flexbox and the `:not(:empty)` selector allowed me to easily conditionally resize the image to occupy the full height if there wasn't a title (naming things is hard, as we all know). You can [visit this commit on Github](https://github.com/nchan0154/nchan0154.github.io/commit/42a26afd17dd736a46e25b04dc72f0d45e56cc91) to check out the code for the dialog.
 
 <div class="post-callout">
-  <h3 class="post-callout__title">
-    Edit
-  </h3>
-  <p class="post-callout__text">
-    <a href="https://www.scottohara.me/blog/2019/03/05/open-dialog.html">Scott O'Hara points out that the dialog element isn't quite functioning as intended</a> in certain popular browser and screen reader combinations, and that it's best to avoid the <code>&lt;dialog&gt;</code> element completely. In my code, I have replaced it with a <code>&lt;div&gt;</code> (horrified gasps echo around the room) with the role of dialog. In cases like this where the native support isn't that great, an appropriate usage of ARIA labels can help. Modal dialogs are a particular difficult component to build, and the incomplete/quirky browser support only makes it more difficult. While I'm not using modals for a critical element of my site, if you are using them for mission critical UI, consider testing with as many screen reader and browser combinations as possible as they all have their own unique quirks.
-  </p>
+	<h3 class="post-callout__title">Edit</h3>
+	<p class="post-callout__text">
+		<a href="https://www.scottohara.me/blog/2019/03/05/open-dialog.html">
+			Scott O'Hara points out that the dialog element isn't quite functioning as
+			intended
+		</a>{" "}
+		in certain popular browser and screen reader combinations, and that it's
+		best to avoid the <code>&lt;dialog&gt;</code> element completely. In my
+		code, I have replaced it with a <code>&lt;div&gt;</code> (horrified gasps
+		echo around the room) with the role of dialog. In cases like this where the
+		native support isn't that great, an appropriate usage of ARIA labels can
+		help. Modal dialogs are a particular difficult component to build, and the
+		incomplete/quirky browser support only makes it more difficult. While I'm
+		not using modals for a critical element of my site, if you are using them
+		for mission critical UI, consider testing with as many screen reader and
+		browser combinations as possible as they all have their own unique quirks.
+	</p>
 </div>
 
 **Take Home Message**: A single inaccessible dependency can render a site impossible to use for screen readers. Audit any UI libraries thoroughly before incorporating them into your project!

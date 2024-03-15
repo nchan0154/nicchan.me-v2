@@ -45,15 +45,15 @@ But wait, there's more! I know I can't leave you all without the juicy details. 
 
 ```css
 .link::before {
-  content: '';
-  display: block;
-  position: absolute;
-  transform: scaleX(0)
-  transform-origin: left-center;
+	content: "";
+	display: block;
+	position: absolute;
+	transform: scaleX(0);
+	transform-origin: left center;
 }
 
 .link:hover::before {
-  transform: scaleX(1);
+	transform: scaleX(1);
 }
 ```
 

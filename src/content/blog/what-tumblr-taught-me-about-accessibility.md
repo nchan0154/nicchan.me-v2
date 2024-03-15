@@ -5,6 +5,7 @@ description: "Things I've learned about accessibility from my many years on Tumb
 tags:
   - accessibility
   - featured
+  - thoughts
 ---
 
 As someone who was a teenager during its peak, Tumblr has had an undeniable influence on my life. Like many people my age, my first exposure to the concepts of 'accessibility' and 'ableism' was through Tumblr. In sharp contrast to the web accessibility community, where we often focus on technical details, meeting clear criterion and legal compliance, Tumblr's disability community focused on more human facets of accessibility by practicing accessibility in a variety of creative ways. Even when presented with access barriers created by the inaccessibility of Tumblr as a platform, Tumblr as a community has found unique ways to support disabled users. As developers, we need to learn from our mistakes by finding out where our users compensate for our deficiencies, and learn from how disabled communities support themselves.

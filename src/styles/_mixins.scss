@@ -22,17 +22,19 @@
 		content: "";
 		position: absolute;
 		inset: 0;
-		outline: 3px solid var(--color-violet-darker);
+		outline: var(--border-thickness) solid var(--color-violet-darker);
 		outline-offset: var(--offset);
 		z-index: 1;
+		pointer-events: none;
 	}
 
 	&:focus::after {
 		content: "";
 		position: absolute;
 		inset: 0;
-		outline: 3px dotted var(--color-white);
+		outline: var(--border-thickness) dotted var(--color-white);
 		outline-offset: var(--offset);
+		pointer-events: none;
 		z-index: 1;
 	}
 }

@@ -17,6 +17,9 @@
 	--color-violet-darker: #17162b;
 	--color-violet: #2c2b4b;
 	--color-violet-lighter: #4f4d7e;
+	--color-violet-lightest: #7d7db0;
+	--color-lavender: #a3a3c7;
+	--color-black: #000;
 	--color-black: #000;
 	--color-gray-darkest: #5a6064;
 	--color-gray-darker: #878894;
@@ -28,6 +31,7 @@
 
 	--color-nav-link-bg: var(--color-white);
 	--color-nav-link-text: var(--color-violet-darker);
+	--color-outline: var(--color-violet-darker);
 	--color-footer-bg: var(--color-gray);
 
 	--color-button-ui-bg: var(--color-gray-lighter);
@@ -36,33 +40,49 @@
 	--color-button-ui-text: var(--color-violet);
 	--color-button-ui-hover-bg: var(--color-mauve-lighter);
 
+	--color-card-bg: var(--color-gray-lighter);
+	--color-card-shadow: var(--color-gray-darker);
+	--color-card-highlight: var(--color-white);
+	--color-card-text: var(--color-violet);
+	--color-card-hover-bg: var(--color-mauve-lighter);
+	--color-card-border: var(--color-violet-lighter);
+	--color-card-tag-bg: var(--color-lavender);
+	--color-card-tag-text: var(--color-black);
+
 	--color-page-title: var(--color-violet-darker);
 	--color-page-title-accent: var(--color-teal-darker);
+	--color-page-subtitle-accent: var(--color-mauve-lighter);
+
 	--color-window-bg: var(--color-white);
-	--color-window-text: var(--violet);
+	--color-window-text: var(--color-violet);
 	--color-window-header-bg: linear-gradient(
 		to right,
-		var(--color-magenta-darker),
-		var(--color-teal-darkest)
+		var(--color-lavender),
+		var(--color-teal)
 	);
-	--color-window-header-text: var(--color-white);
-	--color-link-underline: var(--color-mauve-lighter);
-	--color-testimonial-name: var(--color-magenta-lighter);
-	--color-testimonial-bg: var(--color-violet-lighter);
-	--color-response-bg: var(--color-teal-darkest);
-	--color-response-name: var(--color-teal-lighter);
+	--color-window-header-text: var(--color-black);
+
+	--color-testimonial-name: var(--color-violet-lighter);
+	--color-testimonial-bg: var(--color-mauve-lightest);
+	--color-response-bg: var(--color-teal-lighter);
+	--color-response-name: var(--color-violet);
+
+	--color-link-underline: var(--color-magenta);
 	--color-text-accent: var(--color-mauve);
-	--color-text-accent-bg: var(--color-mauve-darker);
-	--color-text-heading: var(--color-mauve-lightest);
-	--color-text-subheading: var(--color-magenta-lighter);
-	--color-text-highlight: var(--color-teal-darkest);
-	--color-post-tag-bg: var(--color-violet);
-	--color-post-tag-text: var(--color-white);
-	--color-accent-text-1: var(--color-teal-darkest);
-	--color-accent-text-2: var(--color-magenta-darker);
+	--color-text-accent-bg: var(--color-mauve-lighter);
+	--color-text-heading: var(--color-violet-lighter);
+	--color-text-subheading: var(--color-magenta-darker);
+	--color-text-highlight: var(--color-teal-lighter);
+	--color-code-border: var(--color-lavender);
+	--color-code-bg: #fafafa;
+	--color-code-text: var(--color-violet-lighter);
+
+	--color-accent-text-1: var(--color-teal-lighter);
+	--color-accent-text-2: var(--color-magenta-lighter);
 
 	--font-accent: "Sysfont", monospace;
-	--font-pixel: "W95fa", sans-serif;
+	--font-pixel: "W95fa", Seravek, "Gill Sans Nova", Ubuntu, Calibri,
+		"DejaVu Sans", sans-serif;
 	--base-letter-spacing: 0.02em;
 	--font-fallback: Seravek, "Gill Sans Nova", Ubuntu, Calibri, "DejaVu Sans",
 		source-sans-pro, sans-serif;
@@ -101,20 +121,64 @@
 		color: var(--color-dark-dark);
 	}
 
-	--color-bg: var(--color-violet-darker);
 	--color-nav-link-bg: var(--color-violet);
 	--color-nav-link-text: var(--color-white);
+	--color-outline: var(--color-white);
 
 	--color-window-bg: var(--color-violet);
 	--color-window-text: var(--color-white);
+	--color-window-header-bg: linear-gradient(
+		to right,
+		var(--color-magenta-darker),
+		var(--color-teal-darkest)
+	);
+	--color-window-header-text: var(--color-white);
+
+	--color-card-bg: var(--color-violet-lighter);
+	--color-card-shadow: var(--color-violet);
+	--color-card-highlight: var(--color-gray-darker);
+	--color-card-text: var(--color-white);
+	--color-card-hover-bg: var(--color-violet);
+	--color-card-border: var(--color-violet-darker);
+	--color-card-tag-bg: var(--color-violet);
+	--color-card-tag-text: var(--color-white);
+
+	--color-testimonial-name: var(--color-magenta-lighter);
+	--color-testimonial-bg: var(--color-violet-lighter);
+	--color-response-bg: var(--color-teal-darkest);
+	--color-response-name: var(--color-teal-lighter);
+
+	--color-link-underline: var(--color-mauve-lighter);
+	--color-text-accent: var(--color-mauve);
+	--color-text-accent-bg: var(--color-mauve-darker);
+	--color-text-heading: var(--color-mauve-lightest);
+	--color-text-subheading: var(--color-magenta-lighter);
+	--color-text-highlight: var(--color-teal-darkest);
+	--color-accent-text-1: var(--color-teal-darkest);
+	--color-accent-text-2: var(--color-magenta-darker);
+}
+
+@mixin dark-code {
+	.astro-code,
+	.astro-code span {
+		color: var(--shiki-dark) !important;
+		background-color: var(--shiki-dark-bg) !important;
+		/* Optional, if you also want font styles */
+		font-style: var(--shiki-dark-font-style) !important;
+		font-weight: var(--shiki-dark-font-weight) !important;
+		text-decoration: var(--shiki-dark-text-decoration) !important;
+	}
 }
 
 @media (prefers-color-scheme: dark) {
 	:root:not([data-user-color-scheme]) {
 		@include dark-colors;
 	}
+
+	@include dark-code;
 }
 
 [data-user-color-scheme="dark"] {
 	@include dark-colors;
+	@include dark-code;
 }

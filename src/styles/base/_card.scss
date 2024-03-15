@@ -1,7 +1,9 @@
-.button--ui {
-	--border-color: var(--color-violet-lighter);
+.card {
+	--border-color: var(--color-card-border);
 	--offset: var(--border-thickness);
-	--background-color: var(--color-button-ui-bg);
+	--background-color: var(--color-card-bg);
+	display: block;
+	width: 100%;
 	position: relative;
 	display: inline-block;
 	padding: 0;
@@ -10,39 +12,36 @@
 	text-decoration: none;
 
 	&:hover {
-		--background-color: var(--color-button-ui-hover-bg);
+		--background-color: var(--color-card-hover-bg);
 	}
 
-	&[aria-pressed="true"],
-	&[aria-expanded="true"],
-	&[aria-current],
 	&:hover,
 	&:active {
 		transform: translate3d(1px, 1px, 0);
 
-		.button--ui__content {
+		.card__content {
 			box-shadow: inset calc(var(--border-thickness) * -1)
-					calc(var(--border-thickness) * -1) var(--color-button-ui-bg),
+					calc(var(--border-thickness) * -1) var(--color-card-bg),
 				inset var(--border-thickness) var(--border-thickness)
-					var(--color-button-ui-shadow);
+					var(--color-card-shadow);
 		}
 	}
 
 	@include focus();
 }
 
-.button--ui__content {
+.card__content {
 	display: block;
-	background-color: var(--color-button-ui-bg);
-	padding: calc(var(--border-thickness) * 2);
-	padding-inline-end: calc(var(--border-thickness) * 2 + 2px);
-	color: var(--color-button-ui-text);
+	background-color: var(--color-card-bg);
+	padding: calc(var(--border-thickness) * 3);
+	padding-inline-end: calc(var(--border-thickness) * 3 + 2px);
+	color: var(--color-card-text);
 	font-size: 1rem;
 	line-height: 1;
 	box-shadow: inset calc(var(--border-thickness) * -1)
-			calc(var(--border-thickness) * -1) var(--color-button-ui-shadow),
+			calc(var(--border-thickness) * -1) var(--color-card-shadow),
 		inset var(--border-thickness) var(--border-thickness)
-			var(--color-button-ui-highlight);
+			var(--color-card-highlight);
 	background-color: var(--background-color);
 	@include pixel-borders();
 }

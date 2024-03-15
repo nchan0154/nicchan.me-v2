@@ -7,21 +7,24 @@ tags:
   - featured
   - shopify
   - e-commerce
+  - talk
 ---
+
+import Youtube from "../../components/Youtube.astro";
 
 I was excited to see my axe-con 2022 talk was posted on Youtube! There are captions in the video and transcript side by side, as well as below the video. Thank you Deque for allowing me to speak.
 
 [Standalone Slides](https://add-to-cart-slides.netlify.app/)
 
-<div class="video" style="padding-top:56.25%">
-  <div class="video__embed" id="player"></div>
+<div class="video" style="aspect-ratio: 16/9;">
+	<Youtube videoid="wYAFyGdq9Tc"></Youtube>
 </div>
 
-## Introduction [(0:00)](#player)
+## Introduction (0:00)
 
 Hi, everyone, my name is Nic Chan and today I'll be speaking to you on "Developing an Accessible 'Add to Cart' Flow." If you have any questions or comments, you can find me on my website at www.nicchan.me. That's spelt N-I-C, C-H-A-N, or on my Twitter handle, @NicMakesStuff. I'm a Hong Kong woman with wavy black hair, and I'm wearing a purple an Axe-con shirt much like Liz. To give you a brief introduction, I'm a freelance front-end developer. And the insights from this talk are sort of gleaned from my years of experience working on Shopify stores. But hopefully the insights can also be applied to other e-commerce platforms. And fun fact, I'm definitely a cat person.
 
-## Overview [(0:53)](#player)
+## Overview (0:53)
 
 To give you a sense of how this talk is gonna go, today, I'll be covering four different patterns, first being buttons, then inline notifications, then toasts, and then dialogs. And for each pattern, I'm gonna walk you through some different iterations, so some different variations of what these patterns might look like in the wild. And then pros and cons for each pattern, as well as tips and tricks for implementing them in a more accessible way.
 
@@ -36,7 +39,7 @@ and your users understand that, okay, like we're on a new page, it's titled your
 So if this approach is so robust, why would we ever wanna use an alternative? Merchants realized that this was kind of like pushing users into a single flow, it's forcing them to Checkout when they might not wanna always go to checkout, they might wanna continue shopping on the site or do some other action first. So the following patterns are kind of developed as a way to both notify users and offer them a choice of whether or not to continue shopping or proceed to checkout.
 Now that we're all on the same page, let's move into the actual patterns.
 
-## Button Pattern [(5:02)](#player)
+## Button Pattern (5:02)
 
 The first pattern is a button pattern. And here I have an image. And on top, we have our first button, and it just says Add to Cart. Underneath that we have a second button, and there's a checkmark in it, and it says Added to Cart instead of Add to Cart. When I refer to the button pattern, I'm referring to when the buttons text is changed when it is activated. This is a pattern that can be used in combination with other patterns, and I'd recommend it for the following reasons, and that is super great for users who use magnification, whether it be the default browser zoom, or special zooming software.
 
@@ -61,7 +64,7 @@ One final consideration for the Add to Cart button is wording. So here we have a
 
 On the right, we have a button that says Add to Cart and then Adding and then the final state is Added to Cart. This poses a different problem of if you want to reset that button to the original state. There tends to be room for confusion about now, it's pretty clear that an Add to Cart button allows you to add something to your cart but what does an Added to Cart button do? Does it take you to Checkout? Does it let you add that item again? It's a mystery. So we might wanna consider using the button pattern in combination with other patterns in order to alleviate some confusion. And this leads us to our next pattern.
 
-## Inline notifications [(12:34)](#player)
+## Inline notifications (12:34)
 
 What do I mean when I refer to the inline notification pattern? By inline notification, I mean an element that is not positioned sticky, absolute or fixed. A notification is inserted into the reading area and then content is often shifted in order to make space for this notification.
 
@@ -75,7 +78,7 @@ Some implementations will have this notification disappear after a short amount 
 
 In the wild, I often see different placement options for this pattern. So here we have two examples of where we might put our notifications. And the first one is directly below our breadcrumbs, but above all of our product stuff. And the second one is in a similar location to the original notification, but it's directly above the Add to Cart button. I'd argue that the best place for the notification is after the Add to Cart button. Well, if we're moving focus, technically, we meet the requirements either way, but we can improve usability by not taking users too far out of the context they were originally in. Placing it near the button helps minimize tab stops for keyboard users and it will disorient users with dramatic content shifts if you're kind of like shifting things around the page. If we put it under the button that they're probably looking at, we have less room for disorientation.
 
-## Inline notifications [(17:17)](#player)
+## Inline notifications (17:17)
 
 The next two patterns I will be discussing are toasts and Dialogs. Before I get into the details, I'd like to emphasize that these patterns often lack distinctions in the wild. I'll be describing the behaviors of both toasts and Dialogs in terms of how they should be behaved, but the lines are really blurred. Because they pop out on the screen and overlay content, people kind of just tend to see a toast as a little dialog, and they code them in a really similar way. This ignores distinctions and semantics and the requirements for each of these elements to be accessible. A lot of accessibility errors come about from developers treating these two components as interchangeable when they're actually quite discreet.
 
@@ -87,7 +90,7 @@ Our toast looks really similar to the inline notification that we have previousl
 
 So how do we make sure that we don't fail the 2.2.1 Timing Adjustable Criterion while keeping tools behavior? We have some options. The first is that we could have a setting that lets you set that notification display time. And here we have an example of a settings page where we just allow the user to set the notification to five seconds. On the right, we have an example of a notification drawer and it looks a lot like a notification jar on your phone. Basically, it shows you all the toasts that have popped up previously with a timestamp of how recently they popped up. Sure, we can use both of these options to kind of remediate the issues with toasts, but it sort of defeats the purpose of toasts as a quick and easy way of displaying things. Plus no one really wants a drawer full of stale toasts. Unfortunately, I don't really think that toasts live up to their real life namesake. They're neither as useful nor as delicious as their real world counterparts, especially in e-commerce contexts where the Add to Cart is the primary action. What developers often try to implement as toasts should really be dialogs instead. And this leads us to our final section.
 
-## Dialogs [(21:18)](#player)
+## Dialogs (21:18)
 
 Dialogs. Dialogs are often a misunderstood component, there is a misconception that all dialogs are basically what we understand to be an alert. Here on the screen, I have an example of a Windows 98 Style dialog. And it basically says "The system registry has been backed up already today. Would you like to back it up again?" And it provides option of Yes or No. All of the following patterns are examples of things I regularly see on online stores. While visually they look really different, they can all be considered dialogs. And so they can use similar semantics and functionality underneath the visual styling.
 
@@ -117,7 +120,7 @@ Finally we wanna make sure that we're labeling all the things. We wanna make sur
 
 It's a really common issue that's found in modal carts and things like that so if your dialog has repetitive interactive elements, so like multiple Increase Quantity buttons, or multiple Remove Product buttons, one for each of your products, make sure that they have unique names. It can be annoying for a screen reader user to just list all the buttons, and hear five different buttons that say Remove with no indication of what product they're actually removing. So we wanna make sure that each of these buttons are labeled with a unique name.
 
-## Inline notifications [(29:05)](#player)
+## Inline notifications (29:05)
 
 Some final takeaways. I don't think there's a clear winner amongst the pattern. How you might use them really depends on the context of your site. Things like how many products you have, or what you want a user to do after adding an item to the cart, it sort of really drives which one of these patterns you'll wanna use.
 
@@ -125,7 +128,7 @@ And while testing individual components is great, we really wanna test the whole
 
 A whole bunch of accessibility errors come about from treating different components interchangeably. If you only learn one thing from this talk, let it be that toasts and dialogs are not the same. And with that, I'm pretty much done. So I guess I'll hand it back to you Liz for questions.
 
-## Questions & Answers [(30:14)](#player)
+## Questions & Answers (30:14)
 
 Liz: Awesome. Thank you so much Nic for a great presentation here. And thank you for adding questions for all of our attendees. Please still feel free to add any questions that you have for Nic in the Q&A portion. And definitely Feel free to upload them and I'll make sure to go with the ones that have the most votes. So let's dive into the first question. This one's on toasts. Should toasts be used for simple success confirmation messages that would have no interactions with it, such as Saved Successfully, Copy to Clipboard, et cetera?
 
@@ -199,37 +202,3 @@ Liz: Great. Thank you so much, Nic. And with that I think we are about at time, 
 Nic: Thanks Liz.
 
 Liz: Bye.
-
-<script>
-  // 2. This code loads the IFrame Player API code asynchronously.
-  var tag = document.createElement('script');
-
-  tag.src = "https://www.youtube.com/iframe_api";
-  var firstScriptTag = document.getElementsByTagName('script')[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-  // 3. This function creates an <iframe> (and YouTube player)
-  //    after the API code downloads.
-  var player;
-  function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-      height: '315',
-      width: '560',
-      videoId: 'wYAFyGdq9Tc',
-    });
-  }
-
-  function toSeconds(str) {
-    var units = str.split(":");
-    return Number(units[0]) * 60 + Number(units[1]);
-  }
-
-  var videoLinks = document.querySelectorAll('[href="#player"]');
-
-  for (let link of videoLinks) {
-    link.addEventListener('click', event => {
-      var seconds = toSeconds(link.innerText.replace(/[\(\)]/g, ''));
-      player.seekTo(seconds, true);
-    });
-  }
-</script>

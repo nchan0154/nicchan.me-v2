@@ -4,15 +4,16 @@ date: "2022-10-17"
 description: "An introduction to CSS specificity in non-technical terms"
 tags:
   - css
+  - tutorial
 ---
 
 ## Introduction
 
 CSS is a styling language that allows us to apply styles to our website. Although the browser includes some styles by default, we as web authors often choose to override those browser styles. On top of that, end-users can also choose to override the author styles with their own custom styles. With all these conflicting sources of styles, how does the browser determine what style should be applied? It comes down to two primary factors, the **cascade**, AKA what order your styles are in, and **specificity**, AKA how precise the styles are. In this article, we'll be focusing on the idea of CSS specificity.
 
-```
+```css
 .selector {
-  color: red; /* This is a declaration */
+	color: red; /* This is a declaration */
 }
 ```
 
@@ -22,12 +23,10 @@ A CSS rule consists of a selector and a declaration. The selector is a way of de
 
 Element selectors are a way of targeting elements based on what the element is. In our school auditorium metaphor, this might be equivalent to addressing all students from a particular grade. If you say "Fifth-grade students, stand up", you are addressing students based on what they are. An example in CSS might look like this snippet below, where we are grabbing all our anchor links based on the fact that they are anchor links. This represents the lowest level of CSS specificity.
 
-```
-
+```css
 a {
-  color: blue;
+	color: blue;
 }
-
 ```
 
 ## Attribute Selectors
@@ -36,9 +35,9 @@ Attribute selectors are a way of grouping elements together based on different s
 
 An attribute selector in CSS is enclosed in square brackets and looks like this:
 
-```
+```css
 [lang="en"] {
-  color: blue;
+	color: blue;
 }
 ```
 
@@ -50,9 +49,9 @@ You might think of a class name as a name that is assigned to an element. As ind
 
 We can write our class names in a way to target one or more elements, depending on the wider context of our site and what we as CSS authors might need. A class name like "footer" may only be needed once per page, but a class name like "primary-button" may appear many times. The class selector begins with a period and is followed by the class name. Class selectors fall under the second lowest tier of specificity along with attribute selectors.
 
-```
+```css
 .navigation {
-  color: blue;
+	color: blue;
 }
 ```
 
@@ -60,9 +59,9 @@ We can write our class names in a way to target one or more elements, depending 
 
 So what if we want to grab a single student? The only truly unique identifier for an element is an id (technically, you can apply the same id to multiple elements and your page would still technically 'work', but this can have a negative impact on the accessibility and usability of your page!) An id can be thought of as a unique identifier for a student, such as a social security number or a passport number. Theoretically, there should only be one student that has a given id, so if we want to be sure that we're addressing a specific student, using their ID number is a more foolproof way to target them rather than saying something like "John Smith, stand up." An id selector begins with a hash, and is followed by the id. Id selectors fall under the second highest tier of specificity.
 
-```
+```css
 #navigation {
-  color: blue
+	color: blue;
 }
 ```
 
@@ -70,7 +69,7 @@ So what if we want to grab a single student? The only truly unique identifier fo
 
 Inline styles aren't technically a selector in CSS, but they represent the highest tier of specificity. We might think of inline styles as students who have headphones on during the school assembly. Regardless of what instructions are given to them, they have their own set of styles that they are listening to. A room full of students with headphones on is much harder to wrangle than a room full of students listening attentively, so it is in your interest as a CSS author to minimize inline styles. Inline styles are directly applied to an element in the HTML.
 
-```
+```css
 <div style="color:red;">I'm red!</div>
 ```
 
@@ -78,9 +77,9 @@ Inline styles aren't technically a selector in CSS, but they represent the highe
 
 Combinator selectors are a way of describing elements in relation to another. In our student metaphor, this might be akin to saying something like "Students who sit behind the first row of students", or "Amanda, the younger sibling of Sally from fifth-grade." Though both are ways of addressing students in relation to one another, one is more specific than the other. Combinators are powerful and can unlock a ton of useful functionality without having to come up with granular class names, but be warned as combinators add up the specificity of all selectors in that particular combination. Chaining too many combinators should be avoided.
 
-```
+```css
 p + p {
-  margin-top: 1rem;
+	margin-top: 1rem;
 }
 ```
 
@@ -88,9 +87,9 @@ p + p {
 
 `!important` provides a way for us to override all of these selectors that we have previously mentioned. We might think of `!important` as an announcement blaring over the school's public address system, it takes precedence over what is being announced in the auditorium, regardless of how specific the selector is. "All students involved in lunchtime incident, please come to the principal's office" and "Student number 92374, please come to the principal's office" are equally capable of overriding our previous rules. Like inline styles, `!important` is not a selector, it is applied to a declaration directly.
 
-```
+```css
 a {
-  color: red !important;
+	color: red !important;
 }
 ```
 

@@ -12,6 +12,11 @@
 			icon: "",
 		},
 		{
+			text: "Blog",
+			link: "/blog/",
+			icon: "",
+		},
+		{
 			text: "Services",
 			link: "/services/",
 			icon: "",
@@ -26,17 +31,14 @@
 			link: "/about/",
 			icon: "",
 		},
-		{
-			text: "Blog",
-			link: "/blog/",
-			icon: "",
-		},
 	];
 </script>
 
 <header class="layout__header">
 	<div class="skip-link-wrapper">
-		<a class="skip-link" href="#main">Skip to main content</a>
+		<a class="button--ui visually-hidden" href="#main">
+			<span class="button--ui__content">Skip to main content</span>
+		</a>
 	</div>
 	<nav class="nav" aria-label="Main">
 		<ul class="nav__list">
@@ -61,26 +63,7 @@
 		position: fixed;
 		inset-block-start: 0;
 		inset-inline-start: 0;
-		z-index: 1;
-	}
-
-	.skip-link {
-		--border-color: var(--color-violet-lighter);
-		inline-size: fit-content;
-		background-color: var(--color-button-ui-bg);
-		padding: calc(var(--border-thickness) * 2);
-		padding-inline-end: calc(var(--border-thickness) * 2 + 2px);
-		color: var(--color-button-ui-text);
-		font-size: 1rem;
-		line-height: 1;
-		text-decoration: none;
-		@include pixel-borders();
-		@include focus();
-		opacity: 0;
-
-		&:focus {
-			opacity: 1;
-		}
+		z-index: 100;
 	}
 
 	.nav__list {

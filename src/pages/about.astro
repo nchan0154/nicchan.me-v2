@@ -7,74 +7,75 @@ import testimonials from "../content/data/testimonials.json";
 ---
 
 <Layout title="About">
-  <div class="layout__grid about">
-    <h1 class="page-title">About</h1>
-    <div class="layout__cell about__bio">
-      <Window title="Bio" order={0} client:load>
-        <div class="container rte">
-          <p>
-            Hi! I'm Nic. I build websites, draw pictures and eat lots of sushi,
-            and would love to do any of those things for you. I'm based in Hong
-            Kong, but I've had 8+ years of experience working with people all
-            across the globe!
-          </p>
-          <h3>Career Highlights</h3>
-          <ul>
-            <li>
-              I've been a freelancer for 8+ years, with hundreds of completed
-              projects and dozens of happy clients.
-            </li>
-            <li>
-              I'm a member of the W3C Maps4HTML Community Group, and have
-              co-authored the <a
-                href="https://maps4html.github.io/HTML-Map-Element-UseCases-Requirements/"
-                >Use Cases and Requirements for Standardizing Web Maps</a
-              > report.
-            </li>
-            <li>
-              I'm a IAAP-certified <a
-                href="https://www.accessibilityassociation.org/s/wascertificants"
-                >Web Accessibility Specialist</a
-              >
-            </li>
-            <li>
-              I've been published at one of my favorite web publications, <a
-                href="https://www.smashingmagazine.com/">Smashing Magazine</a
-              >
-            </li>
-            <li>I've spoken at 3 events and counting!</li>
-          </ul>
-          <p></p>
-        </div>
-      </Window>
-    </div>
-    <div class="layout__cell about__testimonials">
-      <Window
-        title="Testimonials"
-        order={1}
-        style="--max-width: 50ch"
-        client:load>
-        <Testimonials {testimonials} client:load />
-      </Window>
-    </div>
-  </div>
+	<div class="layout__grid about">
+		<h1 class="page-title">About</h1>
+		<div class="layout__cell about__bio">
+			<Window title="Bio" order={0} client:load>
+				<div class="container rte">
+					<p>
+						Hi! I'm Nic. I build websites, draw pictures and eat lots of sushi,
+						and would love to do any of those things for you. I'm based in Hong
+						Kong, but I've had 8+ years of experience working with people all
+						across the globe!
+					</p>
+					<h3>Career Highlights</h3>
+					<ul>
+						<li>
+							I've been a freelancer for 8+ years, with hundreds of completed
+							projects and dozens of happy clients.
+						</li>
+						<li>
+							I'm a member of the W3C Maps4HTML Community Group, and have
+							co-authored the <a
+								href="https://maps4html.github.io/HTML-Map-Element-UseCases-Requirements/"
+								>Use Cases and Requirements for Standardizing Web Maps</a
+							> report.
+						</li>
+						<li>
+							I'm a IAAP-certified <a
+								href="https://www.accessibilityassociation.org/s/wascertificants"
+								>Web Accessibility Specialist</a
+							>
+						</li>
+						<li>
+							I've been published at one of my favorite web publications, <a
+								href="https://www.smashingmagazine.com/">Smashing Magazine</a
+							>
+						</li>
+						<li>I've spoken at 3 events and counting!</li>
+					</ul>
+					<p></p>
+				</div>
+			</Window>
+		</div>
+		<div class="layout__cell about__testimonials">
+			<Window
+				title="Testimonials"
+				order={1}
+				style="--max-width: 50ch"
+				client:load>
+				<Testimonials {testimonials} client:load />
+			</Window>
+		</div>
+	</div>
 </Layout>
 
 <style>
-  @media (min-width: 62em) {
-    .about {
-      grid-template-rows: auto 1fr;
-      grid-template-columns: minmax(50%, 80ch) minmax(40%, 1fr);
-    }
+	@media (min-width: 62em) and (min-height: 34em) {
+		.about {
+			grid-template-rows: auto 1fr;
+			grid-template-columns: minmax(50%, 80ch) minmax(40%, 1fr);
+			gap: var(--page-block-padding);
+		}
 
-    .about__bio {
-      grid-column: 1;
-      grid-row: 2 / 3;
-    }
+		.about__bio {
+			grid-column: 1;
+			grid-row: 2 / 3;
+		}
 
-    .about__testimonials {
-      grid-column: 2;
-      grid-row: 1 / 3;
-    }
-  }
+		.about__testimonials {
+			grid-column: 2;
+			grid-row: 1 / 3;
+		}
+	}
 </style>

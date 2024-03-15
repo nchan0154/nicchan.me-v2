@@ -1,76 +1,72 @@
 .layout {
-  display: grid;
-  grid-template-columns: 5.5rem 1fr;
-  grid-template-rows: 1fr auto;
-  margin: 0;
+	display: grid;
+	grid-template-columns: 5.5rem 1fr;
+	grid-template-rows: 1fr auto;
+	margin: 0;
 }
 
 .layout__header {
-  padding: 0.5rem;
-  padding-inline-end: 1rem;
-  padding-block-end: 1rem;
+	padding: 0.5rem;
+	padding-inline-end: 1rem;
+	padding-block-end: 1rem;
 }
 
 .layout__main {
-  padding-block: 0.5rem;
-  padding-inline-end: 0.5rem;
+	padding-block: 0.5rem;
+	padding-inline-end: 0.5rem;
 }
 
 .layout__grid {
-  display: grid;
-  gap: var(--page-block-padding);
-
-  .page-title {
-    margin-bottom: calc(var(--page-block-padding) * -1);
-  }
+	display: grid;
 }
 
 @media (min-height: 34em) {
-  html {
-    height: 100%;
-  }
+	html {
+		height: 100%;
+	}
 
-  .layout {
-    height: 100vh;
-    height: 100dvh;
-  }
+	.layout {
+		height: 100vh;
+		height: 100dvh;
+	}
 
-  .layout__header {
-    align-self: self-end;
-  }
+	.layout__header {
+		align-self: self-end;
+	}
 
-  .layout__main {
-    height: 100%;
-    min-height: 0;
-    overflow-y: auto;
-  }
+	.layout__main {
+		height: 100%;
+		min-height: 0;
+		overflow-y: auto;
+	}
 }
 
 @media (min-width: 40em) {
-  .layout {
-    grid-template-columns: 6.5rem 1fr;
-  }
+	.layout {
+		grid-template-columns: 6.5rem 1fr;
+	}
 
-  .layout__main {
-    position: relative;
-    min-height: 0;
-    padding-block: var(--page-block-padding);
-    padding-inline: var(--page-inline-padding);
-  }
+	.layout__main {
+		position: relative;
+		min-height: 0;
+		padding-block: var(--page-block-padding);
+		padding-inline: var(--page-inline-padding);
+		overflow-x: hidden;
+	}
 
-  .layout__header {
-    padding-block: var(--page-block-padding);
-    align-self: self-start;
-  }
+	.layout__header {
+		padding-block: var(--page-block-padding);
+		align-self: self-start;
+	}
 }
 
-@media (min-width: 62em) {
-  .layout__grid {
-    height: 100%;
-  }
+@media (min-width: 62em) and (min-height: 34em) {
+	.layout__grid {
+		height: 100%;
+	}
 
-  .layout__cell {
-    align-self: stretch;
-    overflow: hidden;
-  }
+	.layout__cell {
+		align-self: stretch;
+		overflow: hidden;
+	}
 }

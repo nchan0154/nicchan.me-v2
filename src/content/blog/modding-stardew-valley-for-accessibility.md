@@ -13,7 +13,6 @@ image:
 
 Stardew Valley is a farming simulator game that was released in 2016 by a solo developer, ConcernedApe. It was an instant classic, and countless people—from diehard gamers to those picking up their very first video game—have fallen in love with its unique charm. As a game, Stardew Valley is both wide and deep: its open ended nature means you can do as much or as little as you want and still feel a sense of progression, and its retro style pixel art graphics make it playable on a wide variety of platforms.
 
-
 Despite all the hype surrounding the game, I didn't expect to fall down the Stardew Valley rabbit hole myself. After a period of too much work I was left with a repetitive strain injury (RSI). I stayed away from the game because I assumed the Stardew Valley experience, like most other games, was now locked out to me. Due to my RSI, I couldn't understand the appeal of a game that seemed to involvebe doing repetitive actions over and over again. I finally picked up the game in 2021, and I was so glad I did! I was late to the party, but I now count myself amongst the millions of loyal fans that Stardew Valley has around the world.
 
 As I became acquainted with the game, I soon found myself exploring the world of unofficial Stardew Valley mods, patches that players can apply to the base game in order to change some part of the experience. I've previously written at length about how how [disabled Tumblr users](https://www.nicchan.me/blog/what-tumblr-taught-me-about-accessibility/) have developed ways to make the platform more accessible, and was curious to see if the Stardew Valley community was similar.
@@ -25,13 +24,12 @@ As I became acquainted with the game, I soon found myself exploring the world of
   <p class="post-callout__text">
     I am not a full-time assistive technology user, and can play Stardew Valley without much modification with the aid of my niche equipment setup. You might enjoy the following video reviews of the base Stardew Valley experience for a more exhaustive overview.
 
-*   [Onehandmostly](https://www.youtube.com/watch?v=zhARjRoiGEI) walks through his experience with Stardew Valley as a one-handed gamer. He covers the existing accessibility settings extensively.
+- [Onehandmostly](https://www.youtube.com/watch?v=zhARjRoiGEI) walks through his experience with Stardew Valley as a one-handed gamer. He covers the existing accessibility settings extensively.
 
-*   [Darrel Bowles](https://www.youtube.com/watch?v=2gTITzQqiqQ), a completely blind gamer, praises Stardew's use of subtle non-verbal audio cues. He plays Stardew Valley in multiplayer mode with a partner who helped to build pathing so that he may navigate the farm via sound, much like a blind person might use tactile paving in public spaces.
+- [Darrel Bowles](https://www.youtube.com/watch?v=2gTITzQqiqQ), a completely blind gamer, praises Stardew's use of subtle non-verbal audio cues. He plays Stardew Valley in multiplayer mode with a partner who helped to build pathing so that he may navigate the farm via sound, much like a blind person might use tactile paving in public spaces.
 
   </p>
 </div>
-
 
 ## How accessible is the core Stardew Valley experience?
 
@@ -51,7 +49,6 @@ In terms of settings and configuration, Stardew Valley goes beyond most large-bu
 
 The vast majority of Stardew Valley mods are available through the [Stardew Modding API (AKA SMAPI)](https://www.nexusmods.com/stardewvalley/mods/2400). SMAPI is an installable piece of software that allows users to load mods by placing them in a particular folder on the filesystem. Once SMAPI is installed, mods can be downloaded from a variety of places such as Nexus Mods, which hosts thousands of Stardew Valley mods alone. While some mods are merely cosmetic or offer additional content, a quick glance at [the most popular Stardew Valley mods on Nexus Mods](https://www.nexusmods.com/stardewvalley/mods/) shows us that many others target specific accessibility needs.
 
-
 <div class="post-callout">
   <h3 class="post-callout__title">
     Another Disclaimer:
@@ -65,13 +62,13 @@ The vast majority of Stardew Valley mods are available through the [Stardew Modd
 
 One of the things that made me personally wary of playing Stardew Valley was its bright color palette. While I'm sure plenty of players gravitate towards the default bright and cheerful graphics, many people experience eye fatigue or migraines when looking at a bright color palette. Luckily, there's a whole host of mods out there that offer alternative color palettes for the game maps, in every flavor imaginable. Options include, but are not limited to, the following:
 
-*   [A Wittily Named Recolor](https://www.nexusmods.com/stardewvalley/mods/2995) makes the whole palette significantly more muted
+- [A Wittily Named Recolor](https://www.nexusmods.com/stardewvalley/mods/2995) makes the whole palette significantly more muted
 
-*   [Starblue Valley](https://www.nexusmods.com/stardewvalley/mods/1869) makes everything a little more blue, an option for those who experience eye strain with too much yellow
+- [Starblue Valley](https://www.nexusmods.com/stardewvalley/mods/1869) makes everything a little more blue, an option for those who experience eye strain with too much yellow
 
-*   [Natural Recolor](https://www.nexusmods.com/stardewvalley/mods/1213) makes the color palette more natural looking
+- [Natural Recolor](https://www.nexusmods.com/stardewvalley/mods/1213) makes the color palette more natural looking
 
-*   [Vibrant Pastoral](https://www.nexusmods.com/stardewvalley/mods/6367), despite its name, reduces the saturation on all outdoor maps
+- [Vibrant Pastoral](https://www.nexusmods.com/stardewvalley/mods/6367), despite its name, reduces the saturation on all outdoor maps
 
 <figure>
   {% cloudinaryImage 'stardew-recolor-comparison.png', '', 1282, 520, "(min-width: 62em) 45em, 90vw", "lazy", "Side by side comparison of what the farm looks like with the original Stardew Valley colors compared to colors from 'A Wittily Named Recolor.' The recolored farm is significantly less saturated and with higher contrast between the different kinds of foliage." %}
@@ -135,13 +132,13 @@ This final section covers a class of mods that are less likely to fall under the
 
 First up, we have [Pelican TTS](https://www.nexusmods.com/stardewvalley/mods/1079). TTS stands for Text-to-Speech, a popular method for blind and low-vision people to interact with text interfaces. [This video shows off the gist of the Pelican TTS mod](https://youtu.be/Lo9UhAMoBJs?t=124), though many features have since been added that allow players to customize voices for each NPC.
 
-In a similar vein, [StardewSpeak](https://github.com/evfredericksen/StardewSpeak) is a mod that allows for people to play Stardew Valley solely with their voice. In a similar vein, [StardewSpeak](https://github.com/evfredericksen/StardewSpeak) is a mod that allows gamers to play Stardew Valley solely with their voice. The mod creator has put a lot of thought into how to make the player's experience as streamlined as possible, adding in a bunch of [helpful commands](https://www.youtube.com/watch?v=XYL2eXWWi8U) that make this a viable way to play the game. For example, instead of forcing the player to count the number of tiles to reach the destination, the player can just say 'Go to farm', and the character will automatically find an appropriate path to the farm, taking all the twists and turns required.
+In a similar vein, [StardewSpeak](https://github.com/evfredericksen/StardewSpeak) is a mod that allows for people to play Stardew Valley solely with their voice. The mod creator has put a lot of thought into how to make the player's experience as streamlined as possible, adding in a bunch of [helpful commands](https://www.youtube.com/watch?v=XYL2eXWWi8U) that make this a viable way to play the game. For example, instead of forcing the player to count the number of tiles to reach the destination, the player can just say 'Go to farm', and the character will automatically find an appropriate path to the farm, taking all the twists and turns required.
 
 Last but not least, we have the [Stardew Access](https://stardew-access.github.io/) mod, which seeks to make Stardew Valley fully playable with just the keyboard (no mouse!), and adds support for popular screen readers such as JAWS and NVDA. The creator of this mod, Shoaib Khan, kindly agreed to speak with me for this article.
 
 Shoaib is a university student who works on mods in his free time and moderates a Discord Server called Playability to gather feedback and collect bug reports. He got into modding when LogicProXGaming, a blind Minecraft streamer he followed, expressed a need for a mod that would tell him his current health on a keypress. Shoaib rose to the challenge and eventually began developing Stardew Access as well. When asked about the reception of Stardew Access, Shoaib mentioned that he never thought so many people would be interested in a mod like this, and that he's grateful for all the feedback that allows him to improve the mod.
 
-This is where I believe that arguments against accommodations making games “too easy”  or “for lazy people” fall flat. Imagine if you had to code an entire interface or submit a pull request just so you could play a game! Making games accessible is a tremendous effort that is unfairly borne by mostly disabled people themselves and by people like Shoaib. What a different world it would be if game developers considered accessibility from the start, and it wasn't something that players had to hack in themselves.
+This is where I believe that arguments against accommodations making games “too easy” or “for lazy people” fall flat. Imagine if you had to code an entire interface or submit a pull request just so you could play a game! Making games accessible is a tremendous effort that is unfairly borne by mostly disabled people themselves and by people like Shoaib. What a different world it would be if game developers considered accessibility from the start, and it wasn't something that players had to hack in themselves.
 
 ## Closing notes
 

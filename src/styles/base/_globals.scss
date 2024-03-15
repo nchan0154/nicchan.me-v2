@@ -15,7 +15,7 @@ body {
 	font-family: var(--font-base);
 	line-height: 1.6;
 	background-color: var(--color-bg);
-	background-image: url("/pixels/bg-5.png");
+	background-image: url("https://res.cloudinary.com/nicchan/image/upload/f_auto/bg-5.png");
 	background-size: cover;
 	background-position: center;
 	letter-spacing: var(--base-letter-spacing);
@@ -61,15 +61,17 @@ pre,
 code {
 	background-color: var(--color-code-bg);
 	color: var(--color-code-text);
-	font-family: monospace;
 }
 
 pre {
+	--border-color: var(--color-code-border);
+	min-width: 0;
 	width: 100%;
 	overflow: auto;
-	white-space: pre-wrap;
-	font-family: var(--font-pre);
-	letter-spacing: var(--base-letter-spacing);
+
+	&:has(code) {
+		@include pixel-borders;
+	}
 }
 
 code {
@@ -79,6 +81,15 @@ code {
 pre code {
 	display: block;
 	padding: 0.5rem 1rem;
+	font-size: 1rem;
+	tab-size: 1rem;
+	font-family: monospace;
+}
+
+hr {
+	margin: var(--space-xs) 0;
+	border: none;
+	border-bottom: var(--border-thickness) dashed var(--color-text-accent);
 }
 
 @keyframes animate {

@@ -28,33 +28,34 @@ A shopify theme has the following folders:
 
 If you poke around the assets folder, you might notice that all the styling is done in one giant .scss.liquid file, which Shopify compiles on its own servers. If you're used to a modern, modularized CSS workflow, the ban against `@import` will seem like a nightmare. Running your own SCSS processor and uploading the compiled CSS is an option, but doing so won't let you use liquid variables (aka Shopify settings you might want to include like colors and font sizes) within your SCSS. What I ended up doing was running a gulp task that watched a newly created scss folder. Upon detecting changes to the contents of that folder, it would use `gulp-cssimport` to string my stylesheets together into one giant .scss.liquid file that it then dumped into the assets directory. Below is my Gulpfile.
 
-```
-var gulp = require('gulp');
+```js
+var gulp = require("gulp");
 var cssimport = require("gulp-cssimport");
 
 var globalConfig = {
-  src: 'scss' // The directory where all your SCSS is
+	src: "scss", // The directory where all your SCSS is
 };
 
 // Process CSS
-gulp.task('styles', function(){
-  return gulp.src(globalConfig.src + '/style.scss.liquid')
-  .pipe(cssimport())
-  .pipe(gulp.dest('assets/'));
-})
+gulp.task("styles", function () {
+	return gulp
+		.src(globalConfig.src + "/style.scss.liquid")
+		.pipe(cssimport())
+		.pipe(gulp.dest("assets/"));
+});
 
 // Watch files
-gulp.task('watch', function () {
-  gulp.watch(globalConfig.src + '/**/*.*', ['styles']);
+gulp.task("watch", function () {
+	gulp.watch(globalConfig.src + "/**/*.*", ["styles"]);
 });
 
 // Default task
-gulp.task('default', ['watch']);
+gulp.task("default", ["watch"]);
 ```
 
 And my style.scss.liquid looked something like this:
 
-```
+```scss
 @import url('_variables.scss.liquid');
 
 @import url('libs/_timber.scss.liquid');
@@ -70,22 +71,22 @@ This way, you get to structure your scss however you are used to doing it. Crisi
 
 Those of you coming from Wordpress will be pleased to know that adding new settings to Shopify is as easy as changing the `config/settings_schema.json` file. Below is a snippet from mine.
 
-```
+```json
 {
-  "name": "Colors",
-  "settings": [
-    {
-    "type": "header",
-    "content": "TNB Theme Colors"
-    },
-    {
-    "type": "color",
-    "id": "tnb_color_bg",
-    "label": "Background Color",
-    "default": "#222222",
-    "info": "Background color"
-    }
-  ]
+	"name": "Colors",
+	"settings": [
+		{
+			"type": "header",
+			"content": "TNB Theme Colors"
+		},
+		{
+			"type": "color",
+			"id": "tnb_color_bg",
+			"label": "Background Color",
+			"default": "#222222",
+			"info": "Background color"
+		}
+	]
 }
 ```
 

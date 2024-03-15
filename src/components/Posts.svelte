@@ -10,8 +10,8 @@
 <ol class="posts">
 	{#each posts as post}
 		<li class="post">
-			<a class="post__link button button--ui" href={`/blog/${post.slug}/`}>
-				<span class="button--ui__content">
+			<a class="card" href={`/blog/${post.slug}/`}>
+				<span class="card__content">
 					<span class="post__date">{formatDate(post.data.date)}</span>
 					<span class="post__title text--heading">{post.data.title}</span>
 				</span>
@@ -33,8 +33,8 @@
 			0.0625rem;
 		display: inline-block;
 		margin-block-end: var(--border-thickness);
-		background-color: var(--color-post-tag-bg);
-		color: var(--color-post-tag-text);
+		background-color: var(--color-card-tag-bg);
+		color: var(--color-card-tag-text);
 		font-size: 1.25rem;
 		z-index: 1;
 	}

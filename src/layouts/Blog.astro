@@ -1,0 +1,120 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "./Layout.astro";
+import Window from "../components/Window.svelte";
+import Posts from "../components/Posts.svelte";
+import Webring from "../components/Webring.svelte";
+
+const { title, description, tags, posts, activeTag } = Astro.props;
+const url = Astro.url;
+---
+
+<Layout title={title} description={description}>
+	<div class="layout__grid blog">
+		<h1>
+			<span class="page-title">Blog</span>
+			{
+				activeTag && (
+					<p class="page-subtitle h3">
+						<span class="page-subtitle__text">Tagged with "{activeTag}"</span>
+					</p>
+				)
+			}
+		</h1>
+
+		<div class="layout__cell blog__tags">
+			<Window title="Tags" order={0} client:load>
+				<a class="button--ui visually-hidden" href="#window-body-all-posts">
+					<span class="button--ui__content">Skip to all posts</span>
+				</a>
+				<ul class="tags">
+					{
+						tags.map((tag) => (
+							<li class="tag__item">
+								<a
+									class="button--ui"
+									href={`/blog/tagged/${tag}/`}
+									aria-current={activeTag === tag ? "page" : false}>
+									<span class="button--ui__content">{tag}</span>
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</Window>
+		</div>
+
+		<div class="layout__cell blog__webring">
+			<Window
+				title="a11y-webring.club"
+				order={1}
+				style="--max-width: 30ch"
+				client:load>
+				<Webring />
+			</Window>
+		</div>
+
+		<div class="layout__cell blog__posts">
+			<Window title="All posts" order={2} client:load>
+				<Posts posts={posts} />
+			</Window>
+		</div>
+	</div>
+</Layout>
+
+<style lang="scss">
+	h1 {
+		margin-block-end: 0.5rem;
+	}
+
+	.page-subtitle__text {
+		display: inline-block;
+		--border-color: currentColor;
+		padding: calc(var(--border-thickness) * 2);
+		width: fit-content;
+		position: relative;
+		z-index: 1;
+		//filter: drop-shadow(0.125rem 0.125rem 0 var(--color-page-subtitle-accent));
+		background-color: var(--color-lavender);
+		@include pixel-borders();
+	}
+
+	.tags {
+		display: flex;
+		flex-wrap: wrap;
+		list-style: none;
+		margin: 0;
+		padding-inline-start: var(--border-thickness);
+		padding-block-start: calc(var(--border-thickness) * 2);
+	}
+
+	.tag__item {
+		margin-block-start: calc(var(--border-thickness) * -1);
+		margin-inline-start: calc(var(--border-thickness) * -1);
+	}
+
+	@media (min-width: 62em) and (min-height: 34em) {
+		.blog {
+			grid-template-rows: auto auto 1fr;
+			grid-template-columns: 50ch 1fr;
+			gap: 1rem;
+		}
+
+		.blog__tags {
+			grid-row: 2 / 3;
+			align-self: start;
+		}
+
+		.blog__webring {
+			padding-left: 1rem;
+			grid-row: 3 / 4;
+			align-self: start;
+			justify-self: start;
+		}
+
+		.blog__posts {
+			grid-column: 2;
+			grid-row: 1 / 4;
+		}
+	}
+</style>

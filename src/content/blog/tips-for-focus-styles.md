@@ -48,11 +48,10 @@ Designers often request that focus styles be removed because a thick ring that b
 
 If tap target size isn't a concern or changing the padding isn't feasible, you could use the [outline-offset](https://caniuse.com/?search=outline-offset) CSS property, supported in all modern browsers. All you need to do is pass in an offset distance, such as `outline-offset: 0.25rem;`, and the outline will be drawn the specified distance away from the element. Alternatively, you could utilize multiple box shadows by having a very thick box shadow in the color you would like the outline to be, and layer a box shadow the color of the background on top of it! (I learned this trick from [Eric Bailey's very cool slides on focus styles](https://speakerdeck.com/a11ychi/if-its-interactive-it-needs-a-focus-style-with-eric-bailey?slide=48).
 
-```
+```css
 button:focus {
-  box-shadow: 0 0 0 0.5rem white, /* background color here */
-              0 0 0 0.75rem blue; /* outline color here */
-  /* this results in a blue outline 0.25rem wide,
+	box-shadow: 0 0 0 0.5rem white, /* background color here */ 0 0 0 0.75rem blue; /* outline color here */
+	/* this results in a blue outline 0.25rem wide,
    offset 0.5rem from the element, as pictured previously! */
 }
 ```

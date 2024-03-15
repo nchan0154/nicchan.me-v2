@@ -20,7 +20,7 @@ h2,
 .h2 {
 	font-family: var(--font-accent);
 	font-size: clamp(1.5rem, 2vw + 1rem, 2.5rem);
-	line-height: 1.2;
+	line-height: 1;
 }
 
 h3,
@@ -31,11 +31,21 @@ h3,
 }
 
 .page-title {
+	display: inline-block;
+	margin-block-end: 0.5rem;
+	width: fit-content;
 	line-height: 1;
 	color: var(--color-page-title);
 	filter: drop-shadow(0.0625em 0.0625em 0 var(--color-page-title-accent));
 	font-size: var(--title-font-size);
 	letter-spacing: 0;
+	background: linear-gradient(
+		135deg,
+		var(--color-page-title) 50%,
+		var(--color-magenta-darkest)
+	);
+	background-clip: text;
+	color: transparent;
 }
 
 .text--base {

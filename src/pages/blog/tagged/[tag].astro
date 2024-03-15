@@ -1,0 +1,27 @@
+---
+import { getPosts, getTags } from "../../../scripts/data";
+import Layout from "../../../layouts/Blog.astro";
+
+export async function getStaticPaths() {
+	const posts = await getPosts();
+	const tags = await getTags(posts);
+
+	return tags.map((tag) => {
+		const filteredPosts = posts.filter((post) => post.data.tags.includes(tag));
+		return {
+			params: { tag },
+			props: { posts: filteredPosts, tags: tags },
+		};
+	});
+}
+const { tag } = Astro.params;
+const { posts, tags } = Astro.props;
+---
+
+<Layout
+	title={`Posts tagged with t`}
+	description="A list of blog posts and other assorted published material by Nic Chan"
+	posts={posts}
+	tags={tags}
+	activeTag={tag}
+/>

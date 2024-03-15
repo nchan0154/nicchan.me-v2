@@ -50,7 +50,7 @@ In the case where a developer is actively maintaining an existing store, managin
 
 Below is a abridged snippet of code that demonstrates how Shopify stores data for content blocks within the `config/settings_data.json` file. The numbers represent longer IDs that have been cut short for demonstration purposes, and each block represents a slide in a carousel.
 
-```
+```json
 "1": {
   "type": "carousel",
   "blocks": {
