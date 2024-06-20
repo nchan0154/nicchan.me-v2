@@ -1,0 +1,23 @@
+table {
+	--border-color: var(--color-box-border);
+	border-collapse: collapse;
+	width: 100%;
+	@include pixel-borders();
+
+	th {
+		background-color: var(--color-box-bg);
+		font-weight: inherit;
+		font-family: var(--font-accent);
+	}
+
+	th,
+	td {
+		line-height: 1.2;
+		text-align: left;
+		padding: 0.5rem;
+	}
+
+	.row--success td {
+		background-color: var(--color-table-success);
+	}
+}

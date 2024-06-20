@@ -8,6 +8,8 @@ tags:
   - portfolio
 ---
 
+import Image from "../../components/Image.astro";
+
 This is a post in a series about building my new website, check out [the previous post in this series.](/blog/building-my-new-website-part-2/)
 
 Author's note: I'm abandoning the day format as I realized I tend to work on things during the downtime of other moments, so the 'days' became arbitrary units of when I felt enough stuff was accomplished to write about, thus defeating the purpose entirely!
@@ -24,13 +26,23 @@ I suddenly remember that I want to switch over to [CSS Logical Properties](https
 
 ## Testimonials
 
-{% cloudinaryImage 'personal-6.png', "An about page, two windows, one with a bio and the other with a list of testimonials. The testimonials are styled like a chat interface.", 1024, 768, "(min-width: 62em) 38.25rem, 90vw", "lazy", "" %}
+<Image
+	src="https://res.cloudinary.com/nicchan/image/upload/v1709706012/personal-6.png"
+	width="1024"
+	height="768"
+	alt="An about page, two windows, one with a bio and the other with a list of testimonials. The testimonials are styled like a chat interface."
+/>
 
 I build out the testimonials section in the style of a chat interface. After spending so long tinkering on little things, it's nice to do some CSS work where the little things fall into place! Note to self, go ask more recent clients for a testimonial.
 
 ## Blog post styles
 
-{% cloudinaryImage 'personal-7.png', "A sample blog post, where there is a window for a table of contents on the left, and the full post body on the right.", 1024, 768, "(min-width: 62em) 38.25rem, 90vw", "lazy", "" %}
+<Image
+	src="https://res.cloudinary.com/nicchan/image/upload/v1709706012/personal-7.png"
+	width="1024"
+	height="768"
+	alt="A sample blog post, where there is a window for a table of contents on the left, and the full post body on the right."
+/>
 
 I'm at a point where I'm starting to work on the styles for my long-form content. I spend way, way more time on this than I want to, but I am really picky about these things. It's all little things like tweaking the heading colors, the list styles, things like that. I love a good personal site where the text content just feels super polished and thought out.
 

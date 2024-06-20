@@ -8,11 +8,18 @@ tags:
   - portfolio
 ---
 
+import Image from "../../components/Image.astro";
+
 This is a post in a series about building my new website, check out [the previous post in this series.](/blog/building-my-new-website-part-1/)
 
 ## Day 3:
 
-{% cloudinaryImage 'personal-4.png', "The homepage, now in dark mode. There's some more copy there, and an early version of the close icon for each window.", 1024, 768, "(min-width: 62em) 38.25rem, 90vw", "lazy", "" %}
+<Image
+	src="https://res.cloudinary.com/nicchan/image/upload/v1698224962/personal-4.png"
+	width="1024"
+	height="768"
+	alt="The homepage, now in dark mode. There's some more copy there, and an early version of the close icon for each window."
+/>
 
 Feeling ambitious, I write a Svelte store that allows me to manage the minimized/maximized state of all the windows. Unfortunately, I notice that the order in which the window ‘registration’ occurs is random, and I’d like it to reflect the order on the page, so I spend some time trying to coax it into order while cursing my existence. I end up with a workable solution that doesn’t take too long, as I’m personally ok if the window list at the bottom of the page comes in after JavaScript renders as it’s mainly for ‘flavor’. If it was a part of the main content, I probably wouldn’t accept this tradeoff.
 
@@ -26,9 +33,12 @@ Through my experimentation, I discover the `image-rendering: pixelated` property
 
 ## Day 4:
 
-<figure>
-{% cloudinaryImage 'personal-5.png', "The homepage now has a fully illustrated backdrop, a purple-y city sunset. There is also a classic 'My Computer' icon, except it features my ergonomic keyboard instead of a standard keyboard.", 1024, 768, "(min-width: 62em) 38.25rem, 90vw", "lazy", "" %}
-</figure>
+<Image
+	src="https://res.cloudinary.com/nicchan/image/upload/v1698224962/personal-5.png"
+	width="1024"
+	height="768"
+	alt="The homepage now has a fully illustrated backdrop, a purple-y city sunset. There is also a classic 'My Computer' icon, except it features my ergonomic keyboard instead of a standard keyboard."
+/>
 
 Day 3 and day 4 happen with a **huge** gap between them. This is because I feel the need to flesh out the illustration work a lot more before moving forward. I’ve been working on a client project where illustrations were involved, and it was difficult to progress with the final design work until the illustration style was fully locked in.
 
@@ -44,4 +54,4 @@ I spent a long time playing around with the new View Transition API to animate h
 
 Writing that last paragraph sent into a small existential crisis as I contemplated if Svelte was the right technology to use. I like Svelte and enjoy building with it, but I wonder if I would have been better served by making the Window svelte component a web component. Putting your money where your mouth is, as one might say. The premise seems simple, but I don't feel too optimistic, as there is quite a bit of state that needs to be managed externally (ie. the footer windows), and I do need to reach out of the component to calculate some sizing and positioning attributes. I tell myself it was the right decision to build it as a Svelte component, ~~and cry myself to sleep.~~
 
-<a href="/blog/building-my-new-website-part-3/">Read part three</a>
+[Read part three](/blog/building-my-new-website-part-3/)

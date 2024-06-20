@@ -9,6 +9,8 @@ tags:
   - featured
 ---
 
+import Image from "../../components/Image.astro";
+
 I’ve been getting the itch to redo my site for a while now. There’s nothing wrong with my current site per se, but I felt like my abilities have levelled up a bit beyond what is on display. Additionally, the thought of writing new case studies when I wasn’t going to be fully happy with the outcome proved to be a task so daunting that I never got around to writing them. Whoops. Finally, a lot of the copy and design aspects of my current site were created when I was a bit more aimless in my freelance career. Now that I have a stronger sense of what I’d like to focus on, it seemed like a good time to refresh both the brand and the copy.
 
 I know I wanted to do something with a lot more fun and flair, while still remaining accessible. I know a lot of designers feel ‘constrained’ by thinking accessibility, so I wanted to build something that showed that you can still build something fun and beautiful while thinking about accessibility. I have a deep love for pixel art and retro games, and felt with the View Transitions API coming out, I could experiment with building some kind of operating system like interface for my new site.
@@ -21,7 +23,12 @@ I am not a designer, and I have limited ability to use any design software to pr
 
 Because I liked my current site colors, I grabbed all my primary brand colors and shoved them into [this color scale generator](https://hihayk.github.io/scale/#2/2/50/80/94/67/20/14/a75293/167/82/147/white). I tinkered with it to make 2 lighter and darker tints/shades for each primary color I had, then I plugged everything into my all-time favorite, [Are My Colors Accessible](https://www.aremycolorsaccessible.com/palette) to make this monster color chart that I could reference to find accessible color combinations.
 
-{% cloudinaryImage 'color-wheel.png', "A chart where every single possible combination is overlaid on top of each other, with the word 'Yup' or 'Nope' if the combination is accessible.", 980, 703, "(min-width: 62em) 38.25rem, 90vw", "lazy", "" %}
+<Image
+	src="https://res.cloudinary.com/nicchan/image/upload/v1698225054/color-wheel.png"
+	width="980"
+	height="703"
+	alt="A chart where every single possible combination is overlaid on top of each other, with the word 'Yup' or 'Nope' if the combination is accessible."
+/>
 
 I did a few font tryouts but settled on [W95FA](https://fontsarena.com/w95fa-by-alina-sava/) as my main font. I liked how legible it is compared to other pixel fonts, but I also knew that I probably needed to make a toggle to allow for a high-res font in case anyone struggles with reading it. After perusing [Modern Font Stacks](https://modernfontstacks.com/), I settled on the 'Humanist' font stack as a nice fallback font stack.
 
@@ -31,7 +38,12 @@ Finally, onto the actual development!
 
 ## Day 1: Panic, in my office
 
-{% cloudinaryImage 'personal-1.png', "Very barebones layout, there are some placeholder navigation icons, an unstyled start bar and a window with some homepage text.", 704, 540, "(min-width: 62em) 38.25rem, 90vw", "lazy", "" %}
+<Image
+	src="https://res.cloudinary.com/nicchan/image/upload/v1694838055/personal-1.png"
+	width="704"
+	height="540"
+	alt="Very barebones layout, there are some placeholder navigation icons, an unstyled start bar and a window with some homepage text."
+/>
 
 - Decided to stream for my mentees
 - I had been struggling to choose between using 11ty (what my site uses currently) and Astro (a tool I’d like to play around more with. I decide on Astro as I think this iteration of the portfolio will be a little more JS heavy and I wanted to use Svelte for the component-y bits.
@@ -60,14 +72,24 @@ Finally, onto the actual development!
 ## Day 2: Looking at the View Transitions API
 
 <div style="display: flex; gap: 1rem">
-  <figure>
-    {% cloudinaryImage 'personal-2.png', "Our layout now has a big heading that says 'Home', and two windows of placeholder content. Our two windows are placed in an offset way to give the feeling ofa messy desktop.", 1024, 768, "50vw", "lazy", "" %}
-    <figcaption>Desktop progress</figcaption>
-  </figure>
-  <figure>
-    {% cloudinaryImage 'personal-3.png', "The same layout on mobile, where our two windows are stacked vertically.", 416, 768, "50vw", "lazy", "" %}
-    <figcaption>Mobile progress</figcaption>
-  </figure>
+	<figure style="flex: calc(1024 / 768)">
+		<Image
+			src="https://res.cloudinary.com/nicchan/image/upload/v1694838056/personal-2.png"
+			width="1024"
+			height="768"
+			alt="Our layout now has a big heading that says 'Home', and two windows of placeholder content. Our two windows are placed in an offset way to give the feeling of a messy desktop."
+		/>
+		<figcaption>Desktop progress</figcaption>
+	</figure>
+	<figure style="flex: calc(416 / 768)">
+		<Image
+			src="https://res.cloudinary.com/nicchan/image/upload/v1694838056/personal-3.png"
+			width="416"
+			height="768"
+			alt="The same layout on mobile, where our two windows are stacked vertically."
+		/>
+		<figcaption>Mobile progress</figcaption>
+	</figure>
 </div>
 
 - I promised all my friends banana bread today but realized I actually tossed my banana bread pan, so I need to go buy a new one. Unfortunately, the kitchen supplies store was closed so I had a few weekend hours to kill. Back to the website it is!
@@ -79,4 +101,4 @@ Finally, onto the actual development!
 - Wanted to create a live link somewhere to gather some inital feedback, but realized I broke the default Astro blog template somewhere along the way.
 - I decide all of this is just way too much for a Saturday morning and notice that the kitchen goods supplies store is now open, time to make banana bread!
 
-<a href="/blog/building-my-new-website-part-2/">Read part two</a>
+[Read part two](/blog/building-my-new-website-part-2/)

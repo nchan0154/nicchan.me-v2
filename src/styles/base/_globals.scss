@@ -59,12 +59,12 @@ button * {
 
 pre,
 code {
-	background-color: var(--color-code-bg);
-	color: var(--color-code-text);
+	background-color: var(--color-box-bg);
+	color: var(--color-box-text);
 }
 
 pre {
-	--border-color: var(--color-code-border);
+	--border-color: var(--color-box-border);
 	min-width: 0;
 	width: 100%;
 	overflow: auto;

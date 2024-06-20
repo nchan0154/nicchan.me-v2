@@ -25,7 +25,11 @@ I've spent many years working on the Shopify platform, and have done everything 
 
 ### Maps
 
+Many of my recent projects have been focused on interactive web maps. I've also spoken on [accessibility in web maps](/blog/talk-ui-patterns-in-existing-web-map-widgets/) at a W3C Workshop. Most recently, I've been working on [Audiom](https://www.audiom.net/), the world's most accessible map viewer for blind users.
+
 ### Speaking & Education
+
+Lately, I've been lucky enough to published a few articles on other platforms and have given talks and workshops to positive reception. Both of these are activities I'd love to do more of in the future, so reach out if this interests you!
 
 ## Reasons to hire me
 

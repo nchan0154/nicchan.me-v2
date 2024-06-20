@@ -8,6 +8,8 @@ tags:
   - thoughts
 ---
 
+import Image from "../../components/Image.astro";
+
 As someone who was a teenager during its peak, Tumblr has had an undeniable influence on my life. Like many people my age, my first exposure to the concepts of 'accessibility' and 'ableism' was through Tumblr. In sharp contrast to the web accessibility community, where we often focus on technical details, meeting clear criterion and legal compliance, Tumblr's disability community focused on more human facets of accessibility by practicing accessibility in a variety of creative ways. Even when presented with access barriers created by the inaccessibility of Tumblr as a platform, Tumblr as a community has found unique ways to support disabled users. As developers, we need to learn from our mistakes by finding out where our users compensate for our deficiencies, and learn from how disabled communities support themselves.
 
 ## On 'Disability'
@@ -30,15 +32,32 @@ Long-time Tumblr users may also recall using Tumblr-specific extensions in order
 
 Most abled users would use this blocking feature to hide things like TV show spoilers or mentions of a fandom they didn't particularly care for, but many disabled people considered Tumblr Savior a necessary tool in order to use the platform at all. For example, people with motion sensitivities or conditions like epilepsy could choose to universally block all gifs in order to avoid potential triggers. Similarly, people who experience trauma/Post Traumatic Stress Disorder (PTSD) or certain phobias could avoid topics which may induce panic attacks and other negative responses.
 
-Muting mechanisms and preference controls are vital tools for accessibility. Platforms that host content, whether they be social media networks, news outlets or something else entirely, have an obligation to allow users to control their own experiences. Whether it be someone hoping to browse Instagram without triggering their eating disorder, someone trying to keep up with their relatives without being subject to a seizure-inducing gif, someone avoiding the details of a recent celebrity suicide for their own mental health or someone with a serious phobia of balloons, we all have a right to control what content we consume. **Platforms do not have to take it upon themselves to block or censor any content that may negatively affect users, but providing a way for users to opt out of content is absolutely an accessibility issue, especially when [marginalized communities](https://www.npr.org/sections/codeswitch/2018/01/14/577664626/making-the-case-that-discrimination-is-bad-for-your-health), who experience [trauma and anxiety at higher rates](https://www.washingtonpost.com/health/trumps-presidency-may-be-making-latinos-sick/2019/07/19/4e89b9f0-a97f-11e9-9214-246e594de5d5_story.html), continue to be the targets of hate crimes and political attacks, both online and offline**.
+Muting mechanisms and preference controls are vital tools for accessibility. Platforms that host content, whether they be social media networks, news outlets or something else entirely, have an obligation to allow users to control their own experiences. Whether it be someone hoping to browse Instagram without triggering their eating disorder, someone trying to keep up with their relatives without being subject to a seizure-inducing gif, someone avoiding the details of a recent celebrity suicide for their own mental health or someone with a serious phobia of balloons, we all have a right to control what content we consume.
+
+<div class="post-callout">
+	<p>
+		Platforms do not have to take it upon themselves to block or censor any
+		content that may negatively affect users, but providing a way for users to
+		opt out of content is absolutely an accessibility issue, especially when
+		[marginalized
+		communities](https://www.npr.org/sections/codeswitch/2018/01/14/577664626/making-the-case-that-discrimination-is-bad-for-your-health),
+		who experience [trauma and anxiety at higher
+		rates](https://www.washingtonpost.com/health/trumps-presidency-may-be-making-latinos-sick/2019/07/19/4e89b9f0-a97f-11e9-9214-246e594de5d5_story.html),
+		continue to be the targets of hate crimes and political attacks, both online
+		and offline.
+	</p>
+</div>
 
 Third-party Tumblr apps once provided a number of other features that allow disabled users to overcome Tumblr’s shortcomings. Missing E and XKit (both of the original apps are now defunct, though [XKit lives on with a new team behind it, they're always looking for contributors](https://github.com/new-xkit/XKit)) were two of the most popular more full-featured extensions. In addition to providing muting and advanced blocking implementations for better content filtering and harassment prevention, these apps contained features such as one click reblogging and auto-tagging. One-click reblogging allowed for users to share a post to their own blog very quickly, and auto-tagging would allow users to apply appropriate tags to a post with minimal hassle. In her thesis, Maddy argued that because users with chronic illnesses often experience fatigue issues, features like one-click reblogging enabled people who may be too exhausted to leave the house to engage in some form of social interaction, however small, while still accommodating for their followers' triggers by automatically tagging posts when necessary. As abled people, we often regard features like this as a convenience for most users, but they can be necessary for disabled users to experience the app at all.
 
 <figure>
-  {% cloudinaryImage 'tumblr-missing-e.png', "Popup that begins with the text: Hello! We've noticed you're using a browser hack, Missing-E, that can cause serious problems for you and for Tumblr. It contains a long scrollable list of the potential 'problems' that Missing-E creates", 716, 675, "(min-width: 70em) 45rem, (min-width: 62em) calc(90vw - 15rem), 90vw", "lazy", "" %}
-  <figcaption>
-    Screenshot of the pop-up presented to Missing-E users
-  </figcaption>
+	<Image
+		src="https://res.cloudinary.com/nicchan/image/upload/v1610102431/tumblr-missing-e.png"
+		width="716"
+		height="675"
+		alt="Popup that begins with the text: Hello! We've noticed you're using a browser hack, Missing-E, that can cause serious problems for you and for Tumblr. It contains a long scrollable list of the potential 'problems' that Missing-E creates."
+	/>
+	<figcaption>Screenshot of the pop-up presented to Missing-E users</figcaption>
 </figure>
 
 You might think that Tumblr would look favorably upon the developers who spent countless unpaid hours working to make their platform more usable, but instead, Tumblr actively waged war with third-party app developers. In 2011, users with the Missing E extension installed were greeted with a pop-up that warned against using a 'browser hack', which Tumblr claimed could lead to disastrous consequences such as data loss. Tumblr ultimately banned Missing E, despite [the developer's attempts to work within the guidelines that Tumblr had set](https://observer.com/2011/09/missing-e-developer-keeps-trying-to-work-with-tumblr-but-tumblr-keeps-trying-to-shut-him-down/).
@@ -50,15 +69,20 @@ In 2017, half a decade later, Tumblr finally released a post filtering feature. 
 Generally speaking, platforms like Tumblr are often hostile to third-party developers, and by proxy, disabled users. This can manifest in ways that are overt, as with Tumblr's active attempts to block third party extensions, or in more subtle ways, such as when a platform makes engineering decisions in order to achieve some goal like improving developer convenience or thwarting adblockers, but with negative consequences for accessibility.
 
 <figure>
-  {% cloudinaryImage 'tumblr-facebook.png', "Facebook's awful awful code. You do not want me to transcribe it.", 612, 909, "(min-width: 62em) 38.25rem, 90vw", "lazy", "" %}
-  <figcaption>
-    Screenshot of the code used for Facebook's 'Sponsored' link
-  </figcaption>
+	<Image
+		src="https://res.cloudinary.com/nicchan/image/upload/v1610102431/tumblr-facebook.png"
+		width="612"
+		height="909"
+		alt="Facebook's awful awful code. You do not want me to transcribe it."
+	/>
+	<figcaption>
+		Screenshot of the code used for Facebook's 'Sponsored' link
+	</figcaption>
 </figure>
 
-Facebook's 'Sponsored' link is a particularly egregious example of this. The sponsored link is a label on a post to indicate the content is sponsored. In order to display the word 'Sponsored' without directly displaying the word in its entirety, for fear of allowing detection by ad blockers, Facebook added dozens of extraneous letters in nested <span> tags in hopes of making it difficult for ad blockers to parse the text. Until recently, the redundant code also made it difficult for assistive technologies to parse the text, resulting in some screen readers reading out 'S-P-O...' etc. as individual letters. After several months, Facebook appears to have resolved this (at least for the NVDA screen reader on Chrome), a minor victory.
+Facebook's 'Sponsored' link is a particularly egregious example of this. The sponsored link is a label on a post to indicate the content is sponsored. In order to display the word 'Sponsored' without directly displaying the word in its entirety, for fear of allowing detection by ad blockers, Facebook added dozens of extraneous letters in nested `<span>` tags in hopes of making it difficult for ad blockers to parse the text. Until recently, the redundant code also made it difficult for assistive technologies to parse the text, resulting in some screen readers reading out 'S-P-O...' etc. as individual letters. After several months, Facebook appears to have resolved this (at least for the NVDA screen reader on Chrome), a minor victory.
 
-Keeping things simple and semantic is key to writing good code. 'Semantic' in a web development context generally refers to using the right kind of HTML element for the job. Using the proper elements in the right context provides affordances for things like search engines and assistive technology, allowing them to convey meaning to the end user. In Facebook's case, their 50+ line monstrosity can be replaced with a single tag, `<span>Sponsored</span>`. **Overengineered solutions can make things inaccessible to users and dramatically increase the size of the page, slowing down the website and using up more data.**
+Keeping things simple and semantic is key to writing good code. 'Semantic' in a web development context generally refers to using the right kind of HTML element for the job. Using the proper elements in the right context provides affordances for things like search engines and assistive technology, allowing them to convey meaning to the end user. In Facebook's case, their 50+ line monstrosity can be replaced with a single tag, `<span>Sponsored</span>`. Overengineered solutions can make things inaccessible to users and dramatically increase the size of the page, slowing down the website and using up more data.
 
 In addition to writing bloated, unsemantic code in order to thwart adblockers, Facebook’s code architecture decisions made it difficult for third-party developers to create accessibility fixes. For example, Facebook uses a CSS-in-JS solution that generates class names. CSS is a styling language that changes the appearance of elements on the page. We typically attach these styles through class names, so writing something like `.box { background-color: red }` would make all elements with the class name 'box' have a red background.
 
@@ -68,7 +92,9 @@ Although changing one's theme to feature Game of Thrones characters is likely no
 
 As web developers, our first impulse might be to try and distill all these experiences into an actionable list. As tempting as it is to treat accessibility as a checklist, it does not work that way. As humans, we are complex and our access needs may conflict with one another. For example, I personally prefer dark themes and have a screen color temperature adjuster on at all times in order to manage the eye fatigue and headaches that often happen when you spend all of your time staring at a screen. However, some people experience glare, blurriness or streakiness when looking at light text against dark backgrounds, and dark themes would therefore be unusable for them. Even in the rare case that a platform provides both dark and light theme options, the size of a platform like Tumblr guarantees that some people will have conflicting access needs. People with multiple disabilities often have to make sacrifices by choosing between features that may support them in one area, but worsen another.
 
-I don’t believe that developers for large platforms like Facebook and Tumblr are sitting in a room discussing how to make their sites as inaccessible as possible. They face attacks from a variety of bad actors, and their ever-changing, complicated codebases may be part of an active attempt to thwart these attacks. However, we cannot let our desire to fend off potentially malicious technology override the needs of actual users. When we make websites difficult for bots and scrapers to use, we have the unintentional side-effect of making website difficult for assistive technologies to use. Tools such as screen readers and magnification software are widely classified as assistive technology, but custom extensions and stylesheets should also fall under that category. **If you can't build something that accommodates the needs of users with disabilities, then the very least you can do is to build it in a transparent way that allows for them and their advocates to fix it on their own**. When a platform is engineered for clicks and engagement, we prioritize profits over the people we are trying to serve, ultimately leading to unethical design practices. In short, the web is not a compile target and we should not treat it like one. Our users are not our enemies, and it should not be acceptable to exclude people with disabilities for profit or developer convenience.
+I don’t believe that developers for large platforms like Facebook and Tumblr are sitting in a room discussing how to make their sites as inaccessible as possible. They face attacks from a variety of bad actors, and their ever-changing, complicated codebases may be part of an active attempt to thwart these attacks. However, we cannot let our desire to fend off potentially malicious technology override the needs of actual users.
+
+When we make websites difficult for bots and scrapers to use, we have the unintentional side-effect of making website difficult for assistive technologies to use. Tools such as screen readers and magnification software are widely classified as assistive technology, but custom extensions and stylesheets should also fall under that category. **If you can't build something that accommodates the needs of users with disabilities, then the very least you can do is to build it in a transparent way that allows for them and their advocates to fix it on their own**. When a platform is engineered for clicks and engagement, we prioritize profits over the people we are trying to serve, ultimately leading to unethical design practices. In short, the web is not a compile target and we should not treat it like one. Our users are not our enemies, and it should not be acceptable to exclude people with disabilities for profit or developer convenience.
 
 ## Practicing Accessibility
 

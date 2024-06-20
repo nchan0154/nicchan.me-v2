@@ -19,12 +19,14 @@
 	--color-violet-lighter: #4f4d7e;
 	--color-violet-lightest: #7d7db0;
 	--color-lavender: #a3a3c7;
+	--color-lavender-lighter: #c6c6dc;
 	--color-black: #000;
 	--color-black: #000;
 	--color-gray-darkest: #5a6064;
 	--color-gray-darker: #878894;
 	--color-gray: #bdb6c4;
 	--color-gray-lighter: #d7dde1;
+	--color-off-white: #fafafa;
 	--color-white: #fff;
 
 	--color-bg: var(--color-violet-darker);
@@ -73,9 +75,9 @@
 	--color-text-heading: var(--color-violet-lighter);
 	--color-text-subheading: var(--color-magenta-darker);
 	--color-text-highlight: var(--color-teal-lighter);
-	--color-code-border: var(--color-lavender);
-	--color-code-bg: #fafafa;
-	--color-code-text: var(--color-violet-lighter);
+	--color-box-border: var(--color-lavender);
+	--color-box-bg: var(--color-off-white);
+	--color-box-text: var(--color-violet-lighter);
 
 	--color-accent-text-1: var(--color-teal-lighter);
 	--color-accent-text-2: var(--color-magenta-lighter);
@@ -92,7 +94,7 @@
 	--font-base: var(--font-pixel);
 	--border-thickness: 0.1875rem;
 	--border-color: var(--color-violet-darker);
-	--text-padding: var(--border-thickness) calc(var(--border-thickness) * 2);
+	--text-padding: var(--border-thickness) calc(var(--border-thickness) * 3);
 
 	--max-width: 66ch;
 	--window-margin-block-start: 0.5rem;
@@ -126,7 +128,7 @@
 	--color-outline: var(--color-white);
 
 	--color-window-bg: var(--color-violet);
-	--color-window-text: var(--color-white);
+	--color-window-text: var(--color-lavender-lighter);
 	--color-window-header-bg: linear-gradient(
 		to right,
 		var(--color-magenta-darker),
@@ -137,7 +139,7 @@
 	--color-card-bg: var(--color-violet-lighter);
 	--color-card-shadow: var(--color-violet);
 	--color-card-highlight: var(--color-gray-darker);
-	--color-card-text: var(--color-white);
+	--color-card-text: var(--color-off-white);
 	--color-card-hover-bg: var(--color-violet);
 	--color-card-border: var(--color-violet-darker);
 	--color-card-tag-bg: var(--color-violet);
@@ -153,7 +155,12 @@
 	--color-text-accent-bg: var(--color-mauve-darker);
 	--color-text-heading: var(--color-mauve-lightest);
 	--color-text-subheading: var(--color-magenta-lighter);
-	--color-text-highlight: var(--color-teal-darkest);
+	--color-text-highlight: var(--color-violet-darker);
+
+	--color-box-border: var(--color-black);
+	--color-box-bg: var(--color-violet-darker);
+	--color-box-text: var(--color-lavender);
+
 	--color-accent-text-1: var(--color-teal-darkest);
 	--color-accent-text-2: var(--color-magenta-darker);
 }

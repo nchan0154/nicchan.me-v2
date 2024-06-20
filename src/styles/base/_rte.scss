@@ -6,9 +6,10 @@
 		color: var(--color-text-heading);
 	}
 
-	h3 {
-		margin-block-start: 1.5rem;
-		margin-block-end: 1rem;
+	h3,
+	dt {
+		margin-block-start: var(--space-s);
+		margin-block-end: 0.5rem;
 		color: var(--color-text-subheading);
 	}
 
@@ -80,6 +81,7 @@
 
 	img {
 		margin: var(--space-xs) auto;
+		image-rendering: initial;
 	}
 
 	figure img {
@@ -90,9 +92,14 @@
 		margin: var(--space-xs) 0;
 	}
 
+	figcaption {
+		line-height: 1.2;
+	}
+
 	& > .demo,
 	& > figure,
-	& iframe {
+	& iframe,
+	& lite-youtube {
 		margin: var(--space-s) 0;
 	}
 
@@ -123,11 +130,11 @@
 }
 
 .post-callout {
-	--border-color: var(--color-code-border);
+	--border-color: var(--color-box-border);
 	margin: var(--space-s) 0;
 	padding: var(--space-xs);
-	background-color: var(--color-code-bg);
-	color: var(--color-code-text);
+	background-color: var(--color-box-bg);
+	color: var(--color-box-text);
 	@include pixel-borders;
 
 	& > *:first-child {

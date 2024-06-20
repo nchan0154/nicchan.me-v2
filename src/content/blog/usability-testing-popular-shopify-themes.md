@@ -108,7 +108,7 @@ Horizontal headers represent the developer of the theme, and vertical headers re
 
 <table>
   <thead>
-    <td></td>
+    <th></th>
     <th scope="col">Shopify</th>
     <th scope="col">Third-Party</th>
   </thead>
@@ -138,7 +138,7 @@ Horizontal headers represent the developer of the theme, and vertical headers re
 
 <table>
   <thead>
-    <td></td>
+    <th></th>
     <th scope="col">Shopify</th>
     <th scope="col">Third-Party</th>
   </thead>

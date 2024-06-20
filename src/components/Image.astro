@@ -1,0 +1,13 @@
+---
+import { Image } from "@unpic/astro";
+
+const { src, layout, width, height, alt } = Astro.props;
+---
+
+<Image
+	src={src}
+	layout={layout || "constrained"}
+	width={width}
+	height={height}
+	alt={alt}
+/>

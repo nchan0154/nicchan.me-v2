@@ -76,7 +76,6 @@
 		const nextActiveWindow = $windowStore.find(
 			(window) => window.order > activeWindow.order && !window.isMinimized,
 		);
-		console.log(nextActiveWindow);
 		if (nextActiveWindow && nextActiveWindow.id) {
 			document
 				.getElementById(nextActiveWindow.id)
@@ -156,7 +155,7 @@
 		--window-spacing: var(--window-margin-block-start);
 		display: flex;
 		max-width: var(--max-width);
-		font-size: 1.25rem;
+		font-size: 1.5rem;
 		width: fit-content;
 
 		&:focus,
@@ -241,6 +240,7 @@
 		& > * + :where(astro-island, astro-slot) > *:first-child {
 			margin-block-start: 0.5rem;
 		}
+
 	}
 
 	@media (min-width: 62em) and (min-height: 34em) {
@@ -299,5 +299,11 @@
 		height: 0;
 		visibility: hidden;
 		overflow: hidden;
+	}
+
+	@media (min-width: 90em) {
+		.window__body {
+			font-size: 1.5rem;
+		}
 	}
 </style>

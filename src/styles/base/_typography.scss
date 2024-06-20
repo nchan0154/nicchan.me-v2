@@ -12,21 +12,22 @@ h4,
 h1,
 .h1 {
 	font-family: var(--font-accent);
-	font-size: clamp(1.75rem, 3vw + 1rem, 3rem);
-	line-height: 1;
+	font-size: clamp(2rem, 3vw + 1rem, 3rem);
+	line-height: 1.1;
 }
 
 h2,
 .h2 {
 	font-family: var(--font-accent);
 	font-size: clamp(1.5rem, 2vw + 1rem, 2.5rem);
-	line-height: 1;
+	line-height: 1.1;
 }
 
 h3,
-.h3 {
+.h3,
+dt {
 	font-family: var(--font-accent);
-	font-size: clamp(1.25rem, 1vw + 1rem, 1.5rem);
+	font-size: clamp(1.5rem, 1vw + 1rem, 1.75rem);
 	line-height: 1.2;
 }
 
@@ -50,7 +51,7 @@ h3,
 
 .text--base {
 	font-family: var(--font-base);
-	font-size: 1.25rem;
+	font-size: 1.5rem;
 	line-height: 1.5;
 	letter-spacing: 0.02em;
 }
