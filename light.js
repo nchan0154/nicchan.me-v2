@@ -1,3 +1,5 @@
+// https://themes.vscode.one/edit/hce3peR3
+
 export default {
 	name: "blog light",
 	type: "light",

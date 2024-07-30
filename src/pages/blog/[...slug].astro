@@ -29,12 +29,12 @@ const splitTitle = post.data.title.split(":");
 				<div class="window__body">Contents</div>
 			</Window>
 		</div>
-		<div class="layout__cell post__content">
+		<div class="layout__cell layout__cell--post post__content">
 			<Window
 				title="Post"
 				order={1}
 				titleTag="span"
-				style="width: 100%;"
+				style="width: 100%; max-width: 100%;"
 				client:load>
 				<div class="window__body">
 					<div class="rte container">
@@ -76,10 +76,6 @@ const splitTitle = post.data.title.split(":");
 
 	.post__title-main {
 		display: block;
-		// text-shadow:
-		// 	0 -0.125rem var(--color-accent-text-1),
-		// 	0.125rem 0.125rem var(--color-accent-text-2);
-
 		filter: drop-shadow(0 -0.125rem 0 var(--color-accent-text-1))
 			drop-shadow(0.125rem 0.125rem 0 var(--color-accent-text-2));
 		background: linear-gradient(
@@ -91,15 +87,13 @@ const splitTitle = post.data.title.split(":");
 		color: transparent;
 	}
 
-	@media (min-width: 62em) and (min-height: 34em) {
-		.post {
-			grid-template-columns: 20rem minmax(auto, 80ch) 1fr;
-		}
+	.layout__cell--post :global(.window) {
+		width: 100%;
 	}
 
-	@media (min-width: 100em) {
+	@media (min-width: 62em) and (min-height: 34em) {
 		.post {
-			grid-template-columns: 20rem 1fr 20rem;
+			grid-template-columns: 20rem 1fr;
 		}
 	}
 </style>

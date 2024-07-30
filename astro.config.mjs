@@ -3,6 +3,7 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
 import light from "./light.js";
+import dark from "./dark.js";
 
 // https://astro.build/config
 export default defineConfig({
@@ -21,7 +22,7 @@ export default defineConfig({
 		shikiConfig: {
 			experimentalThemes: {
 				light: light,
-				dark: "dracula",
+				dark: dark,
 			},
 			langs: ["liquid", "scss"],
 		},
