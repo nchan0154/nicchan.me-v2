@@ -1,121 +1,106 @@
-<video-playback {...Astro.props}>
-	<slot />
+---
+const { aspectRatio, source } = Astro.props;
+---
+
+<video-playback>
+	<form>
+		<label>Video playback Speed</label>
+		<div class="form">
+			<div class="form__input focus-wrapper">
+				<input
+					type="number"
+					value="0.5"
+					step="0.1"
+					name="playbackSpeed"
+					max="2"
+					min="0"
+				/>
+			</div>
+			<button class="button--ui">
+				<span class="button--ui__content">Play Video</span>
+			</button>
+		</div>
+	</form>
+
+	<figure>
+		<div class="video" style={`aspect-ratio: ${aspectRatio}`}>
+			<video controls>
+				<source type="video/mp4" src={source} />
+			</video>
+		</div>
+		<figcaption>
+			<slot />
+		</figcaption>
+	</figure>
 </video-playback>
 
-<style is:global></style>
+<style>
+	video-playback {
+		display: block;
+		@include pixel-borders();
+		margin: var(--space-s) 0;
+		padding: 0.5rem 1rem;
+		background-color: var(--color-box-bg);
+		color: var(--color-box-text);
+	}
+
+	figure {
+		margin: 0;
+	}
+
+	.form {
+		display: flex;
+		gap: 1rem;
+		margin-bottom: var(--space-xs);
+	}
+
+	.form__input {
+		flex: 1 1 50%;
+	}
+
+	input {
+		display: block;
+		width: 100%;
+		--border-color: var(--color-violet-lighter);
+		background-color: var(--color-window-bg);
+		color: var(--color-window-text);
+	}
+
+	.button--ui,
+	.button--ui__content {
+		min-height: 100%;
+		line-height: 1.5;
+	}
+</style>
 
 <script>
-	/**
-	 * @module video-playback
-	 * @description
-	 * A custom element for placing two elements side-by-side. If space permits, the sidebar element has a set width, and the companion takes up the rest of the available horizontal space. If not, the elements are collapsed into a single column, each taking up 100% of the horizontal space.
-	 * @property {string} side=left Which element to treat as the sidebar (all values but "left" are considered "right")
-	 */
-	class WCCSidebar extends HTMLElement {
-		render: () => void;
-		i: string;
+	class VideoPlayback extends HTMLElement {
+		form: HTMLFormElement | null;
+		video: HTMLVideoElement | null;
+
 		constructor() {
 			super();
-			this.render = () => {
-				if (!this.contentMin.includes("%")) {
-					console.warn(
-						"The value for each <sidebar-l> `contentMin` property should be a percentage. Otherwise overflow is likely to occur"
-					);
-				}
-				this.i = `Sidebar-${[
-					this.side,
-					this.sideWidth,
-					this.contentMin,
-					this.space,
-				].join("")}`;
-				this.dataset.i = this.i;
-				if (!document.getElementById(this.i)) {
-					let styleEl = document.createElement("style");
-					styleEl.id = this.i;
-					styleEl.innerHTML = `
-          [data-i="${this.i}"] {
-            gap: ${this.space};
-            ${this.noStretch ? "align-items: flex-start;" : ""}
-          }
 
-          [data-i="${this.i}"] > * {
-            ${this.sideWidth ? `flex-basis: ${this.sideWidth};` : ""}
-            min-inline-size: auto;
-          }
-
-          [data-i="${this.i}"] > ${
-						this.side !== "left" ? `:first-child` : `:last-child`
-					} {
-            flex-basis: 0;
-            flex-grow: 999;
-            min-inline-size: ${this.contentMin};
-          }
-        `
-						.replace(/\s\s+/g, " ")
-						.trim();
-					document.head.appendChild(styleEl);
-				}
-			};
+			this.form = this.querySelector("form");
+			this.video = this.querySelector("video");
+			this.bindEventListeners();
 		}
 
-		get side() {
-			return this.getAttribute("side") || "left";
-		}
-
-		set side(val) {
-			this.setAttribute("side", val);
-		}
-
-		get sideWidth() {
-			return this.getAttribute("sideWidth") || null;
-		}
-
-		set sideWidth(val) {
-			this.setAttribute("sideWidth", val);
-		}
-
-		get contentMin() {
-			return this.getAttribute("contentMin") || "50%";
-		}
-
-		set contentMin(val) {
-			this.setAttribute("contentMin", val);
-		}
-
-		get space() {
-			return this.getAttribute("space") || "var(--space-s)";
-		}
-
-		set space(val) {
-			this.setAttribute("space", val);
-		}
-
-		get noStretch() {
-			return this.hasAttribute("noStretch");
-		}
-
-		set noStretch(val) {
-			if (val) {
-				this.setAttribute("noStretch", "");
-			} else {
-				this.removeAttribute("noStretch");
-			}
-		}
-
-		static get observedAttributes() {
-			return ["side", "sideWidth", "contentMin", "space", "noStretch"];
-		}
-
-		connectedCallback() {
-			this.render();
-		}
-
-		attributeChangedCallback(name) {
-			this.render();
+		bindEventListeners() {
+			this.form?.addEventListener("submit", (event) => {
+				event.preventDefault();
+				const formData = new FormData(this.form as HTMLFormElement);
+				const speed = Number.parseFloat(
+					formData.get("playbackSpeed") as string
+				);
+				(this.video as HTMLVideoElement).playbackRate = speed;
+				(this.video as HTMLVideoElement).currentTime = 0;
+				this.video?.play();
+			});
 		}
 	}
 
 	if ("customElements" in window) {
-		customElements.define("sidebar-l", WCCSidebar);
+		customElements.define("video-playback", VideoPlayback);
 	}
 </script>

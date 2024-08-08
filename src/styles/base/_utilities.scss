@@ -7,3 +7,33 @@
 	white-space: nowrap;
 	width: 1px;
 }
+
+.focus-wrapper:focus-within {
+	position: relative;
+	box-decoration-break: clone;
+
+	&:focus-within {
+		outline: 0.25rem solid transparent;
+		z-index: 1;
+	}
+
+	&:focus-within::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		outline: var(--border-thickness) solid var(--color-violet-darker);
+		outline-offset: var(--offset);
+		z-index: 1;
+		pointer-events: none;
+	}
+
+	&:focus-within::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		outline: var(--border-thickness) dotted var(--color-white);
+		outline-offset: var(--offset);
+		pointer-events: none;
+		z-index: 1;
+	}
+}

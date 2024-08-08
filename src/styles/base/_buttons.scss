@@ -45,6 +45,10 @@
 			var(--color-button-ui-highlight);
 	background-color: var(--background-color);
 	@include pixel-borders();
+
+	.button--large & {
+		font-size: 1.25rem;
+	}
 }
 
 .button__icon {

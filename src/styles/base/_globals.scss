@@ -87,6 +87,15 @@ pre code {
 	font-family: monospace;
 }
 
+input,
+select {
+	@include pixel-borders;
+	background-color: var(--color-box-bg);
+	padding: calc(var(--border-thickness) * 2);
+	color: inherit;
+	font-size: inherit;
+}
+
 hr {
 	margin: var(--space-xs) 0;
 	border: none;

@@ -52,6 +52,15 @@ const splitTitle = post.data.title.split(":");
 								)
 							}
 						</h1>
+						<p>
+							<time class="post__date">
+								{
+									new Intl.DateTimeFormat("en-GB", {
+										dateStyle: "long",
+									}).format(post.data.date)
+								}
+							</time>
+						</p>
 						<Content />
 					</div>
 				</div>
@@ -66,12 +75,20 @@ const splitTitle = post.data.title.split(":");
 	}
 
 	.post__title {
-		margin: 1rem 0 var(--space-xs);
+		margin: 1rem 0 1rem;
 		line-height: 1;
 	}
 
+	.post__date {
+		display: block;
+		border-bottom: var(--border-thickness) dashed var(--color-text-accent);
+		margin-bottom: var(--space-xs);
+		color: var(--color-text-heading);
+		text-transform: uppercase;
+	}
+
 	.post__title:has(.post__title-pretitle) {
-		margin: 0.75rem 0 var(--space-xs);
+		margin: 0.75rem 0 1rem;
 	}
 
 	.post__title-main {
