@@ -7,13 +7,21 @@
 		);
 	}
 
-	function toggleWindow(window, isMinimized) {
+	function toggleWindow(customWindow, isMinimized) {
 		windowStore.update((w) => {
-			const index = w.findIndex((w) => w.name === window.name);
+			const index = w.findIndex((w) => w.name === customWindow.name);
 			w[index] = {
-				...window,
+				...customWindow,
 				isMinimized: !isMinimized,
 			};
+			if (isMinimized) {
+				if (
+					!window.matchMedia("(min-width: 62em) and (min-height: 34em)").matches
+				)
+					setTimeout(() => {
+						document.getElementById(customWindow.id).scrollIntoView();
+					}, 50);
+			}
 			return w;
 		});
 	}

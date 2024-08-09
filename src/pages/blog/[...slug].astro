@@ -1,7 +1,9 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
-import Layout from "../../layouts/Layout.astro";
+import Layout from "@layouts/Layout.astro";
 import Window from "../../components/Window.svelte";
+import TableOfContents from "@components/TableOfContents.astro";
+import TableOfContentsObserver from "@components/TableOfContentsObserver.svelte";
 
 export async function getStaticPaths() {
 	const posts = await getCollection("blog");
@@ -13,11 +15,12 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<"blog">;
 
 const post = Astro.props;
-const { Content } = await post.render();
+const { Content, headings } = await post.render();
+const { title, description, date } = post.data;
 const splitTitle = post.data.title.split(":");
 ---
 
-<Layout title={post.data.title} description={post.data.description}>
+<Layout title={title} description={description}>
 	<div class="layout__grid post">
 		<div class="layout__cell post__toc">
 			<Window
@@ -26,7 +29,8 @@ const splitTitle = post.data.title.split(":");
 				titleTag="h2"
 				style="--max-width: 25rem; --block-start: 10rem; --inline-start: 0"
 				client:load>
-				<div class="window__body">Contents</div>
+				<TableOfContents headings={headings} />
+				<TableOfContentsObserver client:only="svelte" />
 			</Window>
 		</div>
 		<div class="layout__cell layout__cell--post post__content">
@@ -48,7 +52,7 @@ const splitTitle = post.data.title.split(":");
 										<span class="post__title-main h1">{splitTitle[1]}</span>
 									</>
 								) : (
-									<span class="post__title-main h1">{post.data.title}</span>
+									<span class="post__title-main h1">{title}</span>
 								)
 							}
 						</h1>
@@ -57,7 +61,7 @@ const splitTitle = post.data.title.split(":");
 								{
 									new Intl.DateTimeFormat("en-GB", {
 										dateStyle: "long",
-									}).format(post.data.date)
+									}).format(new Date(date))
 								}
 							</time>
 						</p>
@@ -111,6 +115,7 @@ const splitTitle = post.data.title.split(":");
 	@media (min-width: 62em) and (min-height: 34em) {
 		.post {
 			grid-template-columns: 20rem 1fr;
+			gap: var(--space-s);
 		}
 	}
 </style>

@@ -39,6 +39,10 @@
 </nav>
 
 <style lang="scss">
+	.a11y-webring-club {
+		line-height: 1.2;
+	}
+
 	.webring__buttons {
 		display: flex;
 		flex-wrap: wrap;

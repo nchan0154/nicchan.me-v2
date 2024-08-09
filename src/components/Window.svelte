@@ -2,10 +2,15 @@
 	import { onMount } from "svelte";
 	import { windowStore, isMaximizing } from "../scripts/windows.js";
 
-	export let title, style, order, back, backText, ref;
+	export let title = "",
+		style = "",
+		order,
+		back = false,
+		backText = null,
+		ref = null,
+		titleTag = "h2",
+		isAbsolute = false;
 	export let id = title.replace(" ", "-").toLowerCase() || "window";
-	export let titleTag = "h2";
-	export let isAbsolute = false;
 	let activeWindow;
 	let bottomPadding = 0;
 
@@ -81,7 +86,6 @@
 				.getElementById(nextActiveWindow.id)
 				.focus({ preventScroll: true });
 		} else {
-			console.log("no next window");
 			const toFocus = document.querySelector(`[aria-controls="${id}"]`);
 			toFocus.focus({ preventScroll: true });
 		}
@@ -241,6 +245,9 @@
 			margin-block-start: 0.5rem;
 		}
 
+		& :global(*) {
+			scroll-margin-block: var(--space-xs);
+		}
 	}
 
 	@media (min-width: 62em) and (min-height: 34em) {

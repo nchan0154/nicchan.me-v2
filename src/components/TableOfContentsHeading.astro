@@ -1,0 +1,28 @@
+---
+const { heading } = Astro.props;
+---
+
+<li>
+	<a href={"#" + heading.slug}>
+		{heading.text}
+	</a>
+	{
+		heading.subheadings.length > 0 && (
+			<ul>
+				{heading.subheadings.map((subheading: any) => (
+					<Astro.self heading={subheading} />
+				))}
+			</ul>
+		)
+	}
+</li>
+
+<style>
+	.active a {
+		color: var(--color-link-underline);
+	}
+
+	.active::before {
+		background-color: var(--color-list-bg-focus);
+	}
+</style>

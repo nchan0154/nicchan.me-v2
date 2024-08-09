@@ -13,6 +13,8 @@ import VideoPlayback from "../../components/VideoPlayback.astro";
 
 Readers Of The Blog™ may know that I have been experimenting with the View Transitions API as a way to provide animations in my new portfolio site. Once I understood the [basics of how View Transitions work](https://daverupert.com/2023/05/getting-started-view-transitions/) (in Dave's words, think Animorphs), I found it relatively simple to get up and running with the default morph animation. In my case, I'm trying to replicate how an operating system will shrink and fadeout a window when you minimize it, within the same page. However, shortly afterwards, I noticed that there was a small issue, the animation was actually playing on top of the footer. Not ideal!
 
+## The Problem
+
 I know this can be hard to see at full speed, so I've quickly thrown together a little interface below so you can adjust the playback speed in browsers/feed readers that don't show a playback speed toggle by default. It's probably a little janky, and may not work in RSS feeds. My apologies.
 
 <VideoPlayback

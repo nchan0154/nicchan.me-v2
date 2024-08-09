@@ -2,6 +2,8 @@ import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
+import sectionize from "remark-sectionize";
+
 import light from "./light.js";
 import dark from "./dark.js";
 
@@ -26,5 +28,6 @@ export default defineConfig({
 			},
 			langs: ["liquid", "scss"],
 		},
+		remarkPlugins: [sectionize],
 	},
 });
