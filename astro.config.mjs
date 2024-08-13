@@ -9,7 +9,7 @@ import dark from "./dark.js";
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://example.com",
+	site: "https://www.nicchan.me/",
 	integrations: [mdx(), sitemap(), svelte()],
 	vite: {
 		css: {

@@ -16,7 +16,7 @@ type Props = CollectionEntry<"blog">;
 
 const post = Astro.props;
 const { Content, headings } = await post.render();
-const { title, description, date } = post.data;
+const { title, description, pubDate } = post.data;
 const splitTitle = post.data.title.split(":");
 ---
 
@@ -61,7 +61,7 @@ const splitTitle = post.data.title.split(":");
 								{
 									new Intl.DateTimeFormat("en-GB", {
 										dateStyle: "long",
-									}).format(new Date(date))
+									}).format(new Date(pubDate))
 								}
 							</time>
 						</p>

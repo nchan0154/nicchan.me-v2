@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "pixel-borders": "^1.1.4",
-    "sass": "^1.67.0"
+    "sass": "^1.67.0",
+    "ultrahtml": "^1.5.3"
   }
 }
