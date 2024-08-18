@@ -1,6 +1,10 @@
 <script>
 	import { onMount } from "svelte";
-	import { windowStore, isMaximizing } from "../scripts/windows.js";
+	import {
+		windowStore,
+		isMaximizing,
+		isMinimizing,
+	} from "../scripts/windows.js";
 
 	export let title = "",
 		style = "",
@@ -16,10 +20,18 @@
 	let activeWindow;
 	let bottomPadding = 0;
 
+	const getTransitionName = () => {
+		if ($isMaximizing) {
+			return "";
+		} else if ($isMinimizing && $isMinimizing === title) {
+			return `view-transition-name: window-${order}; `;
+		} else {
+			return `view-transition-name: window-${order}; `;
+		}
+	};
+
 	$: activeWindow = $windowStore.find((window) => window.name === title);
-	$: transitionName = $isMaximizing
-		? ""
-		: `view-transition-name: window-${order}; `;
+	$: transitionName = getTransitionName();
 	$: disabled = activeWindow?.isMaximized;
 
 	onMount(() => {
@@ -69,10 +81,16 @@
 	}
 
 	function startMinimizeWindow() {
+		$isMinimizing = title;
+
 		if (document.startViewTransition) {
-			document.startViewTransition(() => minimizeWindow());
+			transition = document.startViewTransition(() => minimizeWindow());
+			transition.finished.then(() => {
+				$isMinimizing = null;
+			});
 		} else {
 			minimizeWindow();
+			$isMinimizing = null;
 		}
 	}
 
@@ -161,13 +179,14 @@
 		--window-spacing: var(--window-margin-block-start);
 		display: flex;
 		max-width: var(--max-width);
-		max-width: round(var(--max-width), 2px);
+		max-width: round(var(--max-width), 1px);
 		font-size: 1.5rem;
 		width: fit-content;
 		transform: translate3d(0, 0, 0), scale(1.0000001);
 		-webkit-backface-visibility: hidden;
 		transform-style: preserve-3d;
 		will-change: transform;
+		container: window;
 
 		&:focus,
 		&:focus-within {
@@ -305,8 +324,10 @@
 
 	.window__wrapper--minimized {
 		position: absolute;
-		inset: 0;
 		margin: 0;
+		inset: auto auto 0 0;
+		width: 0;
+		height: 0;
 		inset-block-start: auto;
 		visibility: hidden;
 		overflow: hidden;
