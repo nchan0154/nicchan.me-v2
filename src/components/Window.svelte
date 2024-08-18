@@ -161,14 +161,12 @@
 		--window-spacing: var(--window-margin-block-start);
 		display: flex;
 		max-width: var(--max-width);
-		max-width: round(var(--max-width), 1px);
-		height: round(fit-content, 1px);
+		max-width: round(var(--max-width), 2px);
 		font-size: 1.5rem;
 		width: fit-content;
 		transform: translate3d(0, 0, 0), scale(1.0000001);
 		-webkit-backface-visibility: hidden;
 		transform-style: preserve-3d;
-		filter: blur(0);
 		will-change: transform;
 
 		&:focus,

@@ -52,6 +52,7 @@
 		padding-block: var(--page-block-padding);
 		padding-inline: var(--page-inline-padding);
 		overflow-x: hidden;
+		will-change: transform;
 	}
 
 	.layout__header {
