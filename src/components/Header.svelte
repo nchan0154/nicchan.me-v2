@@ -3,33 +3,33 @@
 		{
 			text: "Home",
 			link: "/",
-			icon: "/home.png",
+			icon: "home.svg",
 		},
 		// note to self remember to redirect projects page
 		{
 			text: "Work",
 			link: "/work/",
-			icon: "",
+			icon: "work.svg",
 		},
 		{
 			text: "Blog",
 			link: "/blog/",
-			icon: "",
+			icon: "blog.svg",
 		},
 		{
 			text: "Services",
 			link: "/services/",
-			icon: "",
+			icon: "services.svg",
 		},
 		{
 			text: "Art",
 			link: "/art/",
-			icon: "",
+			icon: "art.svg",
 		},
 		{
 			text: "About",
 			link: "/about/",
-			icon: "",
+			icon: "about.svg",
 		},
 	];
 </script>
@@ -81,6 +81,10 @@
 		@include focus();
 	}
 
+	.nav__item + .nav__item {
+		margin-block-start: 0.5rem;
+	}
+
 	.nav__icon {
 		display: block;
 		inline-size: 2rem;
@@ -88,8 +92,8 @@
 	}
 
 	div.nav__icon {
-		inline-size: 3rem;
-		block-size: 3rem;
+		inline-size: 2rem;
+		block-size: 2rem;
 	}
 
 	.nav__link-text {
@@ -102,10 +106,6 @@
 	}
 
 	@media (min-height: 42em) {
-		.nav__item + .nav__item {
-			margin-block-start: 0.25rem;
-		}
-
 		.nav__icon {
 			inline-size: 3rem;
 			height: 3rem;

@@ -9,7 +9,9 @@
 		backText = null,
 		ref = null,
 		titleTag = "h2",
-		isAbsolute = false;
+		isAbsolute = false,
+		scrollBody = true;
+
 	export let id = title.replace(" ", "-").toLowerCase() || "window";
 	let activeWindow;
 	let bottomPadding = 0;
@@ -142,7 +144,7 @@
 		</div>
 		<div
 			class="window__body"
-			tabindex={0}
+			tabindex={scrollBody === false ? null : "0"}
 			role="region"
 			aria-labelledby={`window-title-${id}`}
 			id={`window-body-${id}`}>
@@ -159,8 +161,15 @@
 		--window-spacing: var(--window-margin-block-start);
 		display: flex;
 		max-width: var(--max-width);
+		max-width: round(var(--max-width), 1px);
+		height: round(fit-content, 1px);
 		font-size: 1.5rem;
 		width: fit-content;
+		transform: translate3d(0, 0, 0), scale(1.0000001);
+		-webkit-backface-visibility: hidden;
+		transform-style: preserve-3d;
+		filter: blur(0);
+		will-change: transform;
 
 		&:focus,
 		&:focus-within {
@@ -298,12 +307,9 @@
 
 	.window__wrapper--minimized {
 		position: absolute;
-		left: 0;
+		inset: 0;
 		margin: 0;
 		inset-block-start: auto;
-		bottom: 0;
-		width: 0;
-		height: 0;
 		visibility: hidden;
 		overflow: hidden;
 	}

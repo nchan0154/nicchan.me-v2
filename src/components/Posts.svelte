@@ -12,7 +12,7 @@
 		<li class="post">
 			<a class="card" href={`/blog/${post.slug}/`}>
 				<span class="card__content">
-					<span class="post__date">{formatDate(post.data.date)}</span>
+					<span class="post__date">{formatDate(post.data.pubDate)}</span>
 					<span class="post__title text--heading">{post.data.title}</span>
 				</span>
 			</a>

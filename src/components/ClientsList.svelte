@@ -16,7 +16,7 @@
 		<li>
 			<img
 				class="clients__logo"
-				src={`/pixels/${client.replace(" ", "-").toLowerCase()}.png`}
+				src={`https://res.cloudinary.com/nicchan/image/upload/f_auto/${client.toLowerCase().replace(" ", "-")}.png`}
 				width="130"
 				height="50"
 				alt={client} />

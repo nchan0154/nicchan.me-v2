@@ -1,0 +1,103 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Window from "../components/Window.svelte";
+import { getArtwork } from "../scripts/data";
+import Image from "astro/components/Image.astro";
+
+const artwork = await getArtwork();
+
+// We're keeping layouts agnostic to the artwork because I know I will want to bump fresh artwork to the front without redoing everything.
+const layouts = [
+	"--max-width: 20%; --inline-start: 0;",
+	"--max-width: 12%; --block-start: -1rem; --inline-start: 18%;",
+	"--max-width: 25%; --block-start: -4rem; --inline-start: 35%",
+	"--max-width: 9rem; --block-start: -5rem; --inline-start: 55%",
+	"--max-width: 12rem; --block-start: 2rem; --inline-end: 7rem;",
+	"--max-width: 16rem; --block-start: 12rem; --inline-start: 1rem;",
+	"--max-width: 22rem; --block-start: 10rem; --inline-start: 19rem;",
+	"--max-width: 12rem; --block-start: 14rem; --inline-start: 36rem;",
+	"--max-width: 9rem; --block-start: 12rem; --inline-end: 25%;",
+	"--max-width: 13rem; --block-start: 10rem; --inline-end: 1%;",
+	"--max-width: 12rem; --block-end: 1%; --inline-start: 0;",
+	"--max-width: 14rem; --block-end: 1rem; --inline-start: 38%;",
+];
+---
+
+<Layout>
+	<div class="artwork">
+		<h1 class="page-title">Artwork</h1>
+		{
+			artwork.map(({ data: art }, index) => (
+				<Window
+					title={art.title}
+					style={layouts[index]}
+					isAbsolute={true}
+					order={index}
+					scrollBody={false}
+					client:load>
+					<img
+						class="artwork__image"
+						src={art.url}
+						alt={art.alt}
+						width={art.width}
+						height={art.height}
+					/>
+					<p class="artwork__caption">
+						"{art.title}", {art.medium}, {art.year}
+					</p>
+				</Window>
+			))
+		}
+	</div>
+</Layout>
+
+<style lang="scss">
+	.artwork {
+		--text-padding: 0;
+
+		:global(.window__wrapper--maximized) {
+			--text-padding: 0.5rem;
+		}
+	}
+
+	@media (max-width: 62em) {
+		.artwork {
+			:global(.window__wrapper) {
+				max-width: 100%;
+			}
+		}
+	}
+
+	.artwork__caption {
+		position: absolute;
+		top: 0;
+		margin-block-start: 0.5rem;
+		font-size: 1rem;
+		text-align: center;
+		opacity: 0;
+		visibility: hidden;
+		transition: all 0.3s ease;
+
+		:global(.window__wrapper--maximized) & {
+			visibility: visible;
+			opacity: 1;
+			position: relative;
+		}
+	}
+
+	.artwork__image {
+		display: block;
+		image-rendering: auto;
+		margin-block-start: var(--border-thickness);
+
+		:global(.window__wrapper--maximized:not(.window__wrapper--minimized)) & {
+			--text-padding: var(--space-xs);
+			max-height: calc(100vh - 9.5rem);
+			max-width: 100%;
+			margin-inline: auto;
+			aspect-ratio: initial;
+			width: auto;
+			height: auto;
+		}
+	}
+</style>
