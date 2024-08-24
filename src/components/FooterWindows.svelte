@@ -1,10 +1,25 @@
 <script>
-	import { windowStore, orderedWindows } from "../scripts/windows.js";
+	import {
+		windowStore,
+		orderedWindows,
+		isMinimizing,
+	} from "../scripts/windows.js";
 
 	function onWindowClick(window) {
-		const transition = document.startViewTransition(() =>
-			toggleWindow(window, window.isMinimized),
-		);
+		let transition;
+		$isMinimizing = window.name;
+
+		if (document.startViewTransition) {
+			transition = document.startViewTransition(() =>
+				toggleWindow(window, window.isMinimized),
+			);
+			transition.finished.then(() => {
+				$isMinimizing = null;
+			});
+		} else {
+			toggleWindow(window, window.isMinimized);
+			$isMinimizing = null;
+		}
 	}
 
 	function toggleWindow(customWindow, isMinimized) {

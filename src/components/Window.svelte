@@ -16,7 +16,7 @@
 		isAbsolute = false,
 		scrollBody = true;
 
-	export let id = title.replace(" ", "-").toLowerCase() || "window";
+	export let id = title.replaceAll(" ", "-").toLowerCase() || "window";
 	let activeWindow;
 	let bottomPadding = 0;
 
@@ -138,7 +138,9 @@
 					class="button--ui window__control window__control--minimize"
 					on:click={startMinimizeWindow}>
 					<span class="button--ui__content">
-						<img class="window__icon" src="/pixels/minimize.svg" alt="" />
+						<svg width="16" height="16">
+							<use href="#minimize"></use>
+						</svg>
 						<span class="visually-hidden">Minimize {title ? title : ""}</span>
 					</span></button>
 				<button
@@ -146,7 +148,9 @@
 					on:click={startMaximizeWindow}
 					aria-pressed={activeWindow ? activeWindow.isMaximized : false}>
 					<span class="button--ui__content">
-						<img class="window__icon" src="/pixels/maximize.svg" alt="" />
+						<svg width="16" height="16">
+							<use href="#maximize"></use>
+						</svg>
 						<span class="visually-hidden">Maximize {title ? title : ""}</span>
 					</span>
 				</button>

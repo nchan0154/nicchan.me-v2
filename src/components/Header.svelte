@@ -3,33 +3,33 @@
 		{
 			text: "Home",
 			link: "/",
-			icon: "home.svg",
+			icon: "home",
 		},
 		// note to self remember to redirect projects page
 		{
 			text: "Work",
 			link: "/work/",
-			icon: "work.svg",
+			icon: "work",
 		},
 		{
 			text: "Blog",
 			link: "/blog/",
-			icon: "blog.svg",
+			icon: "blog",
 		},
 		{
 			text: "Services",
 			link: "/services/",
-			icon: "services.svg",
+			icon: "services",
 		},
 		{
 			text: "Art",
 			link: "/art/",
-			icon: "art.svg",
+			icon: "art",
 		},
 		{
 			text: "About",
 			link: "/about/",
-			icon: "about.svg",
+			icon: "about",
 		},
 	];
 </script>
@@ -46,7 +46,9 @@
 				<li class="nav__item">
 					<a class="nav__link" href={link.link}>
 						{#if link.icon}
-							<img class="nav__icon" src={`/pixels/${link.icon}`} alt="" />
+							<svg class="nav__icon">
+								<use href={`#${link.icon}`} />
+							</svg>
 						{:else}
 							<div class="nav__icon" />
 						{/if}
@@ -88,12 +90,8 @@
 	.nav__icon {
 		display: block;
 		inline-size: 2rem;
+		height: 2rem;
 		margin: 0 auto;
-	}
-
-	div.nav__icon {
-		inline-size: 2rem;
-		block-size: 2rem;
 	}
 
 	.nav__link-text {

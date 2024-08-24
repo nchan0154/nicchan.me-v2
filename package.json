@@ -7,7 +7,8 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "sprites": "node sprites.js"
   },
   "dependencies": {
     "@astrojs/mdx": "^3.1.3",
@@ -22,8 +23,11 @@
     "svelte": "^4.2.0"
   },
   "devDependencies": {
+    "glob": "^11.0.0",
+    "node-html-parser": "^6.1.13",
     "pixel-borders": "^1.1.4",
     "sass": "^1.67.0",
+    "svgo": "^3.3.2",
     "ultrahtml": "^1.5.3"
   }
 }

@@ -3,6 +3,7 @@ import { ViewTransitions } from "astro:transitions";
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.svelte";
 import Footer from "../components/Footer.astro";
+import Sprites from "@components/Sprites.astro";
 
 const { title, description } = Astro.props;
 const url = Astro.url;
@@ -23,5 +24,14 @@ const url = Astro.url;
 			<slot />
 		</main>
 		<Footer />
+		<div class="sprites">
+			<Sprites />
+		</div>
 	</body>
 </html>
+
+<style>
+	.sprites {
+		display: none;
+	}
+</style>
