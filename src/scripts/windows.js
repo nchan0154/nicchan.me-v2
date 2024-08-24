@@ -6,6 +6,6 @@ export const orderedWindows = derived(windowStore, ($windowStore) => {
 	return $windowStore.sort((a, b) => a.order - b.order);
 });
 
-export const isMaximizing = writable(false);
+export const isMaximizing = writable(null);
 
 export const isMinimizing = writable(null);

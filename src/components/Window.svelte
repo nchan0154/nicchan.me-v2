@@ -20,19 +20,16 @@
 	let activeWindow;
 	let bottomPadding = 0;
 
-	const getTransitionName = () => {
-		if ($isMaximizing) {
-			return "";
-		} else if ($isMinimizing && $isMinimizing === title) {
+	const getTransitionName = ($isMinimizing, $isMaximizing) => {
+		if ($isMinimizing && $isMinimizing === title) {
 			return `view-transition-name: window-${order}; `;
-		} else {
+		} else if ($isMinimizing === null && $isMaximizing === null) {
 			return `view-transition-name: window-${order}; `;
 		}
 	};
 
 	$: activeWindow = $windowStore.find((window) => window.name === title);
-	$: transitionName = getTransitionName();
-	$: disabled = activeWindow?.isMaximized;
+	$: transitionName = getTransitionName($isMinimizing, $isMaximizing);
 
 	onMount(() => {
 		// emit global event;
@@ -61,17 +58,17 @@
 		// We're doing this because I think the way the maximizing transition looks is kind of janky when using the morphing animation, so we're resetting to the default crossfade
 		let transition;
 
-		$isMaximizing = true;
+		$isMaximizing = title;
 		bottomPadding = document.getElementById("footer").clientHeight;
 
 		if (document.startViewTransition) {
 			transition = document.startViewTransition(() => maximizeWindow());
 			transition.finished.then(() => {
-				$isMaximizing = false;
+				$isMaximizing = null;
 			});
 		} else {
 			maximizeWindow();
-			$isMaximizing = false;
+			$isMaximizing = null;
 		}
 	}
 
@@ -81,6 +78,7 @@
 	}
 
 	function startMinimizeWindow() {
+		let transition;
 		$isMinimizing = title;
 
 		if (document.startViewTransition) {
@@ -141,7 +139,7 @@
 					on:click={startMinimizeWindow}>
 					<span class="button--ui__content">
 						<img class="window__icon" src="/pixels/minimize.svg" alt="" />
-						<span class="visually-hidden">Minimize</span>
+						<span class="visually-hidden">Minimize {title ? title : ""}</span>
 					</span></button>
 				<button
 					class="button--ui window__control window__control--maximize"
@@ -149,7 +147,7 @@
 					aria-pressed={activeWindow ? activeWindow.isMaximized : false}>
 					<span class="button--ui__content">
 						<img class="window__icon" src="/pixels/maximize.svg" alt="" />
-						<span class="visually-hidden">Maximize</span>
+						<span class="visually-hidden">Maximize {title ? title : ""}</span>
 					</span>
 				</button>
 				{#if back}
