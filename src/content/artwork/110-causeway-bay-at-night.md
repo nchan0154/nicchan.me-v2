@@ -1,6 +1,6 @@
 ---
 title: Causeway Bay at Night
-url: https://res.cloudinary.com/nicchan/image/upload/v1723888980/bg.png
+url: https://res.cloudinary.com/nicchan/image/upload/f_auto/v1723888980/bg.png
 width: 1000
 height: 1000
 medium: HEAVYPAINT

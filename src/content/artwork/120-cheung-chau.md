@@ -1,6 +1,6 @@
 ---
 title: Cheung Chau
-url: https://res.cloudinary.com/nicchan/image/upload/v1723888981/20240401-3.jpg
+url: https://res.cloudinary.com/nicchan/image/upload/f_auto/v1723888981/20240401-3.jpg
 width: 1297
 height: 1000
 medium: Gouache
