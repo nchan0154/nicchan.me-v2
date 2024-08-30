@@ -5,8 +5,8 @@
 }
 
 *::selection {
-	background-color: var(--color-violet-darker) !important;
-	color: var(--color-white) !important;
+	background-color: light-dark(var(--color-violet-darker), var(--color-tertiary-light));
+	color: light-dark(var(--color-white), var(--color-dark-dark)) ;
 }
 
 html,
