@@ -47,7 +47,7 @@
 					<a class="nav__link" href={link.link}>
 						{#if link.icon}
 							<svg class="nav__icon">
-								<use href={`#${link.icon}`} />
+								<use href={`#icon-${link.icon}`} />
 							</svg>
 						{:else}
 							<div class="nav__icon" />

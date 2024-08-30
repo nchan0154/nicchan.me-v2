@@ -139,7 +139,7 @@
 					on:click={startMinimizeWindow}>
 					<span class="button--ui__content">
 						<svg width="16" height="16">
-							<use href="#minimize"></use>
+							<use href="#icon-minimize"></use>
 						</svg>
 						<span class="visually-hidden">Minimize {title ? title : ""}</span>
 					</span></button>
@@ -149,7 +149,7 @@
 					aria-pressed={activeWindow ? activeWindow.isMaximized : false}>
 					<span class="button--ui__content">
 						<svg width="16" height="16">
-							<use href="#maximize"></use>
+							<use href="#icon-maximize"></use>
 						</svg>
 						<span class="visually-hidden">Maximize {title ? title : ""}</span>
 					</span>
@@ -229,7 +229,7 @@
 	.window__header {
 		display: flex;
 		align-items: center;
-		gap: 0.25rem;
+		gap: 0.5rem;
 		padding: var(--border-thickness) calc(var(--border-thickness) * 2);
 		justify-content: space-between;
 		background: var(--color-window-header-bg);

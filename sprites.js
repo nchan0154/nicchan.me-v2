@@ -1,32 +1,32 @@
 // generateSvgSprite.ts
 
-import { globSync } from 'glob';
-import fs from 'fs';
-import { HTMLElement, parse } from 'node-html-parser';
-import path from 'path';
-import { optimize } from 'svgo';
+import { globSync } from "glob";
+import fs from "fs";
+import { HTMLElement, parse } from "node-html-parser";
+import path from "path";
+import { optimize } from "svgo";
 
-const svgFiles = globSync('public/pixels/*.svg');
+const svgFiles = globSync("public/pixels/*.svg");
 const symbols = [];
 
-svgFiles.forEach(file => {
-  const code = fs.readFileSync(file, 'utf-8');
-  const result = optimize(code).data;
-  const svgElement = parse(result).querySelector('svg');
-  const symbolElement = parse('<symbol/>').querySelector('symbol');
-  const fileName = path.basename(file, '.svg');
+svgFiles.forEach((file) => {
+	const code = fs.readFileSync(file, "utf-8");
+	const result = optimize(code).data;
+	const svgElement = parse(result).querySelector("svg");
+	const symbolElement = parse("<symbol/>").querySelector("symbol");
+	const fileName = path.basename(file, ".svg");
 
-  svgElement.childNodes.forEach(child => symbolElement.appendChild(child));
+	svgElement.childNodes.forEach((child) => symbolElement.appendChild(child));
 
-  symbolElement.setAttribute('id', fileName);
+	symbolElement.setAttribute("id", `icon-${fileName}`);
 
-  if (svgElement.attributes.viewBox) {
-    symbolElement.setAttribute('viewBox', svgElement.attributes.viewBox);
-  }
+	if (svgElement.attributes.viewBox) {
+		symbolElement.setAttribute("viewBox", svgElement.attributes.viewBox);
+	}
 
-  symbols.push(symbolElement.toString());
+	symbols.push(symbolElement.toString());
 });
 
-const svgSprite = `<svg>${symbols.join('')}</svg>`;
+const svgSprite = `<svg>${symbols.join("")}</svg>`;
 
-fs.writeFileSync('src/components/Sprites.astro', svgSprite);
+fs.writeFileSync("src/components/Sprites.astro", svgSprite);
