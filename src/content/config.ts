@@ -5,8 +5,9 @@ const blog = defineCollection({
 		title: z.string(),
 		description: z.string(),
 		pubDate: z.coerce.date(),
+		updated: z.optional(z.coerce.date()),
 		tags: z.array(z.string()),
-		draft: z.boolean().default(false)
+		draft: z.boolean().default(false),
 	}),
 });
 
@@ -18,7 +19,7 @@ const artwork = defineCollection({
 		height: z.number(),
 		medium: z.string(),
 		year: z.number(),
-		alt: z.string()
+		alt: z.string(),
 	}),
 });
 

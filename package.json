@@ -19,6 +19,7 @@
     "@unpic/astro": "^0.0.44",
     "@unpic/svelte": "^0.0.51",
     "astro": "^4.13.2",
+    "feed": "^4.2.2",
     "remark-sectionize": "^2.0.0",
     "svelte": "^4.2.0"
   },
