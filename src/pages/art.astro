@@ -23,7 +23,9 @@ const layouts = [
 ];
 ---
 
-<Layout>
+<Layout
+	title="Art"
+	description="Personal artwork that I like to make in my free time.">
 	<div class="artwork">
 		<h1 class="page-title">Artwork</h1>
 		{
@@ -35,7 +37,7 @@ const layouts = [
 					order={index}
 					scrollBody={false}
 					client:load>
-					<Artwork art={art} client:load></Artwork>
+					<Artwork art={art} client:load />
 				</Window>
 			))
 		}

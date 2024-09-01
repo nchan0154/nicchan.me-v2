@@ -10,12 +10,16 @@
 <ol class="posts">
 	{#each posts as post}
 		<li class="post">
-			<a class="card" href={`/blog/${post.slug}/`}>
+			<div class="card" href={`/blog/${post.slug}/`}>
 				<span class="card__content">
 					<span class="post__date">{formatDate(post.data.pubDate)}</span>
-					<span class="post__title text--heading">{post.data.title}</span>
+					<a
+						href={`/blog/${post.slug}/`}
+						class="post__title text--heading card__link">
+						{post.data.title}
+					</a>
 				</span>
-			</a>
+			</div>
 		</li>
 	{/each}
 </ol>
@@ -51,5 +55,6 @@
 		display: block;
 		font-size: 1.5rem;
 		text-decoration: underline;
+		color: var(--color-card-text);
 	}
 </style>

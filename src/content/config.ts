@@ -23,4 +23,20 @@ const artwork = defineCollection({
 	}),
 });
 
-export const collections = { blog, artwork };
+const work = defineCollection({
+	schema: z.object({
+		title: z.string(),
+		date: z.coerce.date(),
+		image: z.object({
+			url: z.string(),
+			width: z.number(),
+			height: z.number(),
+			alt: z.string(),
+		}),
+		color: z.string(),
+		technology: z.array(z.string()),
+		excerpt: z.string(),
+	}),
+});
+
+export const collections = { blog, artwork, work };

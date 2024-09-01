@@ -46,6 +46,16 @@
 	@include pixel-borders();
 }
 
+.card__link {
+	&::after {
+		content: "";
+		display: block;
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+	}
+}
+
 .button__icon {
 	vertical-align: text-bottom;
 }

@@ -16,8 +16,18 @@ export async function getArtwork() {
 	return artwork;
 }
 
-
 export async function getTags(posts) {
 	const tags = [...new Set(posts.map((post) => post.data.tags).flat())];
 	return tags.sort((a, b) => a.localeCompare(b));
+}
+
+export async function getWork() {
+	const work = await getCollection("work");
+	return work
+		.sort((a, b) => {
+			return new Date(b.data.pubDate) - new Date(a.data.pubDate);
+		})
+		.filter((post) => {
+			return post.data.draft !== true;
+		});
 }

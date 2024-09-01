@@ -1,14 +1,15 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 import Window from "../components/Window.svelte";
-import Content from '../content/pages/services.md';
+import Content from "../content/pages/services.md";
 ---
+
 <Layout
 	title="Services"
->
-	<Window title="Services" order={0} titleTag='span' client:load>
+	description="Information on what I do and how you can work with me.">
+	<Window title="Services" order={0} titleTag="span" client:load>
 		<div class="container rte">
-			<Content/>
+			<Content />
 		</div>
 	</Window>
 </Layout>

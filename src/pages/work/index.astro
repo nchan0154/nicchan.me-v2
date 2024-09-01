@@ -1,0 +1,20 @@
+---
+import { getWork } from "../../scripts/data";
+import Layout from "../../layouts/Layout.astro";
+import Window from "../../components/Window.svelte";
+import Work from "../../components/Work.svelte";
+
+const work = await getWork();
+---
+
+<Layout>
+	<h1 class="page-title">Work</h1>
+	<Window
+		title="Client Work"
+		style="--max-width: 30rem; --block-start: 1rem; --inline-start: 1rem;"
+		isAbsolute={true}
+		order={0}
+		client:load>
+		<Work work={work} />
+	</Window>
+</Layout>

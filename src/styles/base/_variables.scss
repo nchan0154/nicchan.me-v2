@@ -161,7 +161,8 @@
 	--font-base: var(--font-pixel);
 	--border-thickness: 0.1875rem;
 	--border-color: var(--color-violet-darker);
-	--text-padding: var(--border-thickness) calc(var(--border-thickness) * 3);
+	--text-padding: calc(var(--border-thickness) * 2)
+		calc(var(--border-thickness) * 3);
 
 	--max-width: 66ch;
 	--window-margin-block-start: 0.5rem;

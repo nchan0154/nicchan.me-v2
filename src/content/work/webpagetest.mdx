@@ -1,0 +1,37 @@
+---
+title: WebPageTest Blog
+date: 2021-04-07
+image:
+  url: https://res.cloudinary.com/nicchan/image/upload/v1624781594/featured-wpt.png
+  width: 1002
+  height: 651
+  alt: WebPageTest Blog Homepage, a minimal and clean looking site with a navigation bar full of page categories and a large featured blog post.
+color: "#1151BB"
+technology:
+  - 11ty
+  - SCSS
+  - JavaScript
+  - Jamstack
+  - NetlifyCMS
+excerpt: WebPageTest needed a blog to accompany their major redesign.
+---
+
+WebPageTest is one of the most essential tools in a web developer's toolkit, as it is the go-to resource for doing any kind of performance testing. I was proud to have been entrusted to build the blog WebPageTest, which needed very little tweaking from their inhouse team of performance experts.
+
+Being a blog for web developers, we got to use all the latest hot tech tips 🔥 for improving performance.
+Amongst other things, the WebPageTest blog uses responsive images powered by Cloudinary,
+with fixed aspect ratios for a jank-free loading experience and perfect CLS score,
+paginated categories, tags and authors (a feature not present in 11ty by default).
+
+The blog has since been merged into the CatchPoint blog, but it remains one of my career highlights.
+
+{% projectRow color %}
+{% cloudinaryImage
+    'wpt-blog.png',
+    "Blog post from WPT Blog",
+    599,
+    708,
+    "(min-width: 42em) 37.438rem, 90vw",
+    "lazy",
+    "project-media__image" %}
+{% endprojectRow %}
