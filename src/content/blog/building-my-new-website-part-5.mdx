@@ -1,17 +1,48 @@
 ---
-title: "Building my new website: An adventurer's log, part 4"
+title: "Building my new website: An adventurer's log, part 5"
 pubDate: "2024-03-06"
-description: "Finally making headway"
+description: "If you wait long enough, sometimes people will implement the features you need without you having to lift a finger!"
 tags:
   - css
+  - javascript
   - portfolio
 draft: true
 ---
 
-This is a post in a series about building my new website, check out [the previous post in this series.](/blog/building-my-new-website-part-3/)
+import Image from "../../components/Image.astro";
+
+This is a post in a series about building my new website, check out [the previous post in this series.](/blog/building-my-new-website-part-4/)
 
 ## Full text RSS
 
+This was really where progress on the site began to stall. At the time I was building this out, Astro had no support for full text RSS out of the box, and there were several [hacks](https://scottwillsey.com/rss-pt1/), [(another hack)](https://piccalil.li/blog/full-text-rss-is-back/) that would let you bypass this, but I really didn't want to bother when I felt like the [Astro Container API](https://docs.astro.build/en/reference/container-reference/) was going to happen soon. Luckily, my guess paid off, and Astro released the Container API, which worked without a hitch! Sometimes procrastination pays off!
+
+I did hit a minor snafu in that the [Astro RSS Feed plugin](https://docs.astro.build/en/guides/rss/) only outputs RSS format, not Atom. I wanted to use Atom to leverage the 'Updated' property in my posts, as I occasionally need to make corrections and revisions. Luckily, I was able to switch out the plugin for the framework agnostic [feed](https://www.npmjs.com/package/feed) plugin, which is both more flexible and has more features. I really dislike the trend where every new framework needs to have it's own version of a basic functionality. While there are definitely valid reasons behind the phenonmenon, I feel like it does end up fragmenting the web ecosysytem and gives junior developers the false impression that some things are much more difficult than they actually are.
+
 ## Pixels, revisited
 
-## Artwork
+While creating new pixel sprites, I noticed that the file sizes were much larger than the standard SVG. Some of them were over 30KB for a single sprite! This was because my pixel art program, Aseprite, exports [every single pixel as an individual rectangle](https://github.com/aseprite/aseprite/issues/1911), even if the individual rectangles make up a larger blob of color.
+
+I tried using PNGs while relying on `image-rendering: pixelated`, but I noticed that it would sometimes render line-widths inconsistently. After the time I took to hand-pixel everything, there was just no way I was gonna let this slide.
+
+<Image
+	src="https://res.cloudinary.com/nicchan/image/upload/v1725330165/personal-10.png"
+	width="135"
+	height="121"
+	alt="Pixel art of a folder with a website printed on it, but the lines are not even and vary in thickness inconsistently."
+/>
+
+Luckily, I found this [really cool codepen by Shaw](https://codepen.io/shshaw/full/XbxvNj) that converts a raster image into an SVG, so I ended up running everything through there instead. There's a [code version](https://github.com/meyerweb/px2svg) of this library that does this, but since I only have fewer than 10 individual sprites, it would have been overkill to implement.
+
+Once I had my SVGs, I cobbled together a quick Node script based on this [helpful tutorial by German Makarov](https://hackernoon.com/how-to-create-svg-sprite-with-icons) in order to glue them into a big spritesheet that will allow me to minimize the HTTP requests for the icons. I know there are plugins like [astro-icon](https://github.com/natemoo-re/astro-icon) that handle this in a more elegant way, but given that there are fewer than 10 icons in mostly static sections, I opted for the path that was much less likely to involve breaking dependency upgrades. I typically only change my site every 5 years or so, so having a maintainable, low-key solution is really important to me.
+
+## Table of Contents
+
+<Image
+	src="https://res.cloudinary.com/nicchan/image/upload/v1725331021/table-of-contents.png"
+	width="347"
+	height="352"
+	alt="A simple table of contents widget, each item has a corresponding number next to it. The active item has a highlighted number with a different color and an underline."
+/>
+
+Dynamically generated table of contents haven't always been the easiest to implement. It's not uncommon to have to resort to client-side JavaScript in order to scrape the rendered content for headings. Astro makes this super easy by providing a list of headings already, and with some finangling with [a snippet from Kevin Drum's tutorial](https://kld.dev/building-table-of-contents/#building-a-nested-table-of-contents-array), I was able to get the headings in a nested format. It only took a little client-side JS to hook up an Intersection Observer to watch the content and highlight the section we're currently on. Rendered HTML with a little sprinkle of JS for extra functionality, just the way I like it!
