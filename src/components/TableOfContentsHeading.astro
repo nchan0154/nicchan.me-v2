@@ -18,8 +18,16 @@ const { heading } = Astro.props;
 </li>
 
 <style>
+	a {
+		text-decoration: none;
+	}
+
 	.active a {
 		color: var(--color-link-underline);
+	}
+
+	.active > a {
+		text-decoration: underline;
 	}
 
 	.active::before {
