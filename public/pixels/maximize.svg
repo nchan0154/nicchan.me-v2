@@ -1,3 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -0.5 21 21" shape-rendering="crispEdges">
-<path stroke="#000000" d="M0 0h21M0 1h21M0 2h21M0 3h21M0 4h21M0 5h21M0 6h3M18 6h3M0 7h3M18 7h3M0 8h3M18 8h3M0 9h3M18 9h3M0 10h3M18 10h3M0 11h3M18 11h3M0 12h3M18 12h3M0 13h3M18 13h3M0 14h3M18 14h3M0 15h3M18 15h3M0 16h3M18 16h3M0 17h3M18 17h3M0 18h21M0 19h21M0 20h21" />
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" viewBox="0 0 21 21"><path xmlns="http://www.w3.org/2000/svg" fill="currentColor" d="M0 0h21v6H0z"/><path xmlns="http://www.w3.org/2000/svg" fill="currentColor" d="M0 0h3v21H0zM18 0h3v21h-3z"/><path fill="currentColor" d="M0 18h21v3H0z"/></svg>
