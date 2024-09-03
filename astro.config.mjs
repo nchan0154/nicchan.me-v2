@@ -22,7 +22,7 @@ export default defineConfig({
 	},
 	markdown: {
 		shikiConfig: {
-			experimentalThemes: {
+			themes: {
 				light: light,
 				dark: dark,
 			},
