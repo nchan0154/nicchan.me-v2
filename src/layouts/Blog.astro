@@ -22,8 +22,14 @@ const url = Astro.url;
 			}
 		</h1>
 
+		<div class="layout__cell blog__posts">
+			<Window title="All posts" order={0} client:load>
+				<Posts posts={posts} />
+			</Window>
+		</div>
+
 		<div class="layout__cell blog__tags">
-			<Window title="Tags" order={0} client:load>
+			<Window title="Tags" order={1} client:load>
 				<a class="button--ui visually-hidden" href="#window-body-all-posts">
 					<span class="button--ui__content">Skip to all posts</span>
 				</a>
@@ -47,16 +53,10 @@ const url = Astro.url;
 		<div class="layout__cell blog__webring">
 			<Window
 				title="a11y-webring.club"
-				order={1}
+				order={2}
 				style="--max-width: 30ch"
 				client:load>
 				<Webring />
-			</Window>
-		</div>
-
-		<div class="layout__cell blog__posts">
-			<Window title="All posts" order={2} client:load>
-				<Posts posts={posts} />
 			</Window>
 		</div>
 	</div>
@@ -74,8 +74,8 @@ const url = Astro.url;
 		width: fit-content;
 		position: relative;
 		z-index: 1;
-		//filter: drop-shadow(0.125rem 0.125rem 0 var(--color-page-subtitle-accent));
 		background-color: var(--color-lavender);
+		color: var(--color-violet-darker);
 		@include pixel-borders();
 	}
 
@@ -96,7 +96,7 @@ const url = Astro.url;
 	@media (min-width: 62em) and (min-height: 34em) {
 		.blog {
 			grid-template-rows: auto auto 1fr;
-			grid-template-columns: 50ch 1fr;
+			grid-template-columns: 1fr 50ch;
 			gap: 1rem;
 		}
 
@@ -105,7 +105,7 @@ const url = Astro.url;
 		}
 
 		.blog__tags {
-			grid-row: 2 / 3;
+			grid-row: 1/ 3;
 			align-self: start;
 		}
 
@@ -117,8 +117,12 @@ const url = Astro.url;
 		}
 
 		.blog__posts {
-			grid-column: 2;
-			grid-row: 1 / 4;
+			grid-column: 1;
+			grid-row: 2 / 4;
+
+			:global(.window__wrapper) {
+				margin-left: 0;
+			}
 		}
 	}
 </style>
