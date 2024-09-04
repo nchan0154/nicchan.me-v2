@@ -156,7 +156,6 @@
 				</button>
 				{#if back}
 					<button class="button--ui window__control window__control--close">
-						<img class="window__icon" src="/pixels/close-2.svg" alt="" />
 						<span class="visually-hidden">{backText}</span>
 					</button>
 				{/if}
@@ -245,10 +244,6 @@
 		margin-inline-start: calc(var(--border-thickness) * -1);
 	}
 
-	.window__icon {
-		width: 1rem;
-	}
-
 	.window__title-wrapper {
 		flex-shrink: 1;
 		min-width: 0;
@@ -275,6 +270,12 @@
 
 		& :global(*) {
 			scroll-margin-block: var(--space-xs);
+		}
+	}
+
+	@media screen and (-ms-high-contrast: active) {
+		.window__control :global(svg) {
+			fill: ButtonText;
 		}
 	}
 

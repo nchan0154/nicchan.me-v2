@@ -1,0 +1,16 @@
+---
+import Image from "./Image.astro";
+const { src, layout, width, height, alt } = Astro.props;
+---
+
+<div
+	class="work-image__image-wrapper"
+	style={`--flex: calc(${width} / ${height})`}>
+	<Image
+		src={src}
+		layout={layout || "constrained"}
+		width={width}
+		height={height}
+		alt={alt}
+	/>
+</div>

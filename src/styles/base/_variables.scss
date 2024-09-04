@@ -21,7 +21,6 @@
 	--color-lavender: #a3a3c7;
 	--color-lavender-lighter: #c6c6dc;
 	--color-black: #000;
-	--color-black: #000;
 	--color-gray-darkest: #5a6064;
 	--color-gray-darker: #878894;
 	--color-gray: #bdb6c4;
@@ -136,7 +135,7 @@
 		var(--color-lavender)
 	);
 	--color-list-bg-focus: light-dark(
-		var(--color-teal-darkest),
+		var(--color-magenta-lighter),
 		var(--color-teal-darkest)
 	);
 
@@ -150,11 +149,10 @@
 	);
 
 	--font-accent: "Sysfont", monospace;
-	--font-pixel: "W95fa", Seravek, "Gill Sans Nova", Ubuntu, Calibri,
-		"DejaVu Sans", sans-serif;
-	--base-letter-spacing: 0.02em;
-	--font-fallback: Seravek, "Gill Sans Nova", Ubuntu, Calibri, "DejaVu Sans",
-		source-sans-pro, sans-serif;
+	--font-pixel: "W95fa", "Ubuntu Fallback", source-sans-pro, sans-serif;
+	--base-letter-spacing: 0;
+	--font-fallback: "Seravek Fallback", "Gill Sans Nova Fallback",
+		"Ubuntu Fallback", "Calibri Fallback", source-sans-pro, sans-serif;
 	--fallback-letter-spacing: 0;
 	--font-pre: var(--font-pixel);
 
@@ -183,6 +181,10 @@
 	@media (min-width: 48em) {
 		--text-padding: 1rem;
 	}
+}
+
+[fonts-loaded="true"] {
+	--base-letter-spacing: 0.02em;
 }
 
 @mixin dark-code {

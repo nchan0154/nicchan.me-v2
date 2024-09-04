@@ -6,10 +6,10 @@
 
 ::selection {
 	background-color: light-dark(
-		var(--color-tertiary-darker),
-		var(--color-tertiary-light)
+		var(--color-mauve-darkest),
+		var(--color-mauve-lightest)
 	);
-	color: light-dark(var(--color-white), var(--color-dark-dark));
+	color: light-dark(var(--color-white), var(--color-violet));
 }
 
 html,
@@ -21,7 +21,6 @@ body {
 	background-image: url("https://res.cloudinary.com/nicchan/image/upload/f_auto/bg-5.png");
 	background-size: cover;
 	background-position: center;
-	letter-spacing: var(--base-letter-spacing);
 	background-attachment: fixed;
 }
 

@@ -1,0 +1,92 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import Window from "@components/Window.svelte";
+import WorkImage from "@components/WorkImage.astro";
+import WorkImageContainer from "@components/WorkImageContainer.astro";
+
+export async function getStaticPaths() {
+	const work = await getCollection("work");
+	return work.map((work) => ({
+		params: { slug: work.slug },
+		props: work,
+	}));
+}
+type Props = CollectionEntry<"work">;
+
+const work = Astro.props;
+const { Content } = await work.render();
+const { title, excerpt, image, color } = work.data;
+---
+
+<Layout title={title} description={excerpt}>
+	<div class="layout__grid work">
+		<div class="layout__cell work__cell">
+			<Window
+				title="Case study"
+				order={0}
+				titleTag="span"
+				style={`--background-color: ${color}; width: 100%; max-width:100%;`}
+				client:load>
+				<div class="window__body">
+					<div class="rte work__container">
+						<h1 class="work__title">
+							{title}
+						</h1>
+						<WorkImageContainer color={color}>
+							<WorkImage
+								class=""
+								layout="constrained"
+								src={image.url}
+								width={image.width}
+								height={image.height}
+								alt={image.alt}
+							/>
+						</WorkImageContainer>
+						<Content />
+					</div>
+				</div>
+			</Window>
+		</div>
+	</div>
+</Layout>
+
+<style lang="scss">
+	.work__cell {
+		--text-padding: 1rem 0;
+	}
+
+	.work__container {
+		display: grid;
+		grid-template-columns: 1fr min(90%, 66ch) 1fr;
+
+		& > :global(*:not(.breakout)) {
+			grid-column: 2;
+		}
+
+		:global(.breakout) {
+			grid-column: 1 /-1;
+		}
+	}
+
+	.work__title {
+		display: block;
+		line-height: 1;
+		filter: drop-shadow(0 -0.125rem 0 var(--color-accent-text-1))
+			drop-shadow(0.125rem 0.125rem 0 var(--color-accent-text-2));
+		background: linear-gradient(
+			177deg,
+			var(--color-text-heading) 50%,
+			var(--color-text-subheading)
+		);
+		background-clip: text;
+		color: transparent;
+	}
+
+	@media (min-width: 62em) and (min-height: 34em) {
+		.post {
+			grid-template-columns: 20rem 1fr;
+			gap: var(--space-s);
+		}
+	}
+</style>

@@ -1,0 +1,54 @@
+---
+const { multiple, element } = Astro.props;
+
+const Element = element || "div";
+---
+
+<Element class="work-image breakout">
+	<div
+		class={`work-image__wrapper ${multiple ? "work-image__wrapper--multiple" : ""}`}>
+		<slot />
+	</div>
+</Element>
+
+<style lang="scss" is:global>
+	.work-image {
+		margin: var(--space-s) 0;
+		background-color: var(--background-color);
+
+		img {
+			display: block;
+			margin: 0;
+			border: none;
+			mask: none;
+		}
+	}
+
+	.work-image__wrapper {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-s);
+		max-width: min(90%, 66ch);
+		margin: var(--space-s) auto;
+
+		&--multiple {
+			max-width: 90%;
+
+			.work-image__image-wrapper {
+				flex: var(--flex);
+			}
+		}
+	}
+
+	.work-image__image-wrapper {
+		display: flex;
+		flex: 1 1 100%;
+		margin: 0 auto;
+	}
+
+	@media (min-width: 48em) {
+		.work-image__wrapper {
+			flex-wrap: nowrap;
+		}
+	}
+</style>

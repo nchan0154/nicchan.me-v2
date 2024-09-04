@@ -7,15 +7,27 @@ import Work from "../../components/Work.svelte";
 const work = await getWork();
 ---
 
-<Layout>
-	<h1 class="page-title">Work</h1>
-	<Window
-		title="Client Work"
-		style="--max-width: 32rem; --block-start: 1rem; --inline-start: 1rem;"
-		isAbsolute={true}
-		order={0}
-		client:load>
-		<p>Just a few of favorite my client projects over the years!</p>
-		<Work work={work} />
-	</Window>
+<Layout title="Work">
+	<div class="layout__grid work">
+		<h1 class="page-title">Work</h1>
+		<div class="layout__cell work__clients">
+			<Window title="Client Work" order={0} client:load>
+				<p>Just a few of favorite my client projects over the years!</p>
+				<Work work={work} />
+			</Window>
+		</div>
+	</div>
 </Layout>
+
+<style>
+	@media (min-width: 62em) and (min-height: 34em) {
+		.work {
+			grid-template-columns: 70ch 1fr;
+		}
+
+		.work__clients {
+			--max-width: 100%;
+			grid-column: 1;
+		}
+	}
+</style>

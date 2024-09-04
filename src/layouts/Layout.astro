@@ -35,3 +35,14 @@ const url = Astro.url;
 		display: none;
 	}
 </style>
+
+<script is:inline>
+	async function fontsLoaded() {
+		let ready = await document.fonts.ready;
+		if (ready) {
+			document.documentElement.setAttribute("fonts-loaded", true);
+		}
+	}
+
+	fontsLoaded();
+</script>

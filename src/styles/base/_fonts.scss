@@ -13,3 +13,39 @@
 	font-display: swap;
 	src: url("/fonts/w95fa.woff2") format("woff2");
 }
+
+@font-face {
+	font-family: "Calibri Fallback";
+	src: local(Calibri);
+	size-adjust: 98%;
+	ascent-override: 78%;
+	descent-override: 15%;
+	line-gap-override: normal;
+}
+
+@font-face {
+	font-family: "Seravek Fallback";
+	src: local(Seravek);
+	size-adjust: 94%;
+	ascent-override: 82%;
+	descent-override: normal;
+	line-gap-override: normal;
+}
+
+@font-face {
+	font-family: "Gill Sans Nova Fallback";
+	src: local(Gill Sans Nova);
+	size-adjust: 96%;
+	ascent-override: 80%;
+	descent-override: 17%;
+	line-gap-override: normal;
+}
+
+@font-face {
+	font-family: "Ubuntu Fallback";
+	src: local(Ubuntu);
+	size-adjust: 88%;
+	ascent-override: 88%;
+	descent-override: normal;
+	line-gap-override: normal;
+}

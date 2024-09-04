@@ -85,12 +85,12 @@
 	}
 
 	.work__image-wrapper {
-		@include pixel-borders();
 		--max-width: 70%;
+		display: flex;
+		align-items: center;
 		margin: auto;
 		width: var(--max-width);
-		max-width: var(--max-width);
-		max-height: var(--max-width);
+		aspect-ratio: 4 / 3;
 		margin-block: 0.5rem;
 
 		:global(img) {
@@ -107,7 +107,7 @@
 
 	:global(.window__wrapper--maximized) {
 		.work {
-			grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+			grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
 		}
 	}
 

@@ -1,0 +1,25 @@
+---
+title: iDiscover
+date: 2022-09-27
+image:
+  url: https://res.cloudinary.com/nicchan/image/upload/v1635047397/featured-switch-themes.png
+  width: 1366
+  height: 768
+  alt: Product page using the Baseline theme by Switch Themes, a very minimal, brutalist inspired theme.
+color: "#e35f53"
+link: https://i-discoverasia.com/
+technology:
+  - 11ty
+  - Alpine.js
+  - SCSS
+  - Sanity.io
+excerpt: A scalable, sustainable mapping solution for a nonprofit.
+---
+
+iDiscover is a non-profit that seeks to map Asia's historic districts through the eyes of locals. By partnering with local organizations, community groups and students, iDiscover seeks to promote responsible tourism.
+
+As a non-profit with a tight budget and big dreams, I knew I would have to think about the application architecture pretty carefully. There were two primary audiences to consider: the rotating group of non-technical folks who would be adding new content to the site on a regular basis and the target audience of the site, likely to be tourists in Asia on spotty wifi. This meant I had to deliver a CMS that was easy to understand and update for a wide variety of audiences, without sacrificing and speed and usability on the front end.
+
+For the CMS, I chose to use Sanity.io, a headless solution. At the time, iDiscover still had a mobile application, so picking a CMS that was headless by design was the obvious choice. Sanity.io is highly customizeable, and limiting the inputs to text fields and composable blocks allowed for a variety of layouts while maintaining a consistent visual brand.
+
+On the front end, I utilized 11ty, a static-site generator. Rendering static files and real HTML would give the best performance and SEO value and ensure that even on slow connections, you'd still have access to the most important text content. Alpine.js was used to add interactivity and support in-page localization.

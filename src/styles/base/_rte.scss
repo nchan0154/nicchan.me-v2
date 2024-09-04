@@ -34,7 +34,7 @@
 		&::before {
 			content: counter(list-item);
 			position: absolute;
-			top: 0.325rem;
+			top: 0.425rem;
 			display: flex;
 			width: 1.375rem;
 			height: 1.375rem;
@@ -82,6 +82,7 @@
 	img {
 		margin: var(--space-xs) auto;
 		image-rendering: initial;
+		@include pixel-borders();
 	}
 
 	figure img {
