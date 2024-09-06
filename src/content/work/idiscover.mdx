@@ -2,10 +2,10 @@
 title: iDiscover
 date: 2022-09-27
 image:
-  url: https://res.cloudinary.com/nicchan/image/upload/v1635047397/featured-switch-themes.png
-  width: 1366
-  height: 768
-  alt: Product page using the Baseline theme by Switch Themes, a very minimal, brutalist inspired theme.
+  url: https://res.cloudinary.com/nicchan/image/upload/v1725597302/featured-id.png
+  width: 2732
+  height: 1536
+  alt: iDiscover page listing the cities in Indonesia where self-guided walks are available. There is a map on the right, and on the left, there is some introductory text to Indonesia and a list of cities in grid format.
 color: "#e35f53"
 link: https://i-discoverasia.com/
 technology:
@@ -16,10 +16,53 @@ technology:
 excerpt: A scalable, sustainable mapping solution for a nonprofit.
 ---
 
+import WorkImageContainer from "@components/WorkImageContainer.astro";
+import WorkImage from "@components/WorkImage.astro";
+
 iDiscover is a non-profit that seeks to map Asia's historic districts through the eyes of locals. By partnering with local organizations, community groups and students, iDiscover seeks to promote responsible tourism.
+
+<WorkImageContainer modifier="multiple">
+	<WorkImage
+		src="https://res.cloudinary.com/nicchan/image/upload/v1725597301/map.png"
+		width={2496}
+		height={1814}
+		sizes="(min-width: 62em) 62rem, 100vw"
+		alt={
+			"An example of a city walk page. On the left hand side is some text with a big circular image to illustrate the main purpose of the walk, and below that is a list of locations in the walk with some category filters. On the right is a large map with each location marked on it."
+		}
+	/>
+	<WorkImage
+		src={
+			"https://res.cloudinary.com/nicchan/image/upload/v1725597300/listing.png"
+		}
+		width={2732}
+		height={1536}
+		sizes="(min-width: 62em) 62rem, 100vw"
+		alt={
+			"A sample of a location page for the Chu Kee Bing Sutt restaurant. On the left,there is an asymmetrical grid of images. Below that is a box of details about the location, such as the address, phone number, opening hours, and etc. On the right, the current location on the walk is highlighted amongst the other locations on the map."
+		}
+	/>
+	<figcaption slot="figcaption">
+		An example of a city walk and location page.
+	</figcaption>
+</WorkImageContainer>
 
 As a non-profit with a tight budget and big dreams, I knew I would have to think about the application architecture pretty carefully. There were two primary audiences to consider: the rotating group of non-technical folks who would be adding new content to the site on a regular basis and the target audience of the site, likely to be tourists in Asia on spotty wifi. This meant I had to deliver a CMS that was easy to understand and update for a wide variety of audiences, without sacrificing and speed and usability on the front end.
 
 For the CMS, I chose to use Sanity.io, a headless solution. At the time, iDiscover still had a mobile application, so picking a CMS that was headless by design was the obvious choice. Sanity.io is highly customizeable, and limiting the inputs to text fields and composable blocks allowed for a variety of layouts while maintaining a consistent visual brand.
+
+<WorkImageContainer modifier="single">
+	<WorkImage
+		src={
+			"https://res.cloudinary.com/nicchan/image/upload/v1725597299/blog.pngg"
+		}
+		width={2088}
+		height={2078}
+		sizes="(min-width: 62em) 62rem, 100vw"
+		alt={
+			"A blog page on iDiscover for the category 'Collaborations'. The page features a big featured article and then a smaller grid of past collaborations iDiscover has done. There is a sidebar with a call to action to make your own map."
+		}
+	/>
+</WorkImageContainer>
 
 On the front end, I utilized 11ty, a static-site generator. Rendering static files and real HTML would give the best performance and SEO value and ensure that even on slow connections, you'd still have access to the most important text content. Alpine.js was used to add interactivity and support in-page localization.

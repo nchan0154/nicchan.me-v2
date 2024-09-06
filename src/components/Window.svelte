@@ -177,12 +177,20 @@
 		max-width: var(--max-width);
 		max-width: round(var(--max-width), 1px);
 		font-size: 1.5rem;
-		width: fit-content;
 		transform: translate3d(0, 0, 0), scale(1.0000001);
 		-webkit-backface-visibility: hidden;
 		transform-style: preserve-3d;
 		will-change: transform;
 		container: window;
+
+		&--flex {
+			--max-width: 100%;
+			--width: 100%;
+
+			.window {
+				flex: 1;
+			}
+		}
 
 		&:focus,
 		&:focus-within {
@@ -279,18 +287,10 @@
 			--window-spacing: 0;
 			max-height: 100%;
 			max-width: var(--large-max-width, var(--max-width));
+			width: var(--width, fit-content);
 			height: fit-content;
 			margin-left: auto;
 			margin-right: auto;
-
-			&--flex {
-				--max-width: 100%;
-				width: 100%;
-
-				.window {
-					flex: 1;
-				}
-			}
 		}
 
 		.window__wrapper--absolute {

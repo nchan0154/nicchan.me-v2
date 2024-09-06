@@ -1,19 +1,36 @@
 ---
-import Image from "./Image.astro";
-const { src, layout, width, height, alt, label } = Astro.props;
+import { transformUrl } from "unpic";
+let { src, width, height, alt, label, sizes } = Astro.props;
+
+if (!sizes) {
+	sizes = "100vw";
+}
+
+let srcset = [];
+const multipliers = [0.1, 0.25, 0.375, 0.5, 0.75, 1];
+
+multipliers.forEach((multiplier) => {
+	const newWidth = Math.round(width * multiplier);
+	const url = transformUrl({
+		url: src,
+		width: newWidth,
+		height: Math.round(height & multiplier),
+	});
+	srcset.push(`${url} ${newWidth}w`);
+});
 
 const id = `image-${Math.floor(Math.random() * 1000000)}`;
 ---
 
 <div class="work-image__image-wrapper">
-	<Image
+	<img
 		src={src}
-		layout={layout || "constrained"}
 		width={width}
 		height={height}
 		alt={alt}
 		aria-describedby={label ? id : false}
-		,
+		srcset={srcset.join(",")}
+		loading="lazy"
 	/>
 	<span class="work-image__label" id={id}>{label}</span>
 </div>

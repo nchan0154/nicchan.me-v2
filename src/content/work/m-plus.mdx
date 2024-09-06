@@ -16,17 +16,91 @@ technology:
 excerpt: A wide variety of digital projects essential to running a world class art museum.
 ---
 
-import Image from "../../components/Image.astro";
+import WorkImageContainer from "@components/WorkImageContainer.astro";
+import WorkImage from "@components/WorkImage.astro";
 
-Prior to the museum's launch, I was honored to be selected as the vendor by the M+ digital team. I worked together with Jarijn Nijkamp on project management and [Jimmy Lam](https://studioearth.co/) on design to complete a variety of projects for the M+ museum.
+Prior to the museum's launch, I was honored to be selected as a services vendor by the M+ digital team. I worked together with Jarijn Nijkamp on project management and [Jimmy Lam](https://studioearth.co/) on design to complete a variety of projects for the M+ museum. All M+ projects have passed third party accessibility audits to the WCAG AA standard.
 
 ## Mainland China microsite
 
-<Image
-  src="https://res.cloudinary.com/nicchan/image/upload/v1725423618/cn.png"
-  width="1200"
-  height="1846"
-  alt=""
-/>
+M+ needed a microsite located behind the Chinese firewall with no outside dependencies
+in order to ensure that visitors in China could have uninterrupted access to important information. We utilized self-hosted static assets and configurable JSON files to populate content to reduce risk.
 
-M+ needed a microsite located behind the Chinese firewall with no outside dependencies in order to ensure that visitors in China
+<WorkImageContainer modifier="alt">
+	<WorkImage
+		src="https://res.cloudinary.com/nicchan/image/upload/v1725589538/about-crop.png"
+		width={1048}
+		height={1924}
+		alt={
+			"The same COVID chloreopleth map of the United States, but the states are differentiated with high contrast colors and patterns that increase in density. The legend has human readable numbers and proper text contrast. On the right is a settings panel, where you can adjust the different kinds of audio in a granular way."
+		}
+	/>
+	<WorkImage
+		src={"https://res.cloudinary.com/nicchan/image/upload/v1725605879/cn.jpg"}
+		width={1200}
+		height={1846}
+		alt={
+			"A COVID chloropleth map of the United States with patterns and colors. The colors of the states lack contrast and some of the labels are light grey on white.6666"
+		}
+	/>
+</WorkImageContainer>
+
+## Digital Signage
+
+M+ wanted to commission a solution for their digital signage to be used around the museum. Initially, I had come up with a solution where the signs used JavaScript on the client-side to fetch new events without reloading the page. During the course of the project, we found out that not only were the signs running a version of Chrome from 2016, the browser environment didn't support any JavaScript at all!
+
+<WorkImageContainer modifier="multiple">
+	<WorkImage
+		src="https://res.cloudinary.com/nicchan/image/upload/v1725605878/img_1230.jpg"
+		width={1048}
+		height={1924}
+		alt={
+			"The same COVID chloreopleth map of the United States, but the states are differentiated with high contrast colors and patterns that increase in density. The legend has human readable numbers and proper text contrast. On the right is a settings panel, where you can adjust the different kinds of audio in a granular way."
+		}
+	/>
+	<WorkImage
+		src={
+			"https://res.cloudinary.com/nicchan/image/upload/v1725605879/PXL_20211202_040314231.jpg"
+		}
+		width={1200}
+		height={1846}
+		alt={
+			"A COVID chloropleth map of the United States with patterns and colors. The colors of the states lack contrast and some of the labels are light grey on white.6666"
+		}
+	/>
+	<figcaption slot="figcaption">
+		As web developers, it's pretty rare to see our work 'in the wild'. It's
+		pretty thrilling to walk around a museum and see things you built in the
+		background!
+	</figcaption>
+</WorkImageContainer>
+
+Luckily, because I had chosen 11ty as the static site generator, it was completely trivial to move the data-fetching code to the back end. On the front end, we used an even simpler technique, setting the [meta refresh header](https://www.w3.org/TR/WCAG20-TECHS/H76.html), to make sure the signs refreshed at regular intervals.
+
+The signs also supported configurations for horizontal and vertical layouts, color theming and conditional images. I'm proud to say that the M+ team has had no difficulty maintaining the solution on their own - nothing gives me greater joy that a team being able to pick up a solution and maintain it without any friction at all!
+
+## Static HTML and CSS
+
+<WorkImageContainer modifier="alt">
+	<WorkImage
+		src="https://res.cloudinary.com/nicchan/image/upload/v1725607787/queue-it.png"
+		width={1023}
+		height={1200}
+		alt={
+			"The same COVID chloreopleth map of the United States, but the states are differentiated with high contrast colors and patterns that increase in density. The legend has human readable numbers and proper text contrast. On the right is a settings panel, where you can adjust the different kinds of audio in a granular way."
+		}
+	/>
+	<WorkImage
+		src={"https://res.cloudinary.com/nicchan/image/upload/v1725607787/Wifi.png"}
+		width={1065}
+		height={1196}
+		alt={
+			"A COVID chloropleth map of the United States with patterns and colors. The colors of the states lack contrast and some of the labels are light grey on white.6666"
+		}
+	/>
+	<figcaption slot="figcaption">
+		I also built out several HTML/CSS/JS templates for other vendors to
+		incorporate additional functionality into, including a queueing system and
+		the Wi-Fi landing pages for the museum.
+	</figcaption>
+</WorkImageContainer>

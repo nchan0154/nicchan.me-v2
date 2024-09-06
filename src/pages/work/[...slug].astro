@@ -1,12 +1,13 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
+import { getWork } from "src/scripts/data";
 import Layout from "@layouts/Layout.astro";
 import Window from "@components/Window.svelte";
 import Image from "@components/Image.astro";
 import Work from "@components/Work.svelte";
 
 export async function getStaticPaths() {
-	const works = await getCollection("work");
+	const works = await getWork();
 	const projects = [];
 	works.forEach((work, index) => {
 		const otherProjects = [];
@@ -71,6 +72,7 @@ const { title, excerpt, date, image, color, technology } = work.data;
 									width={image.width}
 									height={image.height}
 									alt={image.alt}
+									sizes="(min-width: 50rem) 50rem, 100vw"
 								/>
 							</div>
 						</div>
@@ -98,7 +100,12 @@ const { title, excerpt, date, image, color, technology } = work.data;
 		display: grid;
 		grid-template-columns: var(--grid);
 
-		& > :global(*:not(.breakout)) {
+		:global(section) {
+			display: contents;
+		}
+
+		& > :global(*:not(.breakout)),
+		:global(section) > :global(*:not(.breakout)) {
 			grid-column: content-start / content-end;
 		}
 
@@ -146,6 +153,7 @@ const { title, excerpt, date, image, color, technology } = work.data;
 	}
 
 	.work__excerpt {
+		margin-block-start: 0.5rem;
 		color: var(--color-text-subheading);
 	}
 

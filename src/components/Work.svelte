@@ -18,6 +18,7 @@
 								layout={"constrained"}
 								width={item.data.image.width}
 								height={item.data.image.height}
+								sizes={"20rem"}
 								alt={item.data.image.alt} />
 						</div>
 					</div>
@@ -66,7 +67,7 @@
 	}
 
 	.work__excerpt {
-		margin-top: var(--border-thickness);
+		margin-block-start: var(--border-thickness);
 		line-height: 1.2;
 		color: var(--color-window-text);
 		font-size: 1.125rem;

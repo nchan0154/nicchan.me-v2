@@ -2,28 +2,64 @@
 title: M+ Audio Guide
 date: 2024-02-01
 image:
-  url: https://res.cloudinary.com/nicchan/image/upload/v1725423205/cn-crop.png
-  width: 1200
-  height: 817
-  alt: "Test"
+  url: https://res.cloudinary.com/nicchan/image/upload/v1725600151/ag.jpg
+  width: 2720
+  height: 1812
+  alt: A phone sitting on a textured metallic surface displaying the first screen of the M+ Audio Guide
 color: "#009ef2"
 technology:
   - 11ty
   - SCSS
   - Petite Vue
 
-excerpt: A wide variety of digital projects essential to running a world class art museum.
+excerpt: A performant progressive web app solution for a museum audio guide.
 ---
 
-import Image from "../../components/Image.astro";
+import WorkImageContainer from "@components/WorkImageContainer.astro";
+import WorkImage from "@components/WorkImage.astro";
 
-Prior to the museum's launch, I was honored to be selected as the vendor by the M+ digital team. I worked together with Jarijn Nijkamp on project management and [Jimmy Lam](https://studioearth.co/) on design to complete a variety of projects for the M+ museum.
+M+ had an existing audio guide vendor that specialized in providing audio guide software and devices for the museum to load. However, this vendor's technical approach involved loading every single audio guide asset up front, for a total payload of 1GB+, an action that often took over 10 minutes on museum Wi-Fi. M+ knew they wanted to offer visitors the choice to use their own devices and that the current loading speed was unnacceptable, so I desgined a new technical architecture for them that would better support their goals.
 
-## Mainland China microsite
+## Design
 
-<Image
-  src="https://res.cloudinary.com/nicchan/image/upload/v1725423618/cn.png"
-  width="1200"
-  height="1846"
-  alt=""
-/>
+In the process of building the audio guide, we utilized M+'s user testing results from the previous version of the audio guide to drive the design process. We knew the local audience was extremely familiar with QR codes, but we also utilized the keypad strategy for greater accessibility, as Braile numbers can be included next to each exhibit object next to the QR code.
+
+Upon visiting the museum after the audio guide's launch, I was happy to see a diverse audience of visitors using the various different strategies for the app without requiring additional assistance.
+
+Visit [Studio Earth's case study](https://studioearth.co/mplus-audio-guide/) for more detailed information on the design process.
+
+<WorkImageContainer modifier="alt">
+	<WorkImage
+		sizes="(min-width: 62em) 62rem, 100vw"
+		src={"https://res.cloudinary.com/nicchan/image/upload/v1725593168/ag-1.png"}
+		width={1170}
+		height={2532}
+		alt={
+			"An example of an exhibition page. The navigation bar on top only features a back button. The main content consists of a list of artworks, with a small image, title, artist name and location of the artwork in the galleries in a minimal, monochrome design. The bottom of the screen contains a navigation bar with three icons with labels for the Keypad, Tours and settings."
+		}
+	/>
+	<WorkImage
+		sizes="(min-width: 62em) 62rem, 100vw"
+		src="https://res.cloudinary.com/nicchan/image/upload/v1725594741/ag-2.png"
+		width={1170}
+		height={2532}
+		alt={
+			"A sample artwork page from the Audio Guide. It feature the same standard navigation bars. At the top of the screen, the user can choose to play the Audio Description. There is more information about the artwork below, with a larger picture.  At the bottom of the screen,there is an audio player interface that allows users to pause/play the track, as well as control the playback position, the playback speed, to skip forward and backwards by 15 seconds, and to jump to the previous or next track."
+		}
+	/>
+	<figcaption slot="figcaption">
+		The tour and artwork listing pages of the audio guide.
+	</figcaption>
+</WorkImageContainer>
+
+## Technical details
+
+The M+ Audio Guide PWA has two use cases, and required two modes: one for visitors who are using their own phones, and one for devices that were to be loaned out by the museum. Both architectures use the same core, an 11ty powered static site that drew data from the museum's own API. This had the added bonus of migrating off the previous solution of having a completely separate CMS where data would be duplicated.
+
+The static HTML files had their functionality enhanced with Petite Vue, a framework that was chosen for it's lightness and because the in-house development team at the museum was familiar with it.
+
+These pages and assets were cached by seperate service workers depending on the mode the PWA was in. For the bring-your-own-device mode, we cached the core pages and files immediately once a language was selected, and load the audio files as needed, with a little bit of intelligent guesswork based on the user's previous usage of the app. For the museum device mode, we load everything, while providing the desk operators a way to check for updates and invalidate the cache as new content is found.
+
+## Credits
+
+I worked together with Jarijn Nijkamp on project management and [Jimmy Lam](https://studioearth.co/) on design to complete this project for the M+ Digital Team. The audio guide passed a external WCAG AA audit by the Hong Kong Blind Union.

@@ -3,24 +3,23 @@ const { modifier } = Astro.props;
 const Element = Astro.slots.has("figcaption") ? "figure" : "div";
 ---
 
-<Element class={`work-image breakout work-image--${modifier}`}>
-	<slot />
-	<slot name="figcaption" />
-	<div class="work-image__accent" role="presentation">
-		<svg class="work-image__accent-top">
-			<use href={"#icon-stroke"}></use>
-		</svg>
-		<svg class="work-image__accent-bottom">
-			<use href={"#icon-stroke"}></use>
-		</svg>
+<Element class="breakout work-image">
+	<div class={`work-image__grid work-image__grid--${modifier}`}>
+		<slot />
+		<slot name="figcaption" />
+		<div class="work-image__accent" role="presentation">
+			<svg class="work-image__accent-top">
+				<use href={"#icon-stroke"}></use>
+			</svg>
+			<svg class="work-image__accent-bottom">
+				<use href={"#icon-stroke"}></use>
+			</svg>
+		</div>
 	</div>
 </Element>
 
 <style lang="scss" is:global>
 	.work-image {
-		display: grid;
-		grid-template-columns: var(--grid);
-		margin: var(--space-s) 0;
 		container-type: inline-size;
 		container-name: work-image;
 
@@ -30,8 +29,14 @@ const Element = Astro.slots.has("figcaption") ? "figure" : "div";
 		}
 	}
 
+	.work-image__grid {
+		display: grid;
+		grid-template-columns: var(--grid);
+		margin: var(--space-s) 0;
+	}
+
 	.work-image__image-wrapper {
-		display: flex;
+		// display: flex;
 		flex: 1 1 100%;
 		margin: 0 auto;
 		grid-column: content-start / content-end;
@@ -65,7 +70,7 @@ const Element = Astro.slots.has("figcaption") ? "figure" : "div";
 			align-self: center;
 		}
 
-		.work-image--multiple {
+		.work-image__grid--multiple {
 			padding-block-start: var(--space-m);
 
 			.work-image__image-wrapper {
@@ -111,7 +116,7 @@ const Element = Astro.slots.has("figcaption") ? "figure" : "div";
 		}
 
 		.work-image__accent-top {
-			transform: translateY(-100%);
+			transform: translateY(-99%);
 		}
 
 		.work-image__accent-bottom {
@@ -119,7 +124,7 @@ const Element = Astro.slots.has("figcaption") ? "figure" : "div";
 			transform: rotate(180deg);
 		}
 
-		.work-image--alt {
+		.work-image__grid--alt {
 			padding-block-start: var(--space-m);
 
 			.work-image__image-wrapper {
@@ -150,7 +155,7 @@ const Element = Astro.slots.has("figcaption") ? "figure" : "div";
 			}
 		}
 
-		.work-image--single {
+		.work-image__grid--single {
 			padding-block: var(--space-m);
 			margin: var(--space-s) 0;
 
