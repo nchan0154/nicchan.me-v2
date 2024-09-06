@@ -1,42 +1,32 @@
 ---
-const { multiple, element } = Astro.props;
-
-const Element = element || "div";
+const { modifier } = Astro.props;
+const Element = Astro.slots.has("figcaption") ? "figure" : "div";
 ---
 
-<Element class="work-image breakout">
-	<div
-		class={`work-image__wrapper ${multiple ? "work-image__wrapper--multiple" : ""}`}>
-		<slot />
+<Element class={`work-image breakout work-image--${modifier}`}>
+	<slot />
+	<slot name="figcaption" />
+	<div class="work-image__accent" role="presentation">
+		<svg class="work-image__accent-top">
+			<use href={"#icon-stroke"}></use>
+		</svg>
+		<svg class="work-image__accent-bottom">
+			<use href={"#icon-stroke"}></use>
+		</svg>
 	</div>
 </Element>
 
 <style lang="scss" is:global>
 	.work-image {
+		display: grid;
+		grid-template-columns: var(--grid);
 		margin: var(--space-s) 0;
-		background-color: var(--background-color);
+		container-type: inline-size;
+		container-name: work-image;
 
 		img {
 			display: block;
 			margin: 0;
-			border: none;
-			mask: none;
-		}
-	}
-
-	.work-image__wrapper {
-		display: flex;
-		flex-wrap: wrap;
-		gap: var(--space-s);
-		max-width: min(90%, 66ch);
-		margin: var(--space-s) auto;
-
-		&--multiple {
-			max-width: 90%;
-
-			.work-image__image-wrapper {
-				flex: var(--flex);
-			}
 		}
 	}
 
@@ -44,11 +34,140 @@ const Element = element || "div";
 		display: flex;
 		flex: 1 1 100%;
 		margin: 0 auto;
+		grid-column: content-start / content-end;
+
+		& + & {
+			margin-block-start: var(--space-xs);
+		}
 	}
 
-	@media (min-width: 48em) {
-		.work-image__wrapper {
-			flex-wrap: nowrap;
+	figcaption {
+		margin-block-start: 0.5rem;
+		margin-block-end: var(--space-m);
+		grid-column: content-start / content-end;
+		font-family: var(--font-accent);
+		font-size: clamp(1.5rem, 1vw + 1rem, 1.75rem);
+		line-height: 1.2;
+		color: var(--color-text-subheading);
+	}
+
+	.work-image__accent {
+		display: none;
+	}
+
+	@container work-image (min-width: 36em) {
+		.work-image {
+			position: relative;
+			gap: 0;
+		}
+
+		.work-image__image-wrapper {
+			align-self: center;
+		}
+
+		.work-image--multiple {
+			padding-block-start: var(--space-m);
+
+			.work-image__image-wrapper {
+				&:nth-child(1) {
+					grid-column: hero-start / -2;
+				}
+
+				&:nth-child(2) {
+					grid-column: 1 / hero-start;
+					margin: 0;
+					inset-inline-start: var(--space-l);
+					inset-block-start: calc(var(--space-m) * -1);
+				}
+			}
+
+			figcaption {
+				grid-column: hero-start / content-end;
+				margin-inline-start: calc(var(--space-l) + var(--space-l));
+				margin-block-start: var(--space-l);
+				margin-block-end: 0;
+			}
+		}
+
+		.work-image__accent {
+			--height: 13.125rem;
+			position: absolute;
+			display: block;
+			left: 10%;
+			width: 4.5rem;
+			top: var(--height);
+			bottom: var(--height);
+			color: var(--background-color);
+			background-color: currentColor;
+			z-index: -1;
+		}
+
+		.work-image__accent-top,
+		.work-image__accent-bottom {
+			position: absolute;
+			height: 13.125rem;
+			width: 4.5rem;
+			z-index: -1;
+		}
+
+		.work-image__accent-top {
+			transform: translateY(-100%);
+		}
+
+		.work-image__accent-bottom {
+			top: 100%;
+			transform: rotate(180deg);
+		}
+
+		.work-image--alt {
+			padding-block-start: var(--space-m);
+
+			.work-image__image-wrapper {
+				&:nth-child(1) {
+					grid-column: 2 / hero-start;
+				}
+			}
+
+			.work-image__image-wrapper {
+				&:nth-child(2) {
+					inset-inline-start: calc(var(--space-s) * -1);
+					inset-block-start: calc(var(--space-l));
+					grid-column: hero-start / -1;
+				}
+			}
+
+			figcaption {
+				grid-column: content-start / hero-start;
+				padding: 0;
+				padding-inline-end: var(--space-l);
+				padding-block-start: var(--space-s);
+				margin: 0;
+			}
+
+			.work-image__accent {
+				right: 10%;
+				left: auto;
+			}
+		}
+
+		.work-image--single {
+			padding-block: var(--space-m);
+			margin: var(--space-s) 0;
+
+			.work-image__accent {
+				display: none;
+			}
+
+			.work-image__image-wrapper {
+				grid-column: 3 / -3;
+			}
+		}
+	}
+
+	@container work-image (min-width: 62em) {
+		.work-image--multiple .work-image__accent {
+			top: 0;
+			bottom: 0;
 		}
 	}
 </style>

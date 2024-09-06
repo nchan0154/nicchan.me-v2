@@ -8,14 +8,12 @@
 				if (!heading) return;
 				const id = heading.getAttribute("id");
 
+				const link = document.querySelector(`nav.toc li a[href="#${id}"]`);
+				if (!link) return;
 				if (section.intersectionRatio > 0) {
-					document
-						.querySelector(`nav.toc li a[href="#${id}"]`)
-						.parentElement.classList.add("active");
+					link.parentElement.classList.add("active");
 				} else {
-					document
-						.querySelector(`nav.toc li a[href="#${id}"]`)
-						.parentElement.classList.remove("active");
+					link.parentElement.classList.remove("active");
 				}
 			});
 		});

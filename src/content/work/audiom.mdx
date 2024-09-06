@@ -1,11 +1,11 @@
 ---
 title: Audiom
-date: 2021-08-01
+date: 2024-08-01
 image:
   url: https://res.cloudinary.com/nicchan/image/upload/v1725174907/covid.png
-  width: 855
-  height: 542
-  alt: WebPageTest Blog Homepage, a minimal and clean looking site with a navigation bar full of page categories and a large featured blog post.
+  width: 2337
+  height: 1582
+  alt: An example Audiom map. This one is a chloropleth map of COVID cases in the US, featuring a strong light to dark gradient and black and white patterns to help distinguish the differences in case numbers between states.
 color: "#0088a6"
 technology:
   - OpenStreetMap
@@ -19,23 +19,76 @@ excerpt: Building the world's first WCAG AAA conforming map viewer.
 import WorkImageContainer from "@components/WorkImageContainer.astro";
 import WorkImage from "@components/WorkImage.astro";
 
-Web maps as a whole are not really accessible. Maps as a medium are inherently spatial, and until now, we haven't quite figured out how to translate spatial information to blind users using web technologies. Audiom borrows from interaction patterns pioneered in video games to make web maps finally accessible to all. Users can browse any location on earth using OpenStreetMap data, or upload their own GeoJSON. The map viewwer supports standard spatial maps for navigating geolocated and non-geolocated data as well as chloropleth/thematic maps.
+Web maps as a whole are not really accessible. Maps as a medium are inherently spatial, and until now, we haven't quite figured out how to translate spatial information to blind users using **web technologies**.
 
-<WorkImageContainer multiple>
+Audiom borrows from interaction patterns pioneered in video games to make web maps finally accessible to all. Users can browse any location on earth using [OpenStreetMap](https://www.openstreetmap.org/) data, or upload their own GeoJSON. The map viewer supports standard spatial maps for navigating geolocated and non-geolocated data as well as chloropleth/thematic maps.
+
+<WorkImageContainer modifier="multiple">
 	<WorkImage
 		src={
 			"https://res.cloudinary.com/nicchan/image/upload/v1725332591/audiom-before-crop.png"
 		}
 		width={1553}
 		height={836}
-		alt={""}
+		label="Before"
+		alt={
+			"A UI with some instructions on how to use the audio map in a sidebar on the left, and map polygons for a playground on the right. The map shapes are strangely located over Europe and North Africa."
+		}
 	/>
 	<WorkImage
 		src="https://res.cloudinary.com/nicchan/image/upload/v1725332592/playground-after.png"
 		width={3106}
 		height={1672}
-		alt={"test"}
+		alt={
+			"A map of a playground with a brightly colored illustrated base map. On the right is a panel for filtering different object types."
+		}
+		label="After"
 	/>
+	<figcaption slot="figcaption">
+		The same playground map before and after the UI visual redesign, including a
+		fancy new base layer.
+	</figcaption>
 </WorkImageContainer>
 
 As the only sighted developer and WCAG expert on a team full of blind developers, I was in charge of several key aspects of Audiom. I moved the project off of Material UI and other inaccessible visual libraries, I worked on full WCAG AAA compliance across all aspects of the application, and I designed and developed the visual UI, writing most components from scratch in React.
+
+<WorkImageContainer modifier="single">
+	<WorkImage
+		src={
+			"https://res.cloudinary.com/nicchan/image/upload/v1725507980/routing.png"
+		}
+		width={2122}
+		height={2306}
+		alt={
+			"A screenshot of a whole page on Audiom. There is a route to a highlighted building, with a list of route steps and a panel with a speech log which visually keeps track of what is being spoken to the screen reader."
+		}
+	/>
+</WorkImageContainer>
+
+I also worked on other key features of the application, including making the editing experience accessible, adding a speech log, building the geolocation, user settings and routing modules.
+
+<WorkImageContainer modifier="alt">
+	<WorkImage
+		src={
+			"https://res.cloudinary.com/nicchan/image/upload/v1725505288/covid-before.png"
+		}
+		width={2412}
+		height={1716}
+		label="Before"
+		alt={
+			"A COVID chloropleth map of the United States with patterns and colors. The colors of the states lack contrast and some of the labels are light grey on white.6666"
+		}
+	/>
+	<WorkImage
+		src="https://res.cloudinary.com/nicchan/image/upload/v1725174907/covid.png"
+		width={2337}
+		height={1582}
+		alt={
+			"The same COVID chloreopleth map of the United States, but the states are differentiated with high contrast colors and patterns that increase in density. The legend has human readable numbers and proper text contrast. On the right is a settings panel, where you can adjust the different kinds of audio in a granular way."
+		}
+		label="After"
+	/>
+	<figcaption slot="figcaption">
+		Before and after the UI visual redesign of a chloropleth map.
+	</figcaption>
+</WorkImageContainer>

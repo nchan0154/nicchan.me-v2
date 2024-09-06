@@ -2,26 +2,41 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import Window from "@components/Window.svelte";
-import WorkImage from "@components/WorkImage.astro";
-import WorkImageContainer from "@components/WorkImageContainer.astro";
+import Image from "@components/Image.astro";
+import Work from "@components/Work.svelte";
 
 export async function getStaticPaths() {
-	const work = await getCollection("work");
-	return work.map((work) => ({
-		params: { slug: work.slug },
-		props: work,
-	}));
-}
-type Props = CollectionEntry<"work">;
+	const works = await getCollection("work");
+	const projects = [];
+	works.forEach((work, index) => {
+		const otherProjects = [];
+		if (index === 0) {
+			otherProjects.push(works[works.length - 1]);
+		} else {
+			otherProjects.push(works[index - 1]);
+		}
+		if (index === works.length - 1) {
+			otherProjects.push(works[0]);
+		} else {
+			otherProjects.push(works[index + 1]);
+		}
 
+		projects.push({
+			params: { slug: work.slug },
+			props: { ...work, otherProjects },
+		});
+	});
+
+	return projects;
+}
 const work = Astro.props;
 const { Content } = await work.render();
-const { title, excerpt, image, color } = work.data;
+const { title, excerpt, date, image, color, technology } = work.data;
 ---
 
 <Layout title={title} description={excerpt}>
 	<div class="layout__grid work">
-		<div class="layout__cell work__cell">
+		<div class="layout__cell work__content">
 			<Window
 				title="Case study"
 				order={0}
@@ -30,48 +45,95 @@ const { title, excerpt, image, color } = work.data;
 				client:load>
 				<div class="window__body">
 					<div class="rte work__container">
-						<h1 class="work__title">
-							{title}
-						</h1>
-						<WorkImageContainer color={color}>
-							<WorkImage
-								class=""
-								layout="constrained"
-								src={image.url}
-								width={image.width}
-								height={image.height}
-								alt={image.alt}
-							/>
-						</WorkImageContainer>
+						<div class="work__hero-main">
+							<h1 class="work__title">
+								{title}
+							</h1>
+							<p class="h3 work__excerpt">{excerpt}</p>
+							<ul class="work__tags">
+								{technology.map((tech) => <li class="work__tag">{tech}</li>)}
+							</ul>
+							<p>
+								{
+									new Intl.DateTimeFormat("en-GB", {
+										month: "long",
+										year: "numeric",
+									}).format(new Date(date))
+								}
+							</p>
+						</div>
+						<div class="work__hero-image-background">
+							<div class="work__hero-image">
+								<Image
+									class=""
+									layout="constrained"
+									src={image.url}
+									width={image.width}
+									height={image.height}
+									alt={image.alt}
+								/>
+							</div>
+						</div>
 						<Content />
 					</div>
 				</div>
+			</Window>
+		</div><div class="layout__cell work__other">
+			<Window title="Other projects" titleTag="h2" order={1} flex client:load>
+				<Work work={work.otherProjects} />
 			</Window>
 		</div>
 	</div>
 </Layout>
 
 <style lang="scss">
-	.work__cell {
-		--text-padding: 1rem 0;
+	.work__content {
+		--text-padding: var(--border-thickness) 0 var(--space-m);
 	}
 
 	.work__container {
+		--grid: 1fr [inset-start] 1fr 1fr [content-start]min(45%, 33ch) [hero-start]
+			min(45%, 33ch) [content-end] 1fr 1fr [inset-end] 1fr;
+
 		display: grid;
-		grid-template-columns: 1fr min(90%, 66ch) 1fr;
+		grid-template-columns: var(--grid);
 
 		& > :global(*:not(.breakout)) {
-			grid-column: 2;
+			grid-column: content-start / content-end;
 		}
 
 		:global(.breakout) {
 			grid-column: 1 /-1;
+		}
+
+		.work__hero-image-background {
+			display: flex;
+			align-items: center;
+			grid-column: 1 / -1;
+			margin: var(--space-s) 0;
+			background-color: var(--background-color);
+		}
+	}
+
+	.work__hero-main {
+		margin-block-start: var(--space-s);
+	}
+
+	.work__hero-image {
+		display: flex;
+		align-items: center;
+		max-width: min(90%, 66ch);
+		margin: var(--space-s) auto;
+
+		:global(img) {
+			display: block;
 		}
 	}
 
 	.work__title {
 		display: block;
 		line-height: 1;
+		font-size: clamp(3rem, 4vw + 1rem, 4.438rem);
 		filter: drop-shadow(0 -0.125rem 0 var(--color-accent-text-1))
 			drop-shadow(0.125rem 0.125rem 0 var(--color-accent-text-2));
 		background: linear-gradient(
@@ -83,10 +145,46 @@ const { title, excerpt, image, color } = work.data;
 		color: transparent;
 	}
 
+	.work__excerpt {
+		color: var(--color-text-subheading);
+	}
+
+	.work__tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem;
+		margin: var(--space-xs) 0;
+		padding: 0;
+	}
+
+	.work__tag {
+		margin: 0;
+		display: inline-block;
+		list-style: none;
+		background-color: var(--color-card-bg);
+		padding: 0 0.5rem;
+		color: var(--color-card-text);
+	}
+
+	@media (min-width: 48em) {
+		.work__container {
+			.work__hero-image-background {
+				margin: 0 0 var(--space-m) var(--space-s);
+				grid-column: hero-start / -1;
+			}
+
+			.work__hero-main {
+				margin-block-end: var(--space-m);
+				align-self: end;
+				grid-column: content-start / span 1;
+			}
+		}
+	}
+
 	@media (min-width: 62em) and (min-height: 34em) {
-		.post {
-			grid-template-columns: 20rem 1fr;
-			gap: var(--space-s);
+		.work {
+			grid-template-columns: minmax(66ch, auto) clamp(32ch, 25%, 40ch);
+			gap: 1rem;
 		}
 	}
 </style>

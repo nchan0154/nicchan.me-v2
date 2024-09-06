@@ -1,16 +1,35 @@
 ---
 import Image from "./Image.astro";
-const { src, layout, width, height, alt } = Astro.props;
+const { src, layout, width, height, alt, label } = Astro.props;
+
+const id = `image-${Math.floor(Math.random() * 1000000)}`;
 ---
 
-<div
-	class="work-image__image-wrapper"
-	style={`--flex: calc(${width} / ${height})`}>
+<div class="work-image__image-wrapper">
 	<Image
 		src={src}
 		layout={layout || "constrained"}
 		width={width}
 		height={height}
 		alt={alt}
+		aria-describedby={label ? id : false}
+		,
 	/>
+	<span class="work-image__label" id={id}>{label}</span>
 </div>
+
+<style lang="scss">
+	.work-image__image-wrapper {
+		position: relative;
+	}
+
+	.work-image__label {
+		position: absolute;
+		font-size: 1.25rem;
+		padding: 0 0.5rem;
+		inset-block-start: var(--border-thickness);
+		inset-inline-end: var(--border-thickness);
+		background-color: var(--color-card-bg);
+		color: var(--color-card-text);
+	}
+</style>

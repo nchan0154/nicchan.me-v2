@@ -33,13 +33,8 @@ const splitTitle = post.data.title.split(":");
 				<TableOfContentsObserver client:only="svelte" />
 			</Window>
 		</div>
-		<div class="layout__cell layout__cell--post post__content">
-			<Window
-				title="Post"
-				order={1}
-				titleTag="span"
-				style="width: 100%; max-width: 100%;"
-				client:load>
+		<div class="layout__cell post__content">
+			<Window title="Post" order={1} titleTag="span" flex client:load>
 				<div class="window__body">
 					<div class="rte container">
 						<h1 class="text--base post__title">
@@ -76,6 +71,10 @@ const splitTitle = post.data.title.split(":");
 <style lang="scss">
 	.post__content {
 		min-width: 0;
+
+		&:global(window) {
+			width: 100%;
+		}
 	}
 
 	.post__title {
@@ -106,10 +105,6 @@ const splitTitle = post.data.title.split(":");
 		);
 		background-clip: text;
 		color: transparent;
-	}
-
-	.layout__cell--post :global(.window) {
-		width: 100%;
 	}
 
 	@media (min-width: 62em) and (min-height: 34em) {

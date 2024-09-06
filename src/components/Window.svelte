@@ -9,9 +9,8 @@
 	export let title = "",
 		style = "",
 		order,
-		back = false,
-		backText = null,
 		ref = null,
+		flex = false,
 		titleTag = "h2",
 		isAbsolute = false,
 		scrollBody = true;
@@ -119,6 +118,7 @@
 	class:window__wrapper--minimized={activeWindow
 		? activeWindow.isMinimized
 		: false}
+	class:window__wrapper--flex={flex}
 	style={`${transitionName || ""}; ${style || ""}; --bottom-padding: ${bottomPadding}px`}
 	bind:this={ref}
 	tabindex="-1"
@@ -154,11 +154,6 @@
 						<span class="visually-hidden">Maximize {title ? title : ""}</span>
 					</span>
 				</button>
-				{#if back}
-					<button class="button--ui window__control window__control--close">
-						<span class="visually-hidden">{backText}</span>
-					</button>
-				{/if}
 			</div>
 		</div>
 		<div
@@ -287,6 +282,15 @@
 			height: fit-content;
 			margin-left: auto;
 			margin-right: auto;
+
+			&--flex {
+				--max-width: 100%;
+				width: 100%;
+
+				.window {
+					flex: 1;
+				}
+			}
 		}
 
 		.window__wrapper--absolute {
