@@ -16,36 +16,74 @@ technology:
 excerpt: Building Shopify themes with a premier Shopify theme merchant.
 ---
 
-I developed core components for the Baseline and Label themes, as well as
-provided accessibility consultation for all of Switch's themes.
+import WorkImageContainer from "@components/WorkImageContainer.astro";
+import WorkImage from "@components/WorkImage.astro";
 
-'baseline-modern.png',
-"Baseline theme Modern preset",
-600,
-1203,
-'baseline-bold.png',
-"Baseline theme Bold preset",
-600,
-935,
-'baseline-minimal.png',
-"Baseline theme Minimal preset",
-600,
-1189,
+From 2021 to 2023, I worked on three of Switch's premier Shopify themes. I developed core components for the Baseline, Label and Shapes themes, as well as provided accessibility consultation for all of Switch's themes. All of the projects utilized Alpine.JS and Tailwind CSS, and I developed several pieces of custom tooling in order expedite the theme building process and improve internal processes.
 
-<h3>Baseline</h3>
-<p>
-	Baseline is a type-focused, brutalist style theme, with nearly infinite ways
-	to configure. Baseline takes it to the next level with configurable options
-	for spacing, grids and offsets, making it one of the most customizable themes
-	in the theme store.
-</p>
+## Baseline
 
-<blockquote class="testimonial">
-	<p class="testimonial__text">
-		Hands down one of the handiest, easiest, well-coded and most versatile
-		Themes I have worked with. The settings are rich of options, the Theme
-		allows for a lot of customisation, and even their helpdesk is fast and
-		friendly. 100% would recommend!
-	</p>
-	<cite class="testimonial__author">– A Shopify merchant</cite>
-</blockquote>
+Baseline is a type-focused, brutalist style theme, with nearly infinite option
+for configuration. Baseline takes it to the next level with settings
+for spacing, grids and offsets, making it one of the most customizable themes
+in the theme store.
+
+<WorkImageContainer modifier="alt">
+	<WorkImage
+		src="https://res.cloudinary.com/nicchan/image/upload/v1635047387/baseline-modern.png"
+		width={1200}
+		height={2407}
+		alt={
+			"A tricolor layout to indicate the user's current position in line, with an email signup form at the bottom."
+		}
+		label="Modern"
+	/>
+	<WorkImage
+		src={"https://res.cloudinary.com/nicchan/image/upload/v1635047385/baseline-bold.png"}
+		width={1200}
+		height={1869}
+		alt={
+			"A page informing the user that they are now online and a link to the current events, a map, the ticket link and the cinema."
+		}
+		label="Bold"
+	/>
+</WorkImageContainer>
+
+> Hands down one of the handiest, easiest, well-coded and most versatile Themes I have worked with. The settings are rich of options, the Theme	allows for a lot of customisation, and even their helpdesk is fast and 	friendly. 100% would recommend!
+
+## Shapes
+
+Shapes is a playful theme with vibrant colors, customizeable stickers, fun animations, and you guessed it, shapes. Special care was taken to make all animateable elements respect user's motion preferences.
+
+<WorkImageContainer modifier="alt">
+	<WorkImage
+		src="https://res.cloudinary.com/nicchan/image/upload/v1725622272/shapes-2.webp"
+		width={850}
+		height={850}
+		alt={
+			"A preset of the Shapes theme that sells chocolate bars, with text stickers and pastel colors and zigzag borders."
+		}
+	/>
+	<WorkImage
+		src={"https://res.cloudinary.com/nicchan/image/upload/v1725622272/shapes.webp"}
+		width={850}
+		height={850}
+		alt={
+			"A preset of the Shapes theme that sells Shapes soda, with bright neon gradients and fruit floating across the page."
+		}
+	/>
+</WorkImageContainer>
+
+## Label
+Label is a theme designed for large catalogs with a lot of related products, such as books and music. It features unique components such as an audio player and track list to support this functionality.
+
+<WorkImageContainer modifier="single">
+	<WorkImage
+		src="https://res.cloudinary.com/nicchan/image/upload/v1725622273/label-theme.png"
+		width={1287}
+		height={2112}
+		alt={
+			"A product page on the label theme for a single song, on an album, with an audio player and an album list."
+		}
+	/>
+</WorkImageContainer>

@@ -28,19 +28,21 @@ in order to ensure that visitors in China could have uninterrupted access to imp
 
 <WorkImageContainer modifier="alt">
 	<WorkImage
+		sizes="(min-width: 62em) 62rem, 100vw"
 		src="https://res.cloudinary.com/nicchan/image/upload/v1725589538/about-crop.png"
 		width={1048}
 		height={1924}
 		alt={
-			"The same COVID chloreopleth map of the United States, but the states are differentiated with high contrast colors and patterns that increase in density. The legend has human readable numbers and proper text contrast. On the right is a settings panel, where you can adjust the different kinds of audio in a granular way."
+			"The about page of the Chinese M+ site, a three column, tricolor layout with white text with pictures of the museum, key information and a map."
 		}
 	/>
 	<WorkImage
+		sizes="(min-width: 62em) 62rem, 100vw"
 		src={"https://res.cloudinary.com/nicchan/image/upload/v1725605879/cn.jpg"}
 		width={1200}
 		height={1846}
 		alt={
-			"A COVID chloropleth map of the United States with patterns and colors. The colors of the states lack contrast and some of the labels are light grey on white.6666"
+			"The homepage of the Chinese M+ site, a three column tricolor layout with the M+ logo in the background. There is a carousel with the current exhibition and three footer links, as well as links to the major Chinese social media networks."
 		}
 	/>
 </WorkImageContainer>
@@ -51,26 +53,28 @@ M+ wanted to commission a solution for their digital signage to be used around t
 
 <WorkImageContainer modifier="multiple">
 	<WorkImage
+		sizes="(min-width: 62em) 62rem, 100vw"
 		src="https://res.cloudinary.com/nicchan/image/upload/v1725605878/img_1230.jpg"
-		width={1048}
-		height={1924}
+		width={4032}
+		height={3024}
 		alt={
-			"The same COVID chloreopleth map of the United States, but the states are differentiated with high contrast colors and patterns that increase in density. The legend has human readable numbers and proper text contrast. On the right is a settings panel, where you can adjust the different kinds of audio in a granular way."
+			"Digital signage installed at M+. Horizontal signs for the Learning Hub hanging on the wall. Spread across two signage panels are the next 6 events for the day in 6 columns."
 		}
 	/>
 	<WorkImage
+		sizes="(min-width: 62em) 62rem, 100vw"
 		src={
 			"https://res.cloudinary.com/nicchan/image/upload/v1725605879/PXL_20211202_040314231.jpg"
 		}
 		width={1200}
 		height={1846}
 		alt={
-			"A COVID chloropleth map of the United States with patterns and colors. The colors of the states lack contrast and some of the labels are light grey on white.6666"
+			"A vertical digital sign with a pink background and the next six events at the museum."
 		}
 	/>
 	<figcaption slot="figcaption">
 		As web developers, it's pretty rare to see our work 'in the wild'. It's
-		pretty thrilling to walk around a museum and see things you built in the
+		genuinely very exciting to walk around a museum and see things you built in the
 		background!
 	</figcaption>
 </WorkImageContainer>
@@ -81,26 +85,29 @@ The signs also supported configurations for horizontal and vertical layouts, col
 
 ## Static HTML and CSS
 
+I also built out several HTML/CSS/JS templates for other vendors to
+incorporate additional functionality into, including a queueing system and
+the Wi-Fi landing pages for the museum.
+
 <WorkImageContainer modifier="alt">
 	<WorkImage
+		sizes="(min-width: 62em) 62rem, 100vw"
+		src={
+			"https://res.cloudinary.com/nicchan/image/upload/v1725620887/wi-fi-success.png"
+		}
+		width={2376}
+		height={3334}
+		alt={
+			"A page informing the user that they are now online and a link to the current events, a map, the ticket link and the cinema."
+		}
+	/>
+	<WorkImage
+		sizes="(min-width: 62em) 62rem, 100vw"
 		src="https://res.cloudinary.com/nicchan/image/upload/v1725607787/queue-it.png"
 		width={1023}
 		height={1200}
 		alt={
-			"The same COVID chloreopleth map of the United States, but the states are differentiated with high contrast colors and patterns that increase in density. The legend has human readable numbers and proper text contrast. On the right is a settings panel, where you can adjust the different kinds of audio in a granular way."
+			"A tricolor layout to indicate the user's current position in line, with an email signup form at the bottom."
 		}
 	/>
-	<WorkImage
-		src={"https://res.cloudinary.com/nicchan/image/upload/v1725607787/Wifi.png"}
-		width={1065}
-		height={1196}
-		alt={
-			"A COVID chloropleth map of the United States with patterns and colors. The colors of the states lack contrast and some of the labels are light grey on white.6666"
-		}
-	/>
-	<figcaption slot="figcaption">
-		I also built out several HTML/CSS/JS templates for other vendors to
-		incorporate additional functionality into, including a queueing system and
-		the Wi-Fi landing pages for the museum.
-	</figcaption>
 </WorkImageContainer>

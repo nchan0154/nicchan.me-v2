@@ -23,7 +23,8 @@ const url = Astro.url;
 		</h1>
 
 		<div class="layout__cell blog__posts">
-			<Window title="All posts" order={0} client:load>
+			<Window title="Posts" titleTag="span" order={0} client:load>
+				<h2>Posts</h1>
 				<Posts posts={posts} />
 			</Window>
 		</div>

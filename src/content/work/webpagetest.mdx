@@ -16,11 +16,24 @@ technology:
 excerpt: WebPageTest needed a blazing fast blog in order to prove that they know their stuff.
 ---
 
-WebPageTest is one of the most essential tools in a web developer's toolkit, as it is the go-to resource for doing any kind of performance testing. I was proud to have been entrusted to build the blog WebPageTest, which needed very little tweaking from their inhouse team of performance experts.
+import WorkImageContainer from "@components/WorkImageContainer.astro";
+import WorkImage from "@components/WorkImage.astro";
 
-Being a blog for web developers, we got to use all the latest hot tech tips 🔥 for improving performance.
-Amongst other things, the WebPageTest blog uses responsive images powered by Cloudinary,
-with fixed aspect ratios for a jank-free loading experience and perfect CLS score,
+WebPageTest is one of the most essential tools in a web developer's toolkit, as it is the go-to resource for doing any kind of performance testing. I was proud to have been entrusted to build the blog for WebPageTest, which needed very little tweaking from their inhouse team of performance experts.
+
+Being a blog for web developers, we got to use all the latest hot tech tips 🔥 for improving performance. Amongst other things, the WebPageTest blog uses responsive images powered by Cloudinary,with fixed aspect ratios for a jank-free loading experience and perfect CLS score,
 paginated categories, tags and authors (a feature not present in 11ty by default).
+
+<WorkImageContainer modifier="single">
+	<WorkImage
+		src="https://res.cloudinary.com/nicchan/image/upload/v1624780940/wpt-blog.png"
+		width={599}
+		height={708}
+		alt={
+			"A WebPageTest blog post, with a title, author, social share links, a big hero image and content below it."
+		}
+	/>
+</WorkImageContainer>
+
 
 The blog has since been merged into the CatchPoint blog, but it remains one of my career highlights.

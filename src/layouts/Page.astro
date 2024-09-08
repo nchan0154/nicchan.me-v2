@@ -1,0 +1,17 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Window from "@components/Window.svelte";
+
+
+const { title, description, titleTag } = Astro.props.frontmatter;
+---
+
+<Layout
+	title={title}
+	description={description}>
+	<Window title={title} order={0} titleTag={titleTag} client:load>
+		<div class="container rte">
+			<slot />
+		</div>
+	</Window>
+</Layout>

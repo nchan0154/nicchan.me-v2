@@ -14,7 +14,7 @@ multipliers.forEach((multiplier) => {
 	const url = transformUrl({
 		url: src,
 		width: newWidth,
-		height: Math.round(height & multiplier),
+		height: Math.round(height * multiplier),
 	});
 	srcset.push(`${url} ${newWidth}w`);
 });
