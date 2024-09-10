@@ -17,7 +17,8 @@ h1,
 }
 
 h2,
-.h2 {
+.h2,
+h2 + .ha {
 	font-family: var(--font-accent);
 	font-size: clamp(1.5rem, 2vw + 1rem, 2.5rem);
 	line-height: 1.1;
@@ -26,7 +27,8 @@ h2,
 
 h3,
 .h3,
-dt {
+dt,
+h3 + .ha {
 	color: var(--color-text-subheading);
 	font-family: var(--font-accent);
 	font-size: clamp(1.5rem, 1vw + 1rem, 1.75rem);

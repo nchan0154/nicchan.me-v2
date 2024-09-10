@@ -53,7 +53,7 @@ const { title, excerpt, date, image, color, technology } = work.data;
 						<ul class="work__tags">
 							{technology.map((tech) => <li class="work__tag">{tech}</li>)}
 						</ul>
-						<p>
+						<p class="work__date">
 							{
 								new Intl.DateTimeFormat("en-GB", {
 									month: "long",
@@ -170,6 +170,12 @@ const { title, excerpt, date, image, color, technology } = work.data;
 		background-color: var(--color-card-bg);
 		padding: 0 0.5rem;
 		color: var(--color-card-text);
+	}
+
+	.work__date {
+		display: block;
+    color: var(--color-text-heading);
+    text-transform: uppercase;
 	}
 
 	@media (min-width: 48em) {

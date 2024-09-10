@@ -38,7 +38,7 @@ const url = Astro.url;
 		</div>
 
 		<div class="layout__cell blog__tags">
-			<Window title="Tags" order={1} client:load>
+			<Window title="Tags" style="--max-width: 40ch" order={1} client:load>
 				<a class="button--ui visually-hidden" href="#window-body-all-posts">
 					<span class="button--ui__content">Skip to all posts</span>
 				</a>
@@ -63,7 +63,6 @@ const url = Astro.url;
 			<Window
 				title="a11y-webring.club"
 				order={2}
-				style="--max-width: 30ch"
 				client:load>
 				<Webring />
 			</Window>
@@ -130,8 +129,8 @@ const url = Astro.url;
 	@media (min-width: 62em) and (min-height: 34em) {
 		.blog {
 			grid-template-rows: auto auto 1fr;
-			grid-template-columns: 1fr 50ch;
-			gap: 1rem;
+			grid-template-columns: min(60%, 80ch) 1fr;
+			gap: 2rem;
 		}
 
 		h1 {
@@ -141,10 +140,11 @@ const url = Astro.url;
 		.blog__tags {
 			grid-row: 1/ 3;
 			align-self: start;
+			justify-self: start;
 		}
 
 		.blog__webring {
-			padding-left: 1rem;
+			padding-left: var(--space-l);
 			grid-row: 3 / 4;
 			align-self: start;
 			justify-self: start;
