@@ -21,11 +21,13 @@ h2,
 	font-family: var(--font-accent);
 	font-size: clamp(1.5rem, 2vw + 1rem, 2.5rem);
 	line-height: 1.1;
+	color: var(--color-text-heading);
 }
 
 h3,
 .h3,
 dt {
+	color: var(--color-text-subheading);
 	font-family: var(--font-accent);
 	font-size: clamp(1.5rem, 1vw + 1rem, 1.75rem);
 	line-height: 1.2;

@@ -7,9 +7,35 @@ import Content from "../content/pages/services.md";
 <Layout
 	title="Services"
 	description="Information on what I do and how you can work with me.">
-	<Window title="Services" order={0} titleTag="span" client:load>
-		<div class="container rte">
-			<Content />
+	<div class="layout__grid services">
+		<div class="layout__cell">
+			<Window title="Services" order={0} titleTag="span" client:load>
+				<div class="container rte">
+					<Content />
+				</div>
+			</Window>
 		</div>
-	</Window>
+		<div class="layout__cell">
+			<Window title="Contact" titleTag="span" order={1} client:load>
+				<div class="stack">
+					<h2>Excited to work together?</h2>
+					<p>I'm currently open to hearing about new opportunities for Q4 and beyond.</p>
+					<a class="services__button button--ui button--large" href="/contact">
+						<span class="button--ui__content">
+							Reach out to me -&gt;
+						</span>
+					</a>
+				</div>
+			</Window>
+		</div>
+	</div>
 </Layout>
+
+<style lang="scss">
+	@media (min-width: 62em) and (min-height: 34em) {
+		.services {
+			grid-template-columns: 1fr 40ch;
+			gap: 1rem;
+		}
+	}
+</style>
