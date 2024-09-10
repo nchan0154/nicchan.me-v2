@@ -1,0 +1,81 @@
+<form
+  class="contact__form contact-form"
+  action="https://formspree.io/f/nic@nicchan.me"
+  method="POST"
+>
+  <label class="contact-form__label" for="contact-name">
+    Name
+  </label>
+  <div class="contact-form__input-wrapper">
+    <input class="contact-form__input" type="name" name="name" id="contact-name" autocomplete="name" required>
+  </div>
+  <label class="contact-form__label" for="contact-email">
+    Email
+  </label>
+  <div class="contact-form__input-wrapper">
+    <input class="contact-form__input" type="email" name="_replyto" id="contact-email" autocomplete="email" required>
+  </div>
+  <div class="contact-form__message">
+    <label class="contact-form__label" for="contact-message">
+      Message
+    </label>
+    <div class="contact-form__input-wrapper">
+      <textarea class="contact-form__input contact-form__input--textarea" name="message" id="contact-message" required></textarea>
+    </div>
+  </div>
+  <div>
+    <label for="gotcha" class="visually-hidden">Humans will ignore this</label>
+    <input class="contact-form__hp" id="gotcha" type="text" name="_gotcha" tabindex="-1" />
+    <input type="hidden" name="_next" value="https://www.nicchan.me/contact?success=true" />
+    <button class="button--ui button--large" type="submit">
+      <span class="button--ui__content">
+        Send
+      </span>
+    </button>
+  </div>
+</form>
+
+<style lang="scss">
+	@import "../styles/_mixins.scss";
+
+  .contact-form {
+    display: grid;
+    grid-template-columns: 6rem 1fr;
+  }
+
+  .contact-form__input-wrapper {
+    --offset: 0.25rem;
+    @include focus('focus-within');
+  }
+  .contact-form__row {
+    margin-top: 0.5rem;
+  }
+
+  .contact-form__input {
+    min-width: 0;
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1.25rem;
+    font-family: inherit;
+    color: currentColor;
+    background-color: var(--color-contact-input-bg);
+    @include pixel-borders();
+    border: none;
+    outline: var(--border-thickness) inset var(--color-contact-input-bg);
+    outline-offset: calc(var(--border-thickness) * -1);
+
+    &--textarea {
+      display: block;
+      min-height: 6rem;
+    }
+  }
+
+  .contact-form__message {
+    grid-column: 1 / -1;
+  }
+
+  .contact-form__hp {
+    position: absolute;
+    left: -99vw;
+  }
+</style>

@@ -1,0 +1,52 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Window from "../components/Window.svelte";
+import ContactForm from "../components/ContactForm.astro";
+---
+<script>
+	const showSuccess = () => {
+		const urlSearchParams = new URLSearchParams(window.location.search);
+		const params = Object.fromEntries(urlSearchParams.entries());
+		if (params.success) {
+			document.getElementById('contact-form-body').setAttribute('hidden', 'true');
+			document.getElementById('contact-success').removeAttribute('hidden')
+			document.getElementById('window-body-contact-form').focus()
+		}
+	}
+  document.addEventListener('astro:page-load', () => {
+		showSuccess()
+	})
+
+</script>
+
+<Layout title="Contact">
+	<h1 class="page-title">Contact</h1>	<Window
+		title="Information"
+		style="--max-width: 30rem; --block-start: 2rem; --inline-start: 2rem;"
+		isAbsolute={true}
+		order={0}
+		client:load>
+		<div class="stack rte">
+			<p>I may take some time to carefully count out a socially-appropriate number of exclamation point for my reply, but I will respond to all (non-spam) inquiries eventually. Feel free to use the form below or email me at <a href="mailto:nic@nicchan.me">nic@nicchan.me</a>.</p>
+    </div>
+	</Window>
+	<Window
+		title="Contact form"
+		order={1}
+		style="--max-width: 35rem; --width: 35rem; --color-window-bg: var(--color-contact-bg);  --block-start: 5rem; --inline-end: 10%;"
+		isAbsolute={true}
+		client:load>
+		<div id="contact-form-body">
+			<ContactForm/>
+		</div>
+		<div id="contact-success" hidden>
+			<p class="h2">Your message has been received! I'll get back to you as soon as I can.</p>
+		</div>
+	</Window>
+</Layout>
+
+<style>
+	#contact-form[hidden] {
+		display: none
+	}
+</style>

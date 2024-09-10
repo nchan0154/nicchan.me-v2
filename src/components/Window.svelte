@@ -225,6 +225,7 @@
 		background-color: var(--color-window-bg);
 		color: var(--color-window-text);
 		min-width: 0;
+		width: var(--width);
 		@include pixel-borders();
 	}
 

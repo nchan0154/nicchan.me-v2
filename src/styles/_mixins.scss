@@ -9,16 +9,16 @@
 		calc(100% - var(--border-thickness));
 }
 
-@mixin focus() {
+@mixin focus($focus: "focus") {
 	position: relative;
 	box-decoration-break: clone;
 
-	&:focus {
+	&:#{$focus} {
 		outline: 0.25rem solid transparent;
 		z-index: 1;
 	}
 
-	&:focus::before {
+	&:#{$focus}::before {
 		content: "";
 		position: absolute;
 		inset: 0;
@@ -28,7 +28,7 @@
 		pointer-events: none;
 	}
 
-	&:focus::after {
+	&:#{$focus}::after {
 		content: "";
 		position: absolute;
 		inset: 0;
