@@ -3,7 +3,7 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import { getWork } from "src/scripts/data";
 import Layout from "@layouts/Layout.astro";
 import Window from "@components/Window.svelte";
-import Image from "@components/Image.astro";
+import WorkImage from "@components/WorkImage.astro";
 import Work from "@components/Work.svelte";
 
 export async function getStaticPaths() {
@@ -64,9 +64,7 @@ const { title, excerpt, date, image, color, technology } = work.data;
 					</div>
 					<div class="work__hero-image-background">
 						<div class="work__hero-image">
-							<Image
-								class=""
-								layout="constrained"
+							<WorkImage
 								src={image.url}
 								width={image.width}
 								height={image.height}

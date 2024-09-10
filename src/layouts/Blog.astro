@@ -39,9 +39,6 @@ const url = Astro.url;
 
 		<div class="layout__cell blog__tags">
 			<Window title="Tags" style="--max-width: 40ch" order={1} client:load>
-				<a class="button--ui visually-hidden" href="#window-body-all-posts">
-					<span class="button--ui__content">Skip to all posts</span>
-				</a>
 				<ul class="tags">
 					{
 						tags.map((tag) => (
