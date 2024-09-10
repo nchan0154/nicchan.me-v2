@@ -24,6 +24,12 @@ body {
 	background-attachment: fixed;
 }
 
+html {
+	&:has(.window__wrapper--maximized) {
+		overflow-y: hidden;
+	}
+}
+
 img {
 	max-inline-size: 100%;
 	block-size: auto;

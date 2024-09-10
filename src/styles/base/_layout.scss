@@ -37,6 +37,10 @@
 		height: 100%;
 		min-height: 0;
 		overflow-y: auto;
+
+		&:has(.window__wrapper--maximized) {
+			overflow-y: hidden;
+		}
 	}
 }
 

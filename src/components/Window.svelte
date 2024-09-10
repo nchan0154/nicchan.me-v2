@@ -315,8 +315,8 @@
 		inset: 0;
 		width: 100%;
 		max-width: none;
-		height: calc(100% - var(--bottom-padding));
-		inset-block-end: var(--bottom-padding);
+		height: 100%;
+		inset-block-end: 0;
 		padding-block-end: 0;
 		z-index: 10;
 
@@ -324,9 +324,9 @@
 			width: 100%;
 		}
 
-		@media (min-width: 40em) {
-			inset-block-end: 0;
-			height: 100%;
+		@media (min-height: 34em) and (max-width: 40em) {
+			height: calc(100% - var(--bottom-padding));
+			inset-block-end: var(--bottom-padding);
 		}
 	}
 
