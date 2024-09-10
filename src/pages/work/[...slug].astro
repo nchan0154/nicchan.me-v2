@@ -44,40 +44,38 @@ const { title, excerpt, date, image, color, technology } = work.data;
 				titleTag="span"
 				style={`--background-color: ${color}; width: 100%; max-width:100%;`}
 				client:load>
-				<div class="window__body">
-					<div class="rte work__container">
-						<div class="work__hero-main">
-							<h1 class="work__title">
-								{title}
-							</h1>
-							<p class="h3 work__excerpt">{excerpt}</p>
-							<ul class="work__tags">
-								{technology.map((tech) => <li class="work__tag">{tech}</li>)}
-							</ul>
-							<p>
-								{
-									new Intl.DateTimeFormat("en-GB", {
-										month: "long",
-										year: "numeric",
-									}).format(new Date(date))
-								}
-							</p>
-						</div>
-						<div class="work__hero-image-background">
-							<div class="work__hero-image">
-								<Image
-									class=""
-									layout="constrained"
-									src={image.url}
-									width={image.width}
-									height={image.height}
-									alt={image.alt}
-									sizes="(min-width: 50rem) 50rem, 100vw"
-								/>
-							</div>
-						</div>
-						<Content />
+				<div class="rte work__container">
+					<div class="work__hero-main">
+						<h1 class="work__title">
+							{title}
+						</h1>
+						<p class="h3 work__excerpt">{excerpt}</p>
+						<ul class="work__tags">
+							{technology.map((tech) => <li class="work__tag">{tech}</li>)}
+						</ul>
+						<p>
+							{
+								new Intl.DateTimeFormat("en-GB", {
+									month: "long",
+									year: "numeric",
+								}).format(new Date(date))
+							}
+						</p>
 					</div>
+					<div class="work__hero-image-background">
+						<div class="work__hero-image">
+							<Image
+								class=""
+								layout="constrained"
+								src={image.url}
+								width={image.width}
+								height={image.height}
+								alt={image.alt}
+								sizes="(min-width: 50rem) 50rem, 100vw"
+							/>
+						</div>
+					</div>
+					<Content />
 				</div>
 			</Window>
 		</div><div class="layout__cell work__other">

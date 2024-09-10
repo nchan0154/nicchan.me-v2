@@ -120,10 +120,6 @@
 		max-height: 60vh;
 	}
 
-	& *:last-child {
-		margin-block-end: 0;
-	}
-
 	blockquote {
 		margin: var(--space-xs) 0;
 		padding-left: 1rem;
@@ -141,11 +137,35 @@
 	color: var(--color-box-text);
 	@include pixel-borders;
 
-	& > *:first-child {
+	& *:first-child {
 		margin-block-start: 0;
 	}
 
 	& > *:last-child {
 		margin-block-end: 0;
+	}
+}
+
+.heading-wrapper {
+	position: relative;
+
+	h2,
+	h3 {
+		padding-right: 3rem;
+	}
+
+	.heading-wrapper__anchor {
+		position: absolute;
+		display: block;
+		width: 1.5rem;
+		height: 1.5rem;
+		font-size: 1.5rem;
+		line-height: 1;
+		top: 50%;
+		right: -0.25rem;
+		text-align: center;
+		transform: translateY(-50%);
+		text-decoration: none;
+		color: var(--color-text-accent);
 	}
 }

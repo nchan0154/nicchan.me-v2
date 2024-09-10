@@ -48,3 +48,6 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={new URL(image, Astro.url)} />
+<link rel="alternate" type="application/rss+xml"
+  title="Nic Chan"
+  href="/feed.xml" />

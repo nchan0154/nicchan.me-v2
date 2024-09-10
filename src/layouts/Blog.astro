@@ -24,7 +24,15 @@ const url = Astro.url;
 
 		<div class="layout__cell blog__posts">
 			<Window title="Posts" titleTag="span" order={0} client:load>
-				<h2>Posts</h1>
+				<div class="blog__header">
+					<h2>Posts</h2>
+					<a href="/feed.xml" class="blog__header-feed">
+						<span class="visually-hidden">RSS feed</span>
+						<svg class="blog__header-icon" role="presentation">
+							<use href={`#icon-rss`}></use>
+						</svg>
+					</a>
+				</div>
 				<Posts posts={posts} />
 			</Window>
 		</div>
@@ -92,6 +100,31 @@ const url = Astro.url;
 	.tag__item {
 		margin-block-start: calc(var(--border-thickness) * -1);
 		margin-inline-start: calc(var(--border-thickness) * -1);
+	}
+
+	.blog__header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.blog__header-feed {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.5rem;
+		height: 2.5rem;
+		color: var(--color-text-accent);
+
+		&:hover {
+			color: currentColor;
+		}
+	}
+
+	.blog__header-icon {
+		width: var(--space-s);
+		height: var(--space-s);
+		vertical-align: center;
 	}
 
 	@media (min-width: 62em) and (min-height: 34em) {

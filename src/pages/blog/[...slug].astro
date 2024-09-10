@@ -1,9 +1,15 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
+import { getContainerRenderer as getMDXRenderer } from "@astrojs/mdx";
+import { experimental_AstroContainer as AstroContainer } from "astro/container";
+import { loadRenderers } from "astro:container";
+import { transform, html } from "ultrahtml";
+import swap from "ultrahtml/transformers/swap";
 import Layout from "@layouts/Layout.astro";
 import Window from "../../components/Window.svelte";
 import TableOfContents from "@components/TableOfContents.astro";
 import TableOfContentsObserver from "@components/TableOfContentsObserver.svelte";
+import { generate } from "unpic/transformers/cloudinary";
 
 export async function getStaticPaths() {
 	const posts = await getCollection("blog");
@@ -18,6 +24,29 @@ const post = Astro.props;
 const { Content, headings } = await post.render();
 const { title, description, pubDate } = post.data;
 const splitTitle = post.data.title.split(":");
+
+const renderers = await loadRenderers([getMDXRenderer()]);
+
+const container = await AstroContainer.create({ renderers });
+
+const rawContent = await container.renderToString(Content);
+
+const generateMarkup = (heading, props, children) => {
+	return html`<div class="heading-wrapper">
+		<${heading} id=${props.id}>${children}</${heading}>
+		<a href="#${props.id}" class="heading-wrapper__anchor">
+			<span class="heading-wrapper__anchor-symbol">#</span>
+			<span class="visually-hidden">Section titled ${children.value}</span>
+		</a>
+	</div>`;
+};
+
+const content = await transform(rawContent, [
+	swap({
+		h2: (props, children) => generateMarkup("h2", props, children),
+		h3: (props, children) => generateMarkup("h3", props, children),
+	}),
+]);
 ---
 
 <Layout title={title} description={description}>
@@ -35,82 +64,83 @@ const splitTitle = post.data.title.split(":");
 		</div>
 		<div class="layout__cell post__content">
 			<Window title="Post" order={1} titleTag="span" flex client:load>
-				<div class="window__body">
-					<div class="rte container">
-						<h1 class="text--base post__title">
+				<article class="rte container post__main">
+					<h1 class="text--base post__title">
+						{
+							splitTitle.length > 1 ? (
+								<>
+									<span class="post__title-pretitle h3">{splitTitle[0]}:</span>
+									<span class="post__title-main h1">{splitTitle[1]}</span>
+								</>
+							) : (
+								<span class="post__title-main h1">{title}</span>
+							)
+						}
+					</h1>
+					<p>
+						<time class="post__date">
 							{
-								splitTitle.length > 1 ? (
-									<>
-										<span class="post__title-pretitle h3">
-											{splitTitle[0]}:
-										</span>
-										<span class="post__title-main h1">{splitTitle[1]}</span>
-									</>
-								) : (
-									<span class="post__title-main h1">{title}</span>
-								)
+								new Intl.DateTimeFormat("en-GB", {
+									dateStyle: "long",
+								}).format(new Date(pubDate))
 							}
-						</h1>
-						<p>
-							<time class="post__date">
-								{
-									new Intl.DateTimeFormat("en-GB", {
-										dateStyle: "long",
-									}).format(new Date(pubDate))
-								}
-							</time>
-						</p>
-						<Content />
-					</div>
-				</div>
+						</time>
+					</p>
+					<Fragment set:html={content} />
+				</article>
 			</Window>
 		</div>
 	</div>
+
+	<style lang="scss">
+		.post__content {
+			min-width: 0;
+
+			&:global(window) {
+				width: 100%;
+			}
+		}
+
+		.post__title {
+			margin: 1rem 0 1rem;
+			line-height: 1;
+		}
+
+		.post__date {
+			display: block;
+			border-bottom: var(--border-thickness) dashed var(--color-text-accent);
+			margin-bottom: var(--space-xs);
+			color: var(--color-text-heading);
+			text-transform: uppercase;
+		}
+
+		.post__title:has(.post__title-pretitle) {
+			margin: 0.75rem 0 1rem;
+		}
+
+		.post__title-main {
+			display: block;
+			filter: drop-shadow(0 -0.125rem 0 var(--color-accent-text-1))
+				drop-shadow(0.125rem 0.125rem 0 var(--color-accent-text-2));
+			background: linear-gradient(
+				177deg,
+				var(--color-text-heading) 50%,
+				var(--color-text-subheading)
+			);
+			background-clip: text;
+			color: transparent;
+		}
+
+		.post__main {
+			:global(.rte) {
+			}
+		}
+
+		@media (min-width: 62em) and (min-height: 34em) {
+			.post {
+				grid-template-columns: 20rem 1fr;
+				gap: var(--space-s);
+			}
+		}
+	</style>
 </Layout>
-
-<style lang="scss">
-	.post__content {
-		min-width: 0;
-
-		&:global(window) {
-			width: 100%;
-		}
-	}
-
-	.post__title {
-		margin: 1rem 0 1rem;
-		line-height: 1;
-	}
-
-	.post__date {
-		display: block;
-		border-bottom: var(--border-thickness) dashed var(--color-text-accent);
-		margin-bottom: var(--space-xs);
-		color: var(--color-text-heading);
-		text-transform: uppercase;
-	}
-
-	.post__title:has(.post__title-pretitle) {
-		margin: 0.75rem 0 1rem;
-	}
-
-	.post__title-main {
-		display: block;
-		filter: drop-shadow(0 -0.125rem 0 var(--color-accent-text-1))
-			drop-shadow(0.125rem 0.125rem 0 var(--color-accent-text-2));
-		background: linear-gradient(
-			177deg,
-			var(--color-text-heading) 50%,
-			var(--color-text-subheading)
-		);
-		background-clip: text;
-		color: transparent;
-	}
-
-	@media (min-width: 62em) and (min-height: 34em) {
-		.post {
-			grid-template-columns: 20rem 1fr;
-			gap: var(--space-s);
-		}
-	}
-</style>
