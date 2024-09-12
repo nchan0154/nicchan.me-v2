@@ -1,0 +1,57 @@
+<div class="tinylytics-kudos button--ui focus-wrapper">
+  <svg class="tinylytics-kudos__sparkles sparkles">
+    <use href="#icon-sparkles" />
+  </svg>
+  <span class="tinylytics-kudos__wrapper button--ui__content">
+    <svg class="button__icon">
+      <use href="#icon-heart" />
+    </svg>
+    <button class="tinylytics_kudos">Loading...</button>
+  </span>
+</div>
+
+<style lang="scss">
+.tinylytics-kudos {
+  position: relative;
+  margin-top: var(--space-s);
+
+  &:has(.did_select) {
+    opacity: 1;
+  }
+}
+
+.tinylytics-kudos__sparkles {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: -25%;
+  width: 150%;
+  height: 3.5rem;
+  transform: translateY(-50%);
+  opacity: 0;
+  pointer-events: none;
+  transform: opacity 0.3s ease;
+}
+
+.tinylytics-kudos__wrapper {
+  display: flex;
+  align-items:center
+}
+
+.tinylytics_kudos {
+  background: transparent;
+  color: currentColor;
+  border: none;
+  outline: 0.25rem solid transparent;
+
+  &::before {
+    position: absolute;
+    inset: 0;
+  }
+}
+
+.button__icon {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+</style>

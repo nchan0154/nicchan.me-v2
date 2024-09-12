@@ -62,10 +62,15 @@
 				</li>
 			{/each}
 		</ul>
+		<span class="tinylytic-hits">
+			<span class="tinylytics_hits"></span> hits
+		</span>
 	</nav>
 </header>
 
 <style lang="scss">
+	@import "../styles/_mixins.scss";
+
 	.skip-link-wrapper {
 		position: fixed;
 		inset-block-start: 0;
@@ -106,6 +111,20 @@
 		font-size: 1rem;
 		background-color: var(--color-nav-link-bg);
 		color: var(--color-nav-link-text);
+	}
+
+	.tinylytic-hits {
+		display: inline-block;
+		--border-color: currentColor;
+		padding: var(--border-thickness);
+		width: fit-content;
+		margin-block-start: var(--space-s);
+		position: relative;
+		z-index: 1;
+		line-height: 1;
+		background-color: var(--color-lavender);
+		color: var(--color-violet-darker);
+		@include pixel-borders();
 	}
 
 	@media (min-height: 42em) {

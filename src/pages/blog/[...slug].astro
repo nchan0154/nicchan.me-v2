@@ -3,6 +3,7 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import Window from "../../components/Window.svelte";
 import TableOfContents from "@components/TableOfContents.astro";
+import Kudos from "@components/Kudos.astro";
 import TableOfContentsObserver from "@components/TableOfContentsObserver.svelte";
 import { generate } from "unpic/transformers/cloudinary";
 
@@ -271,7 +272,7 @@ document.addEventListener('astro:page-load', () => {
 							)
 						}
 					</h1>
-					<p>
+					<div class="post__meta">
 						<time class="post__date">
 							{
 								new Intl.DateTimeFormat("en-GB", {
@@ -279,10 +280,12 @@ document.addEventListener('astro:page-load', () => {
 								}).format(new Date(pubDate))
 							}
 						</time>
-					</p>
+					</div>
 					<heading-anchors>
 						<Content />
 					</heading-anchors>
+
+					<Kudos />
 				</article>
 			</Window>
 		</div>
@@ -302,10 +305,15 @@ document.addEventListener('astro:page-load', () => {
 			line-height: 1;
 		}
 
-		.post__date {
-			display: block;
+		.post__meta {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
 			border-bottom: var(--border-thickness) dashed var(--color-text-accent);
 			margin-bottom: var(--space-xs);
+		}
+
+		.post__date {
 			color: var(--color-text-heading);
 			text-transform: uppercase;
 		}

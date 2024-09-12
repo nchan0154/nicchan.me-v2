@@ -202,6 +202,7 @@
 
 	.windows__button {
 		--offset: calc(var(--border-thickness) * -1);
+		transition: opacity 0.3s ease;
 
 		& + & {
 			margin-inline-start: calc(var(--border-thickness) * -1);

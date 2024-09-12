@@ -10,6 +10,7 @@ interface Props {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
+const { DEV } = import.meta.env;
 ---
 
 <!-- Global Metadata -->
@@ -51,3 +52,8 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
 <link rel="alternate" type="application/rss+xml"
   title="Nic Chan"
   href="/feed.xml" />
+
+{!DEV && (
+	<script defer data-domain="nicchan.me" src="https://plausible.io/js/script.js"></script>
+	<script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+)}
