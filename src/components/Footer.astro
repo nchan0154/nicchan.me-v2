@@ -28,7 +28,7 @@ const ariaCurrent = Astro.url.pathname === "/" ? "page" : undefined;
 	.footer {
 		grid-column: span 2;
 		inline-size: 100%;
-		padding: var(--border-thickness);
+		padding: 0 var(--border-thickness);
 		background-color: var(--color-footer-bg);
 		overflow: hidden;
 		view-transition-name: footer;
@@ -41,6 +41,11 @@ const ariaCurrent = Astro.url.pathname === "/" ? "page" : undefined;
 	.footer__nav {
 		display: flex;
 		align-items: center;
+	}
+
+	.footer__home {
+		--offset: calc(var(--border-thickness) * -1);
+		white-space: nowrap;
 	}
 
 	.footer__divider {

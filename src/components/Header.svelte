@@ -31,6 +31,11 @@
 			link: "/about/",
 			icon: "about",
 		},
+		{
+			text: "Contact",
+			link: "/contact/",
+			icon: "contact",
+		},
 	];
 </script>
 
