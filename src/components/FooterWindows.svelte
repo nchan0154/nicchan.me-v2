@@ -11,7 +11,6 @@
 	onMount(addResizeObserver);
 
 	function addResizeObserver() {
-		disableButtons();
 		const observer = new ResizeObserver((entries) => {
 			if (!parent) return;
 			if (parent.clientWidth === parent.scrollWidth) {
@@ -23,6 +22,7 @@
 			}
 		});
 
+		disableButtons();
 		observer.observe(parent);
 	}
 
@@ -206,6 +206,10 @@
 
 		& + & {
 			margin-inline-start: calc(var(--border-thickness) * -1);
+		}
+
+		&--hidden {
+			opacity: 0;
 		}
 	}
 

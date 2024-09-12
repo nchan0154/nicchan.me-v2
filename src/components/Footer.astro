@@ -1,5 +1,6 @@
 ---
 import FooterWindows from "./FooterWindows.svelte";
+import Settings from './Settings.svelte'
 
 const ariaCurrent = Astro.url.pathname === "/" ? "page" : undefined;
 ---
@@ -19,8 +20,8 @@ const ariaCurrent = Astro.url.pathname === "/" ? "page" : undefined;
 			</span>
 		</a>
 		<span class="footer__divider"></span>
-
 		<FooterWindows client:load />
+		<Settings />
 	</nav>
 </footer>
 

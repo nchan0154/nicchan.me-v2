@@ -135,3 +135,11 @@ hr {
 ::view-transition-group(footer) {
 	z-index: 1000;
 }
+
+@media (prefers-reduced-motion: reduce) {
+	::view-transition-group(*),
+	::view-transition-old(*),
+	::view-transition-new(*) {
+		animation: none !important;
+	}
+}
