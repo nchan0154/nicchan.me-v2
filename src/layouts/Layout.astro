@@ -13,6 +13,43 @@ const { DEV } = import.meta.env;
 <!doctype html>
 <html lang="en-US">
 	<head>
+		<script>
+			function getColor(document) {
+				const localStorageValue = localStorage.getItem('preference-scheme');
+				if (localStorageValue) document.documentElement.setAttribute(`data-user-scheme`,localStorageValue.toLowerCase());
+			}
+			async function fontsLoaded() {
+				let ready = await document.fonts.ready;
+				if (ready) {
+					document.documentElement.setAttribute("fonts-loaded", true);
+				}
+			}
+			document.addEventListener('astro:before-swap', (event) => {
+				getColor(event.newDocument)
+			})
+			document.addEventListener('astro:after-swap', (event) => {
+				fontsLoaded(document);
+			})
+			getColor(document);
+			fontsLoaded();
+		</script>
+		<style is:global>
+			@media (prefers-reduced-motion: reduce) {
+				html:not([data-user-motion="enabled"])
+					&::view-transition-group(*),
+					&::view-transition-old(*),
+					&::view-transition-new(*) {
+						animation: none !important;
+					}
+
+					*,
+					*::before,
+					*::after {
+						transition-duration: 0.001s !important;
+					}
+				}
+			}
+			</style>
 		<BaseHead
 			title={title ? `${title} - Nic Chan` : "Nic Chan"}
 			description={description}
@@ -32,7 +69,7 @@ const { DEV } = import.meta.env;
 			<Sprites />
 		</div>
 	{!DEV &&
-		<script is:inline src="https://tinylytics.app/embed/Z9ywMUqZ1vg_4a7v_syz.js?kudos=custom&hits" defer></script>
+		<script is:inline src="https://tinylytics.app/embed/Z9ywMUqZ1vg_4a7v_syz.js?spa&kudos=custom&hits" defer></script>
 	}
 	</body>
 </html>
@@ -42,14 +79,3 @@ const { DEV } = import.meta.env;
 		display: none;
 	}
 </style>
-
-<script is:inline>
-	async function fontsLoaded() {
-		let ready = await document.fonts.ready;
-		if (ready) {
-			document.documentElement.setAttribute("fonts-loaded", true);
-		}
-	}
-
-	fontsLoaded();
-</script>

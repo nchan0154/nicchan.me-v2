@@ -122,7 +122,7 @@
 
 	blockquote {
 		margin: var(--space-xs) 0;
-		inset-inline-start: 1rem;
+		padding-inline-start: 1rem;
 		border-inline-start: calc(var(--border-thickness) * 2) solid
 			var(--color-text-accent);
 		color: var(--color-text-heading);

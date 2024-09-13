@@ -21,7 +21,7 @@ const ariaCurrent = Astro.url.pathname === "/" ? "page" : undefined;
 		</a>
 		<span class="footer__divider"></span>
 		<FooterWindows client:load />
-		<Settings />
+		<Settings client:load />
 	</nav>
 </footer>
 
@@ -31,17 +31,20 @@ const ariaCurrent = Astro.url.pathname === "/" ? "page" : undefined;
 		inline-size: 100%;
 		padding: 0 var(--border-thickness);
 		background-color: var(--color-footer-bg);
-		overflow: hidden;
 		view-transition-name: footer;
 
-		@media (max-height: 34em) {
+		@media (max-height: 38em) {
 			view-transition-name: none;
 		}
+	}
 
-		:global(.button--ui, .button--ui__content) {
-			--offset: 0;
-			height: 2rem;
-		}
+	:global(.footer .button--ui,.footer .button--ui__content) {
+		--offset: 0;
+		block-size: 2rem;
+	}
+
+	:global(.footer:has(.windows__list:empty)) {
+		padding: var(--border-thickness);
 	}
 
 	.footer__nav {

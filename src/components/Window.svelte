@@ -197,7 +197,7 @@
 			z-index: 2;
 		}
 
-		@include focus();
+		@include focus("focus-visible");
 	}
 
 	.window__wrapper--absolute {
@@ -258,6 +258,7 @@
 		font-size: 1.375rem;
 		text-overflow: ellipsis;
 		white-space: nowrap;
+		color: var(--color-window-header-text);
 		overflow: hidden;
 	}
 
@@ -283,7 +284,7 @@
 		}
 	}
 
-	@media (min-width: 62em) and (min-height: 34em) {
+	@media (min-width: 62em) and (min-height: 38em) {
 		.window__wrapper {
 			--window-spacing: 0;
 			max-block-size: 100%;
@@ -327,7 +328,7 @@
 			inline-size: 100%;
 		}
 
-		@media (min-height: 34em) and (max-width: 40em) {
+		@media (min-height: 38em) and (max-width: 38em) {
 			block-size: calc(100% - var(--bottom-padding));
 			inset-block-end: var(--bottom-padding);
 		}

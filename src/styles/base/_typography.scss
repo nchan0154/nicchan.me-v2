@@ -6,7 +6,6 @@ h4,
 	margin: 0;
 	font-family: var(--font-accent);
 	font-weight: 400;
-	letter-spacing: 0;
 }
 
 h1,
@@ -43,7 +42,6 @@ h3 + .ha {
 	color: var(--color-page-title);
 	filter: drop-shadow(0.0625em 0.0625em 0 var(--color-page-title-accent));
 	font-size: var(--title-font-size);
-	letter-spacing: 0;
 	background: linear-gradient(
 		135deg,
 		var(--color-page-title) 50%,
@@ -57,5 +55,4 @@ h3 + .ha {
 	font-family: var(--font-base);
 	font-size: 1.5rem;
 	line-height: 1.5;
-	letter-spacing: 0.02em;
 }

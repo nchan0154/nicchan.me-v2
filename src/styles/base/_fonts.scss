@@ -15,6 +15,14 @@
 }
 
 @font-face {
+	font-family: "Departure Mono";
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url("/fonts/DepartureMono-Regular.woff2") format("woff2");
+}
+
+@font-face {
 	font-family: "Calibri Fallback";
 	src: local(Calibri);
 	size-adjust: 98%;

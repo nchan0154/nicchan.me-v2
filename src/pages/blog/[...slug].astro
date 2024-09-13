@@ -64,7 +64,7 @@ class HeadingAnchors extends HTMLElement {
 	opacity: 0;
 }
 .${HeadingAnchors.classes.placeholder} {
-	opacity: .5;
+	opacity: .7;
 }
 .${HeadingAnchors.classes.anchor}:is(:focus-within, :hover) {
 	opacity: 1;
@@ -239,7 +239,6 @@ class HeadingAnchors extends HTMLElement {
 }
 
 document.addEventListener('astro:page-load', () => {
-	console.log('page-load')
 	HeadingAnchors.register();
 })
 </script>
@@ -335,7 +334,7 @@ document.addEventListener('astro:page-load', () => {
 			}
 		}
 
-		@media (min-width: 62em) and (min-height: 34em) {
+		@media (min-width: 62em) and (min-height: 38em) {
 			.post {
 				grid-template-columns: 20rem 1fr;
 				gap: var(--space-s);

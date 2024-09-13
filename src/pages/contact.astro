@@ -20,33 +20,60 @@ import ContactForm from "../components/ContactForm.astro";
 </script>
 
 <Layout title="Contact">
-	<h1 class="page-title">Contact</h1>	<Window
-		title="Information"
-		style="--max-width: 30rem; --block-start: 2rem; --inline-start: 2rem;"
-		isAbsolute={true}
-		order={0}
-		client:load>
-		<div class="stack rte">
-			<p>I may take some time to carefully count out a socially-appropriate number of exclamation point for my reply, but I will respond to all (non-spam) inquiries eventually. Feel free to use the form below or email me at <a href="mailto:nic@nicchan.me">nic@nicchan.me</a>.</p>
-    </div>
-	</Window>
-	<Window
-		title="Contact form"
-		order={1}
-		style="--max-width: 35rem; --width: 35rem; --color-window-bg: var(--color-panel-bg);  --block-start: 5rem; --inline-end: 10%;"
-		isAbsolute={true}
-		client:load>
-		<div id="contact-form-body">
-			<ContactForm/>
+	<div class="layout__grid contact">
+		<h1 class="page-title">Contact</h1>
+		<div class="layout__cell contact__info">
+			<Window
+				title="Information"
+				order={0}
+				client:load>
+				<div class="stack rte">
+					<p>I may take some time to carefully count out a socially-appropriate number of exclamation point for my reply, but I will respond to all (non-spam) inquiries eventually. Feel free to use my contact form or email me directly at <a href="mailto:nic@nicchan.me">nic@nicchan.me</a>.</p>
+				</div>
+			</Window>
 		</div>
-		<div id="contact-success" hidden>
-			<p class="h2">Your message has been received! I'll get back to you as soon as I can.</p>
+		<div class="layout__cell contact__form">
+			<Window
+				title="Contact form"
+				order={1}
+				style="--max-width:30rem; --width: 100%; --color-window-bg: var(--color-panel-bg); "
+				client:load>
+				<div id="contact-form-body" class="stack">
+					<ContactForm/>
+  				<p>All form fields marked with a * are required.</p>
+				</div>
+				<div id="contact-success" hidden>
+					<p class="h2">Your message has been received! I'll get back to you as soon as I can.</p>
+				</div>
+			</Window>
 		</div>
-	</Window>
+	</div>
 </Layout>
 
 <style>
 	#contact-form[hidden] {
 		display: none
+	}
+
+	@media (min-width: 62em) and (min-height: 38em) {
+		.contact {
+			grid-template-columns: 1fr max(30rem, 50%);
+			gap: 1rem;
+		}
+
+		.contact__info {
+			grid-column: 1;
+			grid-row: 2 / 4;
+			align-self: start;
+			justify-self: start;
+		}
+
+		.contact__form {
+			padding-inline-start: var(--space-l);
+			grid-column: 2;
+			grid-row: 1 / 3;
+			align-self: center;
+		}
+
 	}
 </style>

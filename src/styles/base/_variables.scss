@@ -28,15 +28,9 @@
 	--color-off-white: #fafafa;
 	--color-white: #fff;
 
-	--color-bg: var(--color-violet-darker);
-
-	--color-nav-link-bg: light-dark(var(--color-white), var(--color-violet));
-	--color-nav-link-text: light-dark(
-		var(--color-violet-darker),
-		var(--color-white)
-	);
-	--color-outline: light-dark(var(--color-violet-darker), var(--color-white));
-	--color-footer-bg: var(--color-gray);
+	// These don't have light-dark equivalents.
+	--color-bg: #716eba;
+	--color-settings-bg-hover: var(--color-teal-lightest);
 
 	--color-button-ui-bg: var(--color-gray-lighter);
 	--color-button-ui-shadow: var(--color-gray-darker);
@@ -44,122 +38,62 @@
 	--color-button-ui-text: var(--color-violet);
 	--color-button-ui-hover-bg: var(--color-mauve-lighter);
 
-	--color-card-bg: light-dark(
-		var(--color-gray-lighter),
-		var(--color-violet-lighter)
-	);
-	--color-card-shadow: light-dark(
-		var(--color-gray-darker),
-		var(--color-violet)
-	);
-	--color-card-highlight: light-dark(
-		var(--color-white),
-		var(--color-gray-darker)
-	);
-	--color-card-text: light-dark(var(--color-violet), var(--color-off-white));
-	--color-card-hover-bg: light-dark(
-		var(--color-mauve-lighter),
-		var(--color-violet)
-	);
-	--color-card-border: light-dark(
-		var(--color-violet-lighter),
-		var(--color-violet-darker)
-	);
-	--color-card-tag-bg: light-dark(var(--color-lavender), var(--color-violet));
-	--color-card-tag-text: light-dark(var(--color-black), var(--color-white));
-
 	--color-page-title: var(--color-violet-darker);
 	--color-page-title-accent: var(--color-teal-darker);
 	--color-page-subtitle-accent: var(--color-mauve-lighter);
 
-	--color-window-bg: light-dark(var(--color-white), var(--color-violet));
-	--color-window-text: light-dark(
-		var(--color-violet),
-		var(--color-lavender-lighter)
-	);
+	// These have light-dark equivalents.
+	--color-nav-link-bg: var(--color-mauve-lightest);
+	--color-nav-link-text: var(--color-violet);
+	--color-outline: var(--color-violet-darker);
+	--color-footer-bg: var(--color-gray);
+	--color-settings-bg: var(--color-gray-lighter);
+
+	--color-card-bg: var(--color-gray-lighter);
+	--color-card-shadow: var(--color-gray-darker);
+	--color-card-highlight: var(--color-white);
+	--color-card-text: var(--color-violet);
+	--color-card-hover-bg: var(--color-mauve-lighter);
+	--color-card-border: var(--color-violet-lighter);
+	--color-card-tag-bg: var(--color-lavender);
+	--color-card-tag-text: var(--color-black);
+
+	--color-window-bg: var(--color-white);
+	--color-window-text: var(--color-violet);
 	--color-window-header-bg: linear-gradient(
 		to right,
-		light-dark(var(--color-lavender), var(--color-magenta-darker)),
-		light-dark(var(--color-teal), var(--color-teal-darkest))
+		var(--color-lavender),
+		var(--color-teal)
 	);
-	--color-window-header-text: var(
-		var(--color-black),
-		var(--color-window-header-text)
-	);
+	--color-window-header-text: var(--color-violet);
 
-	--color-panel-bg: light-dark(var(--color-gray), var(--color-violet-lighter));
-	--color-panel-input-bg: light-dark(
-		var(--color-gray-lighter),
-		var(--color-violet)
-	);
+	--color-panel-bg: var(--color-gray);
+	--color-panel-input-bg: var(--color-gray-lighter);
 
-	--color-testimonial-name: light-dark(
-		var(--color-violet-lighter),
-		var(--color-magenta-lighter)
-	);
-	--color-testimonial-bg: light-dark(
-		var(--color-mauve-lightest),
-		var(--color-violet-lighter)
-	);
-	--color-response-bg: light-dark(
-		var(--color-teal-lighter),
-		var(--color-teal-darkest)
-	);
-	--color-response-name: light-dark(
-		var(--color-violet),
-		var(--color-teal-lighter)
-	);
+	--color-testimonial-name: var(--color-violet-lighter);
+	--color-testimonial-bg: var(--color-mauve-lightest);
+	--color-response-bg: var(--color-teal-lighter);
+	--color-response-name: var(--color-violet);
 
-	--color-link-underline: light-dark(
-		var(--color-magenta),
-		var(--color-mauve-lighter)
-	);
+	--color-link-underline: var(--color-magenta);
 	--color-text-accent: var(--color-mauve);
-	--color-text-accent-bg: light-dark(
-		var(--color-mauve-lighter),
-		var(--color-mauve-darker)
-	);
-	--color-text-heading: light-dark(
-		var(--color-violet-lighter),
-		var(--color-mauve-lightest)
-	);
-	--color-text-subheading: light-dark(
-		var(--color-magenta-darker),
-		var(--color-magenta-lighter)
-	);
-	--color-text-highlight: light-dark(
-		var(--color-teal-lighter),
-		var(--color-violet-darker)
-	);
-	--color-box-border: light-dark(var(--color-lavender), var(--color-black));
-	--color-box-bg: light-dark(
-		var(--color-off-white),
-		var(--color-violet-darker)
-	);
-	--color-box-text: light-dark(
-		var(--color-violet-lighter),
-		var(--color-lavender)
-	);
-	--color-list-bg-focus: light-dark(
-		var(--color-magenta-lighter),
-		var(--color-teal-darkest)
-	);
+	--color-text-accent-bg: var(--color-mauve-lighter);
+	--color-text-heading: var(--color-violet-lighter);
+	--color-text-subheading: var(--color-magenta-darker);
+	--color-text-highlight: var(--color-teal-lighter);
+	--color-box-border: var(--color-lavender);
+	--color-box-bg: var(--color-off-white);
+	--color-box-text: var(--color-violet-lighter);
+	--color-list-bg-focus: var(--color-magenta-lighter);
 
-	--color-accent-text-1: light-dark(
-		var(--color-teal-lighter),
-		var(--color-teal-darkest)
-	);
-	--color-accent-text-2: light-dark(
-		var(--color-magenta-lighter),
-		var(--color-magenta-darker)
-	);
+	--color-accent-text-1: var(--color-teal-lighter);
+	--color-accent-text-2: var(--color-magenta-lighter);
 
-	--font-accent: "Sysfont", monospace;
-	--font-pixel: "W95fa", "Ubuntu Fallback", source-sans-pro, sans-serif;
-	--base-letter-spacing: 0;
-	--font-fallback: "Seravek Fallback", "Gill Sans Nova Fallback",
+	--font-accent-fallback: "Seravek Fallback", "Gill Sans Nova Fallback",
 		"Ubuntu Fallback", "Calibri Fallback", source-sans-pro, sans-serif;
-	--fallback-letter-spacing: 0;
+	--font-pixel-fallback: "Seravek Fallback", "Gill Sans Nova Fallback",
+		"Ubuntu Fallback", "Calibri Fallback", source-sans-pro, sans-serif;
+	--font-code-fallback: monospace;
 	--font-pre: var(--font-pixel);
 
 	--font-base: var(--font-pixel);
@@ -188,11 +122,6 @@
 		--text-padding: 1rem;
 	}
 }
-
-[fonts-loaded="true"] {
-	--base-letter-spacing: 0.02em;
-}
-
 @mixin dark-code {
 	.astro-code,
 	.astro-code span {
@@ -205,18 +134,156 @@
 	}
 }
 
-@media (prefers-color-scheme: dark) {
-	@include dark-code;
+@supports (color-scheme: light dark) {
 	:root {
+		--color-nav-link-bg: light-dark(
+			var(--color-mauve-lightest),
+			var(--color-violet)
+		);
+		--color-nav-link-text: light-dark(var(--color-violet), var(--color-white));
+		--color-outline: light-dark(var(--color-violet-darker), var(--color-white));
+		--color-settings-bg: light-dark(
+			var(--color-gray-lighter),
+			var(--color-gray)
+		);
+
+		--color-card-bg: light-dark(
+			var(--color-gray-lighter),
+			var(--color-violet-lighter)
+		);
+		--color-card-shadow: light-dark(
+			var(--color-gray-darker),
+			var(--color-violet)
+		);
+		--color-card-highlight: light-dark(
+			var(--color-white),
+			var(--color-gray-darker)
+		);
+		--color-card-text: light-dark(var(--color-violet), var(--color-off-white));
+		--color-card-hover-bg: light-dark(
+			var(--color-mauve-lighter),
+			var(--color-violet)
+		);
+		--color-card-border: light-dark(
+			var(--color-violet-lighter),
+			var(--color-violet-darker)
+		);
+		--color-card-tag-bg: light-dark(var(--color-lavender), var(--color-violet));
+		--color-card-tag-text: light-dark(var(--color-black), var(--color-white));
+
+		--color-window-bg: light-dark(var(--color-white), var(--color-violet));
+		--color-window-text: light-dark(
+			var(--color-violet),
+			var(--color-lavender-lighter)
+		);
+		--color-window-header-bg: linear-gradient(
+			to right,
+			light-dark(var(--color-lavender), var(--color-magenta-darker)),
+			light-dark(var(--color-teal), var(--color-teal-darkest))
+		);
+		--color-window-header-text: light-dark(
+			var(--color-violet),
+			var(--color-white)
+		);
+
+		--color-panel-bg: light-dark(
+			var(--color-gray),
+			var(--color-violet-lighter)
+		);
+		--color-panel-input-bg: light-dark(
+			var(--color-gray-lighter),
+			var(--color-violet)
+		);
+
+		--color-testimonial-name: light-dark(
+			var(--color-violet-lighter),
+			var(--color-magenta-lighter)
+		);
+		--color-testimonial-bg: light-dark(
+			var(--color-mauve-lightest),
+			var(--color-violet-lighter)
+		);
+		--color-response-bg: light-dark(
+			var(--color-teal-lighter),
+			var(--color-teal-darkest)
+		);
+		--color-response-name: light-dark(
+			var(--color-violet),
+			var(--color-teal-lighter)
+		);
+
+		--color-link-underline: light-dark(
+			var(--color-magenta),
+			var(--color-mauve-lighter)
+		);
+		--color-text-accent: var(--color-mauve);
+		--color-text-accent-bg: light-dark(
+			var(--color-mauve-lighter),
+			var(--color-mauve-darker)
+		);
+		--color-text-heading: light-dark(
+			var(--color-violet-lighter),
+			var(--color-mauve-lightest)
+		);
+		--color-text-subheading: light-dark(
+			var(--color-magenta-darker),
+			var(--color-magenta-lighter)
+		);
+		--color-text-highlight: light-dark(
+			var(--color-teal-lighter),
+			var(--color-violet-darker)
+		);
+		--color-box-border: light-dark(var(--color-lavender), var(--color-black));
+		--color-box-bg: light-dark(
+			var(--color-off-white),
+			var(--color-violet-darker)
+		);
+		--color-box-text: light-dark(
+			var(--color-violet-lighter),
+			var(--color-lavender)
+		);
+		--color-list-bg-focus: light-dark(
+			var(--color-magenta-lighter),
+			var(--color-teal-darkest)
+		);
+
+		--color-accent-text-1: light-dark(
+			var(--color-teal-lighter),
+			var(--color-teal-darkest)
+		);
+		--color-accent-text-2: light-dark(
+			var(--color-magenta-lighter),
+			var(--color-magenta-darker)
+		);
+	}
+
+	@media (prefers-color-scheme: dark) {
+		html:not([data-user-scheme="light"]) {
+			@include dark-code;
+		}
+		:root {
+			color-scheme: dark;
+		}
+	}
+
+	[data-user-scheme="dark"] {
+		@include dark-code;
 		color-scheme: dark;
+	}
+
+	[data-user-scheme="light"] {
+		color-scheme: light;
 	}
 }
 
-[data-user-color-scheme="dark"] {
-	@include dark-code;
-	color-scheme: dark;
+[data-user-font="antialiased"] {
+	--font-accent: var(--font-accent-fallback);
+	--font-pixel: var(--font-pixel-fallback);
+	--font-code: var(--font-code-fallback);
 }
 
-[data-user-color-scheme="light"] {
-	color-scheme: light;
+html[fonts-loaded="true"]:not([data-user-font="antialiased"]) {
+	--font-accent: "Sysfont", var(--font-accent-fallback);
+	--font-pixel: "W95fa", var(--font-pixel-fallback);
+	--font-code: "Departure Mono", var(--font-code-fallback);
 }

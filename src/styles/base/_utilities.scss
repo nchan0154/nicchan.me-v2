@@ -6,6 +6,9 @@
 	position: absolute;
 	white-space: nowrap;
 	inline-size: 1px;
+	// should be unneccessary but fixes weird false positive in WAVE
+	color: black;
+	background-color: white;
 }
 
 .focus-wrapper {

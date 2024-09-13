@@ -6,6 +6,7 @@
     <svg class="button__icon">
       <use href="#icon-heart" />
     </svg>
+    <span class="visually-hidden">Post likes:</span>
     <button class="tinylytics_kudos">Loading...</button>
   </span>
 </div>
@@ -13,7 +14,7 @@
 <style lang="scss">
 .tinylytics-kudos {
   position: relative;
-  margin-block-start: var(--space-s);
+  margin-block: var(--space-s) 0.5rem;
 
   &:has(.did_select) {
     pointer-events: none;

@@ -20,7 +20,7 @@
 	display: grid;
 }
 
-@media (min-height: 34em) {
+@media (min-height: 38em) {
 	html {
 		block-size: 100%;
 	}
@@ -45,7 +45,7 @@
 	}
 }
 
-@media (min-width: 40em) {
+@media (min-width: 38em) {
 	.layout {
 		grid-template-columns: 6.5rem 1fr;
 	}
@@ -65,7 +65,7 @@
 	}
 }
 
-@media (min-width: 62em) and (min-height: 34em) {
+@media (min-width: 62em) and (min-height: 38em) {
 	.layout__grid {
 		block-size: 100%;
 	}

@@ -106,9 +106,10 @@
 
 	.nav__link-text {
 		display: inline-block;
-		margin-block-start: 0.5rem;
+		margin-block-start: 0.25rem;
 		padding: 0 0.25rem 0;
 		font-size: 1rem;
+		line-height: 1.3;
 		background-color: var(--color-nav-link-bg);
 		color: var(--color-nav-link-text);
 	}
@@ -118,7 +119,7 @@
 		--border-color: currentColor;
 		padding: var(--border-thickness);
 		inline-size: fit-content;
-		margin-block-start: var(--space-s);
+		margin-block-start: 0.5rem;
 		position: relative;
 		z-index: 1;
 		line-height: 1;
@@ -131,7 +132,13 @@
 		}
 	}
 
-	@media (min-height: 42em) {
+	@media (min-height: 38em) {
+		.nav__item + .nav__item {
+			margin-block-start: 1rem;
+		}
+	}
+
+	@media (min-height: 45em) {
 		.nav__icon {
 			inline-size: 3rem;
 			block-size: 3rem;

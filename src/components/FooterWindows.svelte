@@ -51,7 +51,7 @@
 			};
 			if (isMinimized) {
 				if (
-					!window.matchMedia("(min-width: 62em) and (min-height: 34em)").matches
+					!window.matchMedia("(min-width: 62em) and (min-height: 38em)").matches
 				)
 					setTimeout(() => {
 						document.getElementById(customWindow.id).scrollIntoView();
@@ -179,7 +179,7 @@
 <style lang="scss">
 	.windows__list {
 		display: flex;
-		width: 100%;
+		inline-size: 100%;
 		margin: 0;
 		margin-inline-end: -1px;
 		padding: var(--border-thickness) 1px var(--border-thickness) 0;
@@ -222,12 +222,12 @@
 
 	.windows__button-icon {
 		display: block;
-		width: 0.75rem;
-		height: 0.75rem;
+		inline-size: 0.75rem;
+		block-size: 0.75rem;
 
 		&--reverse {
 			transform: rotate(180deg);
-			margin-left: 0.0625rem;
+			margin-inline-start: 0.0625rem;
 		}
 	}
 </style>
