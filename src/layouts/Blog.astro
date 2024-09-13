@@ -76,7 +76,7 @@ const url = Astro.url;
 		display: inline-block;
 		--border-color: currentColor;
 		padding: calc(var(--border-thickness) * 2);
-		width: fit-content;
+		inline-size: fit-content;
 		position: relative;
 		z-index: 1;
 		background-color: var(--color-lavender);
@@ -108,8 +108,8 @@ const url = Astro.url;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: 2.5rem;
-		height: 2.5rem;
+		inline-size: 2.5rem;
+		block-size: 2.5rem;
 		color: var(--color-text-accent);
 
 		&:hover {
@@ -118,8 +118,8 @@ const url = Astro.url;
 	}
 
 	.blog__header-icon {
-		width: var(--space-s);
-		height: var(--space-s);
+		inline-size: var(--space-s);
+		block-size: var(--space-s);
 		vertical-align: center;
 	}
 
@@ -141,7 +141,7 @@ const url = Astro.url;
 		}
 
 		.blog__webring {
-			padding-left: var(--space-l);
+			padding-inline-start: var(--space-l);
 			grid-row: 3 / 4;
 			align-self: start;
 			justify-self: start;
@@ -150,10 +150,6 @@ const url = Astro.url;
 		.blog__posts {
 			grid-column: 1;
 			grid-row: 2 / 4;
-
-			:global(.window__wrapper) {
-				margin-left: 0;
-			}
 		}
 	}
 </style>

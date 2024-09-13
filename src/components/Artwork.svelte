@@ -22,7 +22,7 @@
 <style lang="scss">
 	.artwork__caption {
 		position: absolute;
-		top: 0;
+		inset-block-start: 0;
 		margin-block-start: 0.5rem;
 		font-size: 1rem;
 		text-align: center;
@@ -45,11 +45,11 @@
 		:global(.window__wrapper--maximized:not(.window__wrapper--minimized)) & {
 			--text-padding: var(--space-xs);
 			max-height: calc(100vh - 9.5rem);
-			max-width: 100%;
+			max-inline-size: 100%;
 			margin-inline: auto;
 			aspect-ratio: initial;
-			width: auto;
-			height: auto;
+			inline-size: auto;
+			block-size: auto;
 		}
 	}
 </style>

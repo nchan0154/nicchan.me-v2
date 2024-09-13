@@ -38,7 +38,7 @@ h3 + .ha {
 .page-title {
 	display: inline-block;
 	margin-block-end: 0.5rem;
-	width: fit-content;
+	inline-size: fit-content;
 	line-height: 1;
 	color: var(--color-page-title);
 	filter: drop-shadow(0.0625em 0.0625em 0 var(--color-page-title-accent));

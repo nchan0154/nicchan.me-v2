@@ -22,12 +22,12 @@
 
 @media (min-height: 34em) {
 	html {
-		height: 100%;
+		block-size: 100%;
 	}
 
 	.layout {
-		height: 100vh;
-		height: 100dvh;
+		block-size: 100vh;
+		block-size: 100dvh;
 	}
 
 	.layout__header {
@@ -35,8 +35,8 @@
 	}
 
 	.layout__main {
-		height: 100%;
-		min-height: 0;
+		block-size: 100%;
+		min-block-size: 0;
 		overflow-y: auto;
 
 		&:has(.window__wrapper--maximized) {
@@ -52,7 +52,7 @@
 
 	.layout__main {
 		position: relative;
-		min-height: 0;
+		min-block-size: 0;
 		padding-block: var(--page-block-padding);
 		padding-inline: var(--page-inline-padding);
 		overflow-x: hidden;
@@ -67,7 +67,7 @@
 
 @media (min-width: 62em) and (min-height: 34em) {
 	.layout__grid {
-		height: 100%;
+		block-size: 100%;
 	}
 
 	.layout__cell {

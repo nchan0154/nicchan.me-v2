@@ -95,10 +95,10 @@ const Element = Astro.slots.has("figcaption") ? "figure" : "div";
 			--height: 13.125rem;
 			position: absolute;
 			display: block;
-			left: 10%;
-			width: 4.5rem;
-			top: var(--height);
-			bottom: var(--height);
+			inset-inline-start: 10%;
+			inline-size: 4.5rem;
+			inset-block-start: var(--height);
+			inset-block-end: var(--height);
 			color: var(--background-color);
 			background-color: currentColor;
 			z-index: -1;
@@ -107,8 +107,8 @@ const Element = Astro.slots.has("figcaption") ? "figure" : "div";
 		.work-image__accent-top,
 		.work-image__accent-bottom {
 			position: absolute;
-			height: 13.125rem;
-			width: 4.5rem;
+			block-size: 13.125rem;
+			inline-size: 4.5rem;
 			z-index: -1;
 		}
 
@@ -117,7 +117,7 @@ const Element = Astro.slots.has("figcaption") ? "figure" : "div";
 		}
 
 		.work-image__accent-bottom {
-			top: 100%;
+			inset-block-start: 100%;
 			transform: rotate(180deg);
 		}
 
@@ -147,8 +147,8 @@ const Element = Astro.slots.has("figcaption") ? "figure" : "div";
 			}
 
 			.work-image__accent {
-				right: 10%;
-				left: auto;
+				inset-inline-end: 10%;
+				inset-inline-start: auto;
 			}
 		}
 
@@ -168,8 +168,8 @@ const Element = Astro.slots.has("figcaption") ? "figure" : "div";
 
 	@container work-image (min-width: 62em) {
 		.work-image--multiple .work-image__accent {
-			top: 0;
-			bottom: 0;
+			inset-block-start: 0;
+			inset-block-end: 0;
 		}
 	}
 </style>

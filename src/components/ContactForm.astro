@@ -48,25 +48,25 @@
     @include focus('focus-within');
   }
   .contact-form__row {
-    margin-top: 0.5rem;
+    margin-block-start: 0.5rem;
   }
 
   .contact-form__input {
-    min-width: 0;
-    width: 100%;
+    min-inline-size: 0;
+    inline-size: 100%;
     padding: 0.5rem;
     font-size: 1.25rem;
     font-family: inherit;
     color: currentColor;
-    background-color: var(--color-contact-input-bg);
+    background-color: var(--color-panel-input-bg);
     @include pixel-borders();
     border: none;
-    outline: var(--border-thickness) inset var(--color-contact-input-bg);
+    outline: var(--border-thickness) inset var(--color-panel-input-bg);
     outline-offset: calc(var(--border-thickness) * -1);
 
     &--textarea {
       display: block;
-      min-height: 6rem;
+      min-block-size: 6rem;
     }
   }
 

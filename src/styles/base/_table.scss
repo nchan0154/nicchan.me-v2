@@ -1,7 +1,7 @@
 table {
 	--border-color: var(--color-box-border);
 	border-collapse: collapse;
-	width: 100%;
+	inline-size: 100%;
 	@include pixel-borders();
 
 	th {

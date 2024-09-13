@@ -174,8 +174,8 @@
 		--offset: calc(var(--border-thickness) * -1);
 		--window-spacing: var(--window-margin-block-start);
 		display: flex;
-		max-width: var(--max-width);
-		max-width: round(var(--max-width), 1px);
+		max-inline-size: var(--max-width);
+		max-inline-size: round(var(--max-width), 1px);
 		font-size: 1.5rem;
 		transform: translate3d(0, 0, 0), scale(1.0000001);
 		-webkit-backface-visibility: hidden;
@@ -201,7 +201,7 @@
 	}
 
 	.window__wrapper--absolute {
-		max-height: none;
+		max-block-size: none;
 	}
 
 	:global(astro-island)
@@ -224,8 +224,8 @@
 		padding: var(--border-thickness);
 		background-color: var(--color-window-bg);
 		color: var(--color-window-text);
-		min-width: 0;
-		width: var(--width);
+		min-inline-size: 0;
+		inline-size: var(--width);
 		@include pixel-borders();
 	}
 
@@ -250,7 +250,7 @@
 
 	.window__title-wrapper {
 		flex-shrink: 1;
-		min-width: 0;
+		min-inline-size: 0;
 	}
 
 	.window__title {
@@ -262,8 +262,8 @@
 	}
 
 	.window__body {
-		height: 100%;
-		max-height: 100%;
+		block-size: 100%;
+		max-block-size: 100%;
 		padding: var(--text-padding);
 		overflow-y: auto;
 		animation: none;
@@ -286,17 +286,20 @@
 	@media (min-width: 62em) and (min-height: 34em) {
 		.window__wrapper {
 			--window-spacing: 0;
-			max-height: 100%;
-			max-width: var(--large-max-width, var(--max-width));
-			width: var(--width, fit-content);
-			height: fit-content;
-			margin-left: auto;
-			margin-right: auto;
+			max-block-size: 100%;
+			max-inline-size: var(--large-max-width, var(--max-width));
+			inline-size: var(--width, fit-content);
+			block-size: fit-content;
+			margin-inline-start: auto;
+			margin-inline-end: auto;
 		}
 
 		.window__wrapper--absolute {
 			position: absolute;
-			max-height: var(--max-height, calc(100% - var(--page-block-padding) * 2));
+			max-block-size: var(
+				--max-height,
+				calc(100% - var(--page-block-padding) * 2)
+			);
 			margin: 0;
 			inset-inline-start: var(--inline-start, auto);
 			inset-inline-end: var(--inline-end, auto);
@@ -310,22 +313,22 @@
 
 	.window__wrapper--maximized {
 		position: absolute;
-		max-height: 100%;
+		max-block-size: 100%;
 		margin: 0;
 		inset: 0;
-		width: 100%;
-		max-width: none;
-		height: 100%;
+		inline-size: 100%;
+		max-inline-size: none;
+		block-size: 100%;
 		inset-block-end: 0;
 		padding-block-end: 0;
 		z-index: 10;
 
 		.window {
-			width: 100%;
+			inline-size: 100%;
 		}
 
 		@media (min-height: 34em) and (max-width: 40em) {
-			height: calc(100% - var(--bottom-padding));
+			block-size: calc(100% - var(--bottom-padding));
 			inset-block-end: var(--bottom-padding);
 		}
 	}
@@ -334,8 +337,8 @@
 		position: absolute;
 		margin: 0;
 		inset: auto auto 0 0;
-		width: 0;
-		height: 0;
+		inline-size: 0;
+		block-size: 0;
 		inset-block-start: auto;
 		visibility: hidden;
 		overflow: hidden;

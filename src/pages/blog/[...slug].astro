@@ -284,7 +284,6 @@ document.addEventListener('astro:page-load', () => {
 					<heading-anchors>
 						<Content />
 					</heading-anchors>
-
 					<Kudos />
 				</article>
 			</Window>
@@ -294,10 +293,6 @@ document.addEventListener('astro:page-load', () => {
 	<style lang="scss">
 		.post__content {
 			min-width: 0;
-
-			&:global(window) {
-				width: 100%;
-			}
 		}
 
 		.post__title {
@@ -309,8 +304,8 @@ document.addEventListener('astro:page-load', () => {
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			border-bottom: var(--border-thickness) dashed var(--color-text-accent);
-			margin-bottom: var(--space-xs);
+			border-block-end: var(--border-thickness) dashed var(--color-text-accent);
+			margin-block-end: var(--space-xs);
 		}
 
 		.post__date {

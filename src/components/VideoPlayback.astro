@@ -60,7 +60,7 @@ const { aspectRatio, source } = Astro.props;
 
 	input {
 		display: block;
-		width: 100%;
+		inline-size: 100%;
 		--border-color: var(--color-violet-lighter);
 		background-color: var(--color-window-bg);
 		color: var(--color-window-text);
@@ -68,7 +68,7 @@ const { aspectRatio, source } = Astro.props;
 
 	.button--ui,
 	.button--ui__content {
-		min-height: 100%;
+		min-block-size: 100%;
 		line-height: 1.5;
 	}
 </style>

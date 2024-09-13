@@ -87,11 +87,8 @@
 		var(--color-window-header-text)
 	);
 
-	--color-contact-bg: light-dark(
-		var(--color-gray),
-		var(--color-violet-lighter)
-	);
-	--color-contact-input-bg: light-dark(
+	--color-panel-bg: light-dark(var(--color-gray), var(--color-violet-lighter));
+	--color-panel-input-bg: light-dark(
 		var(--color-gray-lighter),
 		var(--color-violet)
 	);

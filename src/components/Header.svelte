@@ -100,7 +100,7 @@
 	.nav__icon {
 		display: block;
 		inline-size: 2rem;
-		height: 2rem;
+		block-size: 2rem;
 		margin: 0 auto;
 	}
 
@@ -117,7 +117,7 @@
 		display: inline-block;
 		--border-color: currentColor;
 		padding: var(--border-thickness);
-		width: fit-content;
+		inline-size: fit-content;
 		margin-block-start: var(--space-s);
 		position: relative;
 		z-index: 1;
@@ -134,7 +134,7 @@
 	@media (min-height: 42em) {
 		.nav__icon {
 			inline-size: 3rem;
-			height: 3rem;
+			block-size: 3rem;
 		}
 	}
 </style>

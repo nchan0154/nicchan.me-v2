@@ -49,15 +49,15 @@
 	.work__item {
 		container-type: inline-size;
 		container-name: work;
-		height: 100%;
+		block-size: 100%;
 	}
 
 	.work__card {
-		height: 100%;
+		block-size: 100%;
 	}
 
 	.work__content {
-		height: 100%;
+		block-size: 100%;
 		padding: 0;
 	}
 
@@ -90,7 +90,7 @@
 		display: flex;
 		align-items: center;
 		margin: auto;
-		width: var(--max-width);
+		inline-size: var(--max-width);
 		aspect-ratio: 4 / 3;
 		margin-block: 0.5rem;
 
@@ -125,13 +125,13 @@
 
 		.work__image-background {
 			flex: 1 1 12rem;
-			min-width: 12rem;
+			min-inline-size: 12rem;
 			align-self: stretch;
 		}
 
 		.work__image-wrapper {
 			--max-width: 80%;
-			max-height: none;
+			max-block-size: none;
 		}
 	}
 </style>
