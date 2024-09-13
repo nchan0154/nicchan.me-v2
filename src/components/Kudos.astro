@@ -16,7 +16,12 @@
   margin-top: var(--space-s);
 
   &:has(.did_select) {
-    opacity: 1;
+    pointer-events: none;
+    cursor: not-allowed;
+
+    .tinylytics-kudos__sparkles {
+      opacity: 1;
+    }
   }
 }
 
