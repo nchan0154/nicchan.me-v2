@@ -9,7 +9,7 @@ interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
+const { title, description = "Nic Chan is a front-end web developer who specializes in design systems, accessibility and Shopify."} = Astro.props;
 const { DEV } = import.meta.env;
 ---
 
@@ -48,7 +48,6 @@ const { DEV } = import.meta.env;
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
 <link rel="alternate" type="application/rss+xml"
   title="Nic Chan"
   href="/feed.xml" />

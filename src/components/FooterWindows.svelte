@@ -20,10 +20,9 @@
 				backwards.classList.remove("windows__button--hidden");
 				forwards.classList.remove("windows__button--hidden");
 			}
+			disableButtons();
 		});
-
-		disableButtons();
-		observer.observe(parent);
+		observer.observe(document.documentElement);
 	}
 
 	function onWindowClick(window) {
@@ -102,9 +101,13 @@
 		// numbers aren't precise as there are some minor rounding issues with scrollIntoView
 		if (parent.scrollLeft + parent.clientWidth + 1 > parent.scrollWidth) {
 			forwards.setAttribute("aria-disabled", true);
+		} else {
+			forwards.removeAttribute("aria-disabled");
 		}
 		if (parent.scrollLeft < 1) {
 			backwards.setAttribute("aria-disabled", true);
+		} else {
+			backwards.removeAttribute("aria-disabled");
 		}
 	}
 
@@ -151,7 +154,7 @@
 	{/each}
 </ul>
 <button
-	class="windows__button button--ui windows__button--hidden"
+	class="windows__button button--ui windows__button--hidden windows__button--arrow"
 	on:click={onScrollBackwards}
 	bind:this={backwards}>
 	<span class="button--ui__content">
@@ -162,7 +165,7 @@
 	</span>
 </button>
 <button
-	class="windows__button button--ui windows__button--hidden"
+	class="windows__button button--ui windows__button--hidden windows__button--arrow"
 	on:click={onScrollForwards}
 	bind:this={forwards}>
 	<span class="button--ui__content">
@@ -201,14 +204,14 @@
 	}
 
 	.windows__button {
-		--offset: calc(var(--border-thickness) * -1);
-		transition: opacity 0.3s ease;
+		transition: all 0.3s ease;
 
 		& + & {
 			margin-inline-start: calc(var(--border-thickness) * -1);
 		}
 
 		&--hidden {
+			visibility: hidden;
 			opacity: 0;
 		}
 	}
@@ -218,11 +221,13 @@
 	}
 
 	.windows__button-icon {
+		display: block;
 		width: 0.75rem;
 		height: 0.75rem;
 
 		&--reverse {
 			transform: rotate(180deg);
+			margin-left: 0.0625rem;
 		}
 	}
 </style>

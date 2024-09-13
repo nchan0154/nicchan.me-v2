@@ -37,6 +37,11 @@ const ariaCurrent = Astro.url.pathname === "/" ? "page" : undefined;
 		@media (max-height: 34em) {
 			view-transition-name: none;
 		}
+
+		:global(.button--ui, .button--ui__content) {
+			--offset: 0;
+			height: 2rem;
+		}
 	}
 
 	.footer__nav {
@@ -45,7 +50,6 @@ const ariaCurrent = Astro.url.pathname === "/" ? "page" : undefined;
 	}
 
 	.footer__home {
-		--offset: calc(var(--border-thickness) * -1);
 		white-space: nowrap;
 	}
 
