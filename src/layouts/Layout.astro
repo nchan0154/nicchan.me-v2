@@ -29,6 +29,8 @@ const { DEV } = import.meta.env;
 			})
 			document.addEventListener('astro:after-swap', (event) => {
 				fontsLoaded(document);
+			})
+			document.addEventListener('astro:page-load', (event) => {
 				if (window.tinylytics) {
 					window.tinylytics.triggerUpdate();
 				}

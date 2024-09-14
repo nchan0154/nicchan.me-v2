@@ -88,6 +88,7 @@
 
 	--color-accent-text-1: var(--color-teal-lighter);
 	--color-accent-text-2: var(--color-magenta-lighter);
+	--color-sparkle: var(--color-magenta);
 
 	--font-accent-fallback: "Seravek Fallback", "Gill Sans Nova Fallback",
 		"Ubuntu Fallback", "Calibri Fallback", source-sans-pro, sans-serif;
@@ -254,6 +255,10 @@
 		--color-accent-text-2: light-dark(
 			var(--color-magenta-lighter),
 			var(--color-magenta-darker)
+		);
+		--color-sparkle: light-dark(
+			var(--color-magenta),
+			var(--color-lavender-lighter)
 		);
 	}
 

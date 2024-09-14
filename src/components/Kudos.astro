@@ -1,5 +1,9 @@
+---
+const {offsetSparkles} = Astro.props
+---
+
 <div class="tinylytics-kudos button--ui focus-wrapper">
-  <svg class="tinylytics-kudos__sparkles sparkles">
+  <svg class={`tinylytics-kudos__sparkles sparkles ${offsetSparkles && 'tinylytics-kudos__sparkles--offset'}`}>
     <use href="#icon-sparkles" />
   </svg>
   <span class="tinylytics-kudos__wrapper button--ui__content">
@@ -14,7 +18,7 @@
 <style lang="scss">
 .tinylytics-kudos {
   position: relative;
-  margin-block: var(--space-s) 0.5rem;
+  margin-block-end: 0.5rem;
 
   &:has(.did_select) {
     pointer-events: none;
@@ -37,6 +41,11 @@
   opacity: 0;
   pointer-events: none;
   transform: opacity 0.3s ease;
+  color: var(--color-sparkle);
+
+  &--offset {
+    inset-inline-start: -38%;
+  }
 }
 
 .tinylytics-kudos__wrapper {

@@ -279,66 +279,73 @@ document.addEventListener('astro:page-load', () => {
 								}).format(new Date(pubDate))
 							}
 						</time>
+						<Kudos offsetSparkles={true} />
 					</div>
 					<heading-anchors>
 						<Content />
 					</heading-anchors>
-					<Kudos />
+					<div class="post__footer-kudos">
+						<Kudos />
+					</div>
 				</article>
 			</Window>
 		</div>
 	</div>
-
-	<style lang="scss">
-		.post__content {
-			min-width: 0;
-		}
-
-		.post__title {
-			margin: 1rem 0 1rem;
-			line-height: 1;
-		}
-
-		.post__meta {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			border-block-end: var(--border-thickness) dashed var(--color-text-accent);
-			margin-block-end: var(--space-xs);
-		}
-
-		.post__date {
-			color: var(--color-text-heading);
-			text-transform: uppercase;
-		}
-
-		.post__title:has(.post__title-pretitle) {
-			margin: 0.75rem 0 1rem;
-		}
-
-		.post__title-main {
-			display: block;
-			filter: drop-shadow(0 -0.125rem 0 var(--color-accent-text-1))
-				drop-shadow(0.125rem 0.125rem 0 var(--color-accent-text-2));
-			background: linear-gradient(
-				177deg,
-				var(--color-text-heading) 50%,
-				var(--color-text-subheading)
-			);
-			background-clip: text;
-			color: transparent;
-		}
-
-		.post__main {
-			:global(.rte) {
-			}
-		}
-
-		@media (min-width: 62em) and (min-height: 38em) {
-			.post {
-				grid-template-columns: 20rem 1fr;
-				gap: var(--space-s);
-			}
-		}
-	</style>
 </Layout>
+
+<style lang="scss">
+	.post__content {
+		min-width: 0;
+	}
+
+	.post__title {
+		margin: 1rem 0 1rem;
+		line-height: 1;
+	}
+
+	.post__meta {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		border-block-end: var(--border-thickness) dashed var(--color-text-accent);
+		margin-block-end: var(--space-xs);
+	}
+
+	.post__date {
+		color: var(--color-text-heading);
+		text-transform: uppercase;
+	}
+
+	.post__title:has(.post__title-pretitle) {
+		margin: 0.75rem 0 1rem;
+	}
+
+	.post__title-main {
+		display: block;
+		filter: drop-shadow(0 -0.125rem 0 var(--color-accent-text-1))
+			drop-shadow(0.125rem 0.125rem 0 var(--color-accent-text-2));
+		background: linear-gradient(
+			177deg,
+			var(--color-text-heading) 50%,
+			var(--color-text-subheading)
+		);
+		background-clip: text;
+		color: transparent;
+	}
+
+	.post__main {
+		:global(.rte) {
+		}
+	}
+
+	.post__footer-kudos {
+		margin-block-start: var(--space-s);
+	}
+
+	@media (min-width: 62em) and (min-height: 38em) {
+		.post {
+			grid-template-columns: 20rem 1fr;
+			gap: var(--space-s);
+		}
+	}
+</style>
