@@ -150,25 +150,23 @@ hr {
 	z-index: 1000;
 }
 
-@mixin motion {
-	&::view-transition-group(*),
-	&::view-transition-old(*),
-	&::view-transition-new(*) {
+@mixin motion($root) {
+	#{root}::view-transition-group(*),
+	#{root}::view-transition-old(*),
+	#{root}::view-transition-new(*) {
 		animation: none !important;
 	}
-	*,
-	*::before,
-	*::after {
-		transition-duration: 0.001s !important;
+	#{root} {
+		*,
+		*::before,
+		*::after {
+			transition-duration: 0.001s !important;
+		}
 	}
 }
 
 @media (prefers-reduced-motion: reduce) {
-	html:not([data-user-motion="enabled"]) {
-		@include motion;
-	}
+	@include motion('html:not([data-user-motion="enabled"])');
 }
 
-html[data-user-motion="disabled"] {
-	@include motion;
-}
+@include motion('html[data-user-motion="disabled"]');

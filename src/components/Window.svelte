@@ -185,7 +185,6 @@
 
 	.window__wrapper {
 		--offset: calc(var(--border-thickness) * -1);
-		--window-spacing: var(--window-margin-block-start);
 		display: flex;
 		inline-size: fit-content;
 		max-inline-size: var(--max-width);
@@ -216,19 +215,6 @@
 
 	.window__wrapper--absolute {
 		max-block-size: none;
-	}
-
-	:global(astro-island)
-		+ :global(astro-island)
-		.window__wrapper:not(.window__wrapper--maximized):not(
-			.window__wrapper--maximized
-		),
-	:global(.layout__cell)
-		+ :global(.layout__cell)
-		.window__wrapper:not(.window__wrapper--maximized):not(
-			.window__wrapper--maximized
-		) {
-		margin-block-start: var(--window-spacing);
 	}
 
 	.window {
@@ -300,7 +286,6 @@
 
 	@media (min-width: 62em) and (min-height: 38em) {
 		.window__wrapper {
-			--window-spacing: 0;
 			max-block-size: 100%;
 			max-inline-size: var(--large-max-width, var(--max-width));
 			inline-size: var(--width, fit-content);

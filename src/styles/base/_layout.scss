@@ -17,7 +17,9 @@
 }
 
 .layout__grid {
+	--window-spacing: var(--window-margin-block-start);
 	display: grid;
+	gap: var(--window-spacing);
 }
 
 @media (min-height: 38em) {
@@ -67,6 +69,7 @@
 
 @media (min-width: 62em) and (min-height: 38em) {
 	.layout__grid {
+		--window-spacing: 0;
 		block-size: 100%;
 	}
 
