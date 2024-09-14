@@ -12,6 +12,9 @@ export default defineConfig({
 	site: "https://www.nicchan.me/",
 	integrations: [mdx(), sitemap(), svelte()],
 	vite: {
+		build: {
+			cssMinify: false
+		},
 		css: {
 			preprocessorOptions: {
 				scss: {

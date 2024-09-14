@@ -33,23 +33,6 @@ const { DEV } = import.meta.env;
 			getColor(document);
 			fontsLoaded();
 		</script>
-		<style is:global>
-			@media (prefers-reduced-motion: reduce) {
-				html:not([data-user-motion="enabled"])
-					&::view-transition-group(*),
-					&::view-transition-old(*),
-					&::view-transition-new(*) {
-						animation: none !important;
-					}
-
-					*,
-					*::before,
-					*::after {
-						transition-duration: 0.001s !important;
-					}
-				}
-			}
-			</style>
 		<BaseHead
 			title={title ? `${title} - Nic Chan` : "Nic Chan"}
 			description={description}

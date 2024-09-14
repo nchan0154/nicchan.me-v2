@@ -151,12 +151,12 @@ hr {
 }
 
 @mixin motion($root) {
-	#{root}::view-transition-group(*),
-	#{root}::view-transition-old(*),
+	#{$root}::view-transition-group(*),
+	#{$root}::view-transition-old(*),
 	#{root}::view-transition-new(*) {
 		animation: none !important;
 	}
-	#{root} {
+	#{$root} {
 		*,
 		*::before,
 		*::after {
