@@ -12,12 +12,12 @@
 		ref = null,
 		flex = false,
 		titleTag = "h2",
-		isAbsolute = false,
-		scrollBody = true;
+		isAbsolute = false;
 
 	export let id = title.replaceAll(" ", "-").toLowerCase() || "window";
-	let activeWindow;
+	let activeWindow, windowBody, observer;
 	let bottomPadding = 0;
+	let tabindex = false;
 
 	const getTransitionName = ($isMinimizing, $isMaximizing) => {
 		if ($isMinimizing && $isMinimizing === title) {
@@ -46,13 +46,25 @@
 				isMaximized: false,
 			},
 		];
+		addResizeObserver();
 
 		return () => {
+			observer.disconnect();
 			$windowStore = $windowStore.filter((window) => window.name !== title);
 			document.dispatchEvent(unloadEvent);
 		};
 	});
 
+	function addResizeObserver() {
+		observer = new ResizeObserver((entries) => {
+			if (windowBody.scrollHeight > windowBody.clientHeight) {
+				tabindex = "0";
+			} else {
+				tabindex = false;
+			}
+		});
+		observer.observe(windowBody);
+	}
 	function startMaximizeWindow() {
 		// We're doing this because I think the way the maximizing transition looks is kind of janky when using the morphing animation, so we're resetting to the default crossfade
 		let transition;
@@ -158,10 +170,11 @@
 		</div>
 		<div
 			class="window__body"
-			tabindex={scrollBody === false ? null : "0"}
 			role="region"
 			aria-labelledby={`window-title-${id}`}
-			id={`window-body-${id}`}>
+			id={`window-body-${id}`}
+			bind:this={windowBody}
+			tabindex={tabindex !== false && tabindex}>
 			<slot />
 		</div>
 	</div>
@@ -174,6 +187,7 @@
 		--offset: calc(var(--border-thickness) * -1);
 		--window-spacing: var(--window-margin-block-start);
 		display: flex;
+		inline-size: fit-content;
 		max-inline-size: var(--max-width);
 		max-inline-size: round(var(--max-width), 1px);
 		font-size: 1.5rem;

@@ -6,12 +6,15 @@
 	} from "../scripts/windows.js";
 	import { onMount } from "svelte";
 
-	let parent, backwards, forwards, scrollTimeout;
+	let parent, backwards, forwards, scrollTimeout, observer;
 
-	onMount(addResizeObserver);
+	onMount(
+		() => addResizeObserver(),
+		() => observer.disconnect(),
+	);
 
 	function addResizeObserver() {
-		const observer = new ResizeObserver((entries) => {
+		observer = new ResizeObserver((entries) => {
 			if (!parent) return;
 			if (parent.clientWidth === parent.scrollWidth) {
 				backwards.classList.add("windows__button--hidden");
@@ -52,10 +55,14 @@
 			if (isMinimized) {
 				if (
 					!window.matchMedia("(min-width: 62em) and (min-height: 38em)").matches
-				)
+				) {
 					setTimeout(() => {
 						document.getElementById(customWindow.id).scrollIntoView();
 					}, 50);
+				}
+				setTimeout(() => {
+					document.getElementById(customWindow.id).focus();
+				}, 50);
 			}
 			return w;
 		});

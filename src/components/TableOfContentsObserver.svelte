@@ -1,8 +1,9 @@
 <script>
 	import { onMount } from "svelte";
+	let observer;
 
 	function addIntersectionObserver() {
-		const observer = new IntersectionObserver((sections) => {
+		observer = new IntersectionObserver((sections) => {
 			sections.forEach((section) => {
 				const heading = section.target.querySelector("h2, h3, h4, h5");
 				if (!heading) return;
@@ -23,5 +24,8 @@
 		});
 	}
 
-	onMount(addIntersectionObserver);
+	onMount(
+		() => addIntersectionObserver(),
+		() => observer.disconnect(),
+	);
 </script>
