@@ -28,7 +28,10 @@ const { DEV } = import.meta.env;
 				getColor(event.newDocument)
 			})
 			document.addEventListener('astro:after-swap', (event) => {
-				fontsLoaded(document);
+				fontsLoaded(document);document.addEventListener('astro:after-swap',
+				if (window.tinylytics){
+					window.tinylytics.triggerUpdate();
+				}
 			})
 			getColor(document);
 			fontsLoaded();
