@@ -13,7 +13,7 @@ const { DEV } = import.meta.env;
 <!doctype html>
 <html lang="en-US">
 	<head>
-		<script>
+		<script is:inline>
 			function getColor(document) {
 				const localStorageValue = localStorage.getItem('preference-scheme');
 				if (localStorageValue) document.documentElement.setAttribute(`data-user-scheme`,localStorageValue.toLowerCase());
@@ -28,8 +28,8 @@ const { DEV } = import.meta.env;
 				getColor(event.newDocument)
 			})
 			document.addEventListener('astro:after-swap', (event) => {
-				fontsLoaded(document);document.addEventListener('astro:after-swap',
-				if (window.tinylytics){
+				fontsLoaded(document);
+				if (window.tinylytics) {
 					window.tinylytics.triggerUpdate();
 				}
 			})
