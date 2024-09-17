@@ -7,7 +7,7 @@
 	onMount(() => {
 		const listener = document.addEventListener("click", (event) => {
 			if (ref?.contains(event.target)) return;
-			console.log("close");
+			if (!isOpen) return;
 			isOpen = false;
 		});
 		return document.removeEventListener("click", listener);
