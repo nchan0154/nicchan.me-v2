@@ -27,11 +27,13 @@ const ariaCurrent = Astro.url.pathname === "/" ? "page" : undefined;
 
 <style lang="scss">
 	.footer {
+		--button-font-size: 1rem;
 		grid-column: span 2;
 		inline-size: 100%;
 		padding: 0 var(--border-thickness);
 		background-color: var(--color-footer-bg);
 		view-transition-name: footer;
+
 
 		@media (max-height: 38em) {
 			view-transition-name: none;
@@ -41,6 +43,10 @@ const ariaCurrent = Astro.url.pathname === "/" ? "page" : undefined;
 	:global(.footer .button--ui,.footer .button--ui__content) {
 		--offset: 0;
 		block-size: 2.375rem;
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+		white-space: nowrap;
 	}
 
 	:global(.footer:has(.windows__list:empty)) {
@@ -52,11 +58,6 @@ const ariaCurrent = Astro.url.pathname === "/" ? "page" : undefined;
 		align-items: center;
 	}
 
-	.footer__home {
-		.button--ui__content {
-			white-space: nowrap;
-		}
-	}
 
 	.footer__divider {
 		display: block;

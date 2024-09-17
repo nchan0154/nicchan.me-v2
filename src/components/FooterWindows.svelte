@@ -232,10 +232,6 @@
 				justify-content: center;
 			}
 		}
-
-		.button--ui__content {
-			white-space: nowrap;
-		}
 	}
 
 	:global(.windows__button--hidden) {

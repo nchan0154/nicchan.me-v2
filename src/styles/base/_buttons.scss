@@ -42,7 +42,7 @@
 	padding: calc(var(--border-thickness) * 2);
 	padding-inline-end: calc(var(--border-thickness) * 2 + 2px);
 	color: var(--color-button-ui-text);
-	font-size: 1.25rem;
+	font-size: var(--button-font-size);
 	line-height: 1;
 	box-shadow: inset calc(var(--border-thickness) * -1)
 			calc(var(--border-thickness) * -1) var(--color-button-ui-shadow),
