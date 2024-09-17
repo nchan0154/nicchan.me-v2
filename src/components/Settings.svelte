@@ -186,7 +186,7 @@
 		}
 	}
 
-	@supports (color-scheme: light dark) {
+	@supports (color: light-dark(white, black)) {
 		.color-scheme {
 			display: block;
 		}
