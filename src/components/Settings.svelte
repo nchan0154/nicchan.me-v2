@@ -44,8 +44,9 @@
 		on:click={toggleDisclosure}
 		on:focusout={onFocusOut}
 		aria-expanded={isOpen}
+		aria-label="Settings"
 		bind:this={button}>
-		<span class="button--ui__content" aria-label="Settings">
+		<span class="button--ui__content">
 			<svg class="button__icon" xmlns="http://www.w3.org/2000/svg">
 				<use href={`#icon-settings`} />
 			</svg>
