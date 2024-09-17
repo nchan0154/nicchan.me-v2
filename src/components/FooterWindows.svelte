@@ -203,7 +203,6 @@
 	.windows__item {
 		display: inline-block;
 		scroll-snap-align: start;
-		white-space: nowrap;
 
 		& + & {
 			margin-inline-start: calc(var(--border-thickness) * -1);
@@ -232,6 +231,10 @@
 				align-items: center;
 				justify-content: center;
 			}
+		}
+
+		.button--ui__content {
+			white-space: nowrap;
 		}
 	}
 
