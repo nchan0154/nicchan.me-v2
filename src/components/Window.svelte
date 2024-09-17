@@ -186,10 +186,10 @@
 	.window__wrapper {
 		--offset: calc(var(--border-thickness) * -1);
 		display: flex;
-		inline-size: fit-content;
+		inline-size: var(--width, fit-content);
 		max-inline-size: var(--max-width);
 		max-inline-size: round(var(--max-width), 1px);
-		font-size: 1.5rem;
+		font-size: 1.25rem;
 		transform: translate3d(0, 0, 0), scale(1.0000001);
 		-webkit-backface-visibility: hidden;
 		transform-style: preserve-3d;
@@ -284,11 +284,16 @@
 		}
 	}
 
+	@media (min-width: 40em) {
+		.window__wrapper {
+			font-size: 1.5rem;
+		}
+	}
+
 	@media (min-width: 62em) and (min-height: 38em) {
 		.window__wrapper {
 			max-block-size: 100%;
 			max-inline-size: var(--large-max-width, var(--max-width));
-			inline-size: var(--width, fit-content);
 			block-size: fit-content;
 			margin-inline-start: auto;
 			margin-inline-end: auto;

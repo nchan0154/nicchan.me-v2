@@ -76,8 +76,9 @@ const { title, excerpt, date, image, color, technology } = work.data;
 					<Content />
 				</div>
 			</Window>
-		</div><div class="layout__cell work__other">
-			<Window title="Other projects" titleTag="h2" order={1} flex client:load>
+		</div>
+		<div class="layout__cell work__other">
+			<Window title="Other projects" style="--width: 100%" titleTag="h2" order={1} flex client:load>
 				<Work work={work.otherProjects} />
 			</Window>
 		</div>

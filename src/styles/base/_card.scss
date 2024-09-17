@@ -27,7 +27,7 @@
 		}
 	}
 
-	@include focus();
+	@include focus("focus-within");
 }
 
 .card__content {
@@ -47,6 +47,10 @@
 }
 
 .card__link {
+	&:focus {
+		outline: 0.25rem solid transparent;
+	}
+
 	&::after {
 		content: "";
 		display: block;

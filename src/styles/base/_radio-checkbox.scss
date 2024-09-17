@@ -3,8 +3,8 @@
 	align-items: center;
 	position: relative;
 	padding: var(--border-thickness);
-	margin-left: calc(var(--border-thickness) * -1);
-	margin-right: calc(var(--border-thickness) * -1);
+	margin-block-start: calc(var(--border-thickness) * -1);
+	margin-block-end: calc(var(--border-thickness) * -1);
 	@include focus($focus: "has(:focus-visible)");
 
 	&:hover {
@@ -23,13 +23,14 @@
 .rc__label {
 	display: flex;
 	align-items: center;
+	inline-size: 100%;
 
 	&::before,
 	&::after {
 		display: block;
 		content: "";
-		width: 1.125rem;
-		height: 1.125rem;
+		inline-size: 1.125rem;
+		block-size: 1.125rem;
 		margin-inline-end: 0.5rem;
 	}
 

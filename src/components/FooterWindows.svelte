@@ -221,6 +221,18 @@
 			visibility: hidden;
 			opacity: 0;
 		}
+
+		&--arrow {
+			aspect-ratio: 1 / 1;
+
+			.button--ui__content {
+				width: 2.375rem;
+				text-align: center;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+		}
 	}
 
 	:global(.windows__button--hidden) {
@@ -231,6 +243,8 @@
 		display: block;
 		inline-size: 0.75rem;
 		block-size: 0.75rem;
+		// visual balance
+		margin-block-start: -0.125rem;
 
 		&--reverse {
 			transform: rotate(180deg);

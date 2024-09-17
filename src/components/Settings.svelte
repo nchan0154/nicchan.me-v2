@@ -1,18 +1,56 @@
 <script>
+	import { onMount } from "svelte";
 	import Setting from "./Setting.svelte";
-	import SettingMotion from "./SettingMotion.svelte";
 	let isOpen = false;
+	let ref, disclosure, button;
+
+	onMount(() => {
+		// disclosure.addEventListener("focusout", (event) => {
+		// 	if (!event.relatedTarget) return;
+		// 	if (event.relatedTarget.tagName === "MAIN") return;
+		// 	if (disclosure.contains(event.relatedTarget)) return;
+		// 	close();
+		// });
+		// disclosure.addEventListener("keydown", (event) => {
+		// 	if (event.key === "Escape") {
+		// 		close();
+		// 		disclosure.querySelector("summary").focus();
+		// 	}
+		// });
+	});
 
 	function toggleDisclosure() {
 		isOpen = !isOpen;
 	}
+
+	function onFocusOut(event) {
+		if (!event.relatedTarget) return;
+		if (event.relatedTarget.tagName === "MAIN") return;
+		if (disclosure.contains(event.relatedTarget)) return;
+		isOpen = false;
+	}
+
+	function onLinkKeyDown(event) {
+		if (event.code === "Tab") {
+			isOpen = false;
+		}
+	}
+
+	function onKeyDown(event) {
+		if (event.code === "Escape") {
+			isOpen = false;
+			button.focus();
+		}
+	}
 </script>
 
-<div class="disclosure">
+<div class="disclosure" bind:this={ref}>
 	<button
 		class="disclosure__button button--ui"
 		on:click={toggleDisclosure}
-		aria-expanded={isOpen}>
+		on:focusout={onFocusOut}
+		aria-expanded={isOpen}
+		bind:this={button}>
 		<span class="button--ui__content" aria-label="Settings">
 			<svg class="button__icon" xmlns="http://www.w3.org/2000/svg">
 				<use href={`#icon-settings`} />
@@ -20,7 +58,10 @@
 			<span class="button__label">Settings</span>
 		</span>
 	</button>
-	<div class="disclosure__container">
+	<div
+		class="disclosure__container"
+		bind:this={disclosure}
+		on:keydown={onKeyDown}>
 		<Setting
 			namespace="font"
 			label="Font family"
@@ -40,7 +81,14 @@
 				values={["System preference", "Enabled", "Disabled"]}
 				defaultValue={"System preference"} />
 		</div>
-		<a href="/accessibility-statement">Accessibility Statement</a>
+		<div>
+			<a
+				class="disclosure__link"
+				href="/accessibility-statement"
+				on:keydown={onLinkKeyDown}>
+				Accessibility Statement
+			</a>
+		</div>
 	</div>
 </div>
 
@@ -49,7 +97,9 @@
 	.disclosure {
 		position: relative;
 	}
+
 	.disclosure__button {
+		aspect-ratio: 1 / 1;
 		margin-inline-start: calc(var(--border-thickness) * -1);
 
 		&[aria-expanded="true"] {
@@ -63,6 +113,7 @@
 	.button--ui__content {
 		display: flex;
 		gap: 0.25rem;
+		justify-content: center;
 		align-items: center;
 		padding-inline: calc(var(--border-thickness) * 1.75);
 	}
@@ -131,7 +182,16 @@
 		display: none;
 	}
 
+	.disclosure__link {
+		display: block;
+		color: currentColor;
+		@include focus();
+	}
+
 	@media (min-width: 38em) {
+		.disclosure__button {
+			aspect-ratio: initial;
+		}
 		.button__label {
 			display: block;
 		}
