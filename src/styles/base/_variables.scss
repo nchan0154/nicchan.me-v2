@@ -95,7 +95,9 @@
 	--font-pixel-fallback: "Seravek Fallback", "Gill Sans Nova Fallback",
 		"Ubuntu Fallback", "Calibri Fallback", source-sans-pro, sans-serif;
 	--font-code-fallback: monospace;
-	--font-pre: var(--font-pixel);
+	--font-accent: var(--font-accent-fallback);
+	--font-pixel: var(--font-pixel-fallback);
+	--font-code: var(--font-code-fallback);
 
 	--font-base: var(--font-pixel);
 	--border-thickness: 0.1875rem;
@@ -281,12 +283,6 @@
 	[data-user-scheme="light"] {
 		color-scheme: light;
 	}
-}
-
-[data-user-font="antialiased"] {
-	--font-accent: var(--font-accent-fallback);
-	--font-pixel: var(--font-pixel-fallback);
-	--font-code: var(--font-code-fallback);
 }
 
 html[fonts-loaded="true"]:not([data-user-font="antialiased"]) {
