@@ -5,6 +5,11 @@
 	let ref, disclosure, button;
 
 	onMount(() => {
+		const listener = document.addEventListener("click", (event) => {
+			if (ref?.contains(event.target)) return;
+			console.log("close");
+			isOpen = false;
+		});
 		return document.removeEventListener("click", listener);
 	});
 
