@@ -5,5 +5,5 @@ width: 1343
 height: 1000
 medium: Gouache
 year: 2024
-alt: "Moody painting of a brightly lit snack stall on a street corner. You can see the vague shapes of figures amid their daily lives."
+alt: "Gouache Painting of a dimwitted looking chocolate-brown cat done in warm pinks and purples. He gazes at the viewer with no thoughts in his brain."
 ---
