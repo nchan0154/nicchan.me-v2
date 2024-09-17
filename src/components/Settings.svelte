@@ -5,18 +5,7 @@
 	let ref, disclosure, button;
 
 	onMount(() => {
-		// disclosure.addEventListener("focusout", (event) => {
-		// 	if (!event.relatedTarget) return;
-		// 	if (event.relatedTarget.tagName === "MAIN") return;
-		// 	if (disclosure.contains(event.relatedTarget)) return;
-		// 	close();
-		// });
-		// disclosure.addEventListener("keydown", (event) => {
-		// 	if (event.key === "Escape") {
-		// 		close();
-		// 		disclosure.querySelector("summary").focus();
-		// 	}
-		// });
+		return document.removeEventListener("click", listener);
 	});
 
 	function toggleDisclosure() {

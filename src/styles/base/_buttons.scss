@@ -49,6 +49,7 @@
 		inset var(--border-thickness) var(--border-thickness)
 			var(--color-button-ui-highlight);
 	background-color: var(--background-color);
+	text-wrap: balance;
 	@include pixel-borders();
 }
 
