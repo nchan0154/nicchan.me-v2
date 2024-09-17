@@ -62,9 +62,11 @@
 				</li>
 			{/each}
 		</ul>
-		<span class="tinylytics-hits">
+		<a
+			class="tinylytics-hits"
+			href="https://tinylytics.app/public/thT44b6cyEs19PvjwWsT">
 			<span class="tinylytics_hits"></span> hits
-		</span>
+		</a>
 	</nav>
 </header>
 
@@ -115,6 +117,7 @@
 	}
 
 	.tinylytics-hits {
+		--offset: 0.25rem;
 		display: inline-block;
 		--border-color: currentColor;
 		padding: var(--border-thickness);
@@ -125,6 +128,8 @@
 		line-height: 1;
 		background-color: var(--color-lavender);
 		color: var(--color-violet-darker);
+		text-decoration: none;
+		@include focus();
 		@include pixel-borders();
 
 		&:has(.tinylytics_hits:empty) {
