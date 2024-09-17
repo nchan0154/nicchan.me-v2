@@ -14,8 +14,10 @@
 
 .rc__input {
 	position: absolute;
+	margin: 0;
 	inset: 0;
 	opacity: 0;
+	z-index: 1;
 }
 
 .rc__label {

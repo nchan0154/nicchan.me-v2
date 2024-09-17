@@ -17,7 +17,6 @@
 }
 
 .layout__grid {
-	--window-spacing: var(--window-margin-block-start);
 	display: grid;
 	gap: var(--window-spacing);
 }

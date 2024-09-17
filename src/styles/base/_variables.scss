@@ -108,6 +108,7 @@
 	--title-font-size: clamp(2.5rem, 7vw + 1rem, 4.5rem);
 	--page-block-padding: 1rem;
 	--page-inline-padding: 5%;
+	--window-spacing: var(--window-margin-block-start);
 
 	--space-xs: clamp(0.75rem, 0.4891rem + 1.3043vi, 1.5rem);
 	--space-s: clamp(1rem, 0.6522rem + 1.7391vi, 2rem);
@@ -135,7 +136,7 @@
 	}
 }
 
-@supports (color-scheme: light dark) {
+@supports (color: light-dark(white, black)) {
 	:root {
 		--color-nav-link-bg: light-dark(
 			var(--color-mauve-lightest),

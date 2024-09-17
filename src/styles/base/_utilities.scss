@@ -14,3 +14,8 @@
 .focus-wrapper {
 	@include focus("focus-within");
 }
+
+// Probably not ideal to have it this way, but fine to leave for now
+astro-island + astro-island .window__wrapper:not(.window__wrapper--maximized) {
+	margin-block-start: var(--window-spacing);
+}
