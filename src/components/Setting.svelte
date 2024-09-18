@@ -6,10 +6,14 @@
 	let currentValue = defaultValue;
 
 	onMount(() => {
-		const localStorageValue = localStorage.getItem(preferenceNamespace);
-		if (localStorageValue && values.includes(localStorageValue)) {
-			currentValue = localStorageValue;
-			setValue(currentValue, namespace);
+		try {
+			const localStorageValue = localStorage.getItem(preferenceNamespace);
+			if (localStorageValue && values.includes(localStorageValue)) {
+				currentValue = localStorageValue;
+				setValue(currentValue, namespace);
+			}
+		} catch {
+			console.log("Could not access setting from localstorage.");
 		}
 	});
 
@@ -18,7 +22,11 @@
 			localStorage.removeItem(preferenceNamespace);
 			document.documentElement.removeAttribute(`data-user-${namespace}`);
 		} else {
-			localStorage.setItem(preferenceNamespace, value);
+			try {
+				localStorage.setItem(preferenceNamespace, value);
+			} catch {
+				console.log("Setting could not be saved to localstorage.");
+			}
 			document.documentElement.setAttribute(
 				`data-user-${namespace}`,
 				value.toLowerCase(),
