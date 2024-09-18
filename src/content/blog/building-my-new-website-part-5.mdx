@@ -34,6 +34,8 @@ I tried using PNGs while relying on `image-rendering: pixelated`, but I noticed 
 
 Luckily, I found this [really cool codepen by Shaw](https://codepen.io/shshaw/full/XbxvNj) that converts a raster image into an SVG, so I ended up running everything through there instead. There's a [code version](https://github.com/meyerweb/px2svg) of this library that does this, but since I only have fewer than 10 individual sprites, it would have been overkill to implement.
 
+As a side note,
+
 Once I had my SVGs, I cobbled together a quick Node script based on this [helpful tutorial by German Makarov](https://hackernoon.com/how-to-create-svg-sprite-with-icons) in order to glue them into a big spritesheet that will allow me to minimize the HTTP requests for the icons. I know there are plugins like [astro-icon](https://github.com/natemoo-re/astro-icon) that handle this in a more elegant way, but given that there are fewer than 10 icons in mostly static sections, I opted for the path that was much less likely to involve breaking dependency upgrades. I typically only change my site every 5 years or so, so having a maintainable, low-key solution is really important to me.
 
 ## Table of Contents
