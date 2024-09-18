@@ -1,5 +1,5 @@
 ---
-title: "Building my new website: An adventurer's log, part 4"
+title: "Building my new website: A modern approach to font fallbacks with font-size-adjust, fun with CSS Grid"
 pubDate: "2024-03-06"
 description: "Finally making headway"
 tags:
@@ -13,10 +13,12 @@ import Image from "../../components/Image.astro";
 
 This is a post in a series about building my new website, check out [the previous post in this series.](/blog/building-my-new-website-part-4/)
 
-## Artwork
-
-This was a section I was rea
-
 ## Fonts
+
+It's at this point I start doing some performance testing. One of the key issues was that I had a huge amount of Cumulative Layout Shift as the fonts came in. The font I had chosen, W95FA is pretty narrow compared to other fonts, and I wanted to see if I could minimize the amount of jank as the fonts came in. The layout of my site meant that containers resizing would feel especially choppy. I also knew that I would want to add a toggle between pixel and anti-aliased fonts, as it was a setting I've seen in video games and I knew that some people would find the pixel fonts tiring to read. Switching between the two would need to feel pretty seamless, with as little layout shift as I could manage.
+
+At some point, I had stumbled upon the website [Modern Font Stacks](https://modernfontstacks.com/), which provides a list of font fallbacks by style to cover every OS. I really liked the Humanist font stack, but the question remained on
+
+https://screenspan.net/fallback
 
 ## Work

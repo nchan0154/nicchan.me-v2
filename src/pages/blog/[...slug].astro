@@ -18,7 +18,7 @@ type Props = CollectionEntry<"blog">;
 
 const post = Astro.props;
 const { Content, headings } = await post.render();
-const { title, description, pubDate } = post.data;
+const { title, description, pubDate, image, alt } = post.data;
 const splitTitle = post.data.title.split(":");
 ---
 
@@ -243,7 +243,7 @@ document.addEventListener('astro:page-load', () => {
 })
 </script>
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} image={image} alt={alt}>
 	<div class="layout__grid post">
 		<div class="layout__cell post__toc">
 			<Window

@@ -1,5 +1,5 @@
 ---
-title: "Building my new website: An adventurer's log, part 5"
+title: "Building my new website: Why are pixel SVGs so difficult, table of contents, artwork gallery"
 pubDate: "2024-03-06"
 description: "If you wait long enough, sometimes people will implement the features you need without you having to lift a finger!"
 tags:
@@ -21,7 +21,7 @@ I did hit a minor snafu in that the [Astro RSS Feed plugin](https://docs.astro.b
 
 ## Pixels, revisited
 
-While creating new pixel sprites, I noticed that the file sizes were much larger than the standard SVG. Some of them were over 30KB for a single sprite! This was because my pixel art program, Aseprite, exports [every single pixel as an individual rectangle](https://github.com/aseprite/aseprite/issues/1911), even if the individual rectangles make up a larger blob of color.
+While creating new pixel sprites, I noticed that the file sizes were much larger than SVG sizes I have seen in the past. Some of them were over 30KB for a single sprite! This was because my pixel art program, Aseprite, exports [every single pixel as an individual rectangle](https://github.com/aseprite/aseprite/issues/1911), even if the individual rectangles make up a larger blob of color.
 
 I tried using PNGs while relying on `image-rendering: pixelated`, but I noticed that it would sometimes render line-widths inconsistently. After the time I took to hand-pixel everything, there was just no way I was gonna let this slide.
 
@@ -34,9 +34,9 @@ I tried using PNGs while relying on `image-rendering: pixelated`, but I noticed 
 
 Luckily, I found this [really cool codepen by Shaw](https://codepen.io/shshaw/full/XbxvNj) that converts a raster image into an SVG, so I ended up running everything through there instead. There's a [code version](https://github.com/meyerweb/px2svg) of this library that does this, but since I only have fewer than 10 individual sprites, it would have been overkill to implement.
 
-As a side note,
+As a side note, this serves as a gentle reminder to myself to ask for help sometimes. Upon looking at Eric Meyer's library solution, I noticed Amelia Bellamy-Royds was listed as one of the contributors. I practically have Amelia on speed dial for all my tricky SVG questions, had I asked for help I might have saved myself many hours!
 
-Once I had my SVGs, I cobbled together a quick Node script based on this [helpful tutorial by German Makarov](https://hackernoon.com/how-to-create-svg-sprite-with-icons) in order to glue them into a big spritesheet that will allow me to minimize the HTTP requests for the icons. I know there are plugins like [astro-icon](https://github.com/natemoo-re/astro-icon) that handle this in a more elegant way, but given that there are fewer than 10 icons in mostly static sections, I opted for the path that was much less likely to involve breaking dependency upgrades. I typically only change my site every 5 years or so, so having a maintainable, low-key solution is really important to me.
+Once I had my SVGs, I cobbled together a quick Node script based on this [helpful tutorial by German Makarov](https://hackernoon.com/how-to-create-svg-sprite-with-icons) in order to glue them into a big spritesheet that will allow me to minimize the HTTP requests for the icons. I know there are plugins like [astro-icon](https://github.com/natemoo-re/astro-icon) that handle this in a more elegant way, but given that there is a pretty manageable amount of icons, I opted for the path that was much less likely to involve breaking dependency upgrades. I typically only change my site every 5 years or so, so having a maintainable, low-key solution is really important to me.
 
 ## Table of Contents
 
@@ -48,3 +48,11 @@ Once I had my SVGs, I cobbled together a quick Node script based on this [helpfu
 />
 
 Dynamically generated table of contents haven't always been the easiest to implement. It's not uncommon to have to resort to client-side JavaScript in order to scrape the rendered content for headings. Astro makes this super easy by providing a list of headings already, and with some finangling with [a snippet from Kevin Drum's tutorial](https://kld.dev/building-table-of-contents/#building-a-nested-table-of-contents-array), I was able to get the headings in a nested format. It only took a little client-side JS to hook up an Intersection Observer to watch the content and highlight the section we're currently on. Rendered HTML with a little sprinkle of JS for extra functionality, just the way I like it!
+
+## Artwork
+
+I've always been torn about having an artwork section on my site. It's not at all related to what I do professionally, and I always wondered if I would be judged for having a section dedicated to it. At some point, I stumbled Josh Crain, a fellow web developer's website, and I really enjoyed the artwork section. His work is full of light, and I really resonated with his artistic journey. I'm so glad I found his site, because it helped me decide that I didn't particularly care any more if anyone thought negatively about it, and I implemented an artwork section for my site! This isn't a particularly popular page on the site, but those who like it seem to really love it, so I'll chalk this up as a success.
+
+Selecting the pieces was the most difficult part. I knew I wouldn't be able to feature too many works on this page with the layout that I had, so I had to be more choosey than I'd like! In the end, I chose a mix of pieces from the mediums I've been enjoying in the past few years (digital, but only the [HEAVYPAINT](https://www.heavypaint.com/) program) and gouache, with a mix of plein air pieces in there.
+
+Development was straightforward as this was one of the very first sections that I designed when coming up with the site. As soon as I saw my first View Transitions demo, I knew I wanted to utilize it to power this section. When a window in this section is maximized, the window itself is crossfaded and the caption fades in, but a separate view transition on the artwork makes it scale up smoothly. I really can't believe what you can get with CSS (and a sprinkle of JS to manage state and fallbacks!)

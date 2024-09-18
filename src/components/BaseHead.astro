@@ -9,8 +9,9 @@ interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description = "Nic Chan is a front-end web developer who specializes in design systems, accessibility and Shopify."} = Astro.props;
+const { title, description = "Nic Chan is a front-end web developer who specializes in design systems, accessibility and Shopify.", image, alt} = Astro.props;
 const { DEV } = import.meta.env;
+console.log(image)
 ---
 
 <!-- Global Metadata -->
@@ -48,6 +49,10 @@ const { DEV } = import.meta.env;
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
+{image &&
+	<meta property="og:image" content={image}/>
+	<meta property="og:image:alt" content={alt}/>
+}
 <link rel="alternate" type="application/rss+xml"
   title="Nic Chan"
   href="/feed.xml" />
