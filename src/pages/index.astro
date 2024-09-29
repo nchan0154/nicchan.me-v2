@@ -12,109 +12,105 @@ const limitedPosts = posts.slice(0, 8);
 
 <Layout>
 	<div class="layout__grid home">
-	<h1 class="page-title">Home</h1>
-	<div class="layout__cell home__intro">
-		<Window
-			title="Introduction"
-			order={0}
-			client:load>
-			<div class="portrait__wrapper">
-				<img
-					class="portrait"
-					src="/pixels/portrait.png"
-					alt="Pixel art portrait of Nic Chan in purple. She is a long-haired East Asian woman with a neutral expresion."
-					width="150"
-					height="150"
-				/>
-			</div>
-			<div class="stack">
-				<p>Hi, I'm Nic Chan and I am an independent front-end web developer.</p>
-				<p>
-					I help companies around the world build fast, accessible and
-					user-friendly web experiences.
-				</p>
-				<a class="button--ui" href="/services">
-					<span class="button--ui__content">
-						Find out more about what I do -&gt;
-					</span>
+		<h1 class="page-title">Home</h1>
+		<div class="layout__cell home__intro">
+			<Window title="Introduction" order={0} client:load>
+				<div class="portrait__wrapper">
+					<img
+						class="portrait"
+						src="/pixels/portrait.png"
+						alt="Pixel art portrait of Nic Chan in purple. She is a long-haired East Asian woman with a neutral expresion."
+						width="150"
+						height="150"
+					/>
+				</div>
+				<div class="stack">
+					<p>
+						Hi, I'm Nic Chan and I am an independent front-end web developer.
+					</p>
+					<p>
+						I help companies around the world build fast, accessible and
+						user-friendly web experiences.
+					</p>
+					<a class="button--ui" href="/services">
+						<span class="button--ui__content">
+							Find out more about what I do -&gt;
+						</span>
+					</a>
+				</div>
+			</Window>
+		</div>
+		<div class="layout__cell home__clients">
+			<Window title="Clients" style="--max-width: 22rem;" order={1} client:load>
+				<div class="stack">
+					<p>
+						I am proud to be trusted by companies big and small, including these
+						organizations:
+					</p>
+					<ClientsList />
+				</div>
+			</Window>
+		</div>
+		<div class="layout__cell home__posts">
+			<Window
+				title="Featured Posts"
+				style="--max-width: 50ch;"
+				order={2}
+				client:load>
+				<Posts posts={limitedPosts} />
+				<a class="button--ui" href="/blog ">
+					<span class="button--ui__content">Read more blog posts -&gt;</span>
 				</a>
-			</div>
-		</Window>
+			</Window>
+		</div>
 	</div>
-	<div class="layout__cell home__clients">
-		<Window
-			title="Clients"
-			style="--max-width: 22rem;"
-			order={1}
-			client:load>
-			<div class="stack">
-				<p>
-					I am proud to be trusted by companies big and small, including these
-					organizations:
-				</p>
-				<ClientsList />
-			</div>
-		</Window>
-	</div>
-	<div class="layout__cell home__posts">
-		<Window
-			title="Featured Posts"
-			style="--max-width: 50ch;"
-			order={2}
-			client:load>
-			<Posts posts={limitedPosts} />
-			<a class="button--ui" href="/blog ">
-				<span class="button--ui__content">Read more blog posts -&gt;</span>
-			</a>
-		</Window>
-	</div>
-</Layout>
 
-<style lang="scss">
-	.portrait__wrapper {
-		padding-block-end: 0.5rem;
-	}
-
-	.portrait {
-		--border-color: var(--color-black);
-		display: block;
-		@include pixel-borders();
-	}
-
-	@media (min-width: 38em) {
+	<style lang="scss">
 		.portrait__wrapper {
-			padding-inline-start: 0.5rem;
-			padding-block-start: 0.25rem;
-			float: right;
-		}
-	}
-
-	@media (min-width: 62em) and (min-height: 38em) {
-		.home {
-			grid-template-columns: min(50%, 60ch) 1fr;
-			grid-template-rows: auto 1fr 1fr;
-			gap: 1rem;
+			padding-block-end: 0.5rem;
 		}
 
-		h1 {
-			margin-block-end: 0;
+		.portrait {
+			--border-color: var(--color-black);
+			display: block;
+			@include pixel-borders();
 		}
 
-		.home__intro {
-			grid-column:1;
-			grid-row: 2 / 4;
-			justify-self: start;
+		@media (min-width: 40em) {
+			.portrait__wrapper {
+				padding-inline-start: 0.5rem;
+				padding-block-start: 0.25rem;
+				float: right;
+			}
 		}
 
-		.home__clients {
-			padding-inline-start: var(--space-l);
-			grid-column: 2;
-			grid-row: 1 / 3;
-		}
+		@media (min-width: 62em) and (min-height: 40em) {
+			.home {
+				grid-template-columns: min(50%, 60ch) 1fr;
+				grid-template-rows: auto 1fr 1fr;
+				gap: 1rem;
+			}
 
-		.home__posts {
-			grid-column: 2;
-			grid-row: 3 / 4;
+			h1 {
+				margin-block-end: 0;
+			}
+
+			.home__intro {
+				grid-column: 1;
+				grid-row: 2 / 4;
+				justify-self: start;
+			}
+
+			.home__clients {
+				padding-inline-start: var(--space-l);
+				grid-column: 2;
+				grid-row: 1 / 3;
+			}
+
+			.home__posts {
+				grid-column: 2;
+				grid-row: 3 / 4;
+			}
 		}
-	}
-</style>
+	</style>
+</Layout>

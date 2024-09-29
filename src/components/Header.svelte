@@ -62,11 +62,13 @@
 				</li>
 			{/each}
 		</ul>
-		<a
-			class="tinylytics-hits"
-			href="https://tinylytics.app/public/thT44b6cyEs19PvjwWsT">
-			<span class="tinylytics_hits"></span> hits
-		</a>
+		<div class="focus-wrapper tinylytics-hits-wrapper">
+			<a
+				class="tinylytics-hits"
+				href="https://tinylytics.app/public/thT44b6cyEs19PvjwWsT">
+				<span class="tinylytics_hits"></span> hits
+			</a>
+		</div>
 	</nav>
 </header>
 
@@ -116,34 +118,36 @@
 		color: var(--color-nav-link-text);
 	}
 
-	.tinylytics-hits {
-		--offset: 0.25rem;
-		display: inline-block;
-		--border-color: currentColor;
-		padding: var(--border-thickness);
-		inline-size: fit-content;
+	.tinylytics-hits-wrapper {
 		margin-block-start: 0.5rem;
-		position: relative;
-		z-index: 1;
-		line-height: 1;
-		background-color: var(--color-lavender);
-		color: var(--color-violet-darker);
-		text-decoration: none;
-		@include focus();
-		@include pixel-borders();
+		--offset: 0.25rem;
 
 		&:has(.tinylytics_hits:empty) {
 			visibility: hidden;
 		}
 	}
 
-	@media (min-height: 38em) {
+	.tinylytics-hits {
+		display: inline-block;
+		--border-color: currentColor;
+		padding: var(--border-thickness);
+		inline-size: fit-content;
+		position: relative;
+		z-index: 1;
+		line-height: 1;
+		background-color: var(--color-lavender);
+		color: var(--color-violet-darker);
+		text-decoration: none;
+		@include pixel-borders();
+	}
+
+	@media (min-height: 40em) {
 		.nav__item + .nav__item {
 			margin-block-start: 1rem;
 		}
 	}
 
-	@media (min-height: 45em) {
+	@media (min-height: 48em) {
 		.nav__icon {
 			inline-size: 3rem;
 			block-size: 3rem;

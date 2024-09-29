@@ -57,10 +57,7 @@ const url = Astro.url;
 		</div>
 
 		<div class="layout__cell blog__webring">
-			<Window
-				title="Webring"
-				order={2}
-				client:load>
+			<Window title="Webring" order={2} client:load>
 				<Webring />
 			</Window>
 		</div>
@@ -123,7 +120,7 @@ const url = Astro.url;
 		vertical-align: center;
 	}
 
-	@media (min-width: 62em) and (min-height: 38em) {
+	@media (min-width: 62em) and (min-height: 40em) {
 		.blog {
 			grid-template-rows: auto 1fr 2fr;
 			grid-template-columns: min(60%, 80ch) 1fr;

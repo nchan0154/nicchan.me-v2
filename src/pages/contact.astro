@@ -3,32 +3,38 @@ import Layout from "../layouts/Layout.astro";
 import Window from "../components/Window.svelte";
 import ContactForm from "../components/ContactForm.astro";
 ---
+
 <script>
 	const showSuccess = () => {
 		const urlSearchParams = new URLSearchParams(window.location.search);
 		const params = Object.fromEntries(urlSearchParams.entries());
 		if (params.success) {
-			document.getElementById('contact-form-body').setAttribute('hidden', 'true');
-			document.getElementById('contact-success').removeAttribute('hidden')
-			document.getElementById('window-body-contact-form').focus()
+			document
+				.getElementById("contact-form-body")
+				.setAttribute("hidden", "true");
+			document.getElementById("contact-success").removeAttribute("hidden");
+			document.getElementById("window-body-contact-form").focus();
 		}
-	}
-  document.addEventListener('astro:page-load', () => {
-		showSuccess()
-	})
-
+	};
+	document.addEventListener("astro:page-load", () => {
+		showSuccess();
+	});
 </script>
 
 <Layout title="Contact">
 	<div class="layout__grid contact">
 		<h1 class="page-title">Contact</h1>
 		<div class="layout__cell contact__info">
-			<Window
-				title="Information"
-				order={0}
-				client:load>
+			<Window title="Information" order={0} client:load>
 				<div class="stack rte">
-					<p>I may take some time to carefully count out a socially-appropriate number of exclamation point for my reply, but I will respond to all (non-spam) inquiries eventually. Feel free to use my contact form or email me directly at <a href="mailto:nic@nicchan.me">nic@nicchan.me</a>.</p>
+					<p>
+						I may take some time to carefully count out a socially-appropriate
+						number of exclamation point for my reply, but I will respond to all
+						(non-spam) inquiries eventually. Feel free to use my contact form or
+						email me directly at <a href="mailto:nic@nicchan.me"
+							>nic@nicchan.me</a
+						>.
+					</p>
 				</div>
 			</Window>
 		</div>
@@ -39,11 +45,14 @@ import ContactForm from "../components/ContactForm.astro";
 				style="--max-width:30rem; --width: 100%; --color-window-bg: var(--color-panel-bg); "
 				client:load>
 				<div id="contact-form-body" class="stack">
-					<ContactForm/>
-  				<p>All form fields marked with a * are required.</p>
+					<ContactForm />
+					<p>All form fields marked with a * are required.</p>
 				</div>
 				<div id="contact-success" hidden>
-					<p class="h2">Your message has been received! I'll get back to you as soon as I can.</p>
+					<p class="h2">
+						Your message has been received! I'll get back to you as soon as I
+						can.
+					</p>
 				</div>
 			</Window>
 		</div>
@@ -52,10 +61,10 @@ import ContactForm from "../components/ContactForm.astro";
 
 <style>
 	#contact-form[hidden] {
-		display: none
+		display: none;
 	}
 
-	@media (min-width: 62em) and (min-height: 38em) {
+	@media (min-width: 62em) and (min-height: 40em) {
 		.contact {
 			grid-template-columns: 1fr max(30rem, 50%);
 			gap: 1rem;

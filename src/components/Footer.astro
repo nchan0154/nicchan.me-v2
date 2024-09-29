@@ -1,6 +1,6 @@
 ---
 import FooterWindows from "./FooterWindows.svelte";
-import Settings from './Settings.svelte'
+import Settings from "./Settings.svelte";
 
 const ariaCurrent = Astro.url.pathname === "/" ? "page" : undefined;
 ---
@@ -34,13 +34,12 @@ const ariaCurrent = Astro.url.pathname === "/" ? "page" : undefined;
 		background-color: var(--color-footer-bg);
 		view-transition-name: footer;
 
-
-		@media (max-height: 38em) {
+		@media (max-height: 40em) {
 			view-transition-name: none;
 		}
 	}
 
-	:global(.footer .button--ui,.footer .button--ui__content) {
+	:global(.footer .button--ui, .footer .button--ui__content) {
 		--offset: 0;
 		block-size: 2.375rem;
 		display: flex;
@@ -57,7 +56,6 @@ const ariaCurrent = Astro.url.pathname === "/" ? "page" : undefined;
 		display: flex;
 		align-items: center;
 	}
-
 
 	.footer__divider {
 		display: block;

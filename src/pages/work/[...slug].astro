@@ -78,7 +78,13 @@ const { title, excerpt, date, image, color, technology } = work.data;
 			</Window>
 		</div>
 		<div class="layout__cell work__other">
-			<Window title="Other projects" style="--width: 100%" titleTag="h2" order={1} flex client:load>
+			<Window
+				title="Other projects"
+				style="--width: 100%"
+				titleTag="h2"
+				order={1}
+				flex
+				client:load>
 				<Work work={work.otherProjects} />
 			</Window>
 		</div>
@@ -173,8 +179,8 @@ const { title, excerpt, date, image, color, technology } = work.data;
 
 	.work__date {
 		display: block;
-    color: var(--color-text-heading);
-    text-transform: uppercase;
+		color: var(--color-text-heading);
+		text-transform: uppercase;
 	}
 
 	@media (min-width: 48em) {
@@ -192,7 +198,7 @@ const { title, excerpt, date, image, color, technology } = work.data;
 		}
 	}
 
-	@media (min-width: 62em) and (min-height: 38em) {
+	@media (min-width: 62em) and (min-height: 40em) {
 		.work {
 			grid-template-columns: minmax(66ch, auto) clamp(32ch, 25%, 40ch);
 			gap: 1rem;

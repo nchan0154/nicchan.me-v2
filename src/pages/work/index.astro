@@ -12,7 +12,11 @@ const work = await getWork();
 	<div class="layout__grid work">
 		<h1 class="page-title">Work</h1>
 		<div class="layout__cell work__clients">
-			<Window title="Client work" order={0} client:load style="margin-inline-start: 0;">
+			<Window
+				title="Client work"
+				order={0}
+				client:load
+				style="margin-inline-start: 0;">
 				<p>Just a few of favorite my client projects over the years!</p>
 				<Work work={work} />
 			</Window>
@@ -28,7 +32,7 @@ const work = await getWork();
 </Layout>
 
 <style>
-	@media (min-width: 62em) and (min-height: 38em) {
+	@media (min-width: 62em) and (min-height: 40em) {
 		.work {
 			grid-template-columns: 1fr minmax(60ch, 1fr);
 			gap: 1rem;
