@@ -13,6 +13,14 @@ import Image from "../../components/Image.astro";
 
 This is a post in a series about building my new website, check out [the previous post in this series.](/blog/building-my-new-website-part-4/)
 
+## Artwork
+
+I've always been torn about having an artwork section on my site. It's not at all related to what I do professionally, and I always wondered if I would be judged for having a section dedicated to it. At some point, I stumbled Josh Crain, a fellow web developer's website, and I really enjoyed the artwork section. His work is full of light, and I really resonated with his artistic journey. I'm so glad I found his site, because it helped me decide that I didn't particularly care any more if anyone thought negatively about it, and I implemented an artwork section for my site! This isn't a particularly popular page on the site, but those who like it seem to really love it, so I'll chalk this up as a success.
+
+Selecting the pieces was the most difficult part. I knew I wouldn't be able to feature too many works on this page with the layout that I had, so I had to be more choosey than I'd like! In the end, I chose a mix of pieces from the mediums I've been enjoying in the past few years (digital, but only the [HEAVYPAINT](https://www.heavypaint.com/) program) and gouache, with a mix of plein air pieces in there.
+
+Development was straightforward as this was one of the very first sections that I designed when coming up with the site. As soon as I saw my first View Transitions demo, I knew I wanted to utilize it to power this section. When a window in this section is maximized, the window itself is crossfaded and the caption fades in, but a separate view transition on the artwork makes it scale up smoothly. I really can't believe what you can get with CSS (and a sprinkle of JS to manage state and fallbacks!)
+
 ## Fonts
 
 It's at this point I start doing some performance testing. One of the key issues was that I had a huge amount of Cumulative Layout Shift as the fonts came in. The font I had chosen, W95FA is pretty narrow compared to other fonts, and I wanted to see if I could minimize the amount of jank as the fonts came in. The layout of my site meant that containers resizing would feel especially choppy. I also knew that I would want to add a toggle between pixel and anti-aliased fonts, as it was a setting I've seen in video games and I knew that some people would find the pixel fonts tiring to read. Switching between the two would need to feel pretty seamless, with as little layout shift as I could manage.

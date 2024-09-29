@@ -22,12 +22,9 @@ const { heading } = Astro.props;
 		text-decoration: none;
 	}
 
-	.active a {
-		color: var(--color-link-underline);
-	}
-
 	.active > a {
 		text-decoration: underline;
+		text-decoration-color: var(--color-link-underline);
 	}
 
 	.active::before {

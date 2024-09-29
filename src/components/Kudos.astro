@@ -1,72 +1,74 @@
 ---
-const {offsetSparkles} = Astro.props
+const { offsetSparkles } = Astro.props;
 ---
 
 <div class="tinylytics-kudos button--ui focus-wrapper">
-  <svg class={`tinylytics-kudos__sparkles sparkles ${offsetSparkles && 'tinylytics-kudos__sparkles--offset'}`}>
-    <use href="#icon-sparkles" />
-  </svg>
-  <span class="tinylytics-kudos__wrapper button--ui__content">
-    <svg class="button__icon">
-      <use href="#icon-heart" />
-    </svg>
-    <span class="visually-hidden">Post likes:</span>
-    <button class="tinylytics_kudos">Loading...</button>
-  </span>
+	<svg
+		class={`tinylytics-kudos__sparkles sparkles ${offsetSparkles && "tinylytics-kudos__sparkles--offset"}`}>
+		<use href="#icon-sparkles"></use>
+	</svg>
+	<span class="tinylytics-kudos__wrapper button--ui__content">
+		<svg class="button__icon">
+			<use href="#icon-heart"></use>
+		</svg>
+		<span class="visually-hidden">Post likes:</span>
+		<button class="tinylytics_kudos">Loading...</button>
+	</span>
 </div>
 
 <style lang="scss">
-.tinylytics-kudos {
-  position: relative;
-  margin-block-end: 0.5rem;
+	.tinylytics-kudos {
+		position: relative;
+		margin-block-end: 0.5rem;
 
-  &:has(.did_select) {
-    pointer-events: none;
-    cursor: not-allowed;
+		&:has(.did_select) {
+			pointer-events: none;
+			cursor: not-allowed;
 
-    .tinylytics-kudos__sparkles {
-      opacity: 1;
-    }
-  }
-}
+			.tinylytics-kudos__sparkles {
+				opacity: 1;
+			}
+		}
+	}
 
-.tinylytics-kudos__sparkles {
-  position: absolute;
-  z-index: 1;
-  inset-block-start: 50%;
-  inset-inline-start: -25%;
-  inline-size: 150%;
-  block-size: 3.5rem;
-  transform: translateY(-50%);
-  opacity: 0;
-  pointer-events: none;
-  transform: opacity 0.3s ease;
-  color: var(--color-sparkle);
+	.tinylytics-kudos__sparkles {
+		position: absolute;
+		z-index: 1;
+		inset-block-start: 50%;
+		inset-inline-start: -25%;
+		max-inline-size: 6rem;
+		inline-size: 150%;
+		block-size: 3.5rem;
+		transform: translateY(-50%);
+		opacity: 0;
+		pointer-events: none;
+		transform: opacity 0.3s ease;
+		color: var(--color-sparkle);
 
-  &--offset {
-    inset-inline-start: -38%;
-  }
-}
+		&--offset {
+			inset-inline-start: -38%;
+		}
+	}
 
-.tinylytics-kudos__wrapper {
-  display: flex;
-  align-items:center
-}
+	.tinylytics-kudos__wrapper {
+		display: flex;
+		align-items: center;
+	}
 
-.tinylytics_kudos {
-  background: transparent;
-  color: currentColor;
-  border: none;
-  outline: 0.25rem solid transparent;
+	.tinylytics_kudos {
+		background: transparent;
+		color: currentColor;
+		border: none;
+		outline: 0.25rem solid transparent;
 
-  &::before {
-    position: absolute;
-    inset: 0;
-  }
-}
+		&::before {
+			position: absolute;
+			inset: 0;
+		}
+	}
 
-.button__icon {
-  inline-size: 0.75rem;
-  block-size: 0.75rem;
-}
+	.button__icon {
+		inline-size: 0.75rem;
+		block-size: 0.75rem;
+	}
 </style>
