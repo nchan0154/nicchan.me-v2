@@ -3,12 +3,14 @@
 	grid-template-columns: 5rem 1fr;
 	grid-template-rows: 1fr auto;
 	margin: 0;
+	min-height: 100dvh;
 }
 
 .layout__header {
 	padding: 0.5rem;
 	padding-block-end: 1rem;
 	text-align: center;
+	overflow-y: auto;
 }
 
 .layout__main {
@@ -21,7 +23,7 @@
 	gap: var(--window-spacing);
 }
 
-@media (min-height: 40em) {
+@media (min-height: 38em) {
 	html {
 		block-size: 100%;
 	}
@@ -46,7 +48,7 @@
 	}
 }
 
-@media (min-width: 40em) {
+@media (min-width: 38em) {
 	.layout {
 		grid-template-columns: 6.5rem 1fr;
 	}
@@ -57,7 +59,6 @@
 		padding-block: var(--page-block-padding);
 		padding-inline: var(--page-inline-padding);
 		overflow-x: hidden;
-		will-change: transform;
 	}
 
 	.layout__header {
@@ -66,7 +67,7 @@
 	}
 }
 
-@media (min-width: 62em) and (min-height: 40em) {
+@media (min-width: 62em) and (min-height: 38em) {
 	.layout__grid {
 		--window-spacing: 0;
 		block-size: 100%;

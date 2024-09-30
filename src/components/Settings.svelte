@@ -184,7 +184,7 @@
 		@include focus();
 	}
 
-	@media (min-width: 40em) {
+	@media (min-width: 38em) {
 		.disclosure__button {
 			aspect-ratio: initial;
 		}

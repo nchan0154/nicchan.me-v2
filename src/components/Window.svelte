@@ -284,13 +284,13 @@
 		}
 	}
 
-	@media (min-width: 40em) {
+	@media (min-width: 38em) {
 		.window__wrapper {
 			font-size: 1.5rem;
 		}
 	}
 
-	@media (min-width: 62em) and (min-height: 40em) {
+	@media (min-width: 62em) {
 		.window__wrapper {
 			max-block-size: 100%;
 			max-inline-size: var(--large-max-width, var(--max-width));
@@ -332,9 +332,8 @@
 			inline-size: 100%;
 		}
 
-		@media (min-height: 40em) and (max-width: 40em) {
-			block-size: calc(100% - var(--bottom-padding));
-			inset-block-end: var(--bottom-padding);
+		@media (max-height: 38em) {
+			position: fixed;
 		}
 	}
 
