@@ -14,6 +14,11 @@
 	);
 
 	function addResizeObserver() {
+		const footerHeight = document.getElementById("footer").clientHeight;
+		document.documentElement.style.setProperty(
+			"--footerHeight",
+			`${footerHeight}px`,
+		);
 		observer = new ResizeObserver((entries) => {
 			if (!parent) return;
 			if (parent.clientWidth === parent.scrollWidth) {

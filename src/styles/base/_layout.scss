@@ -4,6 +4,8 @@
 	grid-template-rows: 1fr auto;
 	margin: 0;
 	min-height: 100dvh;
+	block-size: 100vh;
+	block-size: 100dvh;
 }
 
 .layout__header {
@@ -11,6 +13,7 @@
 	padding-block-end: 1rem;
 	text-align: center;
 	overflow-y: auto;
+	max-block-size: 100%;
 }
 
 .layout__main {
@@ -26,11 +29,6 @@
 @media (min-height: 38em) {
 	html {
 		block-size: 100%;
-	}
-
-	.layout {
-		block-size: 100vh;
-		block-size: 100dvh;
 	}
 
 	.layout__header {
@@ -50,7 +48,7 @@
 
 @media (min-width: 38em) {
 	.layout {
-		grid-template-columns: 6.5rem 1fr;
+		grid-template-columns: auto 1fr;
 	}
 
 	.layout__main {
@@ -64,6 +62,7 @@
 	.layout__header {
 		padding-block: var(--page-block-padding);
 		align-self: self-start;
+		overflow-y: visible;
 	}
 }
 

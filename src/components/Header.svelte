@@ -82,10 +82,26 @@
 		z-index: 100;
 	}
 
+	.layout__header {
+		display: flex;
+		max-height: calc(100dvh - var(--footerHeight));
+	}
+
 	.nav__list {
+		flex: 1 1 auto;
 		margin: 0;
 		padding: 0;
 		list-style: none;
+		display: flex;
+		flex-direction: row;
+		writing-mode: vertical-lr;
+		flex-wrap: wrap;
+
+		gap: 0.5rem;
+		max-block-size: 100%;
+	}
+	.nav__item {
+		writing-mode: horizontal-tb;
 	}
 
 	.nav__link {
@@ -95,10 +111,6 @@
 		text-decoration: none;
 		text-align: center;
 		@include focus();
-	}
-
-	.nav__item + .nav__item {
-		margin-block-start: 0.5rem;
 	}
 
 	.nav__icon {
@@ -122,9 +134,9 @@
 		margin-block-start: 0.5rem;
 		--offset: 0.25rem;
 
-		&:has(.tinylytics_hits:empty) {
-			visibility: hidden;
-		}
+		// &:has(.tinylytics_hits:empty) {
+		// 	visibility: hidden;
+		// }
 	}
 
 	.tinylytics-hits {
