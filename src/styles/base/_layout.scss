@@ -23,7 +23,7 @@
 	gap: var(--window-spacing);
 }
 
-@media (min-height: 38em) {
+@media (min-height: 36em) {
 	html {
 		block-size: 100%;
 	}
@@ -58,7 +58,6 @@
 		min-block-size: 0;
 		padding-block: var(--page-block-padding);
 		padding-inline: var(--page-inline-padding);
-		overflow-x: hidden;
 	}
 
 	.layout__header {
@@ -67,7 +66,7 @@
 	}
 }
 
-@media (min-width: 62em) and (min-height: 38em) {
+@media (min-width: 62em) and (min-height: 36em) {
 	.layout__grid {
 		--window-spacing: 0;
 		block-size: 100%;

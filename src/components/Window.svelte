@@ -12,7 +12,8 @@
 		ref = null,
 		flex = false,
 		titleTag = "h2",
-		isAbsolute = false;
+		isAbsolute = false,
+		isSticky = false;
 
 	export let id = title.replaceAll(" ", "-").toLowerCase() || "window";
 	let activeWindow, windowBody, observer;
@@ -130,6 +131,7 @@
 	class:window__wrapper--minimized={activeWindow
 		? activeWindow.isMinimized
 		: false}
+	class:window__wrapper--sticky={isSticky}
 	class:window__wrapper--flex={flex}
 	style={`${transitionName || ""}; ${style || ""}; --bottom-padding: ${bottomPadding}px`}
 	bind:this={ref}
@@ -203,6 +205,11 @@
 			.window {
 				flex: 1;
 			}
+		}
+
+		&--sticky {
+			position: sticky;
+			top: 1rem;
 		}
 
 		&:focus,
@@ -332,7 +339,7 @@
 			inline-size: 100%;
 		}
 
-		@media (max-height: 38em) {
+		@media (max-height: 36em) {
 			position: fixed;
 		}
 	}

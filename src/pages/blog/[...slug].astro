@@ -164,7 +164,7 @@ const splitTitle = post.data.title.split(":");
 			}
 
 			let placeholder = heading.querySelector(
-				`.${HeadingAnchors.classes.placeholder}`
+				`.${HeadingAnchors.classes.placeholder}`,
 			);
 			if (placeholder) {
 				anchor.style.setProperty("--ha_offsetx", `${placeholder.offsetLeft}px`);
@@ -174,7 +174,7 @@ const splitTitle = post.data.title.split(":");
 
 		setFontProp(heading, anchor) {
 			let placeholder = heading.querySelector(
-				`.${HeadingAnchors.classes.placeholder}`
+				`.${HeadingAnchors.classes.placeholder}`,
 			);
 			if (placeholder) {
 				let style = getComputedStyle(placeholder);
@@ -182,7 +182,7 @@ const splitTitle = post.data.title.split(":");
 				let font = props.map((name) => style.getPropertyValue(name));
 				anchor.style.setProperty(
 					"font",
-					`${font[0]} ${font[1]}/${font[2]} ${font[3]}`
+					`${font[0]} ${font[1]}/${font[2]} ${font[3]}`,
 				);
 			}
 		}
@@ -207,7 +207,7 @@ const splitTitle = post.data.title.split(":");
 
 			ph.addEventListener("mouseover", (e) => {
 				let placeholder = e.target.closest(
-					`.${HeadingAnchors.classes.placeholder}`
+					`.${HeadingAnchors.classes.placeholder}`,
 				);
 				if (placeholder) {
 					this.positionAnchorFromPlaceholder(placeholder);
@@ -243,7 +243,7 @@ const splitTitle = post.data.title.split(":");
 
 		get headings() {
 			return this.querySelectorAll(
-				this.selector.split(",").map((entry) => `${entry.trim()}[id]`)
+				this.selector.split(",").map((entry) => `${entry.trim()}[id]`),
 			);
 		}
 
@@ -265,6 +265,7 @@ const splitTitle = post.data.title.split(":");
 				order={0}
 				titleTag="h2"
 				style="--max-width: 25rem; --block-start: 10rem; --inline-start: 0"
+				isSticky={true}
 				client:load>
 				<TableOfContents headings={headings} />
 				<TableOfContentsObserver client:only="svelte" />
@@ -356,7 +357,7 @@ const splitTitle = post.data.title.split(":");
 		margin-block-start: var(--space-s);
 	}
 
-	@media (min-width: 62em) and (min-height: 38em) {
+	@media (min-width: 62em) {
 		.post {
 			grid-template-columns: 20rem 1fr;
 			gap: var(--space-s);

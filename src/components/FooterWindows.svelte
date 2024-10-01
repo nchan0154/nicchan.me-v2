@@ -54,7 +54,7 @@
 			};
 			if (isMinimized) {
 				if (
-					!window.matchMedia("(min-width: 62em) and (min-height: 38em)").matches
+					!window.matchMedia("(min-width: 62em) and (min-height: 36em)").matches
 				) {
 					setTimeout(() => {
 						document.getElementById(customWindow.id).scrollIntoView();
