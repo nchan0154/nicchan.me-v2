@@ -330,8 +330,7 @@
 		inset: 0;
 		inline-size: 100%;
 		max-inline-size: none;
-		block-size: 100%;
-		inset-block-end: 0;
+		inset-block-end: var(--bottom-padding);
 		padding-block-end: 0;
 		z-index: 10;
 
@@ -341,6 +340,11 @@
 
 		@media (max-height: 36em) {
 			position: fixed;
+		}
+
+		@media (min-width: 38em) {
+			block-size: 100%;
+			inset-block-end: 0;
 		}
 	}
 
