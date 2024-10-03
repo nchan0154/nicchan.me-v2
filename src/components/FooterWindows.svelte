@@ -5,27 +5,36 @@
 		isMinimizing,
 	} from "../scripts/windows.js";
 	import { onMount } from "svelte";
+	import { announce } from "../scripts/announce.js";
+	import { throttle } from "../scripts/throttle.js";
 
 	let parent, backwards, forwards, scrollTimeout, observer;
 
 	onMount(
-		() => addResizeObserver(),
+		() => {
+			addResizeObserver();
+			parent.addEventListener("scroll", throttle(checkButtonAvailability, 300));
+		},
 		() => observer.disconnect(),
 	);
 
 	function addResizeObserver() {
 		observer = new ResizeObserver((entries) => {
-			if (!parent) return;
-			if (parent.clientWidth === parent.scrollWidth) {
-				backwards.classList.add("windows__button--hidden");
-				forwards.classList.add("windows__button--hidden");
-			} else {
-				backwards.classList.remove("windows__button--hidden");
-				forwards.classList.remove("windows__button--hidden");
-			}
-			disableButtons();
+			checkButtonAvailability();
 		});
 		observer.observe(document.documentElement);
+	}
+
+	function checkButtonAvailability() {
+		if (!parent) return;
+		if (parent.clientWidth === parent.scrollWidth) {
+			backwards.classList.add("windows__button--hidden");
+			forwards.classList.add("windows__button--hidden");
+		} else {
+			backwards.classList.remove("windows__button--hidden");
+			forwards.classList.remove("windows__button--hidden");
+		}
+		disableButtons();
 	}
 
 	function onWindowClick(window) {
@@ -94,6 +103,7 @@
 			});
 			parent.addEventListener("scroll", setScrollTimer);
 		}
+		announce("Scrolled forwards.");
 	}
 
 	function setScrollTimer() {
@@ -128,6 +138,7 @@
 				: "smooth",
 		});
 		parent.addEventListener("scroll", setScrollTimer);
+		announce("Scrolled backwards.");
 	}
 
 	function isVisible(element, container) {
@@ -135,7 +146,6 @@
 		const conRect = container.getBoundingClientRect();
 
 		let result = false;
-
 		if (
 			Math.round(elRect.x) >= Math.round(conRect.x) &&
 			elRect.x + elRect.width <= conRect.x + conRect.width
@@ -179,7 +189,7 @@
 		<svg class="windows__button-icon windows__button-icon--reverse">
 			<use href={`#icon-arrow`} />
 		</svg>
-		<span class="visually-hidden">Next</span>
+		<span class="visually-hidden">Scroll windows list forwards</span>
 	</span>
 </button>
 
