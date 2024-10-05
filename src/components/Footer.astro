@@ -33,6 +33,7 @@ const ariaCurrent = Astro.url.pathname === "/" ? "page" : undefined;
 		padding: 0 var(--border-thickness);
 		background-color: var(--color-footer-bg);
 		view-transition-name: footer;
+		z-index: 100;
 
 		@media (max-height: 36em) {
 			view-transition-name: none;

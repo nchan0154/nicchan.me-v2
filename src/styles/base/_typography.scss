@@ -34,6 +34,21 @@ h3 + .ha {
 	line-height: 1.2;
 }
 
+h4,
+.h4,
+h4 + .ha {
+	color: var(--color-text-subheading);
+	font-family: var(--font-accent);
+	font-size: inherit;
+	line-height: 1.2;
+}
+
+[data-user-font="antialiased"] {
+	.ha {
+		line-height: 1;
+	}
+}
+
 .page-title {
 	display: inline-block;
 	margin-block-end: 0.5rem;

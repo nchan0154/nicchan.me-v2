@@ -142,7 +142,6 @@
 		background-color: var(--color-settings-bg);
 		transition: all 0.3s ease;
 		@include pixel-borders();
-
 		&::before {
 			content: "";
 			position: absolute;
