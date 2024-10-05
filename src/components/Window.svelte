@@ -5,6 +5,7 @@
 		isMaximizing,
 		isMinimizing,
 	} from "../scripts/windows.js";
+	import { throttle } from "../scripts/throttle.js";
 
 	export let title = "",
 		style = "",
@@ -120,6 +121,12 @@
 			toFocus.focus({ preventScroll: true });
 		}
 	}
+
+	function onWindowFocusIn() {
+		if (window.matchMedia("(min-width: 62em) and (min-height: 36em)").matches) {
+			ref.scrollIntoView();
+		}
+	}
 </script>
 
 <section
@@ -136,6 +143,7 @@
 	style={`${transitionName || ""}; ${style || ""}; --bottom-padding: ${bottomPadding}px`}
 	bind:this={ref}
 	tabindex="-1"
+	on:focusin={onWindowFocusIn}
 	{id}>
 	<div class="window">
 		<div class="window__header">
