@@ -19,7 +19,7 @@ const { DEV } = import.meta.env;
 				if (localStorageValue)
 					document.documentElement.setAttribute(
 						`data-user-scheme`,
-						localStorageValue.toLowerCase()
+						localStorageValue.toLowerCase(),
 					);
 			}
 			async function fontsLoaded() {
@@ -28,13 +28,28 @@ const { DEV } = import.meta.env;
 					document.documentElement.setAttribute("fonts-loaded", true);
 				}
 			}
+
+			function bindScroll() {
+				const main = document.getElementById("main");
+				main.addEventListener("scroll", (event) => {
+					if (
+						window.matchMedia("(min-width: 62em) and (min-height: 36em)")
+							.matches
+					) {
+						event.preventDefault();
+						main.scrollTo(0, 0);
+					}
+				});
+			}
 			document.addEventListener("astro:before-swap", (event) => {
 				getColor(event.newDocument);
 			});
 			document.addEventListener("astro:after-swap", (event) => {
 				fontsLoaded(document);
+				bindScroll();
 			});
 			document.addEventListener("astro:page-load", (event) => {
+				bindScroll();
 				if (window.tinylytics) {
 					window.tinylytics.triggerUpdate();
 				}
