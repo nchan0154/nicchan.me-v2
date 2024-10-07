@@ -62,15 +62,11 @@
 				isMinimized: !isMinimized,
 			};
 			if (isMinimized) {
-				if (
-					!window.matchMedia("(min-width: 62em) and (min-height: 36em)").matches
-				) {
-					setTimeout(() => {
-						document.getElementById(customWindow.id).scrollIntoView();
-					}, 50);
-				}
 				setTimeout(() => {
-					document.getElementById(customWindow.id).focus();
+					document.getElementById(customWindow.id).scrollIntoView(true);
+					document
+						.getElementById(customWindow.id)
+						.focus({ preventScroll: true });
 				}, 50);
 			}
 			return w;
@@ -154,9 +150,20 @@
 		}
 		return result;
 	}
+
+	function onFocus(event) {
+		if (window.matchMedia("(min-height: 36em)").matches) {
+			event.preventDefault();
+			event.target.focus({ preventScroll: true });
+		}
+	}
 </script>
 
-<ul class="windows__list" aria-label="Windows list" bind:this={parent}>
+<ul
+	class="windows__list"
+	aria-label="Windows list"
+	bind:this={parent}
+	on:focus={onFocus}>
 	{#each $orderedWindows as window}
 		<li class="windows__item" data-window-item>
 			<button

@@ -121,12 +121,6 @@
 			toFocus.focus({ preventScroll: true });
 		}
 	}
-
-	function onWindowFocusIn() {
-		if (window.matchMedia("(min-width: 62em) and (min-height: 36em)").matches) {
-			ref.scrollIntoView();
-		}
-	}
 </script>
 
 <section
@@ -143,7 +137,6 @@
 	style={`${transitionName || ""}; ${style || ""}; --bottom-padding: ${bottomPadding}px`}
 	bind:this={ref}
 	tabindex="-1"
-	on:focusin={onWindowFocusIn}
 	{id}>
 	<div class="window">
 		<div class="window__header">
@@ -222,7 +215,7 @@
 
 		&:focus,
 		&:focus-within {
-			z-index: 2;
+			z-index: 11;
 		}
 
 		@include focus("focus-visible");
