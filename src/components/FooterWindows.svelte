@@ -151,7 +151,7 @@
 		return result;
 	}
 
-	function onFocus(event) {
+	function onFooterFocus(event) {
 		if (window.matchMedia("(min-height: 36em)").matches) {
 			event.preventDefault();
 			event.target.focus({ preventScroll: true });
@@ -163,7 +163,7 @@
 	class="windows__list"
 	aria-label="Windows list"
 	bind:this={parent}
-	on:focus={onFocus}>
+	on:focus={onFooterFocus}>
 	{#each $orderedWindows as window}
 		<li class="windows__item" data-window-item>
 			<button
