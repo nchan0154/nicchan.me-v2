@@ -75,7 +75,7 @@
 
 	function onFocus(event) {
 		event.target.scrollIntoView({
-			block: "start",
+			block: "nearest",
 			inline: "nearest",
 		});
 	}
@@ -150,20 +150,9 @@
 		}
 		return result;
 	}
-
-	function onFooterFocus(event) {
-		if (window.matchMedia("(min-height: 36em)").matches) {
-			event.preventDefault();
-			event.target.focus({ preventScroll: true });
-		}
-	}
 </script>
 
-<ul
-	class="windows__list"
-	aria-label="Windows list"
-	bind:this={parent}
-	on:focus={onFooterFocus}>
+<ul class="windows__list" aria-label="Windows list" bind:this={parent}>
 	{#each $orderedWindows as window}
 		<li class="windows__item" data-window-item>
 			<button
