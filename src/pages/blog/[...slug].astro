@@ -240,6 +240,11 @@ const splitTitle = post.data.title.split(":");
 				this.positionAnchor(anchor);
 			});
 
+			anchor.addEventListener("mousedown", (e) => {
+				let anchor = e.target.closest(`.${HeadingAnchors.classes.anchor}`);
+				history.pushState(null, null, anchor.getAttribute("href"));
+			});
+
 			return anchor;
 		}
 
