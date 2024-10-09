@@ -1,0 +1,241 @@
+---
+title: "Shopify, accessibility lawsuits & 'Compliance'"
+pubDate: "2024-10-09"
+description: "Accessibility is your responsibility too."
+tags:
+  - shopify
+  - accessibility
+---
+
+<div class="post-callout">
+	<h2 class="post-callout__title">Summary</h2>
+	<div class="post-callout__text">
+		<ul>
+			<li>Accessibility is affected by both content and code.</li>
+			<li>
+				An accessible theme won't get you anywhere if you have inaccessible
+				content (or apps\!)
+			</li>
+			<li>
+				Not ever thinking about accessibility and wanting to not ever think
+				about it is indeed, ableist
+			</li>
+			<li>'Compliance' is a loaded term</li>
+			<li>
+				A perfect Accessibility Compliance Report (ACR) is not always perfect
+			</li>
+			<li>
+				Disabled people have very little means by which to ask for access other
+				than complaints and litigation
+			</li>
+		</ul>
+	</div>
+</div>
+
+I recently came across this [Reddit thread](https://www.reddit.com/r/shopify/comments/1femm9b/sued_for_ada_inaccessibility/), in which the original poster (OP) describes being sued for their Shopify storefront. The thread contains a lot of misinformation around accessibility, and I'd like to address some of the myths surrounding Shopify's accessibility in this (very long) post.
+
+I'm speaking from my position as a web developer with a focus on web accessibility. I hold a Web Accessibility Specialist certification from the International Association of Accessibility Professionals (IAAP, but don't get me started on certifications), I've developed themes for Shopify stores and remediated Shopify stores on-and-off over the last 6 years. I will not comment on the legal aspects in great detail as I'm not qualified to do so. I recommend [LFLegal](https://www.lflegal.com/) and [Converge Accessibility](https://convergeaccessibility.com/blog/) (additional disclaimer: I've worked with Converge in the past) as sources to read if you are interested in the legal aspects.
+
+<div class="post-callout">
+	<h3 class="post-callout__title">Disclaimer</h3>
+	<div class="post-callout__text">
+		I can't overstate that I am not a lawyer\! The following post is my personal
+		opinion. This post is for **educational purposes** only, and none of this
+		constitutes legal advice. Other accessibility experts and disabled people
+		may have different interpretations and experiences on the information
+		presented.
+	</div>
+</div>
+
+To summarize the thread briefly:
+
+- The original poster is a small business who "has been sued for having a website that is inaccessible under the ADA"
+- They use a Shopify theme, [Refresh](https://themes.shopify.com/themes/refresh/styles/default), and other apps, all of which they claim has been marketed as accessible
+- They stated they've not altered any code and ran a program to ensure alt text has been added
+- The lawsuit appears to be from a firm that has sued dozens of businesses this year.
+
+I do feel for this original poster, their financial circumstance seems dire. Without looking at their site, I can't verify any claims about accessibility, but it seems the original poster has done some legwork to ensure things are accessible, and the facts seem to suggest the lawyer/plaintiff are not acting with genuine intent. While I strongly believe that these kinds of lawsuits do more harm than good (see: [the National Federation of the Blind’s article](https://nfb.org//images/nfb/publications/bm/bm19/bm1909/bm190902.htm) on the subject), the bulk of the responses frustrate me in that many merchants are trying to dodge responsibility completely.
+
+## Who is responsible for accessibility?
+
+The original thread, and several spinoffs, are filled with anger at Shopify for not making their storefronts accessible. Some merchants are upset at the idea that they can personally be held responsible for accessibility, while admitting that they have never thought about accessibility.
+
+One thing I'd really like to hammer home is that **accessibility is affected by both content and code.** You can have the most accessible theme in the world, and create immediate access barriers with your decisions. For example, you could pick inaccessible colors for your brand, you could write marketing copy full of 'click here' for every link, you could fail to write (AI-assisted or not) adequate alt text for your images, the list goes on. People willingly take the responsibility of designer and copywriter in order to avoid hiring an expert, but they don't want to take responsibility for any harm that their ignorance might cause.
+
+On the code front, it's not uncommon to see merchants cobble together complex functionality based on apps. I get it, most people do not have the budget to hire web developers, and it is a sad fact of the web landscape that most websites and apps are inaccessible by default, with 96% of the top million websites having automatically detectable Web Content Accessibility Guideline (WCAG) failures. But at the same time, while it is true that the web is inaccessible by default, which poses a challenge to those trying to do right, many merchants explicitly admit to never even thinking about accessibility at all.
+
+I like to think of this example as renting a commercial space. The building may have been constructed in accordance with local fire regulations, but once you put your furniture in, and do a little DIY construction on the side, it's entirely possible that you've created something that violates local fire regulations. Does that make the landlord responsible for the violations because they rented the space to you? Does ignorance of these fire regulations mean that you aren't obliged to follow them?
+
+Generally speaking, in the United States, the company (in this case, the merchant) is regarded as legally responsible for accessibility. You can read more about it in the Converge Accessibility blog post titled ["Can Web Developers be Sued for the Inaccessible Sites They Create for Clients?"](https://convergeaccessibility.com/2021/10/25/can-web-developers-be-sued-for-the-inaccessible-sites-they-create-for-clients/).
+
+I have genuine sympathy for vendors in that it is hard to do things correctly while wading in a swamp of poorly constructed themes and apps. It can be devastating for a small business to be hit with an expensive lawsuit, especially in the case of the original poster, where it seems like they did actually consider accessibility to the extent which they were able to. I'd like to see the legal process become more remediation focused rather than settlement based.
+
+But I do think the desire to never think about accessibility personally, to dump that responsibility onto someone else, has negative impacts on the accessibility of the internet as a whole. It is an attitude that harms disabled people on the internet every single day.
+
+## How can I figure out if something is accessible?
+
+Not enough merchants are aware of the existence of Accessibility Compliance Reports (ACR), which provide a useful tool for assessing accessibility. While most merchants never think about accessibility at all, those who do might search a marketing website for keywords such as 'accessible', and then take that at face value. Adrian Roselli has written extensively on why one should [be wary of superficial accessibility guarantees from vendors](https://adrianroselli.com/2016/03/be-wary-of-accessibility-guarantees-from-vendors.html). Oftentimes, the marketing team or sales team is simply not on the same page and may provide false claims.
+
+<div class="post-callout">
+	<h3 class="post-callout__title">Sidenote</h3>
+	<div class="post-callout__text">
+    An Accessibility Compliance Report (ACR) is often called a Voluntary Product Accessibility Template (VPAT), which is technically the name for the blank template used by a completed ACR, so searching for both terms may be helpful.
+	</div>
+</div>
+
+A particularly egregious example of incorrect accessibility claims can be found in the original Reddit thread. The original poster says that upon reaching out to Shopify support, they were advised by the Shopify support staff to install an accessibility overlay tool. Those in the accessibility industry know that [Accessibility Overlays Don't Work](https://overlaysdontwork.com/), and I've personally come across a case where the presence of an overlay tool blocked all screen reader users from being able to reach checkout. You know, the primary function on an e-commerce site. Yikes. I would really like to see Shopify do some kind of internal training to ensure that the support staff are all on the same page with regards to accessibility issues.
+
+As a developer and not a lawyer, I'm not really able to look at an accessibility policy or accessibility guarantee from a vendor and draw meaningful conclusions about legal risk from it, but an ACR consists of technical information on how a product meets the WCAG success criterion. The presence of one or multiple ACRs by a vendor is generally a positive sign for accessibility. It means that an organization has at least thought enough about accessibility to invest some resources into producing the document.
+
+There are certainly still issues with ACRs, as Brian DeConinck outlines in this post ['What’s wrong with VPATs?'](https://www.briandeconinck.com/vpats/). To summarize Brian's post, ACRs may often be seen as another arm of the marketing department, and it can be tempting to construct the ACR in a way that minimizes the number of issues found, either by reducing the areas of the site that are tested or by excluding specific assistive technology.
+
+Truthfully, as an application grows in complexity, it is more likely to have accessibility issues. In an ACR, each WCAG criterion can have a corresponding conformance level: supports, partially supports, does not support, or not applicable. You would think that finding an ACR with every criterion marked as 'supports' is a good thing, but it can indicate that a vendor is more interested in having a 'passing' ACR rather than an accessible product. When I look at a ACR, I'm not looking for legal risk, I'm looking for the depth of information provided about the usability, and that means diving into the depths of ACR comments.
+
+### The Dawn Theme ACR
+
+The Dawn theme is the default theme installed on any Shopify store. Shopify's first-party themes share a bunch of code between them, so looking at this ACR in depth is useful for determining the overall accessibility. (Last time I checked, Shopify's themes may even be largely identical in terms of code, and just provide different styling and content, but don't take this as gospel, things may have changed!)
+
+The [Dawn Theme ACR](https://www.shopify.com/hk-en/accessibility/vpat-theme-dawn) has 13 criteria listed as 'Partially Supports'. The rest of the criteria are marked as 'Supports', with no criterion marked as 'does not support' or 'not applicable.' While this may look bad to the untrained eye initially, one thing I'd like to call out is that the conformance levels in the VPAT template do not account for severity. I'd much rather see an ACR with detailed comments on all the success criteria, rather than a ACR with 'Supports' for every criterion without any detail at all. Additionally, there are inconsistencies in the way different assistive technology combinations handle things, even if something is perfectly coded to existing standards, and a good ACR will make note of these situations.
+
+While looking into this specific case, I found some comments, even those from accessibility experts, stating that this ACR indicates that this Shopify theme is inaccessible and should not be used. I'd like to emphasize that WCAG compliance and accessibility are not exactly one and the same. Though the court may find otherwise, I personally disagree, this ACR is what I'd generally expect a **realistic** ACR for an actively developed project to look like.
+
+It's positive that Shopify mentions both automated and manual testing and that fixes are on the way, but my main gripe is that the ACR is from 2021 and it's not immediately clear what the status is on some of these issues now in 2024. It is possible to follow up on the status of particular issues with some digging in the repository, as the Dawn source code is open source and the [Github issues](https://github.com/Shopify/dawn/issues?q=is%3Aissue%20state%3Aopen%20accessibility) are public, but I recognize that there is a high level of knowledge required to be able to sort through these issues in a meaningful way.
+
+Let's take a deeper look at the Dawn theme's 'partially supports' criterion to understand how one might interpret an ACR.
+
+#### 1.1.1 Non-text Content (Level A)
+
+> Some imagery text alternatives duplicate heading text content.
+
+In my interpretation, this is not a huge deal. There was a time when labeling [SVGs accessibly](https://css-tricks.com/accessible-svgs/) was not particularly straightforward, and sometimes the techniques used would cause the text to be [announced twice in some (but not all) assistive technology combinations](https://github.com/nvaccess/nvda/issues/4782).
+
+When Shopify builds a theme, the theme has to work for the millions of different possible permutations for all the ways in which merchants may input content. I can imagine them erring on the side of duplicated text over having unlabelled imagery, and I personally would regard duplicate text as a minor issue.
+
+Alternatively, this could be an issue with the alt text itself, which is easily addressable by content authors.
+
+#### 1.3.1 Info and Relationships (Level A)
+
+> - Page landmarks may be missing.
+> - Controls may be missing attributes to provide context.
+> - Controls may be incorrect for current context.
+> - Hidden content may provide an overly verbose experience.
+
+This is one of the more problematic criteria. The wording here could mean anything from blocking issues that prevent a user from using the site entirely, but it is also vague enough that it could refer to ARIA attributes that are not supported consistently across all technology combos, such as the [aria-controls](https://a11ysupport.io/tech/aria/aria-controls_attribute) attribute. Depending on the details, the severity of this criterion could range from blocking to minor, and I would want to know more details in order to make an informed assessment.
+
+Hidden content being verbose is much less worrying to me. Verbosity is an individual user preference, and screen reader users have the option to skip past text they don't want to listen to.
+
+#### 2.1.1 Keyboard (Level A)
+
+> - Dynamic changes in UI may not manage keyboard focus in an efficient manner.
+> - Potential difficulties arise when the Challenge (reCAPTCHA) screen is displayed.
+
+For not managing keyboard focus efficiently, I could see this as referring to something like the collections page, where depending on the number of filters present, it may create a flow where a user makes a change to a filter, and would need to tab through some extra tab stops before reaching the product list. Screen reader users have a way to navigate between landmarks, so this is less of an issue for them, but keyboard-only users have no choice but to tab between all the filters. Since this refers to efficiency, it comes across as a UI pattern some users may have frustration with rather than a blocking issue.
+
+Spam is a notoriously difficult issue to solve, and I'm not a huge fan of [Google's reCAPTCHA](https://developers.google.com/recaptcha). I'd really like to see better solutions to spam and the Captcha problem, but I understand this is not unique to Shopify and will take larger developments in the industry before this will be resolved. This issue has the potential to be blocking to some users, but a [2022 study](https://dl.acm.org/doi/fullHtml/10.1145/3524010.3539498) found that only 2% of 479 surveyed blind users had an issue with reCAPTCHA v3, so maybe I need to reevaluate my stance here.
+
+The Shopify documentation has indicated that they have switched over [HCaptcha](https://shopify.dev/docs/storefronts/themes/trust-security/captcha), a service I dislike even more, as it [requires disabled users to identify themselves to receive an exemption cookie](https://www.hcaptcha.com/accessibility), but at least HCaptcha can be disabled by the merchant.
+
+#### 2.4.3 Focus Order (Level A)
+
+> - Visually hidden content areas may be discoverable by screen reader virtual navigation.
+
+Every single website that uses visually hidden `aria-live` regions may have this issue, due to a lack of a better way to communicate messages to screen reader users. This is why we need the [ARIA Notify API](https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/main/Accessibility/AriaNotify/explainer.md), so that messages can be communicated to screen reader users without needing to exist in the DOM. This can be confusing, but screen reader users will likely be well accustomed to this kind of issue.
+
+#### 2.4.4 Link Purpose (In Context) (Level A)
+
+> - Homepage sections include links with similar labels.
+> - Facet filter link labels may not be clear out of context.
+
+The first point seems like a copywriting issue to me. A lot of stores have text like 'Shop Now' for every button, while each 'Shop Now' points to a different URL. This can be somewhat confusing, but it should also be a fairly easy fix.
+
+The second issue mentions the facet filters on the collection page. I took a peek at the live store, and my best guess is that this refers to the 'Reset' link under each filter. Each filter has a name, like 'Color', and a link to 'Reset' that filter is listed within the disclosure widget for that filter type. Shopify could consider adding some hidden accessible text so that the label says 'Reset Color Filter' instead. Screen reader users have the ability to navigate pages just by the list of links and buttons alone, so that would be a clearer label when looking at that list of links out of context. Because the link would only show up in the accessibility tree when the filter disclosure is expanded, in actual practice it's fairly unlikely/rare that a screen reader user will be confused by this.
+
+#### 2.5.1 Pointer Gestures (Level A 2.1 only)
+
+> - Some dynamic content may require gestures for content consumption (ex., 3D models.)
+
+I would be curious to see what other dynamic content they are talking about. Shopify has a built-in 3D model viewer in their themes, and this comment indicates that it would not be accessible to users who cannot perform gestures. However, I do think the use of 3D models on a storefront is generally quite rare and I wouldn't feel qualms about choosing this theme if I didn't have any 3D models for my products.
+
+The model viewer library is written by Google, and Scott Vinkle from Shopify has put in substantial work in [testing the library with various assistive technologies](https://github.com/google/model-viewer/issues/464), which shows the great discrepancy between different screen readers. For novel technology like this, there is often a lag between when the technology is created and when assistive technology creators figure out how to interact with it.
+
+#### 2.5.2 Pointer Cancellation (Level A)
+
+> Some custom keyboard functionality relies on the keydown event.
+
+The pointer cancellation specifically refers to mouse events, not keyboard events. I searched the repository for 'mousedown' and 'touchstart', and only found two references, one being a polyfill for focus-visible, and the other appeared to actually prevent activation on mousedown, so I would personally mark this as 'Supports'.
+
+#### 3.2.2 On Input (Level A)
+
+> Some links which open a new browser tab/window do not include a warning.
+
+This one should be fairly easy to fix, and is generally considered minor. For what it's worth, I've worked with blind developers who are full-time screen reader users, and they have forgotten to implement this on occasion, so it's definitely not blocking.
+
+#### 3.3.1 Error Identification (Level A)
+
+> - When submitting the Account address form with invalid data, no errors are present to warn the user.
+> - Some forms use native validation which can be problematic for specific users.
+
+I understand why Shopify has chosen not to provide address validations in this instance. The theme based account portals have largely been replaced with [Shopify's new account system](https://changelog.shopify.com/posts/now-launched-new-customer-accounts), which launched in January 2023\. With the Dawn VPAT being completed in November 2021, it is entirely possible that the plans for this new system were underway already. When I checked the new account system, I found that it does feature address checking and presents errors to the user in an accessible manner.
+
+[Native form validation (referring to the practice of just letting the browsers handle form validation) can be problematic](https://adrianroselli.com/2019/02/avoid-default-field-validation.html) for some users. It's also an area where accessibility shifts constantly, as each browser does their own thing. For example, I found numerous older reports saying that every browser/screen reader combo except for Android Talkback supports the 'required' attribute on inputs, but booting up Talkback today in 2024 found that it did work (at least with text inputs).
+
+The most complicated accessibility issues are always those relating to a particular combination of browser and assistive technology, and the Shopify team may have concluded that the effort spent developing custom form validation would create more accessibility issues than it would solve.
+
+#### 4.1.1 Parsing (Level A)
+
+The [Parsing](https://www.w3.org/WAI/WCAG22/Understanding/parsing#:~:text=This%20criterion%20has%20been%20removed,their%20handling%20of%20parsing%20errors.) criterion is considered obsolete and has been removed from WCAG 2.2. This ACR is referencing WCAG 2.1, so I see why they included it, but violations here are not really considered a huge issue.
+
+#### 4.1.2 Name, Role, Value (Level A)
+
+> - Some dynamic UI may contain incorrect stateful attributes for the current context.
+> - Some dynamic UI may be missing attributes to convey the current context.
+
+The assessment for this criterion is the same as 1.3.1 Info and Relationships. It's not uncommon to find accessibility issues that fit multiple criteria.
+
+#### 1.4.3 Contrast (Minimum) (Level AA)
+
+> Some text components may not meet the minimum color contrast requirement.
+
+I could not find any text components that didn't meet color contrast on the current version of the Dawn theme, but I have noticed that when themes generate other variations of a color based off a primary color, it's easy for those variations to fail color contrast requirements. This is definitely an issue where the merchant may have some responsibility, unless the default palette provided by the theme causes these issues to start with. I'm hoping that the future [color-contrast](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-contrast) function in CSS will make implementing accessible color palettes a lot easier for everyone.
+
+#### 2.4.6 Headings and Labels (Level AA)
+
+> Challenge page (reCAPTCHA) missing primary h1 heading.
+
+I could not get this page to trigger personally due to hCaptcha relying on user behavior, but seeing as Shopify is now using hCaptcha instead of ReCAPTCHA, it's likely that a disabled user will have more blocking issues to worry about than a missing heading if they manage to trigger this page.
+
+## Final thoughts on Shopify
+
+It is not my intent to defend Shopify or other large corporations, or to downplay the issues presented and the harm they may cause to users. Rather, it is to communicate the nuanced nature of accessibility. Although the guidelines lead us to think of accessibility as a binary, as ‘conforming’ or ‘non-conforming’, this couldn't be farther from the truth. There is room for improvement in Shopify's Dawn Theme ACR (and I’d like to see a newer one as this is almost four years out of date), but I appreciate the level of transparency in calling out potential issues, even if they are likely to affect a small subset of users, or are issues baked into the technology. They have also called out issues related to the software that their theme depends on, which is a level of responsibility that I don't see many merchants taking.
+
+When remediating Shopify themes, I feel confident recommending the Dawn theme to potential merchants. Compared to other themes, the issues with this theme are largely non-blocking, or can be avoided with some care. While it is always possible for any software to have regressions, the fact that there was clear effort in the past and a willingness to fix issues with the theme are positive signs in my book. Although we shouldn't ignore the significance of non-blocking issues, an ACR like this indicates that there are a lot of things going right with accessibility. There is a level of intention here that I think matters a lot; you cannot stumble upon this level of accessibility accidentally, you need organizational backing to develop mature accessibility processes.
+
+However, my review of Shopify's accessibility is definitely not all sunshine and roses. I haven't mentioned them much previously, but I'd like to call attention to the understated impact of third-party apps. Because they are so easy to install, it's not always immediately obvious how devastating a single app can be towards a storefront's accessibility. Any single app that touches the storefront can block the user's ability to achieve their goals. While Shopify's first-party themes may have done a decent job, they continue to run an app and theme stores that is largely filled with inaccessible apps, simply because it is profitable.
+
+In a way, the Shopify app store and theme store create a parasitic ecosystem. Shopify gets to wash their hands of the responsibility of building all this complex functionality by themselves, and the third-party apps and themes earn them money without being subject to stringent guidelines and scrutiny the way first-party code is. I remember a time when there were discussions about implementing accessibility requirements, but it's been several years and they have yet to come to fruition.
+
+## I'm a merchant and I want to do better, where should I start?
+
+I don't think there is any single thing one can do to avoid this kind of drive-by accessibility lawsuit, but the best thing you can do is to put effort into accessibility from the start. Knowing what accessibility is and trying to think about it as early as possible is always a good idea, and may potentially help you in getting frivolous lawsuits dismissed. An accessible theme is just a starting point, and in the end, it is the merchant's responsibility to consider accessibility throughout the process.
+
+In terms of cost, it is always cheaper to think about accessibility up front. A remediation job of an inaccessible site can take a skilled developer hundreds of hours. I know that auditing third-party vendors for accessibility is not a skill that everyone has, but short-listing a bunch of potential themes and apps and then consulting with an accessibility professional for a few hours is far cheaper than waiting till you've already been sued. Maybe, while you're at it, you can even work on an accessibility statement together, so disabled people know where to turn to when they need assistance.
+
+> When the only recourse available to people with disabilities is to sue, class actions get attention.
+>
+> - [Sheri Byrne-Haber](https://sheribyrnehaber.com/who-tests-the-ada-testers/)
+
+As a final note, I can't state enough that disabled people shouldn't have to beg for accessibility, but the current state of accessibility legislation means that disabled people are often forced to rely on complaints and lawsuits. Asking nicely doesn't alway work, and so, we've created the current adversarial state of affairs. A certain percentage of lawsuits are frivolous in that their claims are unsubstantiated, but until something changes, lawsuits are one of the few tools disabled people have in order to be treated equitably. Before complaining about frivolous lawsuits, I have to ask, have you done your part in making your site accessible?
+
+### Links & Resources
+
+I've gathered up a few links that I hope will be useful to non-accessibility experts who are looking to make their storefronts more accessible.
+
+- [Understanding Web Accessibility for Ecommerce Merchants](https://www.shopify.com/blog/web-accessibility): Shopify has produced an overview of web accessibility tailored for merchants.
+- [Accessibility in Writing](https://www.wcag.com/authors/): A look at the WCAG criteria that specifically relate to content authoring.
+- [How to design for accessibility](https://digital.accessibility.princeton.edu/how/design): An intro to the visual design aspects of accessibility.
+- [Things to Do Before Asking “Is This Accessible?”](https://adrianroselli.com/2024/08/things-to-do-before-asking-is-this-accessible.html): An actionable checklist of what you can do to find out if something is accessible. Some of these items are pretty technical, but there are many items that a non-expert can do.
+- [Checking 3rd Party Vendors’ Product Accessibility](https://knowbility.org/blog/2020/third-party-vendor-accessibility-check/): A less technical approach to auditing third-parties.
+- [Disability:INclusive Workplaces Accessible Technology Procurement Toolkit](https://disabilityin.org/home-2/): A detailed guide to procurement, especially helpful for large organizations.
+- [Overlay Fact Sheet](https://overlayfactsheet.com/en/): Don't even think about downloading that overlay tool, I'm still mad Shopify support suggested it.
+
+Thank you to EJ Mason for proofreading this piece.
