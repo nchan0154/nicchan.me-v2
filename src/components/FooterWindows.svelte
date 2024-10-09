@@ -90,12 +90,12 @@
 			if (buttonIsVisible === false) return true;
 		});
 		if (nextButton) {
-			nextButton.scrollIntoView({
+			const left = nextButton.offsetLeft - parent.offsetLeft;
+			parent.scrollTo({
+				left,
 				behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
 					? "auto"
 					: "smooth",
-				block: "start",
-				inline: "start",
 			});
 			parent.addEventListener("scroll", setScrollTimer);
 		}
