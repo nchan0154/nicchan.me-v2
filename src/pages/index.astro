@@ -4,6 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import Window from "../components/Window.svelte";
 import ClientsList from "../components/ClientsList.svelte";
 import Posts from "../components/Posts.svelte";
+import Image from "@components/Image.astro";
 
 const posts = await getPosts();
 
@@ -29,25 +30,38 @@ const limitedPosts = posts.slice(0, 8);
 						Hi, I'm Nic Chan and I am an independent front-end web developer.
 					</p>
 					<p>
-						I help companies around the world build fast, accessible and
-						user-friendly web experiences.
+						I've just launched Primavera, an accessible, high-end Shopify theme.
 					</p>
-					<a class="button--ui" href="/services">
+					<Image
+						src="https://res.cloudinary.com/nicchan/image/upload/v1747196547/og-image-banner.jpg"
+						alt="Five different looks for the same Shopify theme for different industries. From left to right, a bright pastel beauty store, a black and white minimalist fashion store, an elegant purple and cream jewellry store, an earthy and organic ceramics store, and a bright primary color, brutalist-inspired furniture store."
+						width="1200"
+						height="630"
+					/>
+					<a
+						class="button--ui"
+						href="https://themes.shopify.com/themes/primavera/styles/precision">
 						<span class="button--ui__content">
-							Find out more about what I do -&gt;
+							Check out Primavera on the Shopify Theme Store -&gt;
 						</span>
 					</a>
 				</div>
 			</Window>
 		</div>
 		<div class="layout__cell home__clients">
-			<Window title="Clients" style="--max-width: 22rem;" order={1} client:load>
+			<Window title="Clients" style="--max-width: 40rem;" order={1} client:load>
 				<div class="stack">
 					<p>
-						I am proud to be trusted by companies big and small, including these
-						organizations:
+						I help companies around the world build fast, accessible and
+						user-friendly web experiences. I am proud to be trusted by companies
+						big and small, including these organizations:
 					</p>
 					<ClientsList />
+					<a class="button--ui" href="/services">
+						<span class="button--ui__content">
+							Find out more about what I do -&gt;
+						</span>
+					</a>
 				</div>
 			</Window>
 		</div>
@@ -86,7 +100,7 @@ const limitedPosts = posts.slice(0, 8);
 
 		@media (min-width: 62em) {
 			.home {
-				grid-template-columns: min(50%, 60ch) 1fr;
+				grid-template-columns: min(50%, 75ch) 1fr;
 				grid-template-rows: auto auto 1fr;
 				gap: 1rem;
 			}

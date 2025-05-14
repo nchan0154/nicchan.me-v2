@@ -28,8 +28,8 @@
 <style lang="scss">
 	.clients {
 		display: grid;
-		max-inline-size: fit-content;
-		grid-template-columns: 1fr 1fr 1fr;
+		max-inline-size: 100%;
+		grid-template-columns: repeat(auto-fit, 8.3125rem);
 		gap: var(--border-thickness);
 		margin-block-end: 0;
 		padding: 0;

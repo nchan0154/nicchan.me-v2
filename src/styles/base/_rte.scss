@@ -81,7 +81,7 @@
 	}
 
 	img {
-		margin: var(--space-xs) auto;
+		margin: var(--space-s) auto;
 		image-rendering: initial;
 		@include pixel-borders();
 	}
@@ -91,7 +91,7 @@
 	}
 
 	figure {
-		margin: var(--space-xs) 0;
+		margin: var(--space-s) 0;
 	}
 
 	figcaption {
@@ -122,7 +122,7 @@
 	}
 
 	blockquote {
-		margin: var(--space-xs) 0;
+		margin: var(--space-s) 0;
 		padding-inline-start: 1rem;
 		border-inline-start: calc(var(--border-thickness) * 2) solid
 			var(--color-text-accent);

@@ -1,0 +1,213 @@
+---
+title: "We launched our first Shopify theme"
+pubDate: "2025-05-14"
+description: "Accessibility is your responsibility too."
+tags:
+  - shopify
+  - accessibility
+  - thoughts
+image: https://res.cloudinary.com/nicchan/image/upload/w_1200,h_630,c_limit,f_auto/v1747196547/og-image-banner.jpg
+alt: Five different looks for the same Shopify theme for different industries. From left to right, a bright pastel beauty store, a black and white minimalist fashion store, an elegant purple and cream jewellry store, an earthy and organic ceramics store, and a bright primary color, brutalist-inspired furniture store.
+---
+
+import Image from "../../components/Image.astro";
+
+<figure>
+	<Image
+		src="https://res.cloudinary.com/nicchan/image/upload/v1747196547/og-image-banner.jpg"
+		alt="Five different looks for the same Shopify theme for different industries. From left to right, a bright pastel beauty store, a black and white minimalist fashion store, an elegant purple and cream jewellry store, an earthy and organic ceramics store, and a bright primary color, brutalist-inspired furniture store."
+		width="1200"
+		height="630"
+	/>
+	<figcaption>
+		The Primavera theme has five different preset looks that you can customize
+		as much or as little as you need. All these looks can be configured just by
+		tweaking settings, without touching a single line of code.
+	</figcaption>
+</figure>
+
+A few weeks ago, we quietly launched Primavera, our first Shopify theme! The idea of building a Shopify theme had been floating around my head for a long time now, but the timing never seemed right. It wasn't until I re-connected with my former colleague [Marianne](https://www.marianneciara.com/) that I felt that this idea really had potential.
+
+Marianne is not only a talented developer, she also has other skills that make her an incredible co-founder. While I am much more happy tinkering in code all day, Marianne enjoys marketing, has nearly a decade of experience in providing customer support at luxury brands, has great design chops and also speaks French and Spanish, two key languages that are part of the theme store filters. Talk about luck! Together, we co-founded [Ultramarina](https://ultramarinastudios.com/), and this theme is hopefully just the first of many ventures together.
+
+<Image
+	src="https://res.cloudinary.com/nicchan/image/upload/v1747194106/ultramarina.png"
+	alt="The Ultramarina site, a simple minimalist website with Ultramarine blue accents with some marketing copy and a video of the theme on an iPad."
+	width="1366"
+	height="1351"
+/>
+Though our journey is just beginning, I thought it would be interesting to share
+some thoughts and reflections about the process of getting a theme to launch. I've
+benefited a great deal from many other folks sharing their experiences openly and
+candidly, and I'd like to pay it forward to the community. The following post is
+either going to read as a technical post-mortem of sorts (is it a post-mortem if
+it's still alive?), a summary of my developer philosophy, or a loose sales pitch
+depending on your tolerance, so don't say that you haven't been warned! ;)
+
+## Goals
+
+Given Marianne's previous background, it seemed only logical for our theme to target the high-end market. There aren't many all-women teams in the Shopify theme space, and we felt that we could bring not only our professional experience, but our personal experience as the target audience for the kinds of brands we'd be hoping to reach.
+
+<figure>
+	<Image
+		src="https://res.cloudinary.com/nicchan/image/upload/v1747194361/distinction-desktop.jpg"
+		alt="The Distinction preset. A luxury fashion store featuring a split hero banner section with a shopabble product and a product collection below. The prices are very, very expensive."
+		width="2000"
+		height="2496"
+	/>
+	<figcaption>
+		Okay, maybe the target price point is a little out of reach personally, but
+		I've always loved fashion!
+	</figcaption>
+</figure>
+
+While we definitely wanted to make our theme easy to use for the average merchant, we also had a secondary core audience in mind, agencies and other developers. Over the years, we've spent a lot of time customizing premium themes for various merchants, and we have a strong idea of what makes a good foundation for that kind of work. Essentially, we wanted to build the theme for the past versions of ourselves.
+
+As we are both perfectionists, our core philosophy was "we will spend the time obsessing over the details so other people don't have to." One example of this is is the infinite loading option on the collection pages. Although we definitely have mixed feelings about infinite loading, we know that regardless of how we felt, people would want this feature anyway (more on this later), and if it was going to be done, it had to be done well. We looked really carefully at dozens of different implementations and all their pitfalls, and our solution manages to:
+
+1. Preserve back button state
+2. Utilize real `<a>` tags that are swapped with the more semantic `<button>` element to provide search engines with paginated URLs
+3. Supports progressive enhancement in case JavaScript fails to load
+4. Communicate state and manage focus for non-mouse users
+
+We took this level of care with every single part of the theme. We even had a huge multi-hour fight about what to do when someone typed a decimal place in a price input from any given locale, that's how deep we examined every component. Building a solid foundation was extremely important to us throughout the process of building the theme, as we have a lot planned for the future. From day one, we brought advanced features such as right-to-left support and cart upsells, but there is still plenty more features that we want to add.
+
+In contrast to the standard SaaS product and similar themes, we feel that the end product of our theme isn't just the end-result that the user experiences, it's also the code that underpins it. Developers and agencies should be able to extend the theme easily, they should be able to configure a few design tokens or change a few settings to get all of our powerful functionality with a unique look and feel.
+
+Yes, it should be easy to get up-and-running, but it should also be easy to take that design and run with it. I've been in that place where I have to just change one font size throughout the store, and the lack of a design system or component based architecture means that what should be a 5 minute task becomes a 3 hour task. Not fun, and certainly not something we wanted to deliver to our fellow developers.
+
+## Tech
+
+Because we want our codebase to be something that people can easily extend, we had to think really carefully about the tech stack and dependency tree. We settled on an architecture where we concatenated our core CSS and JavaScript into one big file, but we left it un-minified and used no other tooling. For the perf geeks out there, don't worry! Shopify minifies the code before it serves it, but the code that developers see and access in the editor is unminified.
+
+That meant that all the CSS is just vanilla CSS with no frameworks, and all the JavaScript bits are Web Components/HTML Custom Elements. Before this project, I had dabbled in Web Components for one-offs, but never for an entire project of this scale. To steal the lexicon of a finance bro for a second, I'm now incredibly bullish on Web Components. Their extensibility is unmatched, if someone wants to take most of your behavior and add their own behavior onto it, they can simply extend the Custom Element and override or enhance the necessary methods.
+
+Web Components don't ever need to be upgraded, and they're a part of browsers so they have to support them until the end of time. Because the Shopify theme store involves a one-time payment for lifetime support (much to the chagrin of theme developers), anything to minimize our support burden would be important.
+
+In terms of third party dependencies, we only have **two** JavaScript libraries in the theme. The first is What Input, which tracks the current input method. We use this to iron out inconsistencies with how browsers handle `:focus-visible`. One major thing that came up is that Safari showed `:focus-visible` upon programmatically moving focus. Because so much of the code relies on the Shopify Section Rendering API (which is basically Shopify's take on HTMX, it helps you swap out bits of HTML as interactions happen), we have to move focus to the newly rendered HTML quite a bit, and it was often confusing for a focus ring to suddenly appear after a fetch request that is supposed to be hidden to them. However, we've still kept the ability to disable it easily if you want to use the native `:focus-visible` detection.
+
+The second third-party dependency we use is the instant.page library (which can be disabled, of course). This helps to speed up requests by prefetching the next page when it detects user intent to navigate. In the future, I hope the speculation rules API will replace the need to include this at all, and we can get rid of it entirely.
+
+To dive into Shopify specifics for a bit, I'm really proud to say Primavera is one of the first themes to utilize the new Theme Blocks architecture. The previous architecture before this is generally called Online Store 2.0, and it comprised of sections (think, a hero section, a list of products, etc.), and a single layer of blocks, which could be more granular components, like a button, but also larger ones like a slideshow slide.
+
+This single layer limitation was extremely limiting. Take our slideshow example, having the Slideshow be the section and a Slide be the block meant that there wasn't flexibility for determining what was in the slide without a bunch of duplication. This meant that there were a ton of arbitrary limitations on design, like a slideshow slide would pretty much consist of a subheading, a heading, text and a button, with no possibility to change the order.
+
+<Image
+	src="https://res.cloudinary.com/nicchan/image/upload/v1747201320/blocks-everywhere.jpg"
+	alt="The Shopify customizer UI, featuring a series of nested blocks to build up a heading, some text and some disclosure elements below."
+	width="2751"
+	height="1453"
+/>
+
+With theme blocks, you can nest blocks up to 8 levels deep, which means that you could compose blocks out of other blocks. This unlocks tremendous possibilities for design, and it means a better surface for other developers to extend the theme. If you wanted to add a block unique to your store, you could simply add it as a block, and then you could use it in any section or block that you wanted, whether it be a hero section, a card, in tabs, an expandable element, etc.
+
+There are still a few kinks to work out with Theme Blocks architecture. We've had issues with third-party apps not supporting it yet, there's limitations on variable scoping, and there's no way to set a limit for how many times a theme block appears. However, I truly do believe that Theme Blocks are the way forward for the Shopify ecosystem, and I'm excited to be at the forefront of those using it.
+
+<figure>
+	<Image
+		src="https://res.cloudinary.com/nicchan/image/upload/v1747203464/lighthouse.png"
+		alt="Lighthouse test scores, 100s across the board in performance, accessibility, best practices, and SEO."
+		width="1803"
+		height="428"
+	/>
+	<figcaption>
+		If the wind blows exactly right and you spin around in a circle three times,
+		we can get perfect Lighthouse scores.
+	</figcaption>
+</figure>
+
+The end result of all these technical decisions is hopefully, a codebase that is very much human-readable, but easy to extend. Those who've worked with Shopify before know how elusive that perfect 100 lighthouse score is, and we've managed to build something that can achieve it (with careful and well-considered use of media, of course!) We really hope to provide a good foundation that will scale as merchants do.
+
+## Accessibility
+
+Readers of the Blog will probably know that I will not shut up about the accessibility of Shopify themes. [E-commerce as a whole is an incredibly inaccessible part of the internet](https://cerovac.com/a11y/2025/04/webaim-million-results-show-that-shopping-sites-have-worst-accessibility/), and I felt that my unique background as an accessibility consultant and a developer could bring about greater impact if I tried to 'shift left' in the process.
+
+<figure>
+	<Image
+		src="https://res.cloudinary.com/nicchan/image/upload/v1747194309/meme2.jpg"
+		alt="Two panel kombucha girl meme. On the left is a blonde woman making a digusted face, the caption says 'Remediate a single inaccessible store. On the right is the same blonde woman looking curious and intrigued, the caption says 'Make many store accessible by building an accessible theme.'"
+		width="540"
+		height="462"
+	/>
+	<figcaption>Not gonna lie, this was basically my thought process.</figcaption>
+</figure>
+
+As a result, it was always a huge priority to make things accessible, and building the theme has been a delicate balance of trying to manage merchant expectations with creating an accessible user experience.
+
+For example, if it were completely up to me, I would personally not include a marquee text region in my storefront. I know the problems they pose to users, and I find them quite distracting as I read. However, our thinking was, if merchants were going to use marquee text, we had a duty to build the absolute best marquee we possibly could. This approach was later validated shortly after launch. We had intentionally chose to not allow a marquee in a particular section, but we saw the merchant had customized the code to add the marquee where they wanted it using using the deprecated marquee tag. Needless to say, this wasn't a very accessible implementation.
+
+Our marquee component has a pause button, respects the user preference for reduced motion, only enables focus for the first unique instance of a link, and only announces the first instance of the text. While there are certainly things that I think can be improved, a huge amount of effort was put in to make sure that disabled users would not be blocked by it. Marquees are not great for accessibility, but one that has considered accessibility is certainly better than one without.
+
+The way themes are sold poses an interesting difference to my regular accessibility consulting work. In consulting, you are in direct dialogue with the merchant, you can talk to them about why a feature they want is inaccessible, and sometimes you can even convince them to adopt an alternative approach. With themes however, merchants just browse from a giant list. They will often expect a certain feature or design, without knowing anything at all about the impact on accessibility, and if the theme doesn't have that feature, they will just move onto the next option.
+
+<Image
+	src="https://res.cloudinary.com/nicchan/image/upload/v1747204869/settings.png"
+	alt="Theme options for Primavera, featuring the ability to choose between floating labels or labels always on top of form fields, as well as underline text fields vs. text fields that have solid borders all around."
+	width="3061"
+	height="1432"
+/>
+
+Knowing this, one other technique we've used is an 'escape hatch' approach. We have features in the theme that technically comply with WCAG but do not represent best practices in accessibility, and we've tried to ensure there's always a more accessible backup alternative for people to choose. We have my [arch nemesis, text inputs indicated only by a single line](https://heydonworks.com/article/listen-to-me-not-google/) in the theme, but we also have the option to switch to regular box inputs just by toggling a setting. We hope this will make it easier for merchants and the teams working with them to enable better UX choices without requiring a major rewrite.
+
+In terms of future goals, while I've tested as much as I could on my own with the assistive technologies I have available to me, I really want to engage more disabled users for testing. We also want to get a third-party VPAT in order to better document where we are at and where we can improve.
+
+A good accessibility consultant knows that perfect WCAG compliance is an incredibly lofty, even unrealistic goal, and that perfect, bug-free software will never exist. The best we can do is to promise to treat accessibility issues as seriously as we trea
+
+## Timing
+
+I'm generally pretty decent at estimating (10 years of timesheets will do that to you), but I did drastically underestimate this! Marianne and I had regularly turned out full theme builds from scratch in 3 weeks at the agency we worked at. However, I had failed to realize that building one single design is a much, much smaller task than building a system that can encompass many designs.
+
+<figure>
+	<Image
+		src="https://res.cloudinary.com/nicchan/image/upload/v1747208543/pdp-looks.png"
+		alt="Six slightly different looks for the product page, two variations on a thumbnail layout, 3 on a slideshow layout, and one desktop scroll layout where images are stacked vertically."
+		width="1732"
+		height="1483"
+	/>
+	<figcaption>
+		We have six different looks available for the product images. Yes, I hate my
+		past self, why do you ask?
+	</figcaption>
+</figure>
+
+A lot of work went into building out many different configurations. In a single site design, you might be like, 'ok, this product page will have 3 product images, all the same aspect ratio, how can we best present this'? But if you don't know what your merchants are with, they could upload anywhere between one and a hundred images, some video, of mixed aspect ratio, etc. Thinking through these different variations took up a lot more time than anticipated.
+
+We had hoped to submit our theme to the store in 2.5 months, but it ended up taking about 4 months to get the code done. The path was very non-linear, Theme Blocks architecture was in beta when we started, and it launched after we were about 95% done, at the end of January. We ended up rewriting our entire codebase to use Theme Blocks architecture after the first submission, a process that shockingly only took **6 days** thanks to the modularity of our code.
+
+<Image
+	src="https://res.cloudinary.com/nicchan/image/upload/v1747207438/primavera-theme-3_1.jpg"
+	alt="Desktop and mobile screenshots of the product page on the Gloss demo store, featuring a lipstick and bright pastel colors."
+	width="2000"
+	height="1400"
+/>
+
+I had also underestimated how much time it would take to get the non-code tasks done too. Styling and getting images for the demonstration stores took about a month and a half, and the fact we were trying to get our business up and running during the key dates of Christmas Holidays and Lunar New Year meant that the paperwork took longer than expected as well. We launched with a complete set of documentation for every one of our 30+ sections, and writing all of it up took up the better part of a month.
+
+The submission process was totally unknown to us. All themes must be reviewed by Shopify, and the checklist of requirements is over 10,000 words long. We had heard it could take anywhere from weeks to months to hear back from the Shopify review team, and we also knew that it was possible that you could be sent back to the drawing board if your theme wasn't uniquely different from others in the store. We were very grateful to get through the process in just under a month with only minimal back and forth, we knew the process was not smooth for most.
+
+The overall process from start to finish took around 6 months on my end. Marianne had worked on some of the design and UX in her downtime from client work for over a year prior. During the six months of me being full-time on this project, there were many weeks where we worked 7 days a week, I took a total of two days off for the winter holidays. It was a completely unsustainable pace, and even a month after launch we're still trying to recover from the experience. I took on a few small client projects during this time, but the lack of usual income meant that this was a significant investment of time and money.
+
+I'd be remiss if I didn't mention something about the current world situation. I am fully aware that the conditions for collaboration would have likely not happened in better economic times as Marianne and I would have both been busy with client work. However, the state of the tech industry is pretty dire, and the world economy seems to be on the brink of recession, with uncertainties about global trade looming over many businesses. You'd be hard-pressed to find a worse time to start something dependent on the success of mostly English-speaking merchants. Still, we have yet to come across a mechanism for time travel, so hunkering down and trying our best is the only thing we've got right now.
+
+## Advice
+
+When I told people I was working on a Shopify theme, after clarifying that it was indeed not a Spotify theme, I would often be met with responses like "It's such a good idea to work on a passive income stream!" As much as I'd love to lie on a beach somewhere doing nothing but check my bank account, I have to emphasize that the ideal end-state for us is to reach a place where we can work on this full-time. Because of the requirements of the marketplace, there's not really a way to make this a form of passive income.
+
+Shopify themes are not like selling other templates, for two main reasons: 1. the ecosystem is always changing. Shopify requires the theme be updated to support new features, and if you don't meet the deadline, your theme will be delisted. You definitely cannot hit publish and then forget about it. 2. The price of a theme includes lifetime support. For several hundred US dollars, you need to offer lifetime support for your theme as long as it remains published. I've heard of theme partners receiving hundreds of support queries from the same person, for less than the price of a single month of an enterprise license. Potential theme vendors should keep both these things in mind before committing to the journey.
+
+## How's it going?
+
+We've been published in the theme store for about a month now. Sales were strong at first as we were featured in the much coveted homepage spot for new themes. As anticipated, once we lost that privileged position, we now need to split our focus between marketing and developing the product simultaneously. We're working on building an audience and reputation that can sustain our business for the long term, regardless of whether or not we're on the first page of the theme store. We know it's definitely an uphill battle ahead of us, but after so many years of agency work, I'm excited to try living in product-land for a little while.
+
+## Shameless plug
+
+<Image
+	src="https://res.cloudinary.com/nicchan/image/upload/v1747209109/artistry-desktop.jpg"
+	alt="The Artistry preset, an earthy, muted preset featuring handmade ceramics."
+	width="2000"
+	height="2496"
+/>
+
+If you're interested in theme, you can visit [our studio site](https://ultramarinastudios.com/) or the [Primavera theme listing](https://themes.shopify.com/themes/primavera/styles/artistry) directly to check it out! I've linked to Artistry, our most accessible preset out of the box, but I think you'll be impressed with how easy it is to get entirely different looks by just tweaking the global settings.
+
+Feel free to reach out to me at nic@ultramarinastudios.com to let me know what you think. I promise I have far too much anxiety to upsell you if you just want to geek out over the details! If you're an agency or developer looking to see if Primavera is the right fit for you, drop me a message and we'd be happy to send you more information.
