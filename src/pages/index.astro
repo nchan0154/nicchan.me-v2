@@ -41,9 +41,7 @@ const limitedPosts = posts.slice(0, 8);
 					<a
 						class="button--ui"
 						href="https://themes.shopify.com/themes/primavera/styles/precision">
-						<span class="button--ui__content">
-							Check out Primavera on the Shopify Theme Store -&gt;
-						</span>
+						<span class="button--ui__content"> Check out Primavera -&gt; </span>
 					</a>
 				</div>
 			</Window>
@@ -67,7 +65,7 @@ const limitedPosts = posts.slice(0, 8);
 		<div class="layout__cell home__posts">
 			<Window
 				title="Recent Posts"
-				style="--max-width: 50ch;"
+				style="--max-width: 60ch;"
 				order={2}
 				client:load>
 				<Posts posts={limitedPosts} />
@@ -99,7 +97,7 @@ const limitedPosts = posts.slice(0, 8);
 
 		@media (min-width: 62em) {
 			.home {
-				grid-template-columns: min(50%, 75ch) 1fr;
+				grid-template-columns: min(50%, 50ch) 1fr;
 				grid-template-rows: auto auto 1fr;
 				gap: 1rem;
 			}
@@ -115,7 +113,7 @@ const limitedPosts = posts.slice(0, 8);
 			}
 
 			.home__clients {
-				padding-inline-start: var(--space-l);
+				padding-inline-start: var(--space-m);
 				grid-column: 2;
 				grid-row: 1 / 3;
 			}
