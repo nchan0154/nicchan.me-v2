@@ -1,0 +1,40 @@
+---
+const { thresholds } = Astro.props;
+---
+
+<script>
+	class Quiz extends HTMLElement {
+		constructor() {
+			super();
+			this.thresholds = JSON.parse(this.dataset.thresholds).reverse();
+			this.checkboxes = this.querySelectorAll('input[type="checkbox"]');
+
+			this.checkboxes.forEach((checkbox) => {
+				checkbox.addEventListener("change", (event) => {
+					const count = this.querySelectorAll("input:checked").length;
+					this.calculateScore(count);
+				});
+			});
+		}
+
+		calculateScore(count) {
+			const threshold = this.thresholds.find(
+				(threshold) => count > threshold.threshold
+			);
+			if (threshold && !this.results) {
+				const template = this.querySelector("template[data-score-template]");
+				this.appendChild(template.content.cloneNode(true));
+				this.results = this.querySelector(".quiz-results");
+			}
+			this.results.querySelector("[data-score]").innerHTML = count;
+			this.results.querySelector("[data-message]").innerHTML =
+				threshold.message;
+		}
+	}
+
+	customElements.define("quiz-component", Quiz);
+</script>
+
+<quiz-component data-thresholds={JSON.stringify(thresholds)}>
+	<slot />
+</quiz-component>

@@ -1,0 +1,15 @@
+---
+const id = `quiz-${Math.random().toString(36)}`;
+---
+
+<div class="checkbox">
+	<input class="checkbox__input" type="checkbox" id={id} name={id} />
+	<label class="checkbox__label" for={id}>
+		<span class="checkbox__label-wrapper">
+			<svg class="">
+				<use href={`#icon-check`}></use>
+			</svg>
+			<slot />
+		</span>
+	</label>
+</div>

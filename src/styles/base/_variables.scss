@@ -113,6 +113,8 @@
 	--window-spacing: var(--window-margin-block-start);
 	--button-font-size: 1.25rem;
 
+	--space-3xs: clamp(0.25rem, 0.163rem + 0.4348vw, 0.5rem);
+	--space-2xs: clamp(0.5rem, 0.3261rem + 0.8696vw, 1rem);
 	--space-xs: clamp(0.75rem, 0.4891rem + 1.3043vi, 1.5rem);
 	--space-s: clamp(1rem, 0.6522rem + 1.7391vi, 2rem);
 	--space-m: clamp(1.5rem, 0.9783rem + 2.6087vi, 3rem);
@@ -122,6 +124,7 @@
 	--space-xs-s: clamp(0.75rem, 0.3152rem + 2.1739vi, 2rem);
 	--space-s-m: clamp(1rem, 0.3043rem + 3.4783vi, 3rem);
 	--space-m-l: clamp(1.5rem, 0.6304rem + 4.3478vi, 4rem);
+	--space-s-xs: clamp(1rem, 0.8261rem + 0.8696vw, 1.5rem);
 
 	@media (min-width: 48em) {
 		--text-padding: 1rem;
