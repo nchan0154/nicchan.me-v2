@@ -13,7 +13,7 @@ I'm a web generalist, which means that I've worked with a wide variety of techno
 
 ### Accessibility
 
-I'm an IAAP certified Web Accessibility Specialist and have completed development projects that require WCAG 2.1 evaluations. As a accessibility-focused developer, I am best for finding major accessibility blockers in your design or codebase and either fixing them directly or educating your team on how to fix them rather than comprehensive auditing services.
+I'm a web accessibility specialist and have completed dozens of development projects that require third-party WCAG 2.1 evaluations. As a accessibility-focused developer, I am best for finding major accessibility blockers in your design or codebase and either fixing them directly or educating your team on how to fix them rather than comprehensive auditing services.
 
 ### Design Systems
 

@@ -124,10 +124,9 @@ const splitTitle = post.data.title.split(":");
 						let anchorName = `--ha_${this.instanceIndex}_${index}`;
 						placeholder.style.setProperty("anchor-name", anchorName);
 						anchor.style.positionAnchor = anchorName;
+						heading.appendChild(placeholder);
+						heading.after(anchor);
 					}
-
-					heading.appendChild(placeholder);
-					heading.after(anchor);
 				}
 			});
 		}
@@ -389,4 +388,6 @@ const splitTitle = post.data.title.split(":");
 			gap: var(--space-s);
 		}
 	}
+
+	@not;
 </style>
