@@ -1,0 +1,99 @@
+---
+title: Please, can we have ARIA Notify
+pubDate: "2025-07-10"
+description: "A hate letter to live regions."
+tags:
+  - accessibility
+image: https://res.cloudinary.com/nicchan/image/upload/f_auto/v1752143080/9zcg7e_oxjc4v.jpg
+alt: "A common two panel meme format: the text 'Live regions' is next to a man sleeping, labelled 'I sleep'. In the next panel, the text ARIA Notify is next to the same man who is now awake with eyes glowing red labelled 'real shit', the image has been compressed to a pixellated crisp."
+---
+
+I'm delighted to see that there has been [more chatter about implementing the ARIA Notify API](https://blogs.windows.com/msedgedev/2025/05/05/creating-a-more-accessible-web-with-aria-notify/). A small part of me, the part with an inflated sense of ego, is hoping that my frenzied complaints with fellow accessibility specialists has found its way into the right ears and that my griping has moved the needle. The larger, more rational part of me realizes this is unlikely, and that is more likely that other developers are experiencing the same issues I am. Either way, I'm just glad it's being considered.
+
+This post is not going into all the details of implementing a live region, as I believe [Sara Soueidan has written the seminal post on the subject](https://www.sarasoueidan.com/blog/accessible-notifications-with-aria-live-regions-part-2/) already. If you click through to the post, you will find an extremely detailed breakdown on how to implement a live region in order to work consistently in as many assistive technology combinations as possible. Still, Sara's final takeaway is worth noting. She writes:
+
+> [!NOTE]
+> Avoid live regions if you can.
+> I know this isn’t the advice you’d expect at the end of a whole chapter about live regions. But hear me out.
+>
+> Live regions are inconsistent and unpreditcable. It’s easy for their implementations to go wrong. There’s a lot of manual work involved to get them working properly.
+>
+> Furthermore, the design of live regions is intended to give maximum flexibility to screen readers to implement an experience that is best for their users.
+>
+> What this means is that ARIA live region properties are only **strong suggestions** as to how you want live region announcements to be made, but the value of these properties (and by extension: the behavior of live regions) **may be overridden by browsers, assistive technologies, or by the user.** This along with current bugs and implementation gaps means that you can’t guarantee that a live region will always work the way you designed it to. This is one of the reasons why you should try to rely on live regions as little as possible, and use alternative and more robust approaches whenever you can.
+
+This pretty much sums it up. Unfortunately, it is my experience that an application with any level of interactivity greater than a static page may need to use live regions, but live regions are a pretty awful tool for the case they were meant to handle.
+
+When I worked on [Audiom](/work/audiom/), live regions were a necessity for what we were trying to accomplish, there was no way we could minimize our usage of them. To give a brief description, Audiom is an accessible map viewer that allows for users to navigate the map by utilizing the keyboard. As a user presses an arrow key, they take one 'step' forward in the map, and a sound cue or text announcement is played stating the users current position, much like a video game. We wanted announcements to happen without moving focus, because a map is not particularly useful if you have to keep tabbing back to it for every step you take.
+
+This post will just cover why I'm hoping and praying with every fiber of my being that we will get the ARIA Notify API across all browsers at some point in the future.
+
+## It doesn't work when 'hidden'
+
+One of the cardinal rules of live regions is that they work best when the element already exists on the page. Another rule is that they don't work if the part of the accessibility tree they are in is hidden from the accessibility tree, ie. when `display: none`, the `hidden` attribute, or any other method of hiding text via CSS is applied. This means they need to be present in the DOM, and the content within them is accessible to screen reader users.
+
+This has a lot of potential to confuse users. For example, let's take a standard e-commerce announcement, when a user adds an item to cart, you could have a live region announcement that says '(item name) has been added to the cart.' (We're just not going to get into whether or not this is the best technique to communicate this particular example message, or we'll never get through the article. I gave [a whole talk on this](https://www.nicchan.me/blog/talk-developing-an-accessible-add-to-cart-flow/) at one point.)
+
+That means, the screen reader user has the potential to accidentally stumble across the message as it is just inserted in the DOM. How confusing would it be to accidentally find a message like this as you're browsing the page? Wouldn't you think you've just added a second item to your cart?
+
+As a result, accessibility experts typically recommend you 1. stick the live region somewhere where a user is unlikely to encounter it, such as the bottom of a page and 2. wait a period of time, not too short and not too long of a time, before clearing out the live region so that screen reader users don't accidentally stumble across it again. A mysterious timeout number that no one can really nail down, definitely not a code smell, right?
+
+The fact that live regions work most consistently when the element already exists on the page is in opposition to how developers usually would implement such status updates. If you need live regions, you're probably working on a somewhat complex application, possibly managed by a JavaScript framework. You probably don't have all possible status messages already rendered on the page, but hidden to users. You're likely creating these status message elements on the fly, and adding them to the DOM whenever needed. This means that the way we show status messages to sighted users and the way that live regions work are fundamentally in conflict with each other.
+
+Even if you listen to popular advice to avoid live regions wherever possible, if it does turn out that live regions are the most correct way to implement your desired UI, you may need to set up two different interfaces, one for sighted users and one for non-sighted users. And I think we all know who gets the short end of the stick when the deadline looms and the budget gets cut.
+
+## Fun with modal dialogs
+
+Requiring live regions to not be hidden is not the only trap. As I mentioned before, live regions need to be accessible within the current accessibility tree, which means that content that is outside of a dialog or made inert through other means is ignored. In simpler terms, if you need announcements within a modal dialog, you need a new live region within that dialog. Managing this overhead is yet another piece of kindling for the bonfire of how terrible live regions are to work with.
+
+## Developers are lazy
+
+If you're reaching for the live regions, you probably have good intentions. Because there isn't really a purpose for live regions other than for accessibility, if you are trying to use them it probably means you want to do the right thing. While live regions are not quite up there with [aria-activedescendant](https://sarahmhigley.com/writing/activedescendant/) in terms of 'how much does implementing this feel like navigating a minefield', the truth is that every developer who reaches for live regions ends up [needing to implement them in a very particular way](https://tetralogical.com/blog/2024/05/01/why-are-my-live-regions-not-working/)
+
+It all feels like a lot of unneeded effort. When the underlying primitives are difficult, this has a knock-on effect where everything that depends on that primitive gets more complicated to implement correctly. It always sucks when an interface is not accessible, but when it is not accessible despite everyone involved wanting it to be accessible, that sucks even harder. This leads me to my next point...
+
+## The inconsistency is built in the spec
+
+When I was working on Audiom, something happened that clearly highlighted to me why live regions are flawed and never going to solve the problems we need it to solve.
+
+Navigation worked well in NVDA, but JAWS users faced enormous lag when holding down an arrow key (ie. traversing the map very quickly and queuing up many messages). When we filed an issue, a JAWS developer informed us of what it said in the spec:
+
+> When regions are specified as assertive, assistive technologies will immediately notify the user, and **could** potentially clear the speech queue of previous updates.
+
+In case you missed it, the key word here is 'could'. This means that two different assistive technologies could have completely different behaviors, and it would be fine according to the specification. In our use case, being able to clear out the queue of messages is essential for making it work on all screen readers, and this is something not supported consistently by live regions.
+
+I know some folks are probably thinking, couldn't you just debounce this? We did try but with an application like this, there wasn't really an acceptable 'timeout' that didn't make the experience worse for users of other screen readers. If an audio track for a movie or a video game was a couple hundred milliseconds off, it would be quite jarring. There are just some use cases that require more control over timing.
+
+The [ARIA Notify explainer](https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/main/Accessibility/AriaNotify/explainer.md#interrupt) mentions an interrupt property that isn't implemented in this initial spec, but it would be fantastic to implement in the future. It mentions other real-world use cases as well, such as interrupting a stream of chat messages when a user sets their status to 'Do not disturb.'
+
+People who are involved in specifications know that generally speaking, changing existing things is pretty difficult due to the backward-compatible nature of the web, but creating new, better things is slightly easier, and I really believe that ARIA Notify has the potential to be that better thing.
+
+## Potential for improved functionality from assistive technologies
+
+The way screen readers interact with live regions is okay, at best. One of the reasons why accessibility experts often recommend against live regions is that they are really fallible, even when you do everything correctly. In the ARIA Notify explainer, it says that:
+
+> The available priority controls (`assertive` vs. `polite`) are not well specified and are up to the interpretation of screen readers. In one instance, an author wanted to make a live region announcement immediately following a user action to supplement it with related context. However, the `polite` setting was too polite; a subsequent focus change would always mute the announcement. The `assertive` setting was too assertive and caused subsequent (important) focus change context to be lost while the assertive announcement was made.
+
+In my experience, I've found this exact scenario to be very common. Users interacting with an application as normal can accidentally skip over the live region announcement just by continuing to use the website, without recourse.
+
+For normal text that is in the DOM, a screen reader has the ability to drill down into the text, playing it again if needed or traversing it letter by letter. Live regions don't have this, so at Audiom, we added a keyboard shortcut to announce the most recently announced message, and we also built a speech log component if users needed to revisit certain text in more detail.
+
+I haven't seen any discussion around this, but I think it would be amazing if screen reader vendors could implement similar features into the screen readers themselves. If a user is interrupted for any reason, being able to replay the last few announcements with a shortcut key would really help the usability of complex applications. A potential new API creates an opportunity to really think about user experience enhancements like this without breaking anything.
+
+## The internationalization issue
+
+I would be remiss if I didn't mention a potential flaw I see with the ARIA Notify API, which is essentially the same problem with 'aria-label' and translations. Of the techniques to give a control an accessible name, aria-label is usually ranked near the bottom, with a key reason being that it doesn't play well with [automatic translation tools](https://adrianroselli.com/2019/11/aria-label-does-not-translate.html).
+
+In my testing, I found that live regions did translate with things like the in-built Google Translate in Chrome. Even if it was a slightly janky experience where the announcement would be read first in the original language before announcing the translated one, hearing something in the correct language is certainly better than it being ignored.
+
+I'm not a translation tool developer, but from my outside perspective, I do think it would be much easier to watch the DOM for HTML attribute changes (which aria-label would fall under), rather than JavaScript text announcements, so if these tools aren't catching aria-label, this doesn't bode well for any ARIA Notify announcements.
+
+I would personally really hate to see something like ARIA Notify be implemented only for it to be advised against due to the lack of translation support, so I hope we can think through this a bit more and avoid creating something that technically exists but is practically useless, such as [aria-controls](https://a11ysupport.io/tech/aria/aria-controls_attribute), or something that is useful but strongly recommended against, like aria-label.
+
+## Closing thoughts
+
+I hope this article has communicated why I think we need something better than live regions for screen reader announcements. I know things like ARIA Notify are not as cool and fun as potential layout features such as CSS Masonry or View Transitions, but I genuinely believe that having different tools for screen reader announcement would make it easier to create accessible applications.
+
+I don't see ARIA Notify as replacing live regions, they still have their place. I would still recommend using a live region for text that is visible on the screen that you just need to update, such as updating the visible search results count when new results are fetched. ARIA Notify would just add a little more control where it is desperately needed. We have many ways to hide an element in HTML and CSS, each with different, valid use cases, so why can't we have multiple ways to announce text to assistive technologies?
+
+(Thank you EJ Mason for pushing me to publish!)
