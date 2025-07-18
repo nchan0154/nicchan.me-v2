@@ -21,11 +21,11 @@ I would love to help you translate your designs into a scalable system that your
 
 ### E-commerce (Shopify)
 
-I've spent many years working on the Shopify platform, and have done everything from storefront full builds to custom plugins. I've worked with <a href="https://switchthemes.co/">Switch Themes</a> to rebuild three of their themes, which boast some of the best customization options in the whole theme store and power tens of thousands of Shopify stores.
+I've spent many years working on the Shopify platform, and have done everything from storefront full builds to custom plugins.
 
 ### Maps
 
-Many of my recent projects have been focused on interactive web maps. I've also spoken on [accessibility in web maps](/blog/talk-ui-patterns-in-existing-web-map-widgets/) at a W3C Workshop. Most recently, I've been working on [Audiom](https://www.audiom.net/), the world's most accessible map viewer for blind users.
+Many of my recent projects have been focused on interactive web maps. I've also spoken on [accessibility in web maps](/blog/talk-ui-patterns-in-existing-web-map-widgets/) at a W3C Workshop. Most recently, I've worked on [Audiom](https://www.audiom.net/), the world's most accessible map viewer for blind users.
 
 ### Speaking & Education
 
@@ -33,7 +33,7 @@ Lately, I've been lucky enough to published a few articles on other platforms an
 
 ## Reasons to hire me
 
-- In my 8+ years of providing web development services, I've successfully completed projects for **clients of all sizes**, ranging from one-person businesses to multinational corporations. I've worked with people of various levels of technical knowledge, ranging from agencies to in-house tech/marketing teams to new founders.
+- In my 8+ years of providing web development services, I've successfully completed projects for **clients of all sizes**, ranging from one-person businesses to multinational corporations. I've worked with people with various levels of technical knowledge, including agencies, in-house tech/marketing teams and new founders.
 
 - **I don't need fully completed designs to work.** I'm happy to extend a design system or translate a single desktop design to any other screen size.
 
