@@ -66,11 +66,7 @@
 	}
 }
 
-@media (min-width: 62em) and (min-height: 36em) {
-	.layout {
-		overflow: hidden;
-	}
-
+@media (min-width: 62em) {
 	.layout__grid {
 		--window-spacing: 0;
 		block-size: 100%;
@@ -86,5 +82,11 @@
 		scroll-padding-top: 5rem;
 		inline-size: 100%;
 		block-size: 100%;
+	}
+}
+
+@media (min-width: 62em) and (min-height: 36em) {
+	.layout {
+		overflow: hidden;
 	}
 }
