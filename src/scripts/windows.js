@@ -9,3 +9,13 @@ export const orderedWindows = derived(windowStore, ($windowStore) => {
 export const isMaximizing = writable(null);
 
 export const isMinimizing = writable(null);
+
+export const highestIndex = derived(windowStore, ($windowStore) => {
+	if (!$windowStore) return;
+	return $windowStore?.reduce(
+		(max, current) => {
+			return max.zIndex > current.zIndex ? max : current;
+		},
+		{ zIndex: 0 }
+	).zIndex;
+});

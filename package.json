@@ -16,6 +16,7 @@
     "@astrojs/sitemap": "^3.1.6",
     "@astrojs/svelte": "^5.7.0",
     "@justinribeiro/lite-youtube": "^1.5.0",
+    "@neodrag/svelte": "^2.3.3",
     "@unpic/astro": "^0.0.44",
     "@unpic/svelte": "^0.0.51",
     "astro": "^4.13.2",

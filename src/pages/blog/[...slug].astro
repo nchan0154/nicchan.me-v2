@@ -266,12 +266,7 @@ const splitTitle = post.data.title.split(":");
 <Layout title={title} description={description} image={image} alt={alt}>
 	<div class="layout__grid post">
 		<div class="layout__cell post__toc">
-			<Window
-				title="Table of Contents"
-				order={0}
-				titleTag="h2"
-				style="--max-width: 25rem; --block-start: 10rem; --inline-start: 0"
-				client:load>
+			<Window title="Table of Contents" order={0} titleTag="h2" client:load>
 				<TableOfContents headings={headings} />
 				<TableOfContentsObserver client:only="svelte" />
 			</Window>

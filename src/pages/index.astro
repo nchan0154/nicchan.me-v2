@@ -65,7 +65,7 @@ const limitedPosts = posts.slice(0, 8);
 		<div class="layout__cell home__posts">
 			<Window
 				title="Recent Posts"
-				style="--max-width: 60ch;"
+				style="--max-width: 60ch; --inline-start: 2rem;"
 				order={2}
 				client:load>
 				<Posts posts={limitedPosts} />
@@ -97,8 +97,8 @@ const limitedPosts = posts.slice(0, 8);
 
 		@media (min-width: 62em) {
 			.home {
-				grid-template-columns: min(50%, 50ch) 1fr;
-				grid-template-rows: auto auto 1fr;
+				grid-template-columns: min(50%, 60ch) 1fr;
+				grid-template-rows: 5rem 16rem 1fr;
 				gap: 1rem;
 			}
 

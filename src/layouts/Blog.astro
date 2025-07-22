@@ -57,7 +57,11 @@ const url = Astro.url;
 		</div>
 
 		<div class="layout__cell blog__webring">
-			<Window title="Webring" order={2} client:load>
+			<Window
+				title="Webring"
+				style="--inline-start: 3rem;"
+				order={2}
+				client:load>
 				<Webring />
 			</Window>
 		</div>

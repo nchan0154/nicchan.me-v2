@@ -1,9 +1,11 @@
 <script>
+	import { draggable } from "@neodrag/svelte";
 	import { onMount } from "svelte";
 	import {
 		windowStore,
 		isMaximizing,
 		isMinimizing,
+		highestIndex,
 	} from "../scripts/windows.js";
 	import { throttle } from "../scripts/throttle.js";
 
@@ -12,14 +14,15 @@
 		order,
 		ref = null,
 		flex = false,
-		titleTag = "h2",
-		isAbsolute = false,
-		isSticky = false;
+		titleTag = "h2";
 
 	export let id = title.replaceAll(" ", "-").toLowerCase() || "window";
 	let activeWindow, windowBody, observer;
 	let bottomPadding = 0;
 	let tabindex = false;
+	let offsetX = 0;
+	let offsetY = 0;
+	let zIndex = order;
 
 	const getTransitionName = ($isMinimizing, $isMaximizing) => {
 		if ($isMinimizing && $isMinimizing === title) {
@@ -44,6 +47,7 @@
 				name: title,
 				id,
 				order,
+				zIndex,
 				isMinimized: false,
 				isMaximized: false,
 			},
@@ -121,25 +125,37 @@
 			toFocus.focus({ preventScroll: true });
 		}
 	}
+
+	function onDragEnd(event) {
+		offsetX = event.detail.offsetX;
+		offsetY = event.detail.offsetY;
+	}
+
+	function onFocus(event) {
+		activeWindow.zIndex = $highestIndex + 1;
+		$windowStore = $windowStore;
+	}
 </script>
 
 <section
+	use:draggable={{ handle: ".window__drag-handle" }}
+	on:neodrag:end={onDragEnd}
 	class="window__wrapper"
-	class:window__wrapper--absolute={isAbsolute}
 	class:window__wrapper--maximized={activeWindow
 		? activeWindow.isMaximized
 		: false}
 	class:window__wrapper--minimized={activeWindow
 		? activeWindow.isMinimized
 		: false}
-	class:window__wrapper--sticky={isSticky}
 	class:window__wrapper--flex={flex}
-	style={`${transitionName || ""}; ${style || ""}; --bottom-padding: ${bottomPadding}px`}
+	style={`${transitionName || ""}; ${style || ""}; --bottom-padding: ${bottomPadding}px; translate: ${offsetX}px ${offsetY}px; z-index: ${activeWindow ? activeWindow.zIndex : order}`}
 	bind:this={ref}
 	tabindex="-1"
+	on:focus={onFocus}
 	{id}>
 	<div class="window">
 		<div class="window__header">
+			<div class="window__drag-handle"></div>
 			<div class="window__title-wrapper">
 				<svelte:element
 					this={titleTag}
@@ -208,17 +224,14 @@
 			}
 		}
 
-		&--sticky {
-			position: sticky;
-			top: 1rem;
-		}
+		@include focus("focus-visible");
+	}
 
+	:global(.no-js) .window__wrapper {
 		&:focus,
 		&:focus-within {
-			z-index: 11;
+			z-index: 100 !important;
 		}
-
-		@include focus("focus-visible");
 	}
 
 	.window__wrapper--absolute {
@@ -238,6 +251,7 @@
 	}
 
 	.window__header {
+		position: relative;
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
@@ -248,8 +262,10 @@
 	}
 
 	.window__controls {
+		position: relative;
 		display: flex;
 		flex-shrink: 0;
+		z-index: 2;
 	}
 
 	.window__control {
@@ -268,6 +284,10 @@
 		white-space: nowrap;
 		color: var(--color-window-header-text);
 		overflow: hidden;
+	}
+
+	.window__drag-handle {
+		display: none;
 	}
 
 	.window__body {
@@ -292,6 +312,12 @@
 		}
 	}
 
+	@media (max-width: 61.99em) {
+		.window__wrapper {
+			translate: 0 !important;
+		}
+	}
+
 	@media (min-width: 38em) {
 		.window__wrapper {
 			font-size: 1.5rem;
@@ -300,20 +326,10 @@
 
 	@media (min-width: 62em) {
 		.window__wrapper {
-			max-block-size: 100%;
-			max-inline-size: var(--large-max-width, var(--max-width));
-			block-size: fit-content;
-			margin-inline-start: auto;
-			margin-inline-end: auto;
-		}
-
-		.window__wrapper--absolute {
 			position: absolute;
-			max-block-size: var(
-				--max-height,
-				calc(100% - var(--page-block-padding) * 2)
-			);
-			margin: 0;
+			max-block-size: 100%;
+			inline-size: 100%;
+			max-inline-size: var(--large-max-width, var(--max-width));
 			inset-inline-start: var(--inline-start, auto);
 			inset-inline-end: var(--inline-end, auto);
 			inset-block-start: calc(
@@ -322,10 +338,17 @@
 			);
 			inset-block-end: var(--block-end, auto);
 		}
+
+		.window__drag-handle {
+			position: absolute;
+			inset: 0;
+			display: block;
+			z-index: 1;
+		}
 	}
 
 	.window__wrapper--maximized {
-		position: absolute;
+		position: fixed;
 		max-block-size: 100%;
 		margin: 0;
 		inset: 0;
@@ -333,24 +356,20 @@
 		max-inline-size: none;
 		inset-block-end: var(--bottom-padding);
 		padding-block-end: 0;
-		z-index: 10;
+		z-index: 10000;
+		translate: 0 !important;
 
 		.window {
 			inline-size: 100%;
 		}
 
-		@media (max-height: 36em) {
-			position: fixed;
-		}
-
-		@media (min-width: 38em) {
-			block-size: 100%;
-			inset-block-end: 0;
+		.window__drag-handle {
+			display: none;
 		}
 	}
 
 	.window__wrapper--minimized .window {
-		position: absolute;
+		position: fixed;
 		margin: 0;
 		inset: auto auto 0 0;
 		inline-size: 0;
@@ -362,7 +381,7 @@
 
 	@supports (view-transition-name: test) {
 		.window__wrapper--minimized {
-			position: absolute;
+			position: fixed;
 			margin: 0;
 			inset: auto auto 0 0;
 			inline-size: 0;

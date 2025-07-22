@@ -16,6 +16,7 @@
 .layout__main {
 	padding-block: 0.5rem;
 	padding-inline-end: 0.5rem;
+	overflow-y: auto;
 }
 
 .layout__grid {
@@ -40,7 +41,6 @@
 	.layout__main {
 		block-size: 100%;
 		min-block-size: 0;
-		overflow-y: auto;
 
 		&:has(.window__wrapper--maximized) {
 			overflow-y: hidden;
@@ -67,14 +67,24 @@
 }
 
 @media (min-width: 62em) and (min-height: 36em) {
+	.layout {
+		overflow: hidden;
+	}
+
 	.layout__grid {
 		--window-spacing: 0;
 		block-size: 100%;
 	}
 
+	.layout__main {
+		overflow-y: visible;
+	}
+
 	.layout__cell {
+		position: relative;
 		align-self: stretch;
-		overflow: hidden;
 		scroll-padding-top: 5rem;
+		inline-size: 100%;
+		block-size: 100%;
 	}
 }

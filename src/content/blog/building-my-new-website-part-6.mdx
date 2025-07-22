@@ -1,34 +1,64 @@
 ---
-title: "Building my new website: A modern approach to font fallbacks with font-size-adjust, fun with CSS Grid"
-pubDate: "2024-03-06"
-description: "Finally making headway"
+title: "Building my new website: A modern approach to font fallbacks with font property adjustments"
+pubDate: "2025-07-22"
+description: "Also, how personal is too personal for a personal site?"
 tags:
-  - animation
   - css
+  - performance
   - portfolio
-draft: true
 ---
 
 import Image from "../../components/Image.astro";
 
 This is a post in a series about building my new website, check out [the previous post in this series.](/blog/building-my-new-website-part-4/)
 
-## Artwork
+## A note from the present day
 
-I've always been torn about having an artwork section on my site. It's not at all related to what I do professionally, and I always wondered if I would be judged for having a section dedicated to it. At some point, I stumbled Josh Crain, a fellow web developer's website, and I really enjoyed the artwork section. His work is full of light, and I really resonated with his artistic journey. I'm so glad I found his site, because it helped me decide that I didn't particularly care any more if anyone thought negatively about it, and I implemented an artwork section for my site! This isn't a particularly popular page on the site, but those who like it seem to really love it, so I'll chalk this up as a success.
+Hi, it's present-Nic here. I feel bad that this draft has been sitting in my posts for the better part of a year! I had pretty much drafted the complete text back then, but taking three screenshots proved to be an insurmountable task for an entire six months, whoops! But we're nearly at the end of this journey of building this site, thank you for still reading these and all your kind words!
 
-Selecting the pieces was the most difficult part. I knew I wouldn't be able to feature too many works on this page with the layout that I had, so I had to be more choosey than I'd like! In the end, I chose a mix of pieces from the mediums I've been enjoying in the past few years (digital, but only the [HEAVYPAINT](https://www.heavypaint.com/) program) and gouache, with a mix of plein air pieces in there.
+I also found some time to add drag and drop + better window layering without compromising the no JS experience. A big thanks to everyone who nudged me to do so, I probably would have never gotten around to it otherwise. That's one of the beautiful things about a progressive-enhancement driven approach. Coming up with a core, workable experience and adding flourishes later means that the older behavior can still exist as fallback behavior. I initially used CSS to manage layered windows with as little complexity as possible: any window with a focused element in it just had a higher z-index. I've now added some JavaScript on top to make the stacking feel more natural, but the old approach still totally works to ensure all content is readable even without JS!
 
-Development was straightforward as this was one of the very first sections that I designed when coming up with the site. As soon as I saw my first View Transitions demo, I knew I wanted to utilize it to power this section. When a window in this section is maximized, the window itself is crossfaded and the caption fades in, but a separate view transition on the artwork makes it scale up smoothly. I really can't believe what you can get with CSS (and a sprinkle of JS to manage state and fallbacks!)
+Back to the past...
 
 ## Fonts
 
-It's at this point I start doing some performance testing. One of the key issues was that I had a huge amount of Cumulative Layout Shift as the fonts came in. The font I had chosen, W95FA is pretty narrow compared to other fonts, and I wanted to see if I could minimize the amount of jank as the fonts came in. The layout of my site meant that containers resizing would feel especially choppy. I also knew that I would want to add a toggle between pixel and anti-aliased fonts, as it was a setting I've seen in video games to improve accessiblity for those who struggled with reading pixel fonts. Switching between the two would need to feel pretty seamless, with as little layout shift as I could manage.
+It's at this point I start doing some performance testing. One of the key issues was that I had a huge amount of Cumulative Layout Shift as the fonts loaded. The font I had chosen, W95FA, is pretty narrow compared to other fonts, and I wanted to see if I could minimize the amount of jank as the fonts came in. The layout of my site meant that containers resizing would feel especially choppy. I also knew that I would want to add a toggle between pixel and anti-aliased fonts, as it was a setting I've seen in video games to improve accessibility for those who struggled with reading pixel fonts. Switching between the two would need to feel pretty seamless, with as little layout shift as I could manage.
 
-At some point, I had stumbled upon the website [Modern Font Stacks](https://modernfontstacks.com/), which provides a list of font fallbacks by style to cover every OS. I really liked the Humanist font stack, but the question remained on how to make sure the transition was seamless. At some point, I discovered this helpful little [Font Fallback tool](https://screenspan.net/fallback), which lets you upload a font and then visually adjust the new `size-adjust`, `ascent-override`, `descent-override` and `line-gap-override` properties with sliders in order to create a seamless fallback. This is an absolutely wonderful tool, my only gripe is that it doesn't have a whole bunch of fallback fonts, so I had to edit the source code so I could make it work with my chosen stack. I think this kind of touch is the kind of thing that adds a lot of polish to a website, but is often overlooked.
+At some point, I had stumbled upon the website [Modern Font Stacks](https://modernfontstacks.com/), which provides a list of font fallbacks by style to cover every OS. I really liked the Humanist font stack, but the question remained on how to make sure the transition was seamless.
+
+<Image
+	src="https://res.cloudinary.com/nicchan/image/upload/v1753141522/font-fallback.png"
+	width="1842"
+	height="1544"
+	alt="The font fallback tool has a preview where you can see your webfont (in teal) with the font fallback underneath it in yellow, allowing for tweaking to get the alignment as close as possible. Below the font previews is CSS code with adjusted font properties."
+/>
+
+Luckily, I discovered this helpful little [Font Fallback tool](https://screenspan.net/fallback), which lets you upload a font and then visually adjust the new `size-adjust`, `ascent-override`, `descent-override` and `line-gap-override` properties with sliders in order to create a seamless fallback. This is an absolutely wonderful tool, my only gripe is that it doesn't have a whole bunch of fallback fonts, so I had to edit the source code so I could make it work with my chosen stack. So yes, I acquired every single one of these fallback fonts, modified the source code of this website to allow me to use it as a fallback, and played around with the little sliders until it was just right for each fallback. I think this kind of touch is the kind of thing that adds a lot of polish to a website, but is often overlooked.
+
+## Artwork
+
+<Image
+	src="https://res.cloudinary.com/nicchan/image/upload/v1753141523/artwork.png"
+	width="3414"
+	height="2061"
+	alt="The artwork view has a bunch of digital and traditional paintings arranged as individual windows in a operating system style interface."
+/>
+
+I've always been torn about having an artwork section on my site. It's not at all related to what I do professionally, and I always wondered if I would be judged for having a section dedicated to it. Through the magic of the indie web, I stumbled [Josh Crain](https://joshcrain.io/), a fellow web developer's website, and I really enjoyed the artwork section. His work is full of light, and I really resonated with his artistic journey. I'm so glad I found his site, because it helped me decide that I didn't particularly care any more if anyone thought negatively about it, and I implemented an artwork section for my site! This isn't a super popular page on the site, but those who like it seem to **really** love it, so I'll chalk this up as a success.
+
+Selecting the pieces was the most difficult part. I knew I wouldn't be able to feature too many works on this page with the layout that I had in mind, so I had to be more choosey than I'd like. In the end, I chose a mix of pieces from the mediums I've been enjoying in the past few years (digital, but only the [HEAVYPAINT](https://www.heavypaint.com/) program) and gouache, with a mix of plein air pieces in there.
+
+Development was straightforward as this was one of the very first sections that I designed when coming up with the initial idea for my site. As soon as I saw my first View Transitions demo, I knew I wanted to utilize it to power this section. When a window in this section is maximized, the window itself is cross-faded and the caption fades in, but a separate view transition on the artwork makes it scale up smoothly. I really can't believe what you can get with CSS (and a sprinkle of JS to manage state and fallbacks!)
 
 ## Work
 
-I was really dreading the work section. Because I had places where I was showing desktop screenshots, mobile screenshots, sometimes in comparison with eaachother, I knew I had to come up with layouts that would work for 1-2 images of any aspect ratio and an optional caption, which is a lot more challenging than a design-rookie like me initially thought. I really did not want to be in a position where I would have to write new styles every time I added a case study, so I decided to embrace asymmetry and came up with a limit of three image layouts that I could use as needed.
+<Image
+	src="https://res.cloudinary.com/nicchan/image/upload/v1753141523/work.png"
+	width="3423"
+	height="2577"
+	alt="Some before and afte rimages in the work section arranged on an asymmetric grid, with a decorative flourish and an image caption."
+/>
 
-I also decided to keep the chunky background line I had in the previous version of my site as a design element, with the addition of pixel half tones in order to fit in better with this version. I've always wanted to do fun, CSS Grid overlapping layouts with different textures, but never had the chance to on client work. I try to treat my portfolio like a garden: you don't need permission to grow things in your own garden, so you might as well plant what makes you happy. I'm not entirely sure if this metaphor is appropriate, I've never grown up in a place where I could have a garden and I am well known as a plant-murderer, so take this with a grain of salt.
+I was really dreading the work section. Because I had places where I was showing desktop screenshots, mobile screenshots, sometimes in comparison with each other, I knew I had to come up with layouts that would work for 1-2 images of any aspect ratio and an optional caption, which is a lot more challenging than a designer-lite like me initially thought. I really did not want to be in a position where I would have to write new styles every time I added a case study, so I decided to embrace asymmetry and came up with a limit of three image layouts that I could use as needed. This part of the site seemed like the perfect time to try out container queries, as we only care about sizing within the avaialable window space, not the whole viewport!
+
+I also decided to keep the chunky background line I had in the previous version of my site as a design element, with the addition of pixel half tones in order to fit in better with this version. I've always wanted to do fun, CSS Grid overlapping layouts with different textures, but never had the chance to on client work. I try to treat my portfolio like a garden: you don't need permission to grow things in your own garden, so you might as well plant what makes you happy. I'm not entirely sure if this metaphor is appropriate, I've never grown up in a place where I could have a garden and I am well known in my friend group as a plant-murderer, so please do not construe this as actual gardening advice.
