@@ -397,4 +397,10 @@
 			font-size: 1.5rem;
 		}
 	}
+
+	@media (pointer: coarse) {
+		.window__drag-handle {
+			display: none;
+		}
+	}
 </style>
