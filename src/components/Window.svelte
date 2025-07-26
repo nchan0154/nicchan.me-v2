@@ -356,7 +356,8 @@
 		max-inline-size: none;
 		inset-block-end: var(--bottom-padding);
 		padding-block-end: 0;
-		z-index: 10000;
+		/* We have to override some inline styles here */
+		z-index: 10000 !important;
 		translate: 0 !important;
 
 		.window {
