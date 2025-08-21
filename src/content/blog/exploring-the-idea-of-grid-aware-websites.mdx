@@ -1,0 +1,166 @@
+---
+title: Exploring the idea of grid-aware websites
+pubDate: "2025-08-20"
+description: "Help your future self by making sure your CMS can take anything clients throw at it."
+tags:
+  - sustainability
+  - performance
+  - javascript
+  - ecommerce
+  - thoughts
+---
+
+Over the past year, I've had the incredible privilege of getting to participate in the Grid-Aware Websites (affectionately abbreviated to GAW) advisory group. The team have thoroughly explained what a grid-aware website is in this detailed case study of the [Branch Magazine redesign](https://branch.climateaction.tech/issues/issue-9/designing-a-grid-aware-branch/), but if I had to put it in my own words, a grid-aware website responds to the cleanliness or dirtiness of a user's electricity grid. In simpler terms, whether it is currently using more renewable energy sources or fossil fuels.
+
+To do so in the most performant way possible, this currently involves getting a user's rough location and using the Electricity Maps API to check the current status of the grid, and then returning that information to a serverless function on the edge so that the website can be modified, all before it reaches the user's browser.
+
+To explore this concept, I've thrown together a small demo of what this might look like in two of my favorite web tools that I believe are conducive to this effort, and written up a few of my personal thoughts.
+
+## Why implement grid-awareness?
+
+Many folks may notice that the in brief approach outlined above, there's a non-trivial amount of code required to implement grid-awareness. Since less code = better performance = greener websites, isn't this a bit counterintuitive, if not self-defeating? I hear you, and it's something we've thought about a lot as a group, and the Green Web Foundation have addressed this question excellently in their [FAQ](https://www.thegreenwebfoundation.org/tools/grid-aware-websites/). Essentially, this is an experimental approach to see if this is a viable way to reduce the carbon emissions of websites.
+
+I would love nothing more than for every site and application to be the best version that it could possible be, but we're definitely not living in that world at the moment. The collective push by performance, sustainability and accessibility advocates have not been able to make the industry shift meaningfully, despite strong real world incentives to make sites more usable for more people.
+
+When every company is asking 'How can we do more?', I think it is a powerful mindset shift to think 'How can we do more **with less**?' This question is typically framed in terms of having less budget or monetary resources, but when asked in terms of a performance budget or a user interface design, it forces you to think about what parts of the user experience is really necessary.
+
+A big part of the Green Web Foundation's philosophy with this project is raising awareness about the inherent connection between digital and physical worlds. To a designer using the latest MacBook with a Gigabit internet connection, performance concerns may often feel completely abstract and divorced from reality. Tools that remind us that yes, the choices we make do have an actual impact, can be an important part of driving change.
+
+We can't ignore the impact that digital systems have on our environment, especially at this critical moment when electricity usage is greater than ever. Sure, the energy saved from efforts like this may be a drop in the bucket compared to what AI is using, but I don't think we've ever solved any societal problems by **not** trying to think about or address them.
+
+Though my preferred approach is to build progressively enhanced, lean sites in order to make them sustainable, many brands prefer to express a commitment to sustainability in more overt ways. The visibility and positioning of something like a grid-aware toggle can be a powerful motivator for certain types of companies.
+
+For example, I once had a client that sold sustainably made household items, and they wanted their website to reflect their commitment to sustainability. I suggested the usual high-impact things like reducing the size of media and using a static site generator. They didn't mind the statically-generated approach as it helped them save on hosting costs, but they didn't want to give up their use of background video, a decision that forced every user to download an additional 6MB of video. Instead, they suggested implementing a dark mode toggle, which I was more than happy to do to improve accessibility, but deep down, I knew that this was still a a net loss. If grid-aware websites had existed back then, maybe we could have reached some kind middle ground.
+
+Ultimately, the end goal of the grid-aware websites project is to not build a single library, but to embed this kind of thinking into the greater web ecosystem. Much like how we have media queries for things like preferring reduced motion or using forced colors mode, what if we could have a media query to prefer a simpler, more environmentally friendly experience? The future is uncharted territory, and this is an open invitation to invite the web dreamers, gardeners, and explorers to join in.
+
+## The breakdown
+
+### Step 1: Determine what grid-awareness looks like for you
+
+Now that we've discussed **why** one might want to consider implementing grid-awareness, let's go into **how** one would implement it. In this post I will be following [this tutorial](https://developers.thegreenwebfoundation.org/grid-aware-websites/tutorials/grid-aware-tutorial-cloudflare-workers/) by the Green Web Foundation pretty closely, which involves deploying the project to Cloudflare and spinning up a worker from their template.
+
+Since I've been living in [e-commerce land](https://nicchan.me/blog/we-launched-our-first-shopify-theme/) lately, I decided to throw together a proof-of-concept using a product display page (PDP) as a practical example that could relate to a wider audience. Although it is widely known that a performant product display page is important for improving conversions, many merchants opt for style over substance, resulting in page that is slow to load. I added some components that are fairly common across e-commerce sites, including:
+
+- a scrolling marquee
+- an image slideshow
+- an image lightbox
+- tabs for product information
+- a modal notification upon adding an item to the cart
+
+All these components require JavaScript, but fall back to alternatives that still function without JavaScript. For example the scrolling marquee becomes a static text banner, the lightbox slideshow is just a horizontal scrolling region with links to larger images, the tabs fall back to a list of headings and paragraphs, and the product form is just a regular HTML form.
+
+For this particular example, I thought that a good way to implement grid-awareness would be to create a distinction between JavaScript that is core to the e-commerce experience, and JavaScript that is just for presentation. I decided that of the JavaScript features listed above, only the modal form was integral to the purchasing experience, so I would need to find a way to disable the other features when the grid was 'dirty'.
+
+The grid-aware worker has three modes to represent three levels of carbon intensity — 'low', 'moderate' and 'high'. To keep this simple, we're just going implement this as a binary on and off state. In 'low' mode, you get the site with all the bells and whistles, and in 'moderate' and 'high' mode, you will just get the core experience.
+
+### Step 2: Determine how you're going to make it happen
+
+Following the tutorial provided by the Green Web Foundation, I deployed the site to Cloudflare, then installed the the [specific grid-aware worker](https://github.com/thegreenwebfoundation/gaw-plugin-cloudflare-workers) they made (there's also a [Netlify](https://github.com/thegreenwebfoundation/gaw-plugin-netlify-edge) equivalent). Out of the box, the plugin provides a drop-in connection to the Electricity Maps API once you plug in your key, which is very helpful. This worker will get the request, get the user's rough location, and then determine the current state of the grid.
+
+Todo, insert image of toolbar
+
+It can also optionally inject the grid-aware toolbar, which will show some data about the user's current grid and allow the user to manually toggle between the modes. You probably wouldn't use the toolbar in a real application, but for demonstration purposes, it's perfect for our needs!
+
+To actually make the site respond to the grid is completely up to us. On the Cloudflare version of this worker, this involves using the [HTMLRewriter API](https://developers.cloudflare.com/workers/runtime-apis/html-rewriter/) to transform the markup before it's sent to the user. Even though the underlying approach would be the same for both 11ty and Astro, due to the different bundling strategies, we have to implement them slightly differently. Let's take a closer look.
+
+#### 11ty
+
+Ah, 11ty, my old friend. I haven't picked it up in a while, but I'm excited to play around with the new WebC stuff, which lets you write single file components. The WebC architecture in 11ty is a really interesting idea, and the same technique that can be used for setting up critical CSS and JS can be used to set up grid-awareness.
+
+One thing I particularly like about 11ty + WebC is that it lets you put scripts and other assets into designated buckets, while still allowing the author to write them in the main component file. I've included an example below.
+
+```html
+<!--This goes in your component file -->
+<script webc:bucket="bucketName">
+	/* Your script stuff goes here! */
+</script>
+
+<!--This goes in your layout or page file -->
+<script @raw="getBundle('js', 'bucketName')"></script>
+```
+
+This is really handy! We can now separate the JS that is optional by putting it in it's own separate bucket, so we can easily stick a `data-gaw-remove` attribute on it it for our Cloudflare worker to strip out. An approach like this is an excellent authoring experience, as we aren't limited to putting the data attribute on script tags, we can put it on markup, style tags, etc. Our resulting HTML Rewriter API function is super simple as a result, we just remove all of these elements in one fell swoop.
+
+```javascript
+  new HTMLRewriter().on(.on('[data-gaw-remove]', {
+    element: (element) => {
+      element.remove();
+    },
+  });
+```
+
+#### Astro
+
+Astro has a little more 'magic' in it than 11ty, and it made it a little harder to figure out a solid grid-aware approach. Ideally, we could use the same approach as 11ty and just take away anything with the `data-gaw-remove` attribute on it, but Astro has this thing where if you add any attribute to a script tag, [Astro will not process it](https://docs.astro.build/en/guides/client-side-scripts/#script-processing). It's typically used as an escape-hatch for things like analytics scripts, so they aren't included in a bundle, but it poses a problem for us as we still want to process our scripts, we just want to add something extra on top.
+
+To split the code up into different buckets, we'd probably need to hook into the underlying Vite/Rollup configuration. That felt beyond the scope of this small demo, so I came up with a quick-and-dirty solution. I noticed the bundled scripts for each Astro component kept the name of the component in the script `src`. I decided to use a prefix-based approach, and used the HTMLRewriter to strip out scripts that started with "GA-". In terms of code, this is almost as simple as the 11ty version, but quite a bit less flexible — I can't see people relying on opinionated naming as a way to implement this in real life scenarios.
+
+```javascript
+new HTMLRewriter().on("script", {
+	element: (element) => {
+		if (element.getAttribute("src")?.includes("GA-")) {
+			element.remove();
+		}
+	},
+});
+```
+
+### Step 3: Finetune and deploy
+
+There's still a little work we need to do to get this up and running! We can reduce the number of external requests to the Electricity Maps API by implementing some caching. We can [look at the documentation](https://github.com/thegreenwebfoundation/gaw-plugin-cloudflare-workers/tree/main?tab=readme-ov-file#additional-functionality) for the additional steps of setting up Workers KV, a form of data storage that will let us cache data from the API, the actual computed page, or both! The plugin default is to cache the data for one hour, so users from the same region won't need to make additional requests. Once we're done configuring that, we can deploy the worker with `npx wrangler deploy` and start processing our site!
+
+<div class="post-callout">
+	<h4 class="post-callout__title">Disclaimer</h4>
+	<p class="post-callout__text">
+		Please note, to make the distinction between grid-aware modes clearer and to
+		reduce the amount of code required for the demo to function, I've opted not
+		to respect accessibility features such as `prefers-reduced-motion` in the
+		following demonstrations to avoid accessibility-related behavior being
+		mistaken for grid-aware behavior. I've also reached for third-party
+		libraries so that I could get this post out in a reasonable amount of time
+	</p>
+</div>
+
+Below is a before and after of what the site looks like when the grid is 'dirty'
+vs 'clean'
+
+Todo, add this in
+
+Visit the live [11ty demo](https://grid-aware-ecommerce-11ty.nicchan.me/) and the [Astro demo](https://grid-aware-ecommerce-astro.nicchan.me/) to see it respond to your local energy grid.
+
+I've put all the code into public repos ([11ty](https://github.com/nchan0154/grid-aware-ecommerce-11ty), [Astro](https://github.com/nchan0154/grid-aware-ecommerce-astro)), with the main project at the top level and the grid-aware worker in a designated folder at `grid-aware-worker`. Take a peek!
+
+## Is this another thing I have to care about?
+
+I know what you're thinking. Grid-awareness might seem like just one more item in the long checklist of things you should probably do, but don't have the time or budget to do.
+
+Here's the thing, I think grid-awareness fits really neatly into all those other things you might already be doing to make a better website. If you've already got a website that has features to reduce data usage or utilizes progressive enhancement/graceful degradation, you already have the bones for a grid-aware website. Grid-awareness is in it's infancy, and it isn't exactly a specific practice in the way progressive enhancement is, it's more of mindset.
+
+Grid-awareness on an large social media application with video data might look completely different to grid-awareness on the Branch magazine website, and that's totally fine. For example, the Branch magazine website doesn't load web fonts and heavily compresses images when the grid is 'dirty'. That approach is completely different to the one I've done here, and that's okay! One of the main points I want people to take away from this is that **you** get to decide how to implement this.
+
+It doesn't have to be a completely new thing, either. Many applications already have something like a data saver mode, or a lower power mode. Grid-awareness could be an extension of these settings, and utilize the same core logic, only switching up the conditions when this logic is triggered.
+
+## Challenges
+
+The first major blocker for the grid-aware websites project is the cost of the Electricity Maps API. The Carbon-Aware pricing plan required to make this work is currently 99 Euros a month (a recent development that occurred after the project started), a hefty price to cough up for a smaller organization. It's hard to justify the expense when the entire architecture required to run the site may be cheaper, or even free. If you feel strongly about this, feel free to weigh in on this [Github Issue](https://github.com/thegreenwebfoundation/grid-aware-websites/issues/21). If there is a strong demand for a free plan, Electricity Maps may consider implementing it.
+
+This specific proprietary API isn't the only option. The [EU has passed laws requiring member states to make this data available](https://mastodon.social/@burger_jaap/114669791492401229), and it may be possible that there will be greater options for this information with the greater shift to greener energy.
+
+The one thing that might be the biggest blocker for implementing grid-awareness at scale is that it involves all levels of the stack. Unlike areas such as accessibility or performance, where even one lone advocate can make a big difference, the method to implement grid-awareness requires a knowledge of all the moving pieces required to make it happen.
+
+Smaller projects like this demo where one person is in charge of all aspects can more easily implement grid-awareness, but at the same time, these kinds of sites are already most likely to be the least problematic in terms of carbon emissions. The same kind of paradox occurs with the tooling choice — tools like 11ty and Astro that make it easier to split your JavaScript up are much more likely to produce performant outputs already, making it uncertain if implementing this is worth the tradeoff. Once you pick up a bigger web framework, you're more likely to benefit from implementing grid-awareness, but the barrier to do so will be much higher.
+
+The grid-aware advisory group is well aware of this adoption barrier and has representatives from open-source CMS communities, who are actively working on grid-awareness libraries for CMSes like Wordpress, Drupal, Umbraco and Wagtail on the server-side. If grid-awareness was a solved problem at the deployment and ops layer, then it would be easier for designers and front-end developers to implement without worrying about this logic.
+
+## Conclusion
+
+That's all I have on grid-aware websites for now! It's been hard to summarize a years worth of tinkering and thinking into a single blog post, and I really hope I've done the subject justice. If you are at all interested in getting involved, the [ClimateAction.tech Slack](https://climateaction.tech/) is a wonderful group where much of this conversation happens. Or, you can try to implement the code yourself, feel free to reach out if you want to give this a shot on your own site.
+
+## Related reading
+
+- [Green Web Foundation's developer tutorial](https://developers.thegreenwebfoundation.org/grid-aware-websites/tutorials/grid-aware-tutorial-cloudflare-workers/)
+- Fershad's [case study for implementing grid-awareness on his own site](https://fershad.com/writing/making-this-website-grid-aware/) has all the technical background you need behind the plugin
+- Fershad also has a [writeup of the corresponding visual changes on his site](https://fershad.com/writing/visual-changes-grid-aware-website/)
+- [Progressive enhancement and graceful degradation in the context of grid-aware websites](https://fershad.com/notes/progressive-enhancement-graceful-degradation/)
+- I've linked the [Branch Magazine case study](https://branch.climateaction.tech/issues/issue-9/designing-a-grid-aware-branch/) before, but I'm going to do it again because it's my blog and I'm the boss around here
