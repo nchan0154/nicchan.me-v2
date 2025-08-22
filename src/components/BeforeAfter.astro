@@ -1,0 +1,241 @@
+---
+import Image from "@components/Image.astro";
+const {
+	width,
+	height,
+	before,
+	beforeAlt,
+	beforeLabel = "Before",
+	after,
+	afterAlt,
+	afterLabel = "After",
+} = Astro.props;
+---
+
+<before-after class="before-after" style="--position: 50%;">
+	<div class="before-after__before">
+		<div>
+			<Image src={before} width={width} height={height} alt={beforeAlt} />
+		</div>
+		<span class="before-after__label before-after__label--before">
+			<span class="">{beforeLabel}</span>
+		</span>
+	</div>
+	<div class="before-after__after">
+		<div>
+			<Image src={after} width={width} height={height} alt={afterAlt} />
+		</div>
+		<span class="before-after__label before-after__label--after">
+			<span class="">{afterLabel}</span>
+		</span>
+	</div>
+	<div
+		tabindex="0"
+		aria-valuemin="0"
+		aria-valuemax="100"
+		class="before-after__divider"
+		role="slider"
+		aria-label="Drag to compare"
+		aria-valuetext="50%">
+		<span class="before-after__button button--ui">
+			<span class="button--ui__content">
+				<svg
+					aria-hidden="
+				true"
+					focusable="false"
+					xmlns="http://www.w3.org/2000/svg"
+					width="15"
+					height="15"
+					viewBox="0 0 15 15"
+					fill="currentColor">
+					<path
+						d="M4.09998 12.5C4.09998 12.7209 4.27906 12.9 4.49998 12.9C4.72089 12.9 4.89998 12.7209 4.89998 12.5L4.89998 2.50002C4.89998 2.27911 4.72089 2.10003 4.49998 2.10003C4.27906 2.10003 4.09998 2.27911 4.09998 2.50002L4.09998 12.5ZM6.09998 12.5C6.09998 12.7209 6.27906 12.9 6.49998 12.9C6.72089 12.9 6.89998 12.7209 6.89998 12.5L6.89998 2.50002C6.89998 2.27911 6.72089 2.10003 6.49998 2.10003C6.27906 2.10003 6.09998 2.27911 6.09998 2.50002L6.09998 12.5ZM8.49998 12.9C8.27906 12.9 8.09998 12.7209 8.09998 12.5L8.09998 2.50002C8.09998 2.27911 8.27906 2.10002 8.49998 2.10002C8.72089 2.10002 8.89998 2.27911 8.89998 2.50002L8.89998 12.5C8.89998 12.7209 8.72089 12.9 8.49998 12.9ZM10.1 12.5C10.1 12.7209 10.2791 12.9 10.5 12.9C10.7209 12.9 10.9 12.7209 10.9 12.5L10.9 2.50002C10.9 2.27911 10.7209 2.10002 10.5 2.10002C10.2791 2.10002 10.1 2.27911 10.1 2.50002L10.1 12.5Z"
+						fill="currentColor"
+						fill-rule="evenodd"
+						clip-rule="evenodd"></path>
+				</svg>
+			</span>
+		</span>
+	</div>
+</before-after>
+
+<script>
+	if (!window.customElements.get("before-after")) {
+		class BeforeAfter extends HTMLElement {
+			constructor() {
+				super();
+				this.input = this.querySelector('[role="slider"]');
+				this.isMoving = false;
+				const percentage = window
+					.getComputedStyle(this)
+					.getPropertyValue("--position")
+					.replace("%", "");
+				this.percentage = parseInt(percentage);
+				this.addEventListener("pointerdown", this.onPointerDown.bind(this));
+				this.addEventListener("touchstart", this.onTouchStart.bind(this));
+				this.input.addEventListener("keydown", this.onKeydown.bind(this));
+			}
+
+			onKeydown(event) {
+				let percentage;
+				if (event.key.toUpperCase() === "ARROWLEFT") {
+					percentage = Math.floor(this.percentage) - 1;
+				} else if (event.key.toUpperCase() === "ARROWRIGHT") {
+					percentage = Math.ceil(this.percentage) + 1;
+				} else if (event.key.toUpperCase() === "HOME") {
+					event.preventDefault();
+					percentage = 0;
+				} else if (event.key.toUpperCase() === "END") {
+					event.preventDefault();
+					percentage = 100;
+				}
+
+				if (percentage || percentage === 0) {
+					this.setPercentage(percentage);
+					this.input.setAttribute(
+						"aria-valuetext",
+						`${Math.round(this.percentage)}%`
+					);
+				}
+			}
+
+			onTouchStart(event) {
+				this.isTouch = true;
+				this.timeStamp = event.timeStamp;
+			}
+
+			onPointerDown(event) {
+				if (event.target === this.input || this.input.contains(event.target)) {
+					this.isMoving = true;
+					document.addEventListener(
+						"pointermove",
+						this.onPointerMove.bind(this)
+					);
+					document.addEventListener("pointerup", this.onPointerUp.bind(this));
+				}
+			}
+
+			onPointerMove(event) {
+				this.calculatePosition(event);
+			}
+
+			onPointerUp(event) {
+				document.removeEventListener("pointermove", this.onPointerMove);
+				document.removeEventListener("pointerup", this.onPointerUp);
+				if (!this.isTouch || event.timeStamp - this.timeStamp < 200) {
+					this.isMoving = true;
+					this.calculatePosition(event);
+					this.isMoving = false;
+					this.input.setAttribute(
+						"aria-valuetext",
+						`${Math.round(this.percentage)}%`
+					);
+				}
+				this.isTouch = false;
+			}
+
+			calculatePosition(event) {
+				if (this.isMoving) {
+					let bounds = this.getBoundingClientRect();
+					let percentage =
+						((event.clientX - bounds.left) / this.clientWidth) * 100;
+					percentage = document.dir === "rtl" ? 100 - percentage : percentage;
+					this.setPercentage(percentage);
+				}
+			}
+
+			setPercentage(percentage) {
+				this.percentage = Math.min(100, Math.max(0, percentage));
+				this.style.setProperty("--position", `${this.percentage}%`);
+			}
+		}
+
+		window.customElements.define("before-after", BeforeAfter);
+	}
+</script>
+
+<style>
+	.before-after {
+		--position: 50%;
+		position: relative;
+		display: grid;
+		overflow: hidden;
+		user-select: none;
+		touch-action: pan-x pan-y;
+		-webkit-touch-callout: none;
+	}
+
+	.before-after > * {
+		grid-column: 1;
+		grid-row: 1;
+		block-size: 100%;
+		object-fit: cover;
+	}
+
+	.before-after img {
+		display: block;
+	}
+
+	.before-after__before {
+		mask: linear-gradient(to right, #000 0, var(--position), #0000 0);
+	}
+
+	.before-after__after {
+		mask: linear-gradient(to right, #0000 0, var(--position), #000 0);
+	}
+
+	.before-after__divider {
+		--outline-color: transparent;
+		position: absolute;
+		inline-size: var(--border-thickness);
+		background-color: var(--color-box-border);
+		inset-inline-start: var(--position);
+		pointer-events: none;
+	}
+
+	.before-after__divider:focus-visible .before-after__button {
+		outline: var(--outline-thickness) solid rgb(var(--color-primary-button));
+		outline-offset: 0.25rem;
+	}
+
+	.before-after__button {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin: 0;
+		transform: translate(-50%, -50%);
+		cursor: ew-resize;
+		pointer-events: auto;
+		touch-action: none;
+	}
+
+	.before-after__button .button--ui__content {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		block-size: 2.5rem;
+		inline-size: 2.5rem;
+	}
+
+	.before-after__label {
+		position: absolute;
+		block-size: auto;
+		font-size: 1.25rem;
+		padding: 0 0.5rem;
+		background-color: var(--color-card-bg);
+		color: var(--color-card-text);
+		z-index: 1;
+	}
+
+	.before-after__label--before {
+		inset-block-end: var(--border-thickness);
+		inset-inline-start: var(--border-thickness);
+		margin-inline-end: var(--border-thickness);
+	}
+
+	.before-after__label--after {
+		inset-block-end: var(--border-thickness);
+		inset-inline-end: var(--border-thickness);
+		margin-inline-start: var(--border-thickness);
+	}
+</style>

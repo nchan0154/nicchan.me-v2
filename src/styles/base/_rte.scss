@@ -80,33 +80,27 @@
 		}
 	}
 
-	img {
+	& section > img {
 		margin: var(--space-s) auto;
 		image-rendering: initial;
 		@include pixel-borders();
-	}
-
-	figure img {
-		margin: 0 auto;
-	}
-
-	figure {
-		margin: var(--space-s) 0;
 	}
 
 	figcaption {
 		line-height: 1.2;
 	}
 
-	& > .demo,
-	& > figure,
-	& iframe,
-	& lite-youtube {
+	.demo,
+	figure,
+	iframe,
+	lite-youtube,
+	.before-after {
 		margin: var(--space-s) 0;
 	}
 
 	iframe,
-	video-playback {
+	video-playback,
+	.before-after {
 		@include pixel-borders();
 	}
 
