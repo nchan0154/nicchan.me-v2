@@ -1,7 +1,7 @@
 ---
-title: Exploring the idea of grid-aware websites
-pubDate: "2025-08-20"
-description: "Help your future self by making sure your CMS can take anything clients throw at it."
+title: Exploring grid-aware websites
+pubDate: "2025-08-26"
+description: "Is having websites respond to the user's energy grid a way to make more sustainable websites?"
 tags:
   - sustainability
   - performance
@@ -13,9 +13,9 @@ tags:
 import Image from "@components/Image.astro";
 import BeforeAfter from "@components/BeforeAfter.astro";
 
-Over the past year, I've had the incredible privilege of getting to participate in the Grid-Aware Websites (affectionately abbreviated to GAW) advisory group. The team have thoroughly explained what a grid-aware website is in this detailed case study of the [Branch Magazine redesign](https://branch.climateaction.tech/issues/issue-9/designing-a-grid-aware-branch/), but if I had to put it in my own words, a grid-aware website responds to the cleanliness or dirtiness of a user's electricity grid. In simpler terms, whether it is currently using more renewable energy sources or fossil fuels.
+Over the past year, I've had the incredible privilege of getting to participate in the Grid-Aware Websites (affectionately abbreviated to GAW) [advisory group](https://www.thegreenwebfoundation.org/news/introducing-our-grid-aware-websites-project/#technical-advisory-group). The Green Web Foundation team have thoroughly explained what a grid-aware website is in this detailed case study of the [Branch Magazine redesign](https://branch.climateaction.tech/issues/issue-9/designing-a-grid-aware-branch/), but if I had to put it in my own words, a grid-aware website responds to the cleanliness or dirtiness of a user's electricity grid. In simpler terms, whether it is currently using more renewable energy sources or fossil fuels.
 
-To do so in the most performant way possible, this currently involves getting a user's rough location and using the Electricity Maps API to check the current status of the grid, and then returning that information to a serverless function on the edge so that the website can be modified, all before it reaches the user's browser.
+To do so in the most performant way possible, this currently involves getting a user's rough location and using the [Electricity Maps API](https://portal.electricitymaps.com/developer-hub/api/getting-started#geolocation) to check the current status of the grid, and then returning that information to a serverless function on the edge so that the website can be modified, all before it reaches the user's browser.
 
 To explore this concept, I've thrown together a small demo of what this might look like in two of my favorite web tools that I believe are conducive to this effort, and written up a few of my personal thoughts.
 
@@ -59,18 +59,18 @@ The grid-aware worker has three modes to represent three levels of carbon intens
 
 ### Step 2: Determine how you're going to make it happen
 
-Following the tutorial provided by the Green Web Foundation, I deployed the site to Cloudflare, then installed the the [specific grid-aware worker](https://github.com/thegreenwebfoundation/gaw-plugin-cloudflare-workers) they made (there's also a [Netlify](https://github.com/thegreenwebfoundation/gaw-plugin-netlify-edge) equivalent). Out of the box, the plugin provides a drop-in connection to the Electricity Maps API once you plug in your key, which is very helpful. This worker will get the request, get the user's rough location, and then determine the current state of the grid.
+Following the tutorial provided by the Green Web Foundation, I deployed the site to Cloudflare, then installed the [specific grid-aware worker](https://github.com/thegreenwebfoundation/gaw-plugin-cloudflare-workers) they made (there's also plans to build out a [Netlify](https://github.com/thegreenwebfoundation/gaw-plugin-netlify-edge) equivalent). Out of the box, the plugin provides a drop-in connection to the Electricity Maps API once you plug in your key, which is very helpful. This worker will get the request, get the user's rough location, and then determine the current state of the grid.
 
 <Image
 	src="https://res.cloudinary.com/nicchan/image/upload/v1755821377/toolbar-cropped.png"
 	width="1524"
 	height="115"
-	alt="The Green Web Foundation's grid aware toolbar component features a location marker with the current Location (Hong Kong), text that says 'Your local grid: Around average emissions', and a switch toggle to enable the grid-aware auto mode."
+	alt="The Green Web Foundation's grid-aware statusbar component features a location marker with the current Location (Hong Kong), text that says 'Your local grid: Around average emissions', and a switch toggle to enable the grid-aware auto mode."
 />
 
-It can also optionally inject the grid-aware toolbar, which will show some data about the user's current grid and allow the user to manually toggle between the modes. You probably wouldn't use the toolbar in a real application, but for demonstration purposes, it's perfect for our needs!
+It can also optionally inject the [grid-aware status bar](https://www.thegreenwebfoundation.org/news/a-web-component-for-grid-aware-websites/) web component, which will show some data about the user's current grid and allow the user to manually toggle between the modes. The status bar is optional, you can also build your own custom solution to give the user control over their grid-aware experience.
 
-To actually make the site respond to the grid is completely up to us. On the Cloudflare version of this worker, this involves using the [HTMLRewriter API](https://developers.cloudflare.com/workers/runtime-apis/html-rewriter/) to transform the markup before it's sent to the user. Even though the underlying approach would be the same for both 11ty and Astro, due to the different bundling strategies, we have to implement them slightly differently. Let's take a closer look.
+The website design changes in response to the grid are unique to each website, so this is an implementation step for us. On the Cloudflare version of this worker, this involves using the [HTMLRewriter API](https://developers.cloudflare.com/workers/runtime-apis/html-rewriter/) to transform the markup before it's sent to the user. Even though the underlying approach would be the same for both 11ty and Astro, due to the different bundling strategies, we have to implement them slightly differently. Let's take a closer look.
 
 #### 11ty
 
@@ -168,7 +168,7 @@ The one thing that might be the biggest blocker for implementing grid-awareness 
 
 Smaller projects like this demo where one person is in charge of all aspects can more easily implement grid-awareness because the complexity is significantly reduced, but at the same time, these kinds of sites are already most likely to be the least problematic in terms of carbon emissions. The same kind of paradox occurs with the tooling choice — tools like 11ty and Astro that make it easier to split your JavaScript up are much more likely to produce performant outputs already, making it uncertain if implementing this is worth the tradeoff. Once you pick up a bigger web framework, you're more likely to benefit from implementing grid-awareness, but the barrier to do so will be much higher.
 
-The grid-aware advisory group is well aware of this adoption barrier and has representatives from open-source CMS communities, who are actively working on grid-awareness libraries for CMSes like Wordpress, Drupal, Umbraco and Wagtail on the server-side. If grid-awareness was a solved problem at the deployment and ops layer, then it would be easier for designers and front-end developers to implement without worrying about this logic.
+The grid-aware advisory group is well aware of this adoption barrier and has representatives from open-source CMS communities, who are actively working on grid-awareness libraries for CMSes like [Wordpress](https://branch.climateaction.tech/issues/issue-9/adapting-wordpress-to-grid-aware-web-experiences/) ([Github Link](https://github.com/nahuai/grid-aware-wp)), Drupal, Umbraco and Wagtail on the server-side. If grid-awareness was a solved problem at the deployment and ops layer, then it would be easier for designers and front-end developers to implement without worrying about this logic.
 
 ## Conclusion
 
