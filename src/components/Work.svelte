@@ -46,6 +46,11 @@
 		list-style: none;
 	}
 
+	:global(.work img) {
+		display: block;
+		image-rendering: auto;
+	}
+
 	.work__item {
 		container-type: inline-size;
 		container-name: work;
@@ -93,11 +98,6 @@
 		inline-size: var(--max-width);
 		aspect-ratio: 4 / 3;
 		margin-block: 0.5rem;
-
-		:global(img) {
-			display: block;
-			image-rendering: auto;
-		}
 	}
 
 	@media (min-width: 30em) and (max-width: 62em) {
