@@ -32,15 +32,11 @@ const { DEV } = import.meta.env;
 
 			function bindScroll() {
 				const main = document.getElementById("main");
-				main.addEventListener("scroll", (event) => {
-					if (
-						window.matchMedia("(min-width: 62em) and (min-height: 36em)")
-							.matches
-					) {
-						event.preventDefault();
-						main.scrollTo(0, 0);
-					}
-				});
+				if (
+					window.matchMedia("(min-width: 62em) and (min-height: 36em)").matches
+				) {
+					main.scrollTo(0, 0);
+				}
 			}
 			document.addEventListener("astro:before-swap", (event) => {
 				getColor(event.newDocument);

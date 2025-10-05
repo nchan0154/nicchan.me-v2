@@ -369,7 +369,7 @@
 		}
 	}
 
-	.window__wrapper--minimized .window {
+	.window__wrapper--minimized {
 		position: fixed;
 		margin: 0;
 		inset: auto auto 0 0;
@@ -378,19 +378,6 @@
 		inset-block-start: auto;
 		visibility: hidden;
 		overflow: hidden;
-	}
-
-	@supports (view-transition-name: test) {
-		.window__wrapper--minimized {
-			position: fixed;
-			margin: 0;
-			inset: auto auto 0 0;
-			inline-size: 0;
-			block-size: 0;
-			inset-block-start: auto;
-			visibility: hidden;
-			overflow: hidden;
-		}
 	}
 
 	@media (min-width: 90em) {
