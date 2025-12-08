@@ -51,7 +51,7 @@
 				<li class="nav__item">
 					<a class="nav__link" href={link.link}>
 						{#if link.icon}
-							<svg class="nav__icon">
+							<svg class="nav__icon pixel-image">
 								<use href={`#icon-${link.icon}`} />
 							</svg>
 						{:else}

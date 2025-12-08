@@ -33,10 +33,6 @@ html {
 img {
 	max-inline-size: 100%;
 	block-size: auto;
-	image-rendering: crisp-edges;
-	image-rendering: -moz-crisp-edges;
-	image-rendering: pixelated;
-	// background-color: var(--color-image-fallback);
 }
 
 video {

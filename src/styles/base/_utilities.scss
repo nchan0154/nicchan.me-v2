@@ -15,6 +15,12 @@
 	@include focus("focus-within");
 }
 
+.pixel-image {
+	image-rendering: crisp-edges;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: pixelated;
+}
+
 // Probably not ideal to have it this way, but fine to leave for now
 astro-island:not(:has(.window__wrapper--minimized))
 	+ astro-island
