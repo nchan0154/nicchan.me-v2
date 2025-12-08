@@ -260,6 +260,7 @@
 		justify-content: space-between;
 		background: var(--color-window-header-bg);
 		color: var(--color-window-header-text);
+		pointer-events: none;
 	}
 
 	.window__controls {
@@ -267,6 +268,7 @@
 		display: flex;
 		flex-shrink: 0;
 		z-index: 2;
+		pointer-events: auto;
 	}
 
 	.window__control {
