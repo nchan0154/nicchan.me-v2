@@ -27,6 +27,10 @@
 
 	function checkButtonAvailability() {
 		if (!parent) return;
+		document.documentElement.style.setProperty(
+			"--footer-height",
+			document.getElementById("footer").clientHeight + "px",
+		);
 		if (parent.clientWidth === parent.scrollWidth) {
 			backwards.classList.add("windows__button--hidden");
 			forwards.classList.add("windows__button--hidden");
@@ -63,7 +67,10 @@
 			};
 			if (isMinimized) {
 				setTimeout(() => {
-					document.getElementById(customWindow.id).scrollIntoView(true);
+					if (window.matchMedia("(max-width: 61.99em").matches) {
+						console.log("test");
+						document.getElementById(customWindow.id).scrollIntoView(true);
+					}
 					document
 						.getElementById(customWindow.id)
 						.focus({ preventScroll: true });

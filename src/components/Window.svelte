@@ -14,7 +14,9 @@
 		order,
 		ref = null,
 		flex = false,
-		titleTag = "h2";
+		titleTag = "h2",
+		initiallyMaximized = false,
+		initiallyMinimized = false;
 
 	export let id = title.replaceAll(" ", "-").toLowerCase() || "window";
 	let activeWindow, windowBody, observer;
@@ -48,8 +50,8 @@
 				id,
 				order,
 				zIndex,
-				isMinimized: false,
-				isMaximized: false,
+				isMinimized: initiallyMinimized || false,
+				isMaximized: initiallyMaximized || false,
 			},
 		];
 		addResizeObserver();
@@ -76,7 +78,6 @@
 		let transition;
 
 		$isMaximizing = title;
-		bottomPadding = document.getElementById("footer").clientHeight;
 
 		if (document.startViewTransition) {
 			transition = document.startViewTransition(() => maximizeWindow());
@@ -140,7 +141,7 @@
 <section
 	use:draggable={{ handle: ".window__drag-handle" }}
 	on:neodrag:end={onDragEnd}
-	class="window__wrapper"
+	class={`window__wrapper ${initiallyMaximized && "window__wrapper--maximized"} ${initiallyMinimized && "window__wrapper--minimized"}`}
 	class:window__wrapper--maximized={activeWindow
 		? activeWindow.isMaximized
 		: false}
@@ -148,7 +149,7 @@
 		? activeWindow.isMinimized
 		: false}
 	class:window__wrapper--flex={flex}
-	style={`${transitionName || ""}; ${style || ""}; --bottom-padding: ${bottomPadding}px; translate: ${offsetX}px ${offsetY}px; z-index: ${activeWindow ? activeWindow.zIndex : order}`}
+	style={`${transitionName || ""}; ${style || ""}; translate: ${offsetX}px ${offsetY}px; z-index: ${activeWindow ? activeWindow.zIndex : order}`}
 	bind:this={ref}
 	tabindex="-1"
 	on:focus={onFocus}
@@ -354,10 +355,10 @@
 		inset: 0;
 		inline-size: 100%;
 		max-inline-size: none;
-		inset-block-end: var(--bottom-padding);
+		inset-block-end: var(--footer-height);
 		padding-block-end: 0;
 		/* We have to override some inline styles here */
-		z-index: 10000 !important;
+		z-index: 200 !important;
 		translate: 0 !important;
 
 		.window {
@@ -367,6 +368,10 @@
 		.window__drag-handle {
 			display: none;
 		}
+	}
+
+	#table-of-contents {
+		z-index: 250 !important;
 	}
 
 	.window__wrapper--minimized {

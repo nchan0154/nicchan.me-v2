@@ -266,13 +266,13 @@ const splitTitle = post.data.title.split(":");
 <Layout title={title} description={description} image={image} alt={alt}>
 	<div class="layout__grid post">
 		<div class="layout__cell post__toc">
-			<Window title="Table of Contents" order={0} titleTag="h2" client:load>
+			<Window title="Table of Contents" order={0} titleTag="h2" initiallyMinimized={true} client:load>
 				<TableOfContents headings={headings} />
 				<TableOfContentsObserver client:only="svelte" />
 			</Window>
 		</div>
 		<div class="layout__cell post__content">
-			<Window title="Post" order={1} titleTag="span" flex client:load>
+			<Window title="Post" order={1} titleTag="span" prosp="wow" initiallyMaximized={true} flex client:load>
 				<article class="rte container post__main">
 					<h1 class="text--base post__title">
 						{
