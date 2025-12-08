@@ -355,7 +355,6 @@
 		inset: 0;
 		inline-size: 100%;
 		max-inline-size: none;
-		inset-block-end: var(--footer-height);
 		padding-block-end: 0;
 		/* We have to override some inline styles here */
 		z-index: 200 !important;
@@ -370,6 +369,11 @@
 		}
 	}
 
+	@media (min-height: 36em) {
+		.window__wrapper--maximized {
+			inset-block-end: var(--footer-height);
+		}
+	}
 	#table-of-contents {
 		z-index: 250 !important;
 	}
