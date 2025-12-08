@@ -215,6 +215,7 @@
 		transform-style: preserve-3d;
 		will-change: transform;
 		container: window;
+		touch-action: auto !important; //We don't need to disable touch actions on small scren
 
 		&--flex {
 			--max-width: 100%;
@@ -340,6 +341,7 @@
 					var(--title-font-size)
 			);
 			inset-block-end: var(--block-end, auto);
+			touch-action: none !important; // Reset to allow dragging
 		}
 
 		.window__drag-handle {
