@@ -292,6 +292,4 @@ html[fonts-loaded="true"]:not([data-user-font="antialiased"]) {
 	--font-accent: "Sysfont", var(--font-accent-fallback);
 	--font-pixel: "W95fa", var(--font-pixel-fallback);
 	--font-code: "Departure Mono", var(--font-code-fallback);
-	font-smooth: never;
-	-webkit-font-smoothing: none;
 }
