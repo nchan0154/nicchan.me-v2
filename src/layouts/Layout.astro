@@ -5,7 +5,7 @@ import Header from "../components/Header.svelte";
 import Footer from "../components/Footer.astro";
 import Sprites from "@components/Sprites.astro";
 
-const { title, description, image, alt } = Astro.props;
+const { title, description, image, alt, hideMenu } = Astro.props;
 const url = Astro.url;
 const { DEV } = import.meta.env;
 ---
@@ -63,7 +63,7 @@ const { DEV } = import.meta.env;
 		<ViewTransitions />
 	</head>
 	<body class="layout">
-		<Header hideMenu={true}/>
+		<Header hideMenu={hideMenu}/>
 		<main class="layout__main" id="main" tabindex="-1" aria-label="Main">
 			<slot />
 		</main>
