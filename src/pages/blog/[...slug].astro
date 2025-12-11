@@ -263,7 +263,7 @@ const splitTitle = post.data.title.split(":");
 	});
 </script>
 
-<Layout title={title} description={description} image={image} alt={alt}>
+<Layout title={title} description={description} image={image} alt={alt} hideMenu={true}>
 	<div class="layout__grid post">
 		<div class="layout__cell post__toc">
 			<Window title="Table of Contents" order={0} titleTag="h2" initiallyMinimized={true} client:load>

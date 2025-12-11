@@ -1,4 +1,5 @@
 <script>
+	export let hideMenu;
 	const links = [
 		{
 			text: "Home",
@@ -39,7 +40,7 @@
 	];
 </script>
 
-<header class="layout__header">
+<header class="layout__header" inert={hideMenu} id="page-header">
 	<div class="skip-link-wrapper">
 		<a class="button--ui visually-hidden" href="#main">
 			<span class="button--ui__content">Skip to main content</span>

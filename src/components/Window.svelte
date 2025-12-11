@@ -91,6 +91,13 @@
 	}
 
 	function maximizeWindow() {
+		let header = document.getElementById("page-header");
+		if (activeWindow.isMaximized) {
+			header.removeAttribute("inert", true);
+		} else {
+			header.setAttribute("inert", true);
+		}
+
 		activeWindow.isMaximized = !activeWindow.isMaximized;
 		$windowStore = $windowStore;
 	}
