@@ -1,5 +1,18 @@
 <script>
-	export let hideMenu;
+	import { onMount } from "svelte";
+	import { hasMaximizedWindow, windowStore } from "../scripts/windows.js";
+	export let hideMenu = false;
+	let inert = hideMenu;
+	let hydrated = false;
+
+	onMount(() => {
+		hydrated = true;
+	});
+
+	$: if (hydrated) {
+		inert = $hasMaximizedWindow ? true : false;
+	}
+
 	const links = [
 		{
 			text: "Home",
@@ -40,7 +53,7 @@
 	];
 </script>
 
-<header class="layout__header" inert={hideMenu} id="page-header">
+<header class="layout__header" {inert} id="page-header">
 	<div class="skip-link-wrapper">
 		<a class="button--ui visually-hidden" href="#main">
 			<span class="button--ui__content">Skip to main content</span>

@@ -63,7 +63,7 @@ const { DEV } = import.meta.env;
 		<ViewTransitions />
 	</head>
 	<body class="layout">
-		<Header hideMenu={hideMenu}/>
+		<Header hideMenu={hideMenu} client:load/>
 		<main class="layout__main" id="main" tabindex="-1" aria-label="Main">
 			<slot />
 		</main>

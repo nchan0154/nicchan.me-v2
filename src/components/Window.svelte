@@ -6,8 +6,8 @@
 		isMaximizing,
 		isMinimizing,
 		highestIndex,
+		hasMaximizedWindow,
 	} from "../scripts/windows.js";
-	import { throttle } from "../scripts/throttle.js";
 
 	export let title = "",
 		style = "",
@@ -20,7 +20,6 @@
 
 	export let id = title.replaceAll(" ", "-").toLowerCase() || "window";
 	let activeWindow, windowBody, observer;
-	let bottomPadding = 0;
 	let tabindex = false;
 	let offsetX = 0;
 	let offsetY = 0;
@@ -36,9 +35,12 @@
 
 	$: activeWindow = $windowStore.find((window) => window.name === title);
 	$: transitionName = getTransitionName($isMinimizing, $isMaximizing);
+	$: inert =
+		title === "Table of Contents"
+			? activeWindow?.isMinimized
+			: $hasMaximizedWindow && $hasMaximizedWindow.name !== title;
 
 	onMount(() => {
-		// emit global event;
 		const loadEvent = new CustomEvent("window-loaded", { detail: { id } });
 		const unloadEvent = new CustomEvent("window-unloaded", { detail: { id } });
 		document.dispatchEvent(loadEvent);
@@ -91,13 +93,6 @@
 	}
 
 	function maximizeWindow() {
-		let header = document.getElementById("page-header");
-		if (activeWindow.isMaximized) {
-			header.removeAttribute("inert", true);
-		} else {
-			header.setAttribute("inert", true);
-		}
-
 		activeWindow.isMaximized = !activeWindow.isMaximized;
 		$windowStore = $windowStore;
 	}
@@ -158,6 +153,7 @@
 	class:window__wrapper--flex={flex}
 	style={`${transitionName || ""}; ${style || ""}; translate: ${offsetX}px ${offsetY}px; z-index: ${activeWindow ? activeWindow.zIndex : order}`}
 	bind:this={ref}
+	{inert}
 	tabindex="-1"
 	on:focus={onFocus}
 	{id}>
@@ -349,6 +345,10 @@
 			);
 			inset-block-end: var(--block-end, auto);
 			touch-action: none !important; // Reset to allow dragging
+		}
+
+		.window__header {
+			pointer-events: auto;
 		}
 
 		.window__drag-handle {

@@ -19,3 +19,10 @@ export const highestIndex = derived(windowStore, ($windowStore) => {
 		{ zIndex: 0 }
 	).zIndex;
 });
+
+export const hasMaximizedWindow = derived(windowStore, ($windowStore) => {
+	if (!$windowStore) return false;
+	return $windowStore?.find(window => {
+		return window.isMaximized && !window.isMinimized;
+	});
+});

@@ -68,7 +68,6 @@
 			if (isMinimized) {
 				setTimeout(() => {
 					if (window.matchMedia("(max-width: 61.99em").matches) {
-						console.log("test");
 						document.getElementById(customWindow.id).scrollIntoView(true);
 					}
 					document
