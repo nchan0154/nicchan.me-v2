@@ -1,3 +1,5 @@
+@use "../mixins" as *;
+
 .card {
 	--border-color: var(--color-card-border);
 	--offset: var(--border-thickness);

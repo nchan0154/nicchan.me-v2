@@ -88,7 +88,8 @@
 </div>
 
 <style lang="scss">
-	@import "../styles/_mixins.scss";
+	@use "@styles/mixins" as *;
+
 	.disclosure {
 		position: relative;
 	}

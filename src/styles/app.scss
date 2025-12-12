@@ -1,15 +1,16 @@
-@import "./base/variables";
-// @import "./mixins";
 
-@import "./base/fonts";
-@import "./base/globals";
-@import "./base/layout";
-@import "./base/buttons";
-@import "./base/container";
-@import "./base/typography";
-@import "./base/table";
-@import "./base/card";
-@import "./base/radio-checkbox";
-@import "./base/rte";
+@use "./base/variables" as *;
+@use "./mixins.scss" as *;
 
-@import "./base/utilities";
+@use "./base/fonts" as *;
+@use "./base/globals" as *;
+@use "./base/layout" as *;
+@use "./base/buttons" as *;
+@use "./base/container" as *;
+@use "./base/typography" as *;
+@use "./base/table" as *;
+@use "./base/card" as *;
+@use "./base/radio-checkbox" as *;
+@use "./base/rte" as *;
+
+@use "./base/utilities" as *;

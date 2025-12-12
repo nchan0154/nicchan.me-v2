@@ -21,252 +21,10 @@ const { title, description, pubDate, image, alt } = post.data;
 const splitTitle = post.data.title.split(":");
 ---
 
-<script>
-	let globalInstanceIndex = 0;
-
-	class HeadingAnchors extends HTMLElement {
-		static register(tagName) {
-			if ("customElements" in window) {
-				if (customElements.get("heading-anchors")) return;
-				customElements.define(tagName || "heading-anchors", HeadingAnchors);
-			}
-		}
-
-		static attributes = {
-			exclude: "data-ha-exclude",
-			prefix: "prefix",
-			content: "content",
-		};
-
-		static classes = {
-			anchor: "ha",
-			placeholder: "ha-placeholder",
-			srOnly: "ha-visualhide",
-		};
-
-		static defaultSelector = "h2,h3,h4,h5,h6";
-
-		static css = `
-.${HeadingAnchors.classes.srOnly} {
-	clip: rect(0 0 0 0);
-	height: 1px;
-	overflow: hidden;
-	position: absolute;
-	width: 1px;
-}
-.${HeadingAnchors.classes.anchor} {
-	position: absolute;
-	left: var(--ha_offsetx);
-	top: var(--ha_offsety);
-	text-decoration: none;
-	opacity: 0;
-}
-.${HeadingAnchors.classes.placeholder} {
-	opacity: .7;
-}
-.${HeadingAnchors.classes.anchor}:is(:focus-within, :hover) {
-	opacity: 1;
-}
-.${HeadingAnchors.classes.anchor},
-.${HeadingAnchors.classes.placeholder} {
-	padding: 0 .25em;
-
-	/* Disable selection of visually hidden label */
-	-webkit-user-select: none;
-	user-select: none;
-}
-
-@supports (anchor-name: none) {
-	.${HeadingAnchors.classes.anchor} {
-		position: absolute;
-		left: anchor(left);
-		top: anchor(top);
-	}
-}`;
-
-		get supports() {
-			return "replaceSync" in CSSStyleSheet.prototype;
-		}
-
-		get supportsAnchorPosition() {
-			return CSS.supports("anchor-name: none");
-		}
-
-		constructor() {
-			super();
-
-			if (!this.supports) {
-				return;
-			}
-
-			let sheet = new CSSStyleSheet();
-			sheet.replaceSync(HeadingAnchors.css);
-			document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
-
-			this.headingStyles = {};
-			this.instanceIndex = globalInstanceIndex++;
-		}
-
-		connectedCallback() {
-			if (!this.supports) {
-				return;
-			}
-			this.headings.forEach((heading, index) => {
-				if (heading.querySelector(`.${HeadingAnchors.classes.placeholder}`))
-					return;
-				if (!heading.hasAttribute(HeadingAnchors.attributes.exclude)) {
-					let anchor = this.getAnchorElement(heading);
-					let placeholder = this.getPlaceholderElement();
-
-					// Prefers anchor position approach for better accessibility
-					// https://amberwilson.co.uk/blog/are-your-anchor-links-accessible/
-					if (this.supportsAnchorPosition) {
-						let anchorName = `--ha_${this.instanceIndex}_${index}`;
-						placeholder.style.setProperty("anchor-name", anchorName);
-						anchor.style.positionAnchor = anchorName;
-						heading.appendChild(placeholder);
-						heading.after(anchor);
-					}
-				}
-			});
-		}
-
-		// Polyfill-only
-		positionAnchorFromPlaceholder(placeholder) {
-			if (!placeholder) {
-				return;
-			}
-
-			let heading = placeholder.closest("h1,h2,h3,h4,h5,h6");
-			if (!heading.nextElementSibling) {
-				return;
-			}
-
-			// TODO next element could be more defensive
-			this.positionAnchor(heading.nextElementSibling);
-		}
-
-		// Polyfill-only
-		positionAnchor(anchor) {
-			if (!anchor || !anchor.previousElementSibling) {
-				return;
-			}
-
-			// TODO previous element could be more defensive
-			let heading = anchor.previousElementSibling;
-			this.setFontProp(heading, anchor);
-
-			if (this.supportsAnchorPosition) {
-				// quit early
-				return;
-			}
-
-			let placeholder = heading.querySelector(
-				`.${HeadingAnchors.classes.placeholder}`
-			);
-			if (placeholder) {
-				anchor.style.setProperty("--ha_offsetx", `${placeholder.offsetLeft}px`);
-				anchor.style.setProperty("--ha_offsety", `${placeholder.offsetTop}px`);
-			}
-		}
-
-		setFontProp(heading, anchor) {
-			let placeholder = heading.querySelector(
-				`.${HeadingAnchors.classes.placeholder}`
-			);
-			if (placeholder) {
-				let style = getComputedStyle(placeholder);
-				let props = ["font-weight", "font-size", "line-height", "font-family"];
-				let font = props.map((name) => style.getPropertyValue(name));
-				anchor.style.setProperty(
-					"font",
-					`${font[0]} ${font[1]}/${font[2]} ${font[3]}`
-				);
-			}
-		}
-
-		getAccessibleTextPrefix() {
-			// Useful for i18n
-			return (
-				this.getAttribute(HeadingAnchors.attributes.prefix) ||
-				"Jump to section titled"
-			);
-		}
-
-		getContent() {
-			return this.getAttribute(HeadingAnchors.attributes.content) || "#";
-		}
-
-		getPlaceholderElement() {
-			let ph = document.createElement("span");
-			ph.setAttribute("aria-hidden", true);
-			ph.classList.add(HeadingAnchors.classes.placeholder);
-			ph.textContent = this.getContent();
-
-			ph.addEventListener("mouseover", (e) => {
-				let placeholder = e.target.closest(
-					`.${HeadingAnchors.classes.placeholder}`
-				);
-				if (placeholder) {
-					this.positionAnchorFromPlaceholder(placeholder);
-				}
-			});
-
-			return ph;
-		}
-
-		getAnchorElement(heading) {
-			let anchor = document.createElement("a");
-			anchor.href = `#${heading.id}`;
-			anchor.classList.add(HeadingAnchors.classes.anchor);
-
-			let content = this.getContent();
-			anchor.innerHTML = `<span class="${HeadingAnchors.classes.srOnly}">${this.getAccessibleTextPrefix()}: ${heading.textContent}</span><span aria-hidden="true">${content}</span>`;
-
-			anchor.addEventListener("focus", (e) => {
-				e.preventDefault();
-				let anchor = e.target.closest(`.${HeadingAnchors.classes.anchor}`);
-				anchor.previousElementSibling.scrollIntoView();
-				anchor.focus({ preventScoll: true });
-				if (anchor) {
-					this.positionAnchor(anchor);
-				}
-			});
-
-			anchor.addEventListener("mouseover", (e) => {
-				// when CSS anchor positioning is supported, this is only used to set the font
-				let anchor = e.target.closest(`.${HeadingAnchors.classes.anchor}`);
-				this.positionAnchor(anchor);
-			});
-
-			anchor.addEventListener("mousedown", (e) => {
-				let anchor = e.target.closest(`.${HeadingAnchors.classes.anchor}`);
-				history.pushState(null, null, anchor.getAttribute("href"));
-			});
-
-			return anchor;
-		}
-
-		get headings() {
-			return this.querySelectorAll(
-				this.selector.split(",").map((entry) => `${entry.trim()}[id]`)
-			);
-		}
-
-		get selector() {
-			return this.getAttribute("selector") || HeadingAnchors.defaultSelector;
-		}
-	}
-
-	document.addEventListener("astro:page-load", () => {
-		HeadingAnchors.register();
-	});
-</script>
-
 <Layout title={title} description={description} image={image} alt={alt} hideMenu={true}>
 	<div class="layout__grid post">
 		<div class="layout__cell post__toc">
-			<Window title="Table of Contents" order={0} titleTag="h2" initiallyMinimized={true} client:load>
+			<Window title="Table of Contents" order={0} titleTag="h2" initiallyMinimized={true} style="--max-width: 25rem; --inline-start: 0; --block-start: 2rem;" client:load>
 				<TableOfContents headings={headings} />
 				<TableOfContentsObserver client:only="svelte" />
 			</Window>
@@ -296,9 +54,7 @@ const splitTitle = post.data.title.split(":");
 						</time>
 						<Kudos offsetSparkles={true} />
 					</div>
-					<heading-anchors>
-						<Content />
-					</heading-anchors>
+					<Content />
 					<div class="post__footer-kudos">
 						<Kudos />
 					</div>
@@ -348,11 +104,6 @@ const splitTitle = post.data.title.split(":");
 		color: transparent;
 	}
 
-	.post__main {
-		:global(.rte) {
-		}
-	}
-
 	.post__footer-kudos {
 		margin-block-start: var(--space-s);
 	}
@@ -379,10 +130,12 @@ const splitTitle = post.data.title.split(":");
 
 	@media (min-width: 62em) {
 		.post {
-			grid-template-columns: 25rem 1fr;
+			grid-template-columns: 0 1fr;
 			gap: var(--space-s);
 		}
-	}
 
-	@not;
+		.post__toc {
+			position: static;
+		}
+	}
 </style>

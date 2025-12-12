@@ -1,3 +1,5 @@
+@use "../mixins" as *;
+
 table {
 	--border-color: var(--color-box-border);
 	border-collapse: collapse;

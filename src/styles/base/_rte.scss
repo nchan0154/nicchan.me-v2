@@ -1,3 +1,5 @@
+@use "../mixins" as *;
+
 .rte {
 	h2 {
 		margin-block-start: var(--space-m);

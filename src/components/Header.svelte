@@ -87,7 +87,7 @@
 </header>
 
 <style lang="scss">
-	@import "../styles/_mixins.scss";
+	@use "@styles/mixins" as *;
 
 	.skip-link-wrapper {
 		position: fixed;

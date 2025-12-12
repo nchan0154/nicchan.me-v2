@@ -1,3 +1,5 @@
+@use "../mixins" as *;
+
 .button--ui {
 	--border-color: var(--color-violet-lighter);
 	--offset: var(--border-thickness);

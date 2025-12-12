@@ -36,7 +36,8 @@
 {/if}
 
 <style lang="scss">
-	@import "../styles/_mixins.scss";
+	@use "@styles/mixins" as *;
+
 	.text-expand__button {
 		padding: 0;
 		border: none;

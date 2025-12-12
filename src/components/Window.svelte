@@ -75,6 +75,7 @@
 		});
 		observer.observe(windowBody);
 	}
+
 	function startMaximizeWindow() {
 		// We're doing this because I think the way the maximizing transition looks is kind of janky when using the morphing animation, so we're resetting to the default crossfade
 		let transition;
@@ -204,7 +205,7 @@
 </section>
 
 <style lang="scss">
-	@import "../styles/_mixins.scss";
+	@use "@styles/mixins" as *;
 
 	.window__wrapper {
 		--offset: calc(var(--border-thickness) * -1);

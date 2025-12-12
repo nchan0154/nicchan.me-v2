@@ -1,3 +1,5 @@
+@use "../mixins" as *;
+
 .rc-wrapper {
 	display: flex;
 	align-items: center;
