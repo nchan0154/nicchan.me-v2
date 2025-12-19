@@ -14,6 +14,10 @@
 	color: light-dark(var(--color-white), var(--color-violet));
 }
 
+html {
+	scrollbar-gutter: stable;
+}
+
 html,
 body {
 	min-block-size: 100%;

@@ -14,12 +14,12 @@ const layouts = [
 	"--max-width: 9rem; --block-start: -5rem; --inline-start: 55%",
 	"--max-width: 12rem; --block-start: 2rem; --inline-end: 7rem;",
 	"--max-width: 16rem; --block-start: 12rem; --inline-start: 1rem;",
-	"--max-width: 22rem; --block-end: 10%; --inline-start: 19rem;",
+	"--max-width: 22rem; --block-end: 20%; --inline-start: 19rem;",
 	"--max-width: 12rem; --block-start: 14rem; --inline-start: 36rem;",
 	"--max-width: 9rem; --block-start: 12rem; --inline-end: 25%;",
-	"--max-width: 13rem; --block-end: 10%; --inline-end: 1%;",
-	"--max-width: 12rem; --block-end: 1%; --inline-start: 0;",
-	"--max-width: 14rem; --block-end: 1rem; --inline-start: 38%;",
+	"--max-width: 13rem; --block-end: 20%; --inline-end: 1%;",
+	"--max-width: 12rem; --block-end: 10%; --inline-start: 0;",
+	"--max-width: 14rem; --block-end: 10%; --inline-start: 38%;",
 ];
 ---
 
@@ -45,6 +45,7 @@ const layouts = [
 <style lang="scss">
 	.artwork {
 		--text-padding: 0;
+		block-size: 100%;
 
 		:global(.window__wrapper--maximized) {
 			--text-padding: 0.5rem;

@@ -146,7 +146,7 @@
 	on:neodrag:end={onDragEnd}
 	class={`window__wrapper ${initiallyMaximized && "window__wrapper--maximized"} ${initiallyMinimized && "window__wrapper--minimized"}`}
 	class:window__wrapper--maximized={activeWindow
-		? activeWindow.isMaximized
+		? activeWindow.isMaximized && !activeWindow.isMinimized
 		: false}
 	class:window__wrapper--minimized={activeWindow
 		? activeWindow.isMinimized
@@ -361,17 +361,24 @@
 	}
 
 	.window__wrapper--maximized {
-		max-block-size: 100%;
+		display: flex;
+		position: relative;
+		flex-direction: column;
 		margin: 0;
 		inline-size: 100%;
 		max-inline-size: none;
+		min-block-size: 100%;
 		padding-block-end: 0;
+		inset: 0;
 		/* We have to override some inline styles here */
 		z-index: 200 !important;
 		translate: 0 !important;
 
 		.window {
+			flex: 1;
+			block-size: max(100%, 100dvh);
 			inline-size: 100%;
+			margin-block-end: var(--footer-height);
 		}
 
 		.window__drag-handle {
@@ -381,7 +388,7 @@
 		.window__body {
 			block-size: auto;
 			max-block-size: none;
-			overflow-y: hidden;
+			overflow-y: visible;
 		}
 	}
 
