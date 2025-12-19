@@ -361,10 +361,8 @@
 	}
 
 	.window__wrapper--maximized {
-		position: fixed;
 		max-block-size: 100%;
 		margin: 0;
-		inset: 0;
 		inline-size: 100%;
 		max-inline-size: none;
 		padding-block-end: 0;
@@ -379,13 +377,14 @@
 		.window__drag-handle {
 			display: none;
 		}
-	}
 
-	@media (min-height: 36em) {
-		.window__wrapper--maximized {
-			inset-block-end: var(--footer-height);
+		.window__body {
+			block-size: auto;
+			max-block-size: none;
+			overflow-y: hidden;
 		}
 	}
+
 	#table-of-contents {
 		z-index: 250 !important;
 	}
