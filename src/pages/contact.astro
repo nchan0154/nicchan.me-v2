@@ -64,7 +64,11 @@ import ContactForm from "../components/ContactForm.astro";
 		display: none;
 	}
 
-	@media (min-width: 62em) {
+	.contact:not(:has(.window__wrapper--maximized)) {
+		min-block-size: 0;
+	}
+
+	@media (min-width: 62em) and (orientation: landscape) {
 		.contact {
 			grid-template-rows: auto 1fr 1fr;
 			grid-template-columns: 1fr max(30rem, 50%);
@@ -79,7 +83,8 @@ import ContactForm from "../components/ContactForm.astro";
 		}
 
 		.contact__form {
-			padding-inline-start: var(--space-l);
+			--block-start: var(--space-l);
+			padding-inline-start: var(--space-m);
 			grid-column: 2;
 			grid-row: 1 / 4;
 			align-self: start;

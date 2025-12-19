@@ -1,8 +1,8 @@
 .layout {
 	display: grid;
-	grid-template-columns: 5rem 1fr;
-	grid-template-rows: 1fr auto;
+	grid-template-rows: 1fr var(--footer-height, 2.5rem);
 	margin: 0;
+	align-items: start;
 	min-height: 100dvh;
 }
 
@@ -13,11 +13,11 @@
 	padding-block-end: 1rem;
 	text-align: center;
 	overflow-y: auto;
+	z-index: 10;
 }
 
 .layout__main {
-	grid-row: 1;
-	grid-column: 2;
+	padding-inline-start: var(--header-width);
 	padding-block: 0.5rem;
 	padding-inline-end: 0.5rem;
 }
@@ -64,9 +64,7 @@
 	.layout__main {
 		block-size: 100%;
 		min-block-size: 0;
-		padding-block-end: calc(
-			var(--footer-height, 3rem) + var(--page-block-padding)
-		);
+		padding-block: var(--page-block-padding);
 	}
 
 	.layout__footer {
@@ -77,14 +75,17 @@
 
 @media (min-width: 38em) {
 	.layout {
-		grid-template-columns: 6.5rem 1fr;
+		--header-width: 6.5rem;
+		min-height: 100dvh;
 	}
 
 	.layout__main {
 		position: relative;
 		min-block-size: 0;
-		padding-block-start: var(--page-block-padding);
-		padding-inline: var(--page-inline-padding);
+		padding-inline-end: var(--page-inline-padding);
+		padding-inline-start: calc(
+			var(--page-inline-padding) + var(--header-width)
+		);
 	}
 
 	.layout__header {
@@ -93,9 +94,12 @@
 	}
 }
 
-@media (min-width: 62em) {
-	.layout__grid {
+@media (min-width: 62em) and (orientation: landscape) {
+	.layout {
 		--window-spacing: 0;
+	}
+
+	.layout__grid {
 		block-size: 100%;
 	}
 
