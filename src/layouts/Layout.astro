@@ -63,6 +63,7 @@ const { DEV } = import.meta.env;
 		<ViewTransitions />
 	</head>
 	<body class="layout">
+		<div class="background"></div>
 		<Header hideMenu={hideMenu} client:load />
 		<main class="layout__main" id="main" tabindex="-1" aria-label="Main">
 			<slot />
@@ -85,6 +86,14 @@ const { DEV } = import.meta.env;
 </html>
 
 <style>
+	.background {
+		position: fixed;
+		inset: 0;
+		background-color: var(--color-bg);
+		background-image: url("https://res.cloudinary.com/nicchan/image/upload/f_auto/bg-5.png");
+		background-size: cover;
+		background-position: center;
+	}
 	.sprites {
 		display: none;
 	}

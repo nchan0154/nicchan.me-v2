@@ -62,7 +62,6 @@
 	}
 
 	.layout__main {
-		block-size: 100%;
 		min-block-size: 0;
 		padding-block: var(--page-block-padding);
 	}
@@ -94,7 +93,7 @@
 	}
 }
 
-@media (min-width: 62em) and (orientation: landscape) {
+@media (min-width: 62em) and (min-height: 36em) and (orientation: landscape) {
 	.layout {
 		--window-spacing: 0;
 	}
@@ -104,6 +103,7 @@
 	}
 
 	.layout__main {
+		block-size: 100%;
 		overflow-y: visible;
 	}
 
@@ -113,11 +113,5 @@
 		scroll-padding-top: 5rem;
 		inline-size: 100%;
 		block-size: 100%;
-	}
-}
-
-@media (min-width: 62em) and (min-height: 36em) {
-	.layout {
-		overflow-x: clip;
 	}
 }

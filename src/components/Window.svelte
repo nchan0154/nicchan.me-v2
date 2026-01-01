@@ -341,7 +341,7 @@
 		}
 	}
 
-	@media (min-width: 62em) and (orientation: landscape) {
+	@media (min-width: 62em) and (min-height: 36em) and (orientation: landscape) {
 		.window__wrapper {
 			position: absolute;
 			max-block-size: 100%;

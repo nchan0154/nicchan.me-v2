@@ -68,7 +68,7 @@ import ContactForm from "../components/ContactForm.astro";
 		min-block-size: 0;
 	}
 
-	@media (min-width: 62em) and (orientation: landscape) {
+	@media (min-width: 62em) and (min-height: 36em) and (orientation: landscape) {
 		.contact {
 			grid-template-rows: auto 1fr 1fr;
 			grid-template-columns: 1fr max(30rem, 50%);
