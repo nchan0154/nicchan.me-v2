@@ -48,7 +48,10 @@ const { DEV } = import.meta.env;
 			document.addEventListener("astro:page-load", (event) => {
 				bindScroll();
 				if (window.tinylytics) {
-					window.tinylytics.triggerUpdate();
+					// Does deferring this help?
+					setTimeout(() => {
+						window.tinylytics.triggerUpdate();
+					}, 100);
 				}
 			});
 			getColor(document);
