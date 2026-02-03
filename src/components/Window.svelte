@@ -319,7 +319,7 @@
 		}
 
 		& :global(*) {
-			scroll-margin-block: var(--space-xs);
+			scroll-margin-block: 4rem;
 		}
 	}
 
@@ -405,16 +405,13 @@
 		}
 	}
 
-	#table-of-contents {
-		z-index: 250 !important;
-	}
-
 	.window__wrapper--minimized {
 		position: fixed;
 		margin: 0;
 		inset: auto auto 0 0;
-		inline-size: 0;
-		block-size: 0;
+		/* If it's 0 pixels, the animation translates into the top left for firefox. What a fun mystery! */
+		inline-size: 1px;
+		block-size: 1px;
 		inset-block-start: auto;
 		visibility: hidden;
 		overflow: hidden;

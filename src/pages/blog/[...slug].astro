@@ -34,7 +34,7 @@ const splitTitle = post.data.title.split(":");
 				order={0}
 				titleTag="h2"
 				initiallyMinimized={true}
-				style="--max-width: 25rem; --inline-start: 0; --block-start: 2rem;"
+				style="--max-width: 25rem; --inline-start: 6rem; --block-start: 2rem;"
 				client:load>
 				<TableOfContents headings={headings} />
 				<TableOfContentsObserver client:only="svelte" />
@@ -149,14 +149,19 @@ const splitTitle = post.data.title.split(":");
 		}
 	}
 
+	.post__toc:not(:has(.window__wrapper--minimized)) {
+		position: fixed;
+		z-index: 250;
+		pointer-events: none;
+	}
+
+	:global(.post__toc:not(:has(.window__wrapper--minimized)) .window__wrapper) {
+		pointer-events: auto;
+	}
 	@media (min-width: 62em) and (min-height: 36em) and (orientation: landscape) {
 		.post {
 			grid-template-columns: 0 1fr;
 			gap: var(--space-s);
-		}
-
-		.post__toc {
-			position: static;
 		}
 	}
 </style>

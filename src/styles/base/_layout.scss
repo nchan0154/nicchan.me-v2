@@ -39,7 +39,7 @@
 }
 
 :is(.layout__grid, .artwork):has(.window__wrapper--maximized)
-	> *:not(:has(.window__wrapper--maximized)) {
+	> *:not(.post__toc):not(:has(.window__wrapper--maximized)) {
 	display: none;
 }
 
