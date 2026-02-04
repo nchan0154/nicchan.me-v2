@@ -66,6 +66,10 @@ h4 + .ha {
 	color: transparent;
 }
 
+[data-user-font="antialiased"] .page-title {
+	font-weight: 700;
+}
+
 .text--base {
 	font-family: var(--font-base);
 	font-size: 1.5rem;

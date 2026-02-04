@@ -14,22 +14,16 @@
 	color: light-dark(var(--color-white), var(--color-violet));
 }
 
+html {
+	scrollbar-gutter: stable;
+	overflow-x: clip;
+}
+
 html,
 body {
 	min-block-size: 100%;
 	font-family: var(--font-base);
 	line-height: 1.6;
-	background-color: var(--color-bg);
-	background-image: url("https://res.cloudinary.com/nicchan/image/upload/f_auto/bg-5.png");
-	background-size: cover;
-	background-position: center;
-	background-attachment: fixed;
-}
-
-html {
-	&:has(.window__wrapper--maximized) {
-		overflow-y: hidden;
-	}
 }
 
 img {

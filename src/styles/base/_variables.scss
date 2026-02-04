@@ -106,12 +106,12 @@
 		calc(var(--border-thickness) * 3);
 
 	--max-width: 66ch;
-	--window-margin-block-start: 0.5rem;
 	--title-font-size: clamp(2.5rem, 7vw + 1rem, 4.5rem);
-	--page-block-padding: 1rem;
+	--page-block-padding: 0.5rem;
 	--page-inline-padding: 5%;
-	--window-spacing: var(--window-margin-block-start);
+	--window-spacing: 0.5rem;
 	--button-font-size: 1.25rem;
+	--header-width: 5rem;
 
 	--space-3xs: clamp(0.25rem, 0.163rem + 0.4348vw, 0.5rem);
 	--space-2xs: clamp(0.5rem, 0.3261rem + 0.8696vw, 1rem);
@@ -128,8 +128,10 @@
 
 	@media (min-width: 48em) {
 		--text-padding: 1rem;
+		--page-block-padding: 1rem;
 	}
 }
+
 @mixin dark-code {
 	.astro-code,
 	.astro-code span {

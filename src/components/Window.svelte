@@ -135,7 +135,7 @@
 		offsetY = event.detail.offsetY;
 	}
 
-	function onFocus(event) {
+	function onClick(event) {
 		activeWindow.zIndex = $highestIndex + 1;
 		$windowStore = $windowStore;
 	}
@@ -146,7 +146,7 @@
 	on:neodrag:end={onDragEnd}
 	class={`window__wrapper ${initiallyMaximized && "window__wrapper--maximized"} ${initiallyMinimized && "window__wrapper--minimized"}`}
 	class:window__wrapper--maximized={activeWindow
-		? activeWindow.isMaximized
+		? activeWindow.isMaximized && !activeWindow.isMinimized
 		: false}
 	class:window__wrapper--minimized={activeWindow
 		? activeWindow.isMinimized
@@ -156,40 +156,42 @@
 	bind:this={ref}
 	{inert}
 	tabindex="-1"
-	on:focus={onFocus}
+	on:click={onClick}
 	{id}>
 	<div class="window">
-		<div class="window__header">
-			<div class="window__drag-handle"></div>
-			<div class="window__title-wrapper">
-				<svelte:element
-					this={titleTag}
-					class="window__title"
-					id={`window-title-${id}`}>
-					{title ? title : ""}
-				</svelte:element>
-			</div>
-			<div class="window__controls">
-				<button
-					class="button--ui window__control window__control--minimize"
-					on:click={startMinimizeWindow}>
-					<span class="button--ui__content">
-						<svg width="16" height="16">
-							<use href="#icon-minimize"></use>
-						</svg>
-						<span class="visually-hidden">Minimize {title ? title : ""}</span>
-					</span></button>
-				<button
-					class="button--ui window__control window__control--maximize"
-					on:click={startMaximizeWindow}
-					aria-pressed={activeWindow ? activeWindow.isMaximized : false}>
-					<span class="button--ui__content">
-						<svg width="16" height="16">
-							<use href="#icon-maximize"></use>
-						</svg>
-						<span class="visually-hidden">Maximize {title ? title : ""}</span>
-					</span>
-				</button>
+		<div class="window__header-wrapper">
+			<div class="window__header">
+				<div class="window__drag-handle"></div>
+				<div class="window__title-wrapper">
+					<svelte:element
+						this={titleTag}
+						class="window__title"
+						id={`window-title-${id}`}>
+						{title ? title : ""}
+					</svelte:element>
+				</div>
+				<div class="window__controls">
+					<button
+						class="button--ui window__control window__control--minimize"
+						on:click={startMinimizeWindow}>
+						<span class="button--ui__content">
+							<svg width="16" height="16">
+								<use href="#icon-minimize"></use>
+							</svg>
+							<span class="visually-hidden">Minimize {title ? title : ""}</span>
+						</span></button>
+					<button
+						class="button--ui window__control window__control--maximize"
+						on:click={startMaximizeWindow}
+						aria-pressed={activeWindow ? activeWindow.isMaximized : false}>
+						<span class="button--ui__content">
+							<svg width="16" height="16">
+								<use href="#icon-maximize"></use>
+							</svg>
+							<span class="visually-hidden">Maximize {title ? title : ""}</span>
+						</span>
+					</button>
+				</div>
 			</div>
 		</div>
 		<div
@@ -211,8 +213,6 @@
 		--offset: calc(var(--border-thickness) * -1);
 		display: flex;
 		inline-size: var(--width, fit-content);
-		max-inline-size: var(--max-width);
-		max-inline-size: round(var(--max-width), 1px);
 		font-size: 1.25rem;
 		transform: translate3d(0, 0, 0), scale(1.0000001);
 		-webkit-backface-visibility: hidden;
@@ -233,11 +233,8 @@
 		@include focus("focus-visible");
 	}
 
-	:global(.no-js) .window__wrapper {
-		&:focus,
-		&:focus-within {
-			z-index: 100 !important;
-		}
+	.window__wrapper:has(:focus-visible) {
+		z-index: 100 !important;
 	}
 
 	.window__wrapper--absolute {
@@ -265,6 +262,18 @@
 		justify-content: space-between;
 		background: var(--color-window-header-bg);
 		color: var(--color-window-header-text);
+	}
+
+	.window__header-wrapper {
+		position: relative;
+		inline-size: calc(100% + 12px);
+		margin: calc(var(--border-thickness) * -2);
+		margin-block-end: calc(var(--border-thickness) * -1);
+		background: var(--color-window-bg);
+		padding: var(--border-thickness);
+		padding-block-end: 0;
+		@include pixel-borders();
+		border-block-end: 0;
 		pointer-events: none;
 	}
 
@@ -310,7 +319,7 @@
 		}
 
 		& :global(*) {
-			scroll-margin-block: var(--space-xs);
+			scroll-margin-block: 4rem;
 		}
 	}
 
@@ -332,23 +341,21 @@
 		}
 	}
 
-	@media (min-width: 62em) {
+	@media (min-width: 62em) and (min-height: 36em) and (orientation: landscape) {
 		.window__wrapper {
 			position: absolute;
 			max-block-size: 100%;
 			inline-size: 100%;
-			max-inline-size: var(--large-max-width, var(--max-width));
+			max-inline-size: var(--max-width);
+			max-inline-size: round(var(--max-width), 1px);
 			inset-inline-start: var(--inline-start, auto);
 			inset-inline-end: var(--inline-end, auto);
-			inset-block-start: calc(
-				var(--block-start, auto) + var(--page-block-padding) +
-					var(--title-font-size)
-			);
+			inset-block-start: var(--block-start, auto);
 			inset-block-end: var(--block-end, auto);
 			touch-action: none !important; // Reset to allow dragging
 		}
 
-		.window__header {
+		.window__header-wrapper {
 			pointer-events: auto;
 		}
 
@@ -361,41 +368,50 @@
 	}
 
 	.window__wrapper--maximized {
-		position: fixed;
-		max-block-size: 100%;
+		display: flex;
+		flex: 1;
+		position: relative;
+		flex-direction: column;
 		margin: 0;
-		inset: 0;
 		inline-size: 100%;
 		max-inline-size: none;
+		min-block-size: 100%;
 		padding-block-end: 0;
+		inset: 0;
 		/* We have to override some inline styles here */
 		z-index: 200 !important;
 		translate: 0 !important;
 
 		.window {
+			flex: 1;
+			block-size: max(100%, 100dvh);
 			inline-size: 100%;
+		}
+
+		.window__header-wrapper {
+			position: sticky;
+			inset-block-start: 0;
+			z-index: 1;
 		}
 
 		.window__drag-handle {
 			display: none;
 		}
-	}
 
-	@media (min-height: 36em) {
-		.window__wrapper--maximized {
-			inset-block-end: var(--footer-height);
+		.window__body {
+			block-size: auto;
+			max-block-size: none;
+			overflow-y: visible;
 		}
-	}
-	#table-of-contents {
-		z-index: 250 !important;
 	}
 
 	.window__wrapper--minimized {
 		position: fixed;
 		margin: 0;
 		inset: auto auto 0 0;
-		inline-size: 0;
-		block-size: 0;
+		/* If it's 0 pixels, the animation translates into the top left for firefox. What a fun mystery! */
+		inline-size: 1px;
+		block-size: 1px;
 		inset-block-start: auto;
 		visibility: hidden;
 		overflow: hidden;

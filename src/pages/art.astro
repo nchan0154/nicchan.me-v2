@@ -8,10 +8,10 @@ const artwork = await getArtwork();
 
 // We're keeping layouts agnostic to the artwork because I know I will want to bump fresh artwork to the front without redoing everything.
 const layouts = [
-	"--max-width: 20%; --inline-start: 0;",
-	"--max-width: 12%; --block-start: -1rem; --inline-start: 18%;",
-	"--max-width: 25%; --block-start: -4rem; --inline-start: 35%",
-	"--max-width: 9rem; --block-start: -5rem; --inline-start: 55%",
+	"--max-width: 20%; --block-start: 7rem; --inline-start: 0;",
+	"--max-width: 12%; --block-start: 8rem; --inline-start: 18%;",
+	"--max-width: 25%; --block-start: 1rem; --inline-start: 35%",
+	"--max-width: 9rem; --block-start: 2.5rem; --inline-start: 55%",
 	"--max-width: 12rem; --block-start: 2rem; --inline-end: 7rem;",
 	"--max-width: 16rem; --block-start: 12rem; --inline-start: 1rem;",
 	"--max-width: 22rem; --block-end: 10%; --inline-start: 19rem;",
@@ -45,6 +45,9 @@ const layouts = [
 <style lang="scss">
 	.artwork {
 		--text-padding: 0;
+		display: flex;
+		flex-direction: column;
+		min-block-size: 100%;
 
 		:global(.window__wrapper--maximized) {
 			--text-padding: 0.5rem;
@@ -56,6 +59,13 @@ const layouts = [
 			:global(.window__wrapper) {
 				max-inline-size: 100%;
 			}
+		}
+	}
+	@media (min-width: 62em) and (min-height: 36em) and (orientation: landscape) {
+		:global(.artwork .window__wrapper:not(.window__wrapper--maximized)) {
+			inset-inline-start: calc(
+				var(--header-width) + var(--inline-start, auto)
+			) !important;
 		}
 	}
 </style>

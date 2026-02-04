@@ -80,7 +80,7 @@
 			<a
 				class="tinylytics-hits"
 				href="https://tinylytics.app/public/thT44b6cyEs19PvjwWsT">
-				<span class="tinylytics_hits"></span> hits
+				<span class="tinylytics_hits">666,666</span> hits
 			</a>
 		</div>
 	</nav>
@@ -145,13 +145,14 @@
 		display: inline-block;
 		--border-color: currentColor;
 		padding: var(--border-thickness);
-		inline-size: fit-content;
+		inline-size: calc(var(--header-width) - 1rem);
 		position: relative;
 		z-index: 1;
 		line-height: 1;
 		background-color: var(--color-lavender);
 		color: var(--color-violet-darker);
 		text-decoration: none;
+		font-size: 0.875rem;
 		@include pixel-borders();
 	}
 

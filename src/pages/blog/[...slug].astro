@@ -21,16 +21,33 @@ const { title, description, pubDate, image, alt } = post.data;
 const splitTitle = post.data.title.split(":");
 ---
 
-<Layout title={title} description={description} image={image} alt={alt} hideMenu={true}>
+<Layout
+	title={title}
+	description={description}
+	image={image}
+	alt={alt}
+	hideMenu={true}>
 	<div class="layout__grid post">
 		<div class="layout__cell post__toc">
-			<Window title="Table of Contents" order={0} titleTag="h2" initiallyMinimized={true} style="--max-width: 25rem; --inline-start: 0; --block-start: 2rem;" client:load>
+			<Window
+				title="Table of Contents"
+				order={0}
+				titleTag="h2"
+				initiallyMinimized={true}
+				style="--max-width: 25rem; --inline-start: 6rem; --block-start: 2rem;"
+				client:load>
 				<TableOfContents headings={headings} />
 				<TableOfContentsObserver client:only="svelte" />
 			</Window>
 		</div>
 		<div class="layout__cell post__content">
-			<Window title="Post" order={1} titleTag="span" initiallyMaximized={true} flex client:load>
+			<Window
+				title="Post"
+				order={1}
+				titleTag="span"
+				initiallyMaximized={true}
+				flex
+				client:load>
 				<article class="rte container post__main">
 					<h1 class="text--base post__title">
 						{
@@ -132,14 +149,19 @@ const splitTitle = post.data.title.split(":");
 		}
 	}
 
-	@media (min-width: 62em) {
+	.post__toc:not(:has(.window__wrapper--minimized)) {
+		position: fixed;
+		z-index: 250;
+		pointer-events: none;
+	}
+
+	:global(.post__toc:not(:has(.window__wrapper--minimized)) .window__wrapper) {
+		pointer-events: auto;
+	}
+	@media (min-width: 62em) and (min-height: 36em) and (orientation: landscape) {
 		.post {
 			grid-template-columns: 0 1fr;
 			gap: var(--space-s);
-		}
-
-		.post__toc {
-			position: static;
 		}
 	}
 </style>
