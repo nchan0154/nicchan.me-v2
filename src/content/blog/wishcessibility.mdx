@@ -1,0 +1,91 @@
+---
+title: "Wishcessibility"
+pubDate: "2026-02-10"
+description: "No recycling was contaminated in the creation of this post."
+tags:
+  - accessibility
+  - thoughts
+image: https://res.cloudinary.com/nicchan/image/upload/w_1200,h_630,c_limit,f_auto/v1770632641/wishcessibility.jpg
+alt: T
+---
+
+import Image from "../../components/Image.astro";
+
+I was listening to the excellent (now completed) [Waste Not Why Not podcast](https://wastenotwhynot.com/) when I first heard the term 'wishcycling'. If you're not familiar with the term, wishcycling is basically what happens at the end of any house party comprised of adults in their thirties. In a sincere attempt to be helpful, the attendees will gather all the trash and recycling, so as to not impose on the host too much. However, one person will inevitably misunderstand what constitutes valid recycling and optimistically chuck the dirty pizza box in the recycling pile. The whole batch of recycling is then contaminated, and ends up going to landfill, causing the thing that people wished to avoid in the first place.
+
+Accessibility is really similar to recycling in certain ways. Most people agree that they are both net positives for the world, so many folks want to try their best at it, even if it requires them to take on a bunch of work they might not necessarily be prepared for. This often leads to a problem that I will call 'wishcessibility.'
+
+## What is wishcessibility?
+
+As I see it, wishcessibility isn't a single specific bad practice, it's anything that inadvertently hurts accessibility when you're trying to improve it.
+
+Wishcessibility is when the unpaid, open-source maintainer follows the ARIA Authoring Practices Guide without testing the patterns, thinking that they [represent best accessibility practices.](https://hidde.blog/ideal-a11y-guidance/)
+
+Wishcessibility is when the junior developer learns about keyboard-only users for the first time and adds tabindex="0" to every heading and text node on the page, without anyone in the organization preventing this work from being pushed to production.
+
+Wishcessibility is trusting the accessibility advice of an LLM without checking to see if that is how it works in real life.
+
+<figure>
+  <Image
+    src="https://res.cloudinary.com/nicchan/image/upload/v1770625841/aria-controls-llm.png"
+    alt="A conversation with an LLM where I ask it 'how does aria-controls help accessibility' and it responds that it plays an important role in accessibility, full text is included below."
+    width="1854"
+    height="1266"
+  />
+  <details>
+    <summary>Full LLM Output</summary>
+    Me: How does aria-controls help accessibility?
+
+    LLM: The `aria-controls` attribute is part of the WAI-ARIA (Accessible Rich Internet Applications) specification, and it plays an important role in accessibility by helping assistive technologies understand relationships between elements.
+
+    How `aria-controls` Helps Accessibility
+
+    - **Defines relationships**: It tells assistive technologies (like screen readers) which element(s) are controlled by a given control (e.g., a button, tab, or combobox).
+    - **Improves navigation**: Screen readers can announce that activating a control will affect another part of the page, helping users anticipate changes.
+    - **Supports dynamic content**: In modern web apps, content often updates without page reloads. `aria-controls` makes these updates more transparent to users relying on assistive tech.
+    - **Enhances context**: Users understand not just what a control does, but _where_ its effect will be applied.
+
+  </details>
+
+    <Image
+    	src="https://res.cloudinary.com/nicchan/image/upload/v1770625840/aria-controls-support-table.png"
+    	alt="A screenshot from a11ysupport.io that shows aria-controls is poorly supported across all screen readers, with only JAWS allowing the user to jump to the controlled element."
+    	width="2304"
+    	height="765"
+    />
+    <figcaption>
+    	The LLM drastically overstated the benefits of `aria-controls`, which has poor screen
+    	reader support.
+    </figcaption>
+
+</figure>
+
+Wishcessibility might even be when someone installs that accessibility overlay, because they've seen it on a dozen other similar sites and they've fallen for the [flood of marketing lies](https://overlayfactsheet.com/en/).
+
+The common thread here is that wishcessibility, like wishcycling, is always performed by people who want to do the right thing. When a giant corporation decides to whittle their accessibility team down to a single individual with the job title of 'Resident Sisyphus', that's not wishcessibility, that's just regular ol' corporate greed. The corporation may or may not be aware that this results in ableism, but the result is the same.
+
+While I would normally be somewhat wary of placing too much emphasis on intent over impact, I genuinely believe it is a useful distinction here because it mirrors the career trajectory of many accessibility practitioners I know. Most of them (including me) started with a sincere desire to make things accessible, and some of us were lucky enough to be allowed to fail, over and over again, until the net good of our work became greater than our failures. Having good intent doesn’t cancel out a negative impact, but I believe cultivating that good intent will result in greater accessibility, turning wishcessibility into actual accessibility.
+
+But as common as that narrative is in my circles, people transcending wishcessibility is quite rare, as inaccessible code and design dominates our industry. It turns out that combatting it is a lot harder than defining it.
+
+## How do we combat wishcessibility?
+
+Much of the day to day (and money) in the accessibility industry is driven by a compliance mindset, and this is the inevitable result of the law driving most corporate accessibility efforts. The accessibility practitioners' standard refrain of 'it depends' is not generally acceptable in court, and ultimately, I understand the reasoning behind having measurable, standardized goals, even if it often devolves into box-ticking exercises.
+
+> “When a measure becomes a target, it ceases to be a good measure.”
+
+However, as Sherri Byrne-Haber notes in her excellent recent piece '[Don't Fall Into the "Accessibility Grade/Score" Trap](https://buttondown.com/access-ability/archive/dont-fall-into-the-accessibility-gradescore-trap/)', an inherent part of creating standards involves flattening nuance into something reproducible in different contexts. This leads to a proliferation of one-size-fits-all guidance and advice, usually in the form of marketing pieces for different service providers.
+
+Well-meaning developers who want to do the right thing but lack expertise lap up surface-level accessibility content, and the cycle of inaccessibility continues, unfettered by nuance. Without expertise and experience in the practice of accessibility, developers just try to do the best they can with what they're given. Without organizational support, they don’t have the opportunity to deepen their knowledge, and they can only do so much before the pressures to ship faster inevitably cause harm. I know this, because I’ve been there.
+
+The reason why it's so hard to get organizational support for accessibility is that the fundamental core of the field is dealing with the inherent messiness of human beings. It's a rite of passage in the field to receive user feedback that completely conflicts with standard accessibility practice. Disabled people are humans, and being human means having some unexplainable quirks, like the person I once met who only uses cursive fonts on their phone. Though receiving this kind of feedback doesn't make for straightforward, actionable product feedback, much of how we practice accessibility today is born of [people figuring out how to do accessibility for themselves](https://www.nicchan.me/blog/what-tumblr-taught-me-about-accessibility/), regardless of what standards say. We can’t forget that the standards are derived from people’s lived experiences, and not the other way around.
+
+One sad reality of our current tech hype cycle means that if you asked your boss for $200 to do some testing with disabled users, they would probably say no, but if you asked them for the same $200 to have access to an LLM so you could generate some user personas, they would probably say yes. There's something safe and comforting about the answer-shaped results of an LLM, real human experiences distilled down to generalizable averages.
+
+But this is all a farce, a **wish**, if you will. It's a lie we tell ourselves to hide the fact that perfect accessibility is actually impossible. The only way to get anywhere close is through systemic support and buy-in so that people can do the gritty, in-the-trenches work of grappling with our shared humanity.
+
+Much like the person at the party tries to impress their friends by attempting to recycle, we aim for perfect tooling scores, closed issues and well-written reports. The other stuff, the actual user experience is relegated to afterthought. I’m not saying we should throw out the baby with the bathwater and get rid of standards like WCAG. They represent an important baseline (and [an achievement\!](https://yatil.net/blog/meeting-wcag-is-an-achievement)), a necessary starting point before the even harder work begins.
+
+Though I, a perpetual optimist, continue to diligently sort out my waste from my recyclables, I know it's but a drop in the ocean of what we have to do to fix the harm done to our environment. Similarly, I have no illusions about what this blog post can achieve — I know publishing this won't suddenly make organizations dedicate what it needs to achieve an accessible internet. I just hope that by publishing this, it gives us some language to talk about why the work of accessibility needs us to think beyond the pixels, the code, the standards and the law, about the actual humans we are solving problems for.
+
+(Thank you [Jan Maarten](https://janmaarten.com/) for giving me feedback on this piece!)
