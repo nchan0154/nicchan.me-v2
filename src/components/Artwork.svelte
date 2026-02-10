@@ -39,7 +39,6 @@
 
 	.artwork__image {
 		display: block;
-		image-rendering: auto;
 		margin-block-start: var(--border-thickness);
 
 		:global(.window__wrapper--maximized:not(.window__wrapper--minimized)) & {

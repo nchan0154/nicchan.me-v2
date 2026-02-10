@@ -48,7 +48,6 @@
 
 	:global(.work img) {
 		display: block;
-		image-rendering: auto;
 	}
 
 	.work__item {

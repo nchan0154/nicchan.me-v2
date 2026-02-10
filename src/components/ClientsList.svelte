@@ -40,7 +40,6 @@
 		--border-color: var(--color-black);
 		display: block;
 		inline-size: 8.3125rem;
-		image-rendering: auto;
 		@include pixel-borders();
 		border-radius: 0;
 	}

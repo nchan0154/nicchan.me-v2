@@ -75,7 +75,6 @@
 
 @media (min-width: 38em) {
 	.layout {
-		--header-width: 6.5rem;
 		min-height: 100dvh;
 	}
 
@@ -96,6 +95,7 @@
 
 @media (min-width: 62em) and (min-height: 36em) and (orientation: landscape) {
 	.layout {
+		--header-width: 6rem;
 		--window-spacing: 0;
 	}
 

@@ -27,11 +27,13 @@ const ariaCurrent = Astro.url.pathname === "/" ? "page" : undefined;
 
 <style lang="scss">
 	.footer {
+		--border-color: var(--color-violet-lighter);
 		--button-font-size: 1rem;
 		grid-column: span 2;
 		inline-size: 100%;
 		padding: 0 var(--border-thickness);
 		background-color: var(--color-footer-bg);
+		border-block-start: var(--border-thickness) solid var(--border-color);
 		view-transition-name: footer;
 		z-index: 250;
 

@@ -61,3 +61,12 @@
 	line-gap-override: normal;
 	font-display: swap;
 }
+
+@font-face {
+	font-family: "Liberation Sans Fallback";
+	src: local(Liberation Sans);
+	size-adjust: 89%;
+	ascent-override: normal;
+	descent-override: 14%;
+	line-gap-override: normal;
+}

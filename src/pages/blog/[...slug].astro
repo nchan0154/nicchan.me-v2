@@ -69,7 +69,6 @@ const splitTitle = post.data.title.split(":");
 								}).format(new Date(pubDate))
 							}
 						</time>
-						<Kudos offsetSparkles={true} />
 					</div>
 					<Content />
 					<div class="post__footer-kudos">
@@ -162,6 +161,10 @@ const splitTitle = post.data.title.split(":");
 		.post {
 			grid-template-columns: 0 1fr;
 			gap: var(--space-s);
+		}
+
+		.post__main {
+			margin-block: 2.5rem;
 		}
 	}
 </style>

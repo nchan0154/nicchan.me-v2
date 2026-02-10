@@ -378,14 +378,16 @@
 		min-block-size: 100%;
 		padding-block-end: 0;
 		inset: 0;
-		/* We have to override some inline styles here */
+		/* We have to override some inline styles applied by JavaScript here */
 		z-index: 200 !important;
 		translate: 0 !important;
+		touch-action: auto !important;
 
 		.window {
 			flex: 1;
 			block-size: max(100%, 100dvh);
 			inline-size: 100%;
+			mask: none;
 		}
 
 		.window__header-wrapper {

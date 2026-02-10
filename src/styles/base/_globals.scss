@@ -41,7 +41,7 @@ p {
 
 	// Have to qualify as not empty as Svelte injects an extra p tag? fun
 	&:not(:empty) + &:not(:empty) {
-		margin-block-start: 1rem;
+		margin-block-start: 1.5rem;
 	}
 }
 
@@ -113,7 +113,7 @@ legend {
 }
 
 hr {
-	margin: var(--space-xs) 0;
+	margin: var(--space-m) 0;
 	border: none;
 	border-block-end: var(--border-thickness) dashed var(--color-text-accent);
 }

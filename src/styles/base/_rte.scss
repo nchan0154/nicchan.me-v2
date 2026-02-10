@@ -50,7 +50,7 @@
 	}
 
 	strong {
-		font-weight: 400;
+		font-weight: var(--font-heading-weight);
 		outline: var(--border-thickness) solid var(--color-text-highlight);
 		background-image: linear-gradient(
 			to top,
@@ -69,11 +69,11 @@
 	}
 
 	a {
-		color: currentColor;
+		color: var(--color-link-underline);
 		text-decoration-color: var(--color-link-underline);
 
 		&:hover {
-			color: var(--color-link-underline);
+			color: currentColor;
 		}
 
 		&:focus {
@@ -84,12 +84,39 @@
 
 	& section > img {
 		margin: var(--space-s) auto;
-		image-rendering: initial;
+		@include pixel-borders();
+	}
+
+	figure img {
+		display: block;
 		@include pixel-borders();
 	}
 
 	figcaption {
+		margin-block-start: var(--space-xs);
 		line-height: 1.2;
+	}
+
+	img + details {
+		--border-color: var(--color-box-border);
+		position: relative;
+		margin-block-end: var(--space-s);
+		margin-block-start: calc(var(--border-thickness) * -1);
+		padding: var(--space-xs);
+		background-color: var(--color-box-bg);
+		color: var(--color-box-text);
+		border: var(--border-thickness) solid var(--border-color);
+	}
+
+	summary {
+		font-family: var(--font-accent);
+		font-size: clamp(1.5rem, 1vw + 1rem, 1.75rem);
+		line-height: 1.2;
+		color: var(--color-text-subheading);
+	}
+
+	details[open] summary {
+		margin-block-end: var(--space-xs);
 	}
 
 	.demo,

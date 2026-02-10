@@ -90,10 +90,12 @@
 	--color-accent-text-2: var(--color-magenta-lighter);
 	--color-sparkle: var(--color-magenta);
 
-	--font-accent-fallback: "Seravek Fallback", "Gill Sans Nova Fallback",
-		"Ubuntu Fallback", "Calibri Fallback", source-sans-pro, sans-serif;
-	--font-pixel-fallback: "Seravek Fallback", "Gill Sans Nova Fallback",
-		"Ubuntu Fallback", "Calibri Fallback", source-sans-pro, sans-serif;
+	--font-accent-fallback:
+		"Seravek Fallback", "Gill Sans Nova Fallback", "Ubuntu Fallback",
+		"Calibri Fallback", "Liberation Sans Fallback", Source-sans-pro, sans-serif;
+	--font-pixel-fallback:
+		"Seravek Fallback", "Gill Sans Nova Fallback", "Ubuntu Fallback",
+		"Calibri Fallback", "Liberation Sans Fallback", source-sans-pro, sans-serif;
 	--font-code-fallback: monospace;
 	--font-accent: var(--font-accent-fallback);
 	--font-pixel: var(--font-pixel-fallback);
