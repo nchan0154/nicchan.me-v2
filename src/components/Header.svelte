@@ -80,7 +80,7 @@
 			<a
 				class="tinylytics-hits"
 				href="https://tinylytics.app/public/thT44b6cyEs19PvjwWsT">
-				<span class="tinylytics_hits">666,666</span> hits
+				<span class="tinylytics_hits">Loading</span> hits
 			</a>
 		</div>
 	</nav>
